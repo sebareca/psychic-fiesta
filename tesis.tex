@@ -1,0 +1,698 @@
+\documentclass[a4paper,oneside,fleqn,11pt]{article}
+
+%Cambiamos un poquito los márgenes%
+\addtolength{\oddsidemargin}{-.5in}
+\addtolength{\evensidemargin}{-.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
+
+
+%Las siguientes lineas le dicen a tex que vamos a escribir en español. 
+%En particular resuelven el problema de los acentos.%
+%Ojo, solo funciona en Linux; en Windoes, cambiar T1 por latin1 [creo...]%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-minimal, es-sloppy]{babel}
+
+%Algunos paquetes que suelo usar%
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{stmaryrd}
+\usepackage{braket}
+\usepackage{theoremref}
+
+\usepackage[osf,noBBpl]{mathpazo}
+\usepackage{euler}
+
+
+\usepackage[all]{xy}
+\usepackage{graphics}
+
+\newcommand\NN{\mathbb{N}}
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\PP{\mathbb{P}}
+\newcommand\ox{\otimes}
+\newcommand\field{\Bbbk}
+\newcommand\base{\mathcal{B}}
+
+\newtheorem{Definicion}{Definición}
+%\theoremindent\parindent
+\newtheorem{Teorema}{Teorema}
+\newtheorem{prop}{Proposición}
+\newtheorem{coro}{Corolario}
+\numberwithin{prop}{subsection}
+
+
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\Ima{Im}
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\gr{gr}
+
+\date{23/03/2015}
+\begin{document}
+
+\section{Cálculos preliminares}
+
+\begin{prop}
+\label{cp_conmutatividad}
+Para todo $c \geq 0$,
+\[
+	y^cx = \left\{\begin{array}{cc}
+			\sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} \quad&\text{si } c = 2k,\\
+			&\\
+			\sum_{i = 0}^k \frac{k!}{i!}(yx)^{k - i + 1}y^{2i} \quad&\text{si } c = 2k + 1.
+	\end{array}\right.
+\]
+\end{prop}
+\begin{proof}
+Lo probaremos por inducción. Los casos $c = 0, 1, 2$ son claros. 
+Sea $k \geq 1$ y $c = 2k + 1$, luego
+\begin{align*}
+	y^{2k + 1}x = y(y^{2k}x) = y(\sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i}) = \sum_{i = 0}^k \frac{k!}{i!}(yx)^{k - i + 1}y^{2i}.
+\end{align*}
+Sea $k \geq 1$ y $c = 2k + 2$, luego
+\begin{align*}
+	y^{2k + 2}x &= y^{2k}y^2x = y^{2k}(xy^2 + xyx) \\ 
+	&= y^{2k}x(y^2 + yx) = \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i}(y^2 + yx) \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2} + \sum_{i = 0}^k\frac{k!}{i!} x(yx)^{k - i}y^{2i + 1}x \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2}
+		+ \sum_{i = 0}^k\frac{k!}{i!} x(yx)^{k - i}\left(\sum_{j = 0}^i\frac{i!}{j!}(yx)^{i - j + 1}y^{2j}\right) \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2}
+		+ \sum_{i = 0}^k \sum_{j = 0}^i \frac{k!}{j!} x(yx)^{k - j + 1}y^{2j}. \\
+	&= A + B,
+\end{align*}
+donde
+\begin{align*}
+	A &= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2} \quad\text{y}\quad B = \sum_{i = 0}^k \sum_{j = 0}^i \frac{k!}{j!} x(yx)^{k - j + 1}y^{2j}.
+\end{align*}
+Intercambiando las sumas en $B$ obtenemos que
+\begin{align*}
+	B &=  \sum_{j = 0}^k \sum_{i = j}^k \frac{k!}{j!} x(yx)^{k - j + 1}y^{2j}  = \sum_{j = 0}^k (k - j + 1)\frac{k!}{j!} x(yx)^{k - j + 1}y^{2j}.
+\end{align*}
+En $A$ realizamos el cambio de variables $j = i + 1$,
+\begin{align*}
+	A &= \sum_{j = 1}^{k + 1} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j}.
+\end{align*}
+Luego
+\begin{align*}
+	y^{2k + 2}x &= A + B = \sum_{j = 1}^{k + 1} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j}
+		+ \sum_{j = 0}^k (k - j + 1)\frac{k!}{j!} x(yx)^{k - j + 1}y^{2j} \\
+	&= xy^{2k + 1} + \sum_{j = 1}^{k} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j} \\
+		&\hspace{70pt}+ (k+1)!x(yx)^{k + 1} + \sum_{j = 1}^k (k - j + 1)\frac{k!}{j!} (yx)^{k - j + 1}y^{2j} \\
+	&= xy^{2k + 1} + \sum_{j = 1}^k \left( \frac{k!}{(j-1)!} + (k - j + 1)\frac{k!}{j!} \right) (yx)^{k - j + 1}y^{2j} 
+		+ (k+1)!x(yx)^{k + 1} \\
+	&= xy^{2k + 1} +\sum_{j = 1}^k \frac{(k + 1)!}{j!} (yx)^{k - j + 1}y^{2j} + (k+1)!x(yx)^{k + 1} \\
+	&= (k+1)!x(yx)^{k + 1} + \sum_{j = 1}^k \frac{(k + 1)!}{j!} (yx)^{k - j + 1}y^{2j} + xy^{2k + 1} \\
+	&= \sum_{j = 0}^{k + 1} \frac{(k + 1)!}{j!} (yx)^{k - j + 1}y^{2j}.
+\end{align*}
+\end{proof}
+\section{Homología de Hochschild}
+Sea $\mathbf{X}_{\bullet,\bullet}$ el siguiente complejo doble ubicado en el primer cuadrante
+\begin{align*}
+\xymatrix{
+	& & \\
+	& A \ox k\{x^4\} \ox A \ar[d]^{\delta} \ar@{<--}[u]_{\partial} & A \ox k\{y^2x^4\} \ox A \ar[l]_d \ar[d]^{\delta'} \ar@{<--}[u]_{\partial'} \\
+	& A \ox k\{x^3\} \ox A \ar[d]^{\partial} & A \ox k\{y^2x^3\} \ox A \ar[l]_d \ar[d]^{\partial'} \\
+	& A \ox k\{x^2\} \ox A \ar[d]^{\delta} & A \ox k \{y^2x^2\} \ox A \ar[l]_d \ar[d]^{\delta'} \\
+	A \ox A & A \ox k\{x, y\} \ox A \ar[l]_{d_0} & A \ox k \{y^2x\} \ox A \ar[l]_{d_1} \\
+}
+\end{align*}
+donde los diferenciales de $A$-bimódulos se definen de la siguiente manera:
+\begin{align*}
+	d_0(1 \ox v \ox 1) &= v \ox 1 - 1 \ox v, \quad\text{ para todo } v \in k\{x, y\}, \\
+	\\
+	d_1(1 \ox y^2x \ox 1) &= y^2 \ox x \ox 1 + y \ox y \ox x + 1 \ox y \ox yx \\
+		&-(xy \ox y \ox 1 + x \ox y \ox y + 1 \ox x \ox y^2) \\
+		&-(xy \ox x \ox 1 + x \ox y \ox x + 1 \ox x \ox yx), \\
+	\\	
+	d(1 \ox y^2x^n \ox 1) &= y^2 \ox x^n \ox 1 - xy \ox x^n \ox 1 - 1 \ox x^n \ox y^2 - 1 \ox x^n \ox yx,\\
+	\\	
+	\delta(1 \ox x^n \ox 1) &= x \ox x^{n -1} \ox 1 + 1 \ox x^{n - 1} \ox x,\\
+	\delta'(1 \ox y^2x^n \ox 1) &= - (x \ox y^2 x^{n -1} \ox 1 + 1 \ox y^2x^{n - 1} \ox x),\\
+	\\	
+	\partial(1 \ox x^n \ox 1) &= x \ox x^{n -1} \ox 1 - 1 \ox x^{n - 1} \ox x,\\
+	\partial'(1 \ox y^2x^n \ox 1) &= -(x \ox y^2 x^{n -1} \ox 1 - 1 \ox y^2x^{n - 1} \ox x). \\
+\end{align*}
+
+Le aplicamos a $\mathbf{X}_{\bullet,\bullet}$ el funtor $A \ox_{A^e}(-)$ y obtenemos un nuevo
+complejo doble tal que la homología de su complejo total es $HH_*(A)$. El complejo es el siguiente
+\begin{align*}
+\xymatrix{
+	& & \\
+	& A \ox_{A^e} (A \ox k\{x^4\} \ox A) \ar[d]^{id\ox\delta} \ar@{<--}[u]_{id\ox\partial}
+		& A \ox_{A^e} (A \ox k\{y^2x^4\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \ar@{<--}[u]_{id\ox\partial'} \\
+	& A \ox_{A^e} (A \ox k\{x^3\} \ox A) \ar[d]^{id\ox\partial}
+		& A \ox_{A^e} (A \ox k\{y^2x^3\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\partial'} \\
+	& A \ox_{A^e} (A \ox k\{x^2\} \ox A) \ar[d]^{id\ox\delta}
+		& A \ox_{A^e} (A \ox k \{y^2x^2\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \\
+	A \ox_{A^e} (A \ox A) & A \ox_{A^e} (A \ox k\{x, y\} \ox A) \ar[l]_{id\ox d_0} & A \ox k \{y^2x\} \ox A \ar[l]_{id\ox d_1} \\
+}
+\end{align*}
+Identificando de manera natural $A \ox_{A^e} (A \ox W \ox A)$ con $A \ox W$ para todo espacio vectorial $W$ resulta
+el complejo doble
+\begin{align*}
+\xymatrix{
+	& & \\
+	& A \ar[d]^{\delta} \ar@{--}[u]_{\partial} & A\ar[l]_{d} \ar[d]^{-\delta} \ar@{--}[u]_{-\partial} \\
+	& A \ar[d]^{\partial} & A \ar[l]_{d} \ar[d]^{-\partial} \\
+	& A \ar[d]^{\overline{\delta}} & A \ar[l]_{d} \ar[d]^{-\delta} \\
+	A & A \oplus A \ar[l]_{d_0} & A \ar[l]_{d_1} \\
+}
+\end{align*}
+con los siguientes diferenciales $k$-lineales
+\begin{align*}
+&d_0(a,b) = \left[a,x\right] + \left[b,y\right(],\\
+&d_1(a) = (\left[a,y^2\right] - (axy + yxa), \left[x,a\right]y + y\left[x,a\right] - xax),\\
+&d(a) = \left[a,y^2\right] - (axy + yxa),\\
+&\overline{\delta}(a) = (ax + xa, 0),\\
+&\delta(a) = ax + xa,\\
+&\partial(a) = \left[a, x\right].
+\end{align*}
+Para calcular la homología de Hochschild vamos a utilizar una sucesión espectral inducida por la filtración por columnas.
+Denotamos $E$ a la sucesión espectral.
+
+
+\subsection{Primera página}
+Para poder calcular los espacios de homología de la primera página
+vamos a necesitar saber que valores toman los morfismos $\overline{\delta}$, $\delta$ y $\partial$
+en los elementos de la base $\mathcal{B}$.
+
+Empezemos con $\delta$. Sea $z = x^a(yx)^by^c \in \base$, luego $\delta(z) = x^a(yx)^by^cx + x^{a + 1}(yx)^by^c$.
+\begin{itemize}
+\item Si $a = 0$ y $c = 2k$,
+\begin{align*}
+	\delta(z) &= (yx)^by^{2k}x + x(yx)^by^{2k} = (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) + x(yx)^by^{2k} \\
+	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} + x(yx)^by^{2k}. 
+\end{align*}
+\begin{itemize}
+\item Si $b = 0$,
+\[
+	\delta(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}.
+\]
+\item Si $b \geq 1$, como $x^2 = 0$
+\begin{align*}
+	\delta(z) &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}(yx)x(yx)^{k - i}y^{2i} + x(yx)^by^{2k} \\
+	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}yx^2(yx)^{k - i}y^{2i} + x(yx)^by^{2k} = x(yx)^by^{2k}.
+\end{align*}
+\end{itemize}
+\item Si $a = 0$ y $c = 2k + 1$,
+\begin{align*}
+	\delta(z) &= (yx)^by^{2k + 1}x + x(yx)^by^{2k + 1} \\
+	&= (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}(yx)^{k - i + 1}y^{2i}\right) + x(yx)^by^{2k + 1} \\
+	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1}.
+\end{align*}
+\item Si $a = 1$ y $c = 2k$,
+	\begin{align*}
+		\delta(z) &= x(yx)^by^{2k}x + x^2(yx)^by^c = x(yx)^by^{2k}x \\
+		&= x(yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) \\
+		&= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^bx(yx)^{k - i}y^{2i}. \\
+		& = 0,
+	\end{align*}
+	ya que como $x^2 = 0$, entonces $x(yx)^bx = 0$ para todo $b \geq 0$.
+\item Si $a = 1$ y $c = 2k + 1$
+	\begin{align*}
+		\delta(x) &= x(yx)^by^{2k + 1}x = x(yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}(yx)^{k - i + 1}y^{2i}\right) \\
+		&= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}.
+	\end{align*}
+\end{itemize}
+Con este cálculo probamos que
+\begin{align*}
+	\Ima(\delta) = \Bigg\langle &\sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k},\ x(yx)^{b + 1}y^{2k},
+		 \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1}, \\
+		&\hspace{100pt}\sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}\ :\ b,k \geq 0	\Bigg\rangle.
+\end{align*}
+\begin{prop}
+\label{imdelta}
+El conjunto
+\begin{align*}
+		\left\{ x(yx)^by^{2k},
+			\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1} :b, k \geq 0 \right\}
+\end{align*}
+es una base de $\Ima(\delta)$.
+\end{prop}
+\begin{proof}
+Llamamos
+\begin{align*}
+	\eta_k &=  \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}, \\
+	\theta_{b,k} &= x(yx)^{b + 1}y^{2k},\\
+	\lambda_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1}, \\
+	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}.
+\end{align*}
+Sabemos que el conjunto $\{\eta_k,\ \theta_{b,k},\ \lambda_{b,k},\ \mu_{b,k}\ :\ b,k \geq 0\}$ genera $\Ima(\delta)$.
+Como
+\begin{align*}
+	\eta_k &= \sum_{i = 0}^{k}\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}
+		= \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i} + 2xy^{2k} \\
+	&\hspace{100pt}= \sum_{i = 0}^{k -1}\frac{k!}{i!}\theta_{k - i, i} + 2xy^{2k}
+\end{align*}
+y la característica de $\field$ es cero, resulta que $xy^{2k}$ pertenece a $\Ima(\delta)$ para todo $k \geq 0$. Por otro lado,
+\begin{align*}
+	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}
+		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i + 1, i}.
+\end{align*}
+Por lo tanto
+\begin{align*}
+	&\left\{\theta_{b,k},\ xy^{2k},\ \lambda_{b,k}\ :\ b,k \geq 0 \right\} \\
+	&\hspace{60pt}= \left\{ x(yx)^by^{2k},
+			\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1} :b, k \geq 0 \right\}
+\end{align*}
+genera $\Ima(\delta)$. Más aún, es una base ya que cualquiera combinación lineal de elementos de este conjunto es una
+combinación lineal de elementos distintos de $\base$.
+\end{proof}
+\begin{prop}
+El conjunto
+\begin{align*}
+		\left\{ \left(x(yx)^by^{2k}, 0\right),
+			\left(\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1},0\right) :b, k \geq 0 \right\}
+\end{align*}
+es una base de $\Ima(\overline{\delta})$.
+\end{prop}
+\begin{proof}
+	Se deduce de que para todo $z \in A$, $\overline{\delta}(z) = (\delta(z), 0)$.
+\end{proof}
+
+Nos resta calcular los valores que toma $\partial$ en los elementos de la base y obtener una base de imagen.
+Calculemos $\partial(z)$ para $z = x^a(yx)^by^c \in \mathcal{B}$. Como \[\partial(z) = x^a(yx)^by^cx - x^{a + 1}(yx)^by^c,\] resulta que
+\begin{itemize}
+\item si $a = 0$ y $c = 2k$,
+	\begin{align*}
+		\partial(z) &= (yx)^by^{2k}x - x(yx)^by^{2k} = \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} - x(yx)^by^{2k}.
+	\end{align*}
+	\begin{itemize}
+	\item Si $b = 0$,
+		\begin{align*}
+			\partial(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} - xy^{2k} = \sum_{i = 0}^{k - 1}\frac{k!}{i!}x(yx)^{k - i}y^{2i}.
+		\end{align*}
+	\item Si $b \geq 1$, usando nuevamente que $x^2 = 0,$
+		\begin{align*}
+			\partial(z) &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}(yx)x(yx)^{k - i}y^{2i} - x(yx)^by^{2k} \\
+			&=  -x(yx)^by^{2k}.
+		\end{align*}
+	\end{itemize}
+\item Si $a = 0$ y $c = 2k + 1$,
+	\begin{align*}
+		\partial(z) &= (yx)^by^{2k + 1}x - x(yx)^by^{2k + 1}
+			= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1}.
+	\end{align*}
+\item Si $a = 1$ y  $c = 2k$,
+	\begin{align*}
+		\partial(z) &= x(yx)^by^{2k}x - x^2(yx)^by^{2k} 
+			= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^bx(yx)^{k - i}y^{2i} = 0,
+	\end{align*}
+ya que 	$x(yx)^bx = 0$ para todo $b \geq 0$.
+\item Si $a = 1$ y  $c = 2k + 1$,
+	\begin{align*}
+		\partial(z) &= x(yx)^by^{2k}x - x^2(yx)^by^{2k} = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}.
+	\end{align*}
+\end{itemize}
+Con este cálculo probamos que
+\begin{align*}
+	\Ima(\partial) = \Bigg\langle & \sum_{i = 0}^{k - 1}\frac{k!}{i!}x(yx)^{k - i}y^{2i},
+		\ x(yx)^{b + 1}y^{2k},
+		\ \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1}, \\
+		&\hspace{100pt}\sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i} : b,k \geq 0 \Bigg\rangle.
+\end{align*}
+\begin{prop}
+\label{impartial}
+El conjunto
+\begin{align*}
+		\left\{ x(yx)^{b + 1}y^{2k},
+			\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1} :b, k \geq 0 \right\}
+\end{align*}
+es una base de $\Ima(\partial)$.
+\end{prop}
+\begin{proof}
+Llamamos como antes
+\begin{align*}
+	\eta_{k - 1} &=  \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i}, \\
+	\theta_{b,k} &= x(yx)^{b + 1}y^{2k},\\
+	\lambda_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1}, \\
+	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}.
+\end{align*}
+Como $k - i \geq 1$ para todo $0 \leq i \leq k -1$, entonces
+\begin{align*}
+	\eta_{k - 1} &= \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i} = \sum_{i = 0}^{k-1}\frac{k!}{i!}\theta_{k-1,i}.
+\end{align*}
+Por otro lado como $b + k - i + 1 \geq 1$ para todo $0 \leq i \leq k$, entonces
+\begin{align*}
+	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}
+		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i + 1, i}.
+\end{align*}
+Luego el conjunto
+\begin{align*}
+	\left\{ x(yx)^{b + 1}y^{2k},
+		\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1} :b,k \geq 0	\right\}
+\end{align*}
+ genera $\Ima(\partial)$ y es fácil ver que es una base.
+\end{proof}
+
+Ya estamos en condiciones de calcular la primera página. 
+\begin{prop}
+	El espacio vectorial
+	\begin{align*}
+		E_{1,0}^1 = \frac{A}{\Ima(\overline{\delta})}
+	\end{align*}
+	tiene como base al conjunto
+	\begin{align*}
+		\left\{ \left[((yx)^by^c, 0)\right]\ :\ b,c \geq 0\right\}
+			\cup \left\{ \left[(0, x^a(yx)^by^c)\right]\ :\ a \in \{0, 1\}\ y\ b,c \geq 0\right\}. 
+	\end{align*}
+\end{prop}
+\begin{proof}
+	Debido a que
+	\begin{align*}
+		&\left[(x(yx)^by^{2k}, 0)\right] = 0, \\
+		&\left[(-x(yx)^by^{2k + 1}, 0)\right] = \sum_{i = 0}^{k}\frac{k!}{i!}\left[(yx)^{b + k - i + 1}y^{2i}, 0)\right],
+	\end{align*}
+	es claro que el conjunto que aparece en el enunciado de la proposición genera. Es fácil verificar
+	que también es linealmente independiente.
+\end{proof}
+\begin{prop}
+	El espacio vectorial
+	\begin{align*}
+		E_{2,0}^1 = \frac{A}{\Ima(\delta)}
+	\end{align*}
+	tiene como base al conjunto
+	\begin{align*}
+		\left\{ \left[(yx)^by^c\right] \ :\ b,c \geq 0\right\}. 
+	\end{align*}
+\end{prop}
+\begin{proof}
+	Se deduce con un razonamiento análogo al anterior.
+\end{proof}
+\begin{prop}
+	Los espacios vectoriales
+	\begin{align*}
+		E_{1,2i + 1}^1 = E_{2, 2i + 1}^1 = \frac{\Ker(\delta)}{\Ima(\partial)}
+	\end{align*}
+	tienen como base al conjunto $\left\{ \left[xy^{2n}\right] \ :\ n \geq 0\right\}$ , para todo $i \geq 0$.
+\end{prop}
+\begin{proof}
+	Es claro que el núcleo y la imagen de $\delta$ coinciden respectivamente con el núcleo
+	y la imagen $-\delta$. Lo mismo ocurre con los morfismos
+	$\partial$ y $-\partial$. Luego $E_{1,2i + 1}^1 = E_{2, 2i + 1}^1$, para todo $i \geq 0$.
+	Sea $z \in \Ker(\delta)$, como $\delta(w) = 0$ o $\gr(\delta(w)) = \gr(w) + 1$ para todo $w \in A$
+	y las relaciones que definen a $A$ son homogéneas, podemos suponer que $z$ es homogéneo.
+	Separamos el cálculo de $z$ según la paridad de su grado.
+	\begin{itemize}
+		\item Si $\gr(z) = 2n$, entonces
+		\begin{align*}
+			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l} + \sum_{i = 1}^n\beta_ix(yx)^{n - i}y^{2i - 1}.
+		\end{align*}
+		Por la Proposición \ref{impartial}, $x(yx)^{n - i}y^{2i - 1} - \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j}$
+		pertenece a la imagen de $\partial$ para todo $1 \leq i \leq n$.
+		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
+		Si $z$ pertenece al núcleo de $\delta$, entonces
+		\begin{align*}
+			0 &= \delta(z) = \delta\left(\sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}\right) = \sum_{l = 0}^n\alpha_l\delta((yx)^{n - l}y^{2l}) \\
+			&= \sum_{l = 0}^{n - 1}\alpha_l\delta((yx)^{n - l}y^{2l}) + \alpha_n\delta(y^{2n}) \\
+				&= \sum_{l = 0}^{n - 1}\alpha_lx(yx)^{n - l}y^{2l} + \alpha_n\sum_{l = 0}^n \frac{n!}{l!}x(yx)^{n - l}y^{2l} + \alpha_nxy^{2n} \\
+				&= \sum_{l = 0}^{n - 1}(\alpha_l - \alpha_n\frac{n!}{l!}) x(yx)^{n - l}y^{2l} + 2\alpha_nxy^{2n}.
+		\end{align*}	
+		Como el monomio $xy^{2n}$ no aparece en la sumatoria, $\alpha_n = 0$.
+		Luego
+		\[
+			\sum_{l = 0}^{n - 1}\alpha_lx(yx)^{n - l}y^{2l} = 0
+		\]
+		y como los monomios que aparecen en la suma son linealmente independientes, entonces $\alpha_l = 0$ para todo $0 \leq l \leq n -1$.
+		Es decir, $z = 0$.
+		\item Si $\gr(z) = 2n + 1$, entonces
+		\begin{align*}
+			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \sum_{l = 0}^n\beta_lx(yx)^{n - l}y^{2l}.
+		\end{align*}
+		Por la Proposición \ref{impartial}, $x(yx)^{n - l}y^{2l} \in im(\partial)$ para todo $0 \leq l \leq n - 1$.
+		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \beta xy^{2n}$.
+		Si $z$ pertenece a el núcleo de $\delta$, entonces
+		\begin{align*}
+			0 &= \delta(z) = \sum_{l = 0}^n\alpha_l\delta((yx)^{n - l}y^{2l + 1}) + \beta \delta(xy^{2n}) \\
+			&= \sum_{l = 0}^n\alpha_l \left( \sum_{i = 0}^l\frac{l!}{i!}(yx)^{n + 1 - i}y^{2i} + x(yx)^{n - l}y^{2l + 1} \right) \\
+			&= \sum_{l = 0}^n \sum_{i = 0}^l\alpha_l\frac{l!}{i!}(yx)^{n + 1 - i}y^{2i}
+				+ \sum_{l = 0}^n\alpha_l x(yx)^{n - l}y^{2l + 1}.
+		\end{align*}	
+		En particular $\sum_{l = 0}^n\alpha_l x(yx)^{n - l}y^{2l + 1}  = 0$ y por lo tanto $\alpha_l = 0$, para todo $0 \leq l \leq n$.
+		Es decir, $z = \beta xy^{2n}$ y
+		\[
+			E_{1,2i + 1}^1 = E_{2, 2i + 1}^1 = \langle \left[xy^{2n}\right]\ :\ n \geq 0 \rangle.
+		\]
+	\end{itemize}
+		Veamos que estos generadores que encontramos forman una base. Sea $[w] \in \frac{\Ker(\delta)}{\Ima(\partial)}$ una combinación
+		lineal de elementos de la forma $[xy^{2n}]$ y supongamos que $[w] = 0$, es decir, $w \in \Ima(\partial)$.
+		Como los elementos que generan $\Ima(\delta)$ son homogéneos podemos suponer que $w$ también lo es y por lo tanto $w = \lambda xy^{2n}$
+		para algún $n \geq 0$ y para algún $\lambda \in k$.
+		Pero los únicos elementos de la forma $x(yx)^by^c$ que pertenecen a $\Ima(\delta)$ cumplen que $b \geq 1$.
+		Por lo tanto $\lambda = 0$ y el conjunto $\left\{ [xy^{2n}] \ :\ n \geq 0\right\}$ es una base de $\frac{\Ker(\delta)}{\Ima(\partial)}$.	 
+\end{proof}
+\begin{prop}
+	Para todo $i \geq 1$, los espacios vectoriales
+	\begin{align*}
+		E_{1,2i}^1 = E_{2, 2i}^1 = \frac{\Ker(\partial)}{\Ima(\delta)}
+	\end{align*}
+	tienen como base al conjunto $\left\{ \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \ :\ n \geq 0\right\}$.
+\end{prop}
+\begin{proof}
+	Sea $z \in ker(\partial)$, nuevamente podemos suponer que $z$ es homogéneo por la misma razón que antes.
+	Separamos el cálculo de $z$ según la paridad de su grado.
+	\begin{itemize}
+		\item Si $\gr(z) = 2n, n \geq 0$, entonces
+		\begin{align*}
+			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l} + \sum_{i = 1}^n\beta_ix(yx)^{n - i}y^{2i - 1}.
+		\end{align*}
+		Por la Proposición \ref{imdelta}, $x(yx)^{n - i}y^{2i - 1} + \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j} \in \Ima(\delta)$
+		para todo $1 \leq i \leq n$.
+		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
+		Si $z \in \Ker(\partial)$, entonces
+		\begin{align*}
+			0 &= \sum_{l = 0}^n\alpha_l\partial((yx)^{n - l}y^{2l})
+				= \sum_{l = 0}^{n - 1}\alpha_l\partial((yx)^{n - l}y^{2l}) + \alpha_n\partial(y^{2n})\\
+			&= \sum_{l = 0}^{n - 1}\alpha_l(-x(yx)^{n - l}y^{2l}) + \alpha_n\sum_{l = 0}^{n - 1}\frac{n!}{l!}x(yx)^{n - l}y^{2l}
+				= \sum_{l = 0}^{n - 1}(-\alpha_l + \alpha_n\frac{n!}{l!})x(yx)^{n - l}y^{2l}.
+		\end{align*}
+		Por lo tanto $\alpha_l = \alpha_n\frac{n!}{l!}$ para todo $0 \leq l \leq n$ y
+		\[
+			z = 	\sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l} = \alpha_n\sum_{l = 0}^n\frac{n!}{l!}(yx)^{n - l}y^{2l}.
+		\]
+		\item Si $\gr(z) = 2n + 1, n \geq 0$, entonces
+		\begin{align*}
+			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \sum_{l = 0}^n\beta_lx(yx)^{n - l}y^{2l}.
+		\end{align*}
+		Por la Proposición \ref{imdelta}, $x(yx)^{n - l}y^{2l} \in im(\delta)$ para todo $0 \leq l \leq n$.
+		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1}$.
+		Si $z$ pertenece a el núcleo de $\partial$, entonces
+		\begin{align*}
+			0 &= \sum_{l = 0}^n\alpha_l\partial((yx)^{n - l}y^{2l + 1})
+				= \sum_{l = 0}^n\alpha_l\left(\sum_{i = 0}^l\frac{l!}{i!}(yx)^{n - i + 1}y^{2i} -x(yx)^{n - l}y^{2l + 1}\right)\\
+			&= \sum_{l = 0}^n\sum_{i = 0}^l\alpha_l\frac{l!}{i!}(yx)^{n - i + 1}y^{2i} - \sum_{l = 0}^n\alpha_lx(yx)^{n - l}y^{2l + 1}.
+		\end{align*}
+		En particular $\sum_{l = 0}^n\alpha_lx(yx)^{n - l}y^{2l + 1} = 0$ y por lo tanto $\alpha_l = 0$ para todo $0 \leq l \leq n$.
+		Luego
+		\[
+			E_{1,2i}^1 = E_{2, 2i}^1 = \left\langle \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \ :\ n \geq 0\right\rangle.
+		\]
+	\end{itemize}
+	Nuevamente para verificar que estos generadores forman una base nos alcanza con probar que para  todo $n \geq 0$,
+	$w = \sum_{l = 0}^n \frac{n!}{l!}(yx)^{n - l}y^{2l}$ no pertenece al subespacio $\Ima(\delta)$.
+	Como el grado de $w$ es par, si $w \in \Ima(\delta)$, entonces necesariamente
+	\[
+		w \in \left\langle \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1} : b,k \geq 0 \right\rangle.
+	\]
+	Pero esto es absurdo debido a los términos de la forma $x(yx)^by^{2k + 1}$.
+\end{proof}
+
+El siguiente diagrama describe la primera página:
+\begin{align*}
+\xymatrix{
+	& & \\
+	& \left\langle \left[xy^{2n}\right] \right\rangle \ar@{--}[u] & \left\langle \left[xy^{2n}\right] \right\rangle \ar[l]_{d^{(1)}} \ar@{--}[u]\\
+	& \left\langle \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \right\rangle \ar@{--}[u]
+		& \left\langle \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \right\rangle \ar[l]_{d^{(1)}} \ar@{--}[u]\\
+	& \left\langle \left[xy^{2n}\right] \right\rangle \ar@{--}[u] & \left\langle \left[xy^{2n}\right] \right\rangle \ar[l]_{d^{(1)}} \ar@{--}[u]\\
+	A & \left\langle \left[\left((yx)^by^c, 0\right)\right] \right\rangle \bigoplus A \ar[l]_(.7){d_0^{(1)}} \ar@{--}[u]
+		& \left\langle \left[(yx)^by^c\right] \right\rangle \ar[l]_{d_1^{(1)}} \ar@{--}[u] \\
+}
+\end{align*}
+donde $d_0^{(1)}$, $d_1^{(1)}$ y $d^{(1)}$ son los morfismos inducidos en la homología por $d_0$, $d_1$ y $d$ respectivamente.
+
+
+
+\subsection{Segunda Página}
+Debido a la forma del complejo doble, $E^2 = E^{\infty}$. Para el cálculo de la segunda página procederemos de igual manera que para la primera. Calcularemos
+que valores toman los morfismos $d_0^{(1)}, d_1^{(1)}$ y $d^{(1)}$ en los elementos de las bases correspondientes y luego obtendremos una descripción
+de las imágenes de estos morfismos. Por último calcularemos las homologías en cada lugar.
+\begin{prop} El morfismo $d^{(1)}: E_{2, 2k + 1}^1 \to E_{1, 2k + 1}^1$ es el morfismo nulo para todo $k \geq 0$.
+\end{prop}
+\begin{proof}
+	Sea $\left[xy^{2n}\right]$ un elemento de la base de $E_{2, 2k + 1}^1$, entonces
+	\begin{align*}
+		d(xy^{2n}) &= \left[ xy^{2n}, y^2 \right] - xy^{2n}xy
+			= \left[ xy^{2n}, y^2 \right] - x\sum_{l = 0}^n\frac{n!}{l!}x(yx)^{n - l}y^{2l + 1}  \\
+		&= \left[ xy^{2n}, y^2 \right] = \left[x, y^2 \right]y^{2n} + x\left[y^{2n}, y^2\right] =  \left[x, y^2 \right]y^{2n} \\
+		&= (xy^2 - y^2x)y^{2n} = (-xyx)y^{2n}. 
+	\end{align*}
+	Luego $d(xy^{2n}) \in \Ima(\partial)$ y por lo tanto $d^{(1)}(\left[xy^{2n}\right]) = 0$
+	\end{proof}
+\begin{prop} El morfismo $d^{(1)}: E_{2, 2k}^1 \to E_{1, 2k}^1$ es el morfismo nulo para todo $k \geq 1$.
+\end{prop}
+\begin{proof}
+	Sea $w = \sum_{l = 0}^n \frac{n!}{l!}(yx)^{n - l}y^{2l}$, de modo que $[w]$ sea un elemento de la base de $E_{2,2k}^1$.
+	\begin{itemize}
+		\item Si $n = 0$, entonces
+			\[
+				d(w) = d(1) = \left[1, y^2 \right] - (xy + yx) = -xy -yx.			
+			\]
+			Luego $d(w) \in \Ima(\delta)$ y $d^{(1)}(\left[w\right]) = 0$. De hecho, utilizando la notación de la demostración de la Proposición \ref{imdelta},
+			$d(w) = -\lambda_{0,0}$.
+		\item Si $n \geq 1$ podemos suponer que $n = m + 1$, donde $m \geq 0$. Debido a la Proposición \ref{cp_conmutatividad}
+			\begin{align*}
+				w &= \sum_{l = 0}^{m + 1} \frac{(m + 1)!}{l!}(yx)^{m + 1 - l}y^{2l}
+					= \left((m + 1)\sum_{l = 0}^m\frac{m!}{l!}(yx)^{m + 1 - l}y^{2l}\right) + y^{2m + 2} \\
+				&= (m + 1)y^{2m + 1}x + y^{2m + 2}.
+			\end{align*}	
+			Aplicando $d$ obtenemos que
+			\begin{align*}
+				d(w) &= d((m + 1)y^{2m + 1}x + y^{2m + 2}) = (m + 1)d(y^{2m + 1}x) + d(y^{2m + 2}).		
+			\end{align*}
+			Computemos $d(y^{2m + 1}x)$ y $d(y^{2m + 2})$ por separado:
+			\begin{align*}
+				d(y^{2m + 1}x) &= \left[y^{2m + 1}x, y^2\right] - yxy^{2m + 1}x = y^{2m + 1}\left[x,y^2\right] - yxy^{2m + 1}x\\
+				&= y^{2m + 1}(-xyx) - yxy^{2m + 1}x = -y^{2m + 1}xyx - yxy^{2m + 1}x\\
+				&= -\sum_{i = 0}^m\frac{m!}{i!}(yx)^{m -i + 1}y^{2i +1}x - \sum_{j = 0}^{m}\frac{m!}{j!}(yx)^{m -j + 2}y^{2j} \\
+				&= -\sum_{i = 0}^m\frac{m!}{i!}(yx)^{m -i + 1}\left(\sum_{j = 0}^{i}\frac{i!}{j!}(yx)^{i - j + 1}y^{2j}\right)
+					- \sum_{j = 0}^{m}\frac{m!}{j!}(yx)^{m -j + 2}y^{2j} \\
+				&= -\sum_{i = 0}^m\sum_{j = 0}^i\frac{m!}{j!}(yx)^{m -j + 2}y^{2j}
+					- \sum_{j = 0}^{m}\frac{m!}{j!}(yx)^{m -j + 2}y^{2j} \\
+				&= -\sum_{j = 0}^m\sum_{i = j}^m\frac{m!}{j!}(yx)^{m -j + 2}y^{2j}
+					- \sum_{j = 0}^{m}\frac{m!}{j!}(yx)^{m -j + 2}y^{2j} \\
+				&= -\sum_{j = 0}^m(m - j + 1)\frac{m!}{j!}(yx)^{m -j + 2}y^{2j}
+					- \sum_{j = 0}^{m}\frac{m!}{j!}(yx)^{m -j + 2}y^{2j} \\
+				&= -\sum_{j = 0}^m(m - j + 2)\frac{m!}{j!}(yx)^{m -j + 2}y^{2j}
+			\end{align*}
+			y
+			\begin{align*}
+				d(y^{2m + 2}) &= \left[y^{2m + 2}, y^2\right] - (y^{2m +2}xy + yxy^{2m + 2}) = - y^{2m +2}xy - yxy^{2m + 2} \\
+				&= -\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}x(yx)^{m - l + 1}y^{2l + 1} - yxy^{2m + 2}.
+			\end{align*}
+			Luego
+			\begin{align*}
+				d^{(1)}(\left[w\right]) &=
+					-\sum_{j = 0}^m(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				&\hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right]
+						- \left[yxy^{2m + 2}\right]\\
+				&= -\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right]			
+			\end{align*}
+			Como $\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1} \in im(\delta)$
+			para todo $b,k \geq 0$, podemos eligir $k = l$, $b = m - l + 1$ y obtenemos que
+				$-\left[x(yx)^{m - l + 1}y^{2l + 1}\right]
+					= \sum_{j = 0}^l\frac{l!}{j!}\left[(yx)^{m - j + 2}y^{2j}\right].$
+			Por lo tanto
+			
+			%& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right] \\
+			\begin{align*}
+				d^1(\left[w\right]) &=
+					\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right] \\
+				&=-\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt} + \sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}
+					\left(\sum_{j = 0}^l\frac{l!}{j!}\left[(yx)^{m - j + 2}y^{2j}\right]\right) \\
+				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt} + \sum_{l = 0}^{m + 1}\sum_{j = 0}^{l}\frac{(m + 1)!}{j!}
+					\left[(yx)^{m - j + 2}y^{2j}\right]\\
+				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt} + \sum_{j = 0}^{m + 1}\sum_{l = j}^{m + 1}\frac{(m + 1)!}{j!}
+					\left[(yx)^{m - j + 2}y^{2j}\right]\\
+				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
+				& \hspace{70pt} + \sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}
+					\left[(yx)^{m - j + 2}y^{2j}\right]\\
+				&= 0.
+			\end{align*}	 
+	\end{itemize}
+\end{proof}
+
+El siguiente paso va a ser calcular que valores toma $d_1^{(1)}$ en los elementos de la base de $E^1_{2, 0}$, pero antes
+vamos a probar dos resultado que nos serán útiles.
+\begin{prop}
+\label{conmutary}
+Sea $b \geq 1$, entonces $y(yx)^b = x(yx)^{b - 1}y^2 + bx(yx)^b$.
+\end{prop}
+\begin{proof}
+Lo probaremos por inducción. El caso $b = 1$ es claro. Sea $b \geq 1$, luego
+\begin{align*}
+	y(yx)^{b + 1} &= y(yx)^b(yx) = (x(yx)^{b - 1}y^2 + bx(yx)^b)yx = x(yx)^{b - 1}y^3x + bx(yx)^{b + 1}\\
+	&= x(yx)^{b - 1}(yxy^2 + (yx)^2) + bx(yx)^{b + 1} = x(yx)^{b}y^2 + (b + 1)x(yx)^{b + 1}.
+\end{align*}
+\end{proof}
+Un consecuencia inmediata de la Proposición \ref{conmutary} es el siguiente corolario:
+\begin{coro}
+\label{conmutary^2}
+Sea $b \geq 0$, entonces $y^2(yx)^b = (yx)^{b}y^2 + b(yx)^{b + 1}$.
+\end{coro}
+
+Ya estamos en condiciones de calcular la imagen de $d_1^{(1)}$. Llamemos
+$f$ a la composición de $d_1$ con la proyección en la primera coordenada y llamemos $g$ a la composición de $d_1$ con la proyección en la segunda coordenada, de modo que
+\[
+	d_1(a) =  \left(\left[a,y^2\right] - (axy + yxa), \left[x,a\right]y + y\left[x,a\right] - xax\right) = (f(a), g(a)), \quad\text{para todo } a \in A.
+\]
+Para no complicar la notación notaremos $f$ al morfismo inducido por $f$ en la homología. Lo mismo haremos con $g$.
+Empecemos calculando que valores toma $f$ en los elementos de la base de $E^1_{2, 0}$. Sean $b, c \geq 0$ y $z = (yx)^by^c$, de modo que $\left[z\right]$
+sea un elemento de la base de $E^1_{2, 0}$. Luego
+\begin{align*}
+	f(z) &= \left[(yx)^by^c, y^2\right] - \left((yx)^by^cxy + yx(yx)^by^c\right)\\
+	&= \left[(yx)^b, y^2\right]y^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
+	&= (yx)^by^{c + 2} - y^2(yx)^by^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
+\end{align*}
+y debido a la Proposición \ref{conmutary^2},
+\begin{align*}
+	f(z) &= (yx)^by^{c + 2} - ((yx)^by^2 + b(yx)^{b + 1})y^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
+	&= - (b + 1)(yx)^{b + 1}y^c - (yx)^b(y^cx)y.
+\end{align*}
+Si pasamos el cálculo a la homología, resulta que
+\begin{itemize}
+	\item si $c = 2k$,
+	\[
+		f([z]) = -(b + 1)\left[(yx)^{b + 1}y^{2k}\right] - \sum_{i  = 0}^k\frac{k!}{i!}\left[(yx)^bx(yx)^{k - i}y^{2i + 1}\right].
+	\]	
+	
+	\begin{itemize}
+		\item Si $b = 0$
+		\[
+			f([z]) = -\left[(yx)y^{2k}\right] - \sum_{i  = 0}^k\frac{k!}{i!}\left[x(yx)^{k - i}y^{2i + 1}\right].
+		\]
+		Como $\left(\sum_{l = 0}^n\frac{n!}{l!}(yx)^{d + n - l + 1}y^{2l} + x(yx)^by^{2n + 1}, 0\right) \in \Ima(\overline{\delta})$
+		para todo $n,d \geq 0$, podemos elegir $n = i$, $d = k - i$ y obtenemos que 
+		\[
+			-\left[x(yx)^{k - i}y^{2i + 1}\right] = \sum_{l = 0}^i\frac{i!}{l!}\left[(yx)^{k - l + 1}y^{2l}\right].
+		\]
+		Luego
+		\begin{align*}
+			f([z]) &= -\left[(yx)y^{2k}\right] + \sum_{i  = 0}^k\sum_{l = 0}^i\frac{k!}{l!}\left[(yx)^{k - l + 1}y^{2l}\right]\\
+			&= -\left[(yx)y^{2k}\right] + \sum_{l = 0}^{k}(k - l + 1)\frac{k!}{l!}\left[(yx)^{k - l + 1}y^{2l}\right]\\
+			&= \sum_{l = 0}^{k - 1}(k - l + 1)\frac{k!}{l!}\left[(yx)^{k - l + 1}y^{2l}\right].
+		\end{align*}
+		\item Si $b \geq 1$,
+		\[		
+		f([z]) = -(b + 1)\left[(yx)^{b + 1}y^{2k}\right].
+		\]	
+	\end{itemize}
+	\item Si $c = 2k + 1$,
+	\[
+		f([z]) = -(b + 1)\left[(yx)^{b + 1}y^{2k + 1}\right] - \sum_{i  = 0}^k\frac{k!}{i!}\left[(yx)^{k + b - i + 1}y^{2i + 1}\right].
+	\]
+\end{itemize}
+
+Ahora vamos a calcular que valores toma $g$. Sean Sean $b, c$ y $z$ como antes. Luego
+\[
+	g(z) = \left[x,z\right]y + y\left[x,z\right] - xzx
+	\]
+
+
+%Para alivianar la notación, de ahora en más dejaremos de escribir los corchetes
+%cuando hablemos de clases de elementos en los espacios cociente.
+\end{document}
