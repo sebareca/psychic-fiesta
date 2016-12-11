@@ -54,9 +54,8 @@
 
 %\theoremindent\parindent
 \newtheorem{Teorema}{Teorema}
-\newtheorem{prop}{Proposición}
+\newtheorem{prop}{Proposición}[section]
 \newtheorem{coro}{Corolario}
-\numberwithin{prop}{subsection}
 
 
 \DeclareMathOperator\Hom{Hom}
@@ -183,18 +182,96 @@ Con esta definición $C^{op}$ es una coálgebra.
 	es un morfismo de álgebras y de coálgebras.
 \end{definition}
 
+\begin{example}
+	Sea $G$ un grupo. El álgebra de grupo $\field G$ resulta ser una biálgebra definiendo $\Delta(g) = g \ox g$
+	y $\veps(g) = 1$ para todo $g \in G$. 
+\end{example}
+
+\begin{example}
+	Sea $\mathfrak{g}$ un álgebra de Lie. El álgebra envolvente $U(\mathfrak{g})$ es una biálgebra definiendo
+	$\Delta(x) = x \ox 1 + 1 \ox x$ y $\veps(x) = 0$ para todo $x \in \mathfrak{g}$.
+\end{example}
+
+Estos dos ejemplos motivan las siguientes definiciones.
+
+\begin{definition}
+	Sea $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{tipo-grupo}
+	si
+		\[\Delta(c) = c \ox c  \quad \text{y} \quad \veps(c) = 1.\]
+\end{definition}
+
+\begin{definition}
+	Sea $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{primitivo}
+	si
+		\[\Delta(c) = c \ox 1 + 1 \ox c\]
+\end{definition}
+
+\begin{example}\label{exampleqp}
+	Sea $q \in \field$, $q \neq 0$ y $B = \field \left\langle x, y \mid xy = qyx \right\rangle$. Si definimos
+	$\Delta(x) = x \ox x$, $\Delta(y) = y \ox 1 + 1 \ox y$, $\veps(x) = 1$ y $\veps(y) = 0$, $B$ resulta ser una
+	biálgebra conocida como el \emph{plano cuántico}. Notar que $x$ es un elemento tipo-grupo e $y$ es primitivo.
+\end{example}
+
 \begin{definition}
 	Sea $B$ una biálgebra. Un subespacio $I \subseteq B$ es un \emph{biideal} de $B$ si es un ideal y un coideal
 	simultáneamente.
 \end{definition}
 
-\begin{example}
-	Sea $G$ un grupo. El álgebra de grupo $\field G$ resulta ser una biálgebra defniendo $\Delta(g) = g \ox g$
-	y $\veps(g) = 1$ para todo $g \in G$. 
-\end{example}
+\begin{prop}
+	Sea $B$ el plano cuántico del ejemplo \ref{exampleqp}. El ideal bilátero $I \subseteq B$ generado por $y$
+	resulta ser un coideal y por lo tanto un biideal.
+\end{prop}
+\begin{proof}
+	Primero verifiquemos que $\Delta(I) \subseteq I \ox B + B \ox I$. Sea $p \in I$. Como $\Delta$ es lineal
+	podemos suponer que $p$ es un monomio con grado positivo en $y$. Más aún debido a que $xy = qyx$,
+	resulta que $p = \lambda y^nx^m$, con $\lambda \in  \field$ y $n \geq 1$. Luego
+	\begin{align*}
+		\Delta(p) &= \Delta(	\lambda y^nx^m) = \lambda \Delta(y)^n \Delta(x)^m  \\
+		&= \lambda ((y\ox 1 + 1 \ox y)^n) (x^m \ox x^m)
+			= \lambda \left(\sum_{i = 0}^n y^i \ox y^{n - i}\right) (x^m \ox x^m) \\
+		&= \lambda \sum_{i = 0}^n y^ix^m \ox y^{n - i}x^m 
+	\end{align*}
+	Como $y^ix^m \ox y^{n - i}x^m \in I \ox B$ para todo $i \geq 1$ y $x^m \ox y^nx^m \in B \ox I$,
+	obtenemos que $\Delta(p) \in I \ox B + B \ox I$. Es fácil ver que $\veps(I) = 0$ usando que $\veps$
+	es morfismo de álgebras. 
+	
+\end{proof}
 
-\begin{example}
+\subsection{Notación de Sweedler}
+Antes de continuar con nuevas definiciones y ejemplos vamos a introducir una nueva notación muy útil a la hora
+de trabajar con coálgebras. Si $C$ es una coálgebra y $c \in C$, $\Delta(c) \in C \ox C$, es decir que
+$c = \sum_{i = 1}^n a_i \ox b_i$, donde los $a_i$, $b_i \in C$. Lo que sugiere Sweedler es que no usemos nuevas
+letras $a$ y $b$ si no subíndices $c_{(1)}$, $c_{(2)}$ de modo que
+\[
+	\Delta(c) = \sum_{i = 1}^n c_{(1)i} \ox c_{(2)i}.
+\]
 
+Para ciertas manipulaciones que involucren operaciones lineales no necesitamos tener en cuenta el índice $i$ de la
+sumatoria y por lo tanto podemos escribir:
+
+\[
+	\Delta(c) = \sum c_{(1)} \ox c_{(2)}.
+\]
+
+o más aún podemos no escribir el símbolo de la suma. Esta notación se vuelve muy útil cuando aplicamos $\Delta$
+varias veces. La coasociatividad de la comultiplicación nos dice (en notación de Sweedler) que
+\[
+	\sum c_{(1)} \ox c_{(2)_{(1)}} \ox c_{(2)_{(2)}} = (id \ox \Delta) \circ \Delta (c)
+	= (\Delta \ox id) \circ \Delta(c) = \sum c_{(1)_{(1)}} \ox c_{(1)_{(2)}} \ox c_{(2)}.
+\]
+Esto nos permite escribir
+\[
+	(id \ox \Delta) \circ \Delta (c) = (\Delta \ox id) \circ \Delta(c) = \sum c_{(1)} \ox c_{(2)} \ox c_{(3)}
+\]
+y más en general
+\[
+	\Delta_n(c) = \sum c_{(1)} \ox c_{(2)} \ox \ldots \ox c_{(n + 1)},
+\]
+donde $\Delta_n(c)$ es el elemento que obtenemos al aplicar la coasociatividad $n - 1$ veces.
+Utilizando esta nueva notación el axioma de counidad se puede expresar de la siguiente forma:
+\[
+	c = \sum \veps(c_{(1)}) c_{(2)}  = \sum \veps(c_{(2)}) c_{(1)}.
+\]
 
 \section{Cálculos preliminares}
 
