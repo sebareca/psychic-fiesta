@@ -1,0 +1,242 @@
+\documentclass[a4paper,oneside,fleqn,11pt,../tesis.tex]{subfiles}
+
+\begin{document}
+
+\section{Definiciones básicas}
+De aquí en adelante $\field$ va a ser un cuerpo. El símbolo $\ox$ representa el producto tensorial
+sobre $\field$.
+
+\subsection{Álgebras y coálgebras}
+
+Empecemos definiendo $\field$-álgebra de una manera alternativa a como usualmente se define en un
+curso básico de estructuras algebraicas.
+
+\begin{definition}\label{defalgebra} Una $\field$-\emph{álgebra} con unidad es un $\field$-espacio vectorial $A$ junto con dos
+transformaciones $\field$-lineales
+\[
+	m: A \ox A \to A \quad\text{y}\quad \eta: \field \to A
+\]
+tales que los siguientes diagramas conmutan:
+\begin{enumerate}[(a)]
+\item (asociatividad)
+\begin{align*}
+\xymatrix@=5em{
+	A \ox A \ox A \ar[r]^{m \ox id} \ar[d]^{id \ox m} & A \ox A \ar[d]^{m} \\
+	A \ox A \ar[r]^{m} & A
+}
+\end{align*}
+\item (unidad)
+\begin{align*}
+\xymatrix@=3em{
+	& A \ox A \ar[dd]^{m} & \\
+	\field \ox A \ar[ur]^{\eta \ox id} \ar[dr] & & A \ox \field \ar[ul]_{id \ox \eta} \ar[dl] \\
+	& A &
+}
+\end{align*}
+\end{enumerate}
+El morfismo $m$ se llama \emph{multiplicación} y el morfismo $\eta$ \emph{unidad}. 
+Notar que el elemento unidad de $A$ viene dado por $1_{A} = \eta(1_{\field})$.
+\end{definition}
+
+\begin{definition}
+	Sean $V$ y $W$ dos $\field$-espacios vectoriales. Definimos la \emph{transposición}
+	\[
+		\tau_{V,W}: V \ox W \to W \ox V
+	\]
+	como la única transformación $\field$-lineal tal que
+	$\tau_{V,W}(v \ox w) = w \ox v$ para todo $v \in V$ y $w \in W$.
+\end{definition}
+
+Notar que $A$ es conmutativa si y solo si $m \circ \tau_{A, A} = \tau_{A, A}$.
+\begin{obs}
+	Si $A$ y $B$ son dos $\field$-álgebras, entonces $A \ox B$
+	también lo es con multiplicación $m_{A \ox B}$ definida en los elementos homogéneos como
+	\[
+		m_{A \ox B} ((a_1 \ox b_1) \ox (a_2 \ox b_2)) = a_1 a_2 \ox b_1 b_2
+	\]
+	y unidad $\eta_{A \ox B}$ definida como la única transformación $\field$-lineal tal que
+	\[
+		\eta_{A \ox B}(1_{\field}) = \eta_A(1_{\field}) \ox \eta_B(1_{\field}).
+	\]
+\end{obs}
+
+Esta reformulación de la definición de $\field$-álgebra mediante morfismos y diagramas nos permite dualizar fácilmente esta estructura.
+
+\begin{definition}\label{defcoalgebra}
+	Una $\field$-\emph{coálgebra} con unidad es un $\field$-espacio vectorial $C$
+	junto con dos transformaciones $\field$-lineales
+	\[
+		\Delta: C \to C \ox C \quad\text{y}\quad \varepsilon: C \to \field
+	\]
+	tales que los siguientes diagramas conmutan:
+	\begin{enumerate}[(a)]
+		\item (coasociatividad)
+		\begin{align*}
+		\xymatrix@=5em{
+			C \ar[r]^{\Delta} \ar[d]^{\Delta} & C \ox C \ar[d]^{\Delta \ox id}\\
+			C \ox C \ar[r]^{id \ox \Delta} & C \ox C \ox C
+		}
+		\end{align*}
+		\item (counidad)
+		\begin{align*}
+		\xymatrix@=3em{
+			& C \ar[dd]^{\Delta} \ar[dl] \ar[dr] & \\
+			\field \ox C  & & C \ox \field \\
+			& C \ox C \ar[ul]^{\veps \ox id} \ar[ur]_{id \ox \veps} &
+		}
+		\end{align*}
+	\end{enumerate}
+	El morfismo $\Delta$ se llama \emph{comultiplicación} y el morfismo $\veps$ se llama \emph{counidad}.
+	Decimos que $C$ es \emph{coconmutativo} si $\tau_{C \ox C} \circ \Delta = \Delta$.
+\end{definition}
+
+\begin{definition} \label{defmorfcoalegbras}
+	Sean $C$ y $D$ coálgebras con comultiplicaciónes $\Delta_C$ y $\Delta_D$ y counidades $\veps_C$ y $\veps_D$ respectivamente.
+	Decimos que $f:C \to D$ es un \emph{morfismo de coálgebras} si es una transformación $\field$-lineal y los siguientes diagramas
+	conmutan.
+	\begin{align*}
+	\xymatrix@=5em{
+		C \ar[r]^{f} \ar[d]^{\Delta_C} & D \ar[d]^{\Delta_D} && C \ar[r]^{f} \ar[d]^{\veps_C} & D \ar[dl]^{\veps_D} \\
+		C \ox C \ar[r]^{f \ox f} & D\ox D && \field	
+	}
+	\end{align*}
+\end{definition}
+Notar que si damos vuelta las flechas en estos diagramas, cambiamos comultiplicación por multiplicación y counidad
+por unidad obtenemos la definición de morfismo de álgebras.
+
+\begin{definition}
+	Sea $C$ una coálgebra. Un subespacio $I \subseteq C$ es un \emph{coideal} si 
+	\[
+		\Delta(I) \subseteq I \ox C + C \ox I \text{ y } \veps(I) = 0.
+	\]
+\end{definition}
+
+Si $I$ es un coideal, el espacio vectorial $C/I$ con la comultiplicación y la counidad
+inducidas por $\Delta$ y $\veps$ respectivamente es una coálgebra.
+
+\begin{definition}
+	Sea $C$ una coálgebra. La \emph{coálgebra coopuesta} $C^{cop}$ tiene a $C$ como espacio vectorial subyacente, 
+	comultiplicación $\Delta^{cop} = \tau_{C \ox C} \circ \Delta$ y counidad $\veps^{cop} = \veps$.
+\end{definition}
+
+\begin{obs}
+	Análogo a lo que sucede para las álgebras, si $C$ y $D$ son coálgebras, entonces $C \ox D$ es una coálgebra
+	con comultiplicación
+	\[
+		\Delta_{C \ox D} = (id \ox \tau_{C \ox D} \ox id) \circ (\Delta_C \ox \Delta_D)
+	\] y counidad \[
+		\veps_{C \ox D} = m_{\field} \circ (\veps_C \ox \veps_D).
+	\]
+\end{obs}
+\subsection{Biálgebras}
+
+\begin{definition}
+	Un $\field$-espacio vectorial $B$ es una \emph{biálgebra} si $\left(B, m, \eta\right)$ es un álgebra,
+	$\left(B, \Delta, \veps \right)$ es una coálgebra y alguna de las siguientes condiciones equivalentes
+	se cumple:
+	\begin{itemize}
+		\item $\Delta$ y $\veps$ son morfismos de álgebras
+		\item $m$ y $\eta$ son morfismos de coálgebras.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	Sean $B$ y $E$ dos biálgebras. Decimos que $f: B \to E$ es un \emph{morfismo de biálgebras} si
+	es un morfismo de álgebras y de coálgebras.
+\end{definition}
+
+\begin{example}
+	Sea $G$ un grupo. El álgebra de grupo $\field G$ resulta ser una biálgebra definiendo $\Delta(g) = g \ox g$
+	y $\veps(g) = 1$ para todo $g \in G$. Esta biálgebra resulta ser coconmutativa pero solo es conmutativa
+	cuando $G$ es abeliano. 
+\end{example}
+
+\begin{example}
+	Sea $\mathfrak{g}$ un álgebra de Lie. El álgebra envolvente $U(\mathfrak{g})$ es una biálgebra definiendo
+	$\Delta(x) = x \ox 1 + 1 \ox x$ y $\veps(x) = 0$ para todo $x \in \mathfrak{g}$. Esta biálgebra también
+	resulta ser coconmutativa y solo es conmutativa cuando $\mathfrak{g}$ es abeliana.
+\end{example}
+
+Estos dos ejemplos motivan las siguientes definiciones.
+
+\begin{definition}
+	Sea $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{tipo grupo}
+	si
+	\[
+		\Delta(c) = c \ox c
+	\]
+\end{definition}
+
+\begin{definition}
+	Sea $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{primitivo}
+	si
+		\[\Delta(c) = c \ox 1 + 1 \ox c\]
+\end{definition}
+
+\begin{example}\label{exampleqp}
+	Sea $q \in \field$, $q \neq 0$ y $B = \field \left\langle x, y \mid xy = qyx \right\rangle$. Si definimos
+	$\Delta(x) = x \ox x$, $\Delta(y) = y \ox 1 + 1 \ox y$, $\veps(x) = 1$ y $\veps(y) = 0$, $B$ resulta ser una
+	biálgebra conocida como el \emph{plano cuántico}. Notar que $x$ es un elemento tipo grupo e $y$ es primitivo.
+	El conjunto $\{ y^ix^j : i, j \geq 0\}$ es una base de $B$ como $\field$-espacio vectorial.
+\end{example}
+
+\begin{definition}
+	Sea $B$ una biálgebra. Un subespacio $I \subseteq B$ es un \emph{biideal} de $B$ si es un ideal y un coideal
+	simultáneamente.
+\end{definition}
+
+\begin{example}
+	Sea $B$ el plano cuántico del Ejemplo \ref{exampleqp}. El ideal bilátero $I \subseteq B$ generado por $y$
+	resulta ser un coideal y por lo tanto un biideal. Para ver esto
+	primero verifiquemos que $\Delta(I) \subseteq I \ox B + B \ox I$. Sea $p \in I$, como $\Delta$ es lineal
+	podemos suponer que $p$ es un elemento de la base, es decir $p = y^nx^m$, con $n \geq 1$. Luego
+	\begin{align*}
+		\Delta(p) &= \Delta(	\lambda y^nx^m) = \lambda \Delta(y)^n \Delta(x)^m  \\
+		&= \lambda ((y\ox 1 + 1 \ox y)^n) (x^m \ox x^m)
+			= \lambda \left(\sum_{i = 0}^n y^i \ox y^{n - i}\right) (x^m \ox x^m) \\
+		&= \lambda \sum_{i = 0}^n y^ix^m \ox y^{n - i}x^m 
+	\end{align*}
+	Como $y^ix^m \ox y^{n - i}x^m \in I \ox B$ para todo $i \geq 1$ y $x^m \ox y^nx^m \in B \ox I$,
+	obtenemos que $\Delta(p) \in I \ox B + B \ox I$. Es fácil ver que $\veps(I) = 0$ usando que $\veps$
+	es morfismo de álgebras. 
+\end{example}
+
+\subsection{Notación de Sweedler}
+Antes de continuar con nuevas definiciones y ejemplos vamos a introducir una nueva notación muy útil a la hora
+de trabajar con coálgebras. Si $C$ es una coálgebra y $c \in C$, $\Delta(c) \in C \ox C$, es decir que
+$c = \sum_{i = 1}^n a_i \ox b_i$, donde $a_i$, $b_i \in C$ para todo $i$. Lo que sugiere Sweedler es que no usemos nuevas
+letras $a$ y $b$ sino subíndices $c_{(1)}$, $c_{(2)}$ de modo que
+\[
+	\Delta(c) = \sum_{i = 1}^n c_{(1)i} \ox c_{(2)i}.
+\]
+
+Para ciertas manipulaciones que involucren operaciones lineales no necesitamos tener en cuenta el índice $i$ de la
+sumatoria y por lo tanto podemos escribir:
+
+\[
+	\Delta(c) = \sum c_{(1)} \ox c_{(2)}.
+\]
+
+o más aún podemos no escribir el símbolo de la suma. Esta notación se vuelve muy útil cuando aplicamos $\Delta$
+varias veces. La coasociatividad de la comultiplicación nos dice (en notación de Sweedler) que
+\[
+	c_{(1)} \ox c_{(2)_{(1)}} \ox c_{(2)_{(2)}} = (id \ox \Delta) \circ \Delta (c)
+	= (\Delta \ox id) \circ \Delta(c) = c_{(1)_{(1)}} \ox c_{(1)_{(2)}} \ox c_{(2)}.
+\]
+Esto nos permite escribir
+\[
+	(\Delta \ox id) \circ \Delta (c) = (id \ox \Delta) \circ \Delta(c) = c_{(1)} \ox c_{(2)} \ox c_{(3)}
+\]
+y más en general
+\[
+	\Delta_n(c) = c_{(1)} \ox c_{(2)} \ox \ldots \ox c_{(n + 1)},
+\]
+donde $\Delta_1 = \Delta$ y $\Delta_{n + 1}(c) = (\Delta \ox id^{\ox^n}) \circ \Delta_{n}$.
+Utilizando esta nueva notación el axioma de counidad se puede expresar de la siguiente forma:
+\[
+	c = \veps(c_{(1)}) c_{(2)} = \veps(c_{(2)}) c_{(1)}.
+\]
+
+\subsection{Álgebras de Hopf}
+
+\end{document}
