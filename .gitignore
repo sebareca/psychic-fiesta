@@ -1,4 +1,4 @@
-tesis.aux
-tesis.log
-tesis.pdf
-tesis.synctex.gz
+*.aux
+*.log
+*.pdf
+*.gz
