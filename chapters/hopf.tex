@@ -168,13 +168,13 @@ Estos dos ejemplos motivan las siguientes definiciones.
 \end{definition}
 
 \begin{definition}
-	Sea $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{primitivo}
+	Sean $C$ una coálgebra y $c \in C$. Decimos que $c$ es \emph{primitivo}
 	si
 		\[\Delta(c) = c \ox 1 + 1 \ox c\]
 \end{definition}
 
 \begin{example}\label{exampleqp}
-	Sea $q \in \field$, $q \neq 0$ y $B = \field \left\langle x, y \mid xy = qyx \right\rangle$. Si definimos
+	Sean $q \in \field$, $q \neq 0$ y $B = \field \left\langle x, y \mid xy = qyx \right\rangle$. Si definimos
 	$\Delta(x) = x \ox x$, $\Delta(y) = y \ox 1 + 1 \ox y$, $\veps(x) = 1$ y $\veps(y) = 0$, $B$ resulta ser una
 	biálgebra conocida como el \emph{plano cuántico}. Notar que $x$ es un elemento tipo grupo e $y$ es primitivo.
 	El conjunto $\{ y^ix^j : i, j \geq 0\}$ es una base de $B$ como $\field$-espacio vectorial.
@@ -201,7 +201,7 @@ Estos dos ejemplos motivan las siguientes definiciones.
 	es morfismo de álgebras. 
 \end{example}
 
-\subsection{Notación de Sweedler}
+\subsection{Notación de Sweedler y producto de convolución}
 Antes de continuar con nuevas definiciones y ejemplos vamos a introducir una nueva notación muy útil a la hora
 de trabajar con coálgebras. Si $C$ es una coálgebra y $c \in C$, $\Delta(c) \in C \ox C$, es decir que
 $c = \sum_{i = 1}^n a_i \ox b_i$, donde $a_i$, $b_i \in C$ para todo $i$. Lo que sugiere Sweedler es que no usemos nuevas
@@ -232,11 +232,101 @@ y más en general
 	\Delta_n(c) = c_{(1)} \ox c_{(2)} \ox \ldots \ox c_{(n + 1)},
 \]
 donde $\Delta_1 = \Delta$ y $\Delta_{n + 1}(c) = (\Delta \ox id^{\ox^n}) \circ \Delta_{n}$.
+
 Utilizando esta nueva notación el axioma de counidad se puede expresar de la siguiente forma:
 \[
 	c = \veps(c_{(1)}) c_{(2)} = \veps(c_{(2)}) c_{(1)}.
 \]
 
+\begin{definition}
+	Sea $\left(A, m, \eta \right)$ un álgebra y $\left(C, \Delta, \veps \right)$ una coálgebra. Definimos el
+	\emph{producto convolución} $\ast$ sobre $\Hom_{\field}(C, A)$ de la siguiente manera: Dados $f$, $g$ $\in \Hom_{\field}(C, A)$,
+	\[
+		f \ast g = m \circ (f \ox g) \circ \Delta. 	
+	\]
+	En notación de Sweedler el producto esta dado por
+	\[
+		(f \ast g)(c) = f(c_{(1)})g(c_{(2)}) \text{ para todo } c \in C.
+	\]
+\end{definition}
+
+Este producto y la unidad $\eta \circ \veps$ le dan a $\Hom_{\field}(C, A)$ estructura de álgebra.
+
 \subsection{Álgebras de Hopf}
 
+\begin{definition}
+	Una biálgebra $\left(H, m, \eta, \Delta, \veps \right)$ es una $\field$-\emph{álgebra de Hopf} si existe
+	un morfismo $S \in \Hom_{\field}(H, H)$, llamado \emph{antípoda}, tal que
+	\[
+		S \ast id_{H}  = id_{H} \ast S = \eta \circ \veps.
+	\]
+	Es decir, $S$ es la inversa de $id_H$ para el producto convolución.
+\end{definition}
+
+En notación de Sweedler la antípoda $S$ cumple que 
+\[
+	S(h_{(1)}h_{(2)}) = \veps(h) 1_{H} = h_{(1)}S(h_{(2)}) \text{ para todo } h \in H.
+\]
+
+\begin{definition}
+	Sean $H, K$ álgebras de Hopf con antípodas $S_H$ y $S_K$ respectivamente. Decimos que $f: H \to K$
+	es un \emph{morfismo de álgebras de Hopf} si es un morfismo de biálgebras y $f \circ S_H = S_K \circ f$.
+\end{definition}
+
+\begin{definition}
+	Un subespacio $I \subseteq H$ es un \emph{ideal de Hopf} si es un biideal y $S(I) \subseteq I$. En este caso
+	$H / I$ es un álgebra de Hopf con la estructura inducida por $H$.
+\end{definition}
+
+\begin{example}
+	El álgebra de grupo $H = \field G$ es un álgebra de Hopf definiendo $Sg = g^{-1}$ para todo $g \in G$. En general
+	si $H$ es un álgebra de Hopf y $h \in H$ es un elemento tipo grupo, entonces $S(h) = h^{-1}$ debido a que
+	$S(h)h = 1_{H} \veps(h) = 1_{H}$.
+\end{example}
+
+\begin{example}
+	El álgebra asociativa envolvente $H = U(\mathfrak{g})$ es un álgebra de Hopf definiendo $S(x) = -x$ para todo $x \in \mathfrak{g}$.
+	En general si $H$ es un álgebra de Hopf y $h \in H$ es un elemento de primitivo, entonces $S(h) = -h$.
+\end{example}
+
+Las siguientes dos propiedades de la antípoda son muy importantes. Daremos la demostración de la primera para mostrar la utilidad de
+la notación de Sweedler.
+
+\begin{prop} Sea $H$ un álgebra de Hopf con antípoda $S$.
+	\begin{enumerate}
+		\item La antípoda $S$ es un antimorfismo de álgebras, es decir,
+		\[
+			S(hk) = S(k)S(h) \text{ para todo }	h,k \in H \text{ y } S(1_{H}) = 1_{H}.	
+		\]
+		\item La antípoda $S$ es un antimorfismo de coálgebras, es decir,
+		\[
+			\Delta \circ S = \tau \circ	(S \ox S) \circ \Delta \text{ y } \veps \circ S = \veps.	
+		\]
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	Notemos primero que como $H \ox H$ es una coálgebra, $\Hom_{\field}(H \ox H, H)$ es un álgebra con el producto de convolución.
+	Sean $f$ y $g \in \Hom_{\field}(H \ox H, H)$ los únicos morfismos $\field$-lineales que cumplen que
+	$f(h \ox k) = S(hk)$ y $g(h \ox k) = S(k) S(h)$ para todo $h$, $k \in H$. Para ver que $f = g$ vamos a probar que $f$ es la inversa
+	a izquierda de $m_{H}$ y $g$ la inversa a derecha, es decir,
+	\[
+		f \ast m_{H} = m_{H} \ast g = \eta_{H} \circ \veps_{H \ox H}.
+	\]
+	Sean $h$ y $k \in H$,
+	\begin{align*}
+		\left(f \ast m_H\right)\left(h \ox k\right) &= f\left((h \ox k)_{(1)}\right)m_H\left(((h \ox k)_{(2)}\right)
+			= f\left(h_{(1)} \ox k_{(1)}\right) m_{H}\left(h_{(2)} \ox k_{(2)}\right) \\
+		&= S\left(h_{(1)} k_{(1)}\right)h_{(2)}k_{(2)} = S\left((hk)_{(1)}\right)(hk)_{(2)} \\
+		&= \eta_H \circ \veps_{H}(hk) = \eta_{H} \circ \veps_{H\ox H} (h \ox k). 
+	\end{align*}
+	De manera similar,
+	\begin{align*}
+		(m_{H} \ast g)(h \ox k) &= m_{H}\left((h \ox k)_{(1)}\right)g\left((h \ox k)_{(2)}\right) \\
+		&= m_{H}\left(h_{(1)} \ox k_{(2)}\right)g\left(h_{(1)} \ox k_{(2)}\right)
+			= h_{(1)}k_{(1)}S\left(k_{(2)}\right)S\left(h_{(2)}\right) \\
+		&= h_{(1)} (\eta \circ \veps) (k) S\left(h_{(2)}\right) = h_{(1)} S\left(h_{(2)}\right) \veps(k) 1_{H} \\
+		&= \veps(h) \veps(k) 1_{H} =\eta_{H} \circ \veps_{H\ox H} (h \ox k).
+	\end{align*}
+	Por lo tanto $f = g$. Para ver que $S(1_{H}) = 1_{H}$ alcanza con evaluar la expresión $S \ast id_{H} = \eta \circ \veps$ en $1_{H}$.
+\end{proof}
 \end{document}
