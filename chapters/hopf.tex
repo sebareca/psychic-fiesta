@@ -1,5 +1,8 @@
 \documentclass[a4paper,oneside,fleqn,11pt,../tesis.tex]{subfiles}
 
+\newcommand{\yetter}{\prescript{H}{H}{\mathcal{YD}}}
+\newcommand{\yetterg}{\prescript{\field G}{\field G}{\mathcal{YD}}}
+
 \begin{document}
 
 \section{Definiciones básicas}
@@ -218,10 +221,10 @@ sumatoria y por lo tanto podemos escribir:
 \]
 
 o más aún podemos no escribir el símbolo de la suma. Esta notación se vuelve muy útil cuando aplicamos $\Delta$
-varias veces. La coasociatividad de la comultiplicación nos dice (en notación de Sweedler) que
+varias veces. La coasociatividad de la comultiplicación dice (en notación de Sweedler) que
 \[
-	c_{(1)} \ox c_{(2)_{(1)}} \ox c_{(2)_{(2)}} = (id \ox \Delta) \circ \Delta (c)
-	= (\Delta \ox id) \circ \Delta(c) = c_{(1)_{(1)}} \ox c_{(1)_{(2)}} \ox c_{(2)}.
+	c_{(1)} \ox {c_{(2)}}_{(1)} \ox {c_{(2)}}_{(2)} = (id \ox \Delta) \circ \Delta (c)
+	= (\Delta \ox id) \circ \Delta(c) = {c_{(1)}}_{(1)} \ox {c_{(1)}}_{(2)} \ox c_{(2)}.
 \]
 Esto nos permite escribir
 \[
@@ -265,7 +268,7 @@ Este producto y la unidad $\eta \circ \veps$ le dan a $\Hom_{\field}(C, A)$ estr
 
 En notación de Sweedler la antípoda $S$ cumple que 
 \[
-	S(h_{(1)}h_{(2)}) = \veps(h) 1_{H} = h_{(1)}S(h_{(2)}) \text{ para todo } h \in H.
+	S(h_{(1)})h_{(2)} = \veps(h) 1_{H} = h_{(1)}S(h_{(2)}) \text{ para todo } h \in H.
 \]
 
 \begin{definition}
@@ -289,11 +292,21 @@ En notación de Sweedler la antípoda $S$ cumple que
 	En general si $H$ es un álgebra de Hopf y $h \in H$ es un elemento de primitivo, entonces $S(h) = -h$.
 \end{example}
 
+\begin{example}
+	(Álgebra de Taft) Hasta ahora todos los ejemplos que dimos son coconmutativos. El álgebra de Hopf más chica no conmutativa y no coconmutativa
+	tiene dimensión 4 y es única si $car(\field) \neq 2$. Se trata del álgebra
+	\[
+		\field \left\langle 1, g, x \mid g^2, x^2, xg + gx \right\rangle,
+	\]
+	con estructura de álgebra de Hopf dada además por $\Delta(g) = g \ox g$, $\Delta(x) = x \ox 1 + g \ox x$,
+	$\veps(g) = 1$, $\veps(x) = 0$, $S(g) = g = g^{-1}$ y $S(x) = -gx$.
+\end{example}
+
 Las siguientes dos propiedades de la antípoda son muy importantes. Daremos la demostración de la primera para mostrar la utilidad de
 la notación de Sweedler.
 
 \begin{prop} Sea $H$ un álgebra de Hopf con antípoda $S$.
-	\begin{enumerate}
+	\begin{enumerate}[(1)]
 		\item La antípoda $S$ es un antimorfismo de álgebras, es decir,
 		\[
 			S(hk) = S(k)S(h) \text{ para todo }	h,k \in H \text{ y } S(1_{H}) = 1_{H}.	
@@ -327,6 +340,386 @@ la notación de Sweedler.
 		&= h_{(1)} (\eta \circ \veps) (k) S\left(h_{(2)}\right) = h_{(1)} S\left(h_{(2)}\right) \veps(k) 1_{H} \\
 		&= \veps(h) \veps(k) 1_{H} =\eta_{H} \circ \veps_{H\ox H} (h \ox k).
 	\end{align*}
-	Por lo tanto $f = g$. Para ver que $S(1_{H}) = 1_{H}$ alcanza con evaluar la expresión $S \ast id_{H} = \eta \circ \veps$ en $1_{H}$.
+	Por lo tanto $f = g$. Para ver que $S(1_{H}) = 1_{H}$ alcanza con evaluar la expresión
+	\[
+		S \ast id_{H} = \eta \circ \veps
+	\]
+	en $1_{H}$. Esto prueba (1), para probar (2) se utiliza un argumento similar.
 \end{proof}
+
+\subsection{Módulos y comódulos}
+
+Al igual que para las coálgebras primero vamos a dar una definición alternativa de módulo que facilite dualizar
+la estructura.
+
+\begin{definition}
+	Sea $A$ una $\field$-álgebra. Un $A$-\emph{módulo} es un $\field$-espacio vectorial M junto con una transformación
+	$\field$-lineal
+	\[
+		\gamma: A \ox M \to M	
+	\]
+	tal que los siguientes diagramas conmutan:
+	\begin{align*}
+		\xymatrix@=5em{
+			A \ox A \ox M \ar[r]^{m_A \ox id} \ar[d]^{id \ox \gamma} & A \ox M \ar[d]^{\gamma}
+				& \field \ox M \ar[rd] \ar[r]^{\eta \ox id} & A \ox M \ar[d]^{\gamma}\\
+			A \ox M \ar[r]^{\gamma} & M
+				&& M
+		}
+	\end{align*}
+	Denotamos por $\prescript{}{A}{\mathcal{M}}$ a la categoría de $A$-módulos a izquierda. Los $A$-módulos a derecha
+	se definen de manera análoga.
+\end{definition}
+
+\begin{definition}
+	Sea $C$ una $\field$-coálgebra. Un $C$-\emph{comódulo a derecha} es un $\field$-espacio vectorial $M$
+	junto con una transformación $\field$-lineal
+	\[
+		\rho: M \to M \ox C	
+	\]	
+	tal que los siguientes diagramas conmutan:
+	\begin{align*}
+		\xymatrix@=5em{
+			M \ar[r]^{\rho} \ar[d]^{\rho} & M \ox C \ar[d]^{id \ox \Delta}
+				& M \ar[rd] \ar[r]^{\rho} & M \ox C \ar[d]^{id \ox \veps}\\
+			M \ox C \ar[r]^{\rho \ox id} & M \ox C \ox C
+				&& M \ox \field
+		}
+	\end{align*}
+	Denotamos por $\mathcal{M}^{C}$ a la categoría de $C$-comódulos a derecha.
+\end{definition}
+
+La notación de Sweedler se puede extender a comódulos a derecha escribiendo
+\[
+	\rho(m) = m_{(0)} \ox m_{(1)},
+\]
+manteniendo la convención de que $m_{(i)} \in C$ para todo $i \neq 0$. El primer diagrama
+de la definición de comódulo dice que $(id \ox \Delta) \circ \rho = (\rho \ox id) \circ \rho$.
+Si escribimos esta condición en notación de Sweedler obtenemos que
+\[
+	{m_{(0)}}_{(0)} \ox {m_{(0)}}_{(1)} \ox m_{(1)} = m_{(0)} \ox {m_{(1)}}_{(1)} \ox {m_{(1)}}_{(2)}.
+\]
+Esto permite escribir
+\[
+	(id \ox \Delta) \circ \rho(m) = (\rho \ox id) \circ \rho(m) = m_{(0)} \ox m_{(1)} \ox m_{(2)}.
+\]
+El segundo diagrama dice, en notación de Sweedler, que
+\[
+	m = m_{(0)} \veps(m_{(1)}).
+\]
+De manera análoga se define $\field$-\emph{comódulo a izquierda} mediante un morfismo
+\[
+	\rho': M \to C \ox M.
+\]
+En este caso escribimos $\rho'(m) = m_{(-1)} \ox m_{(0)}$.
+
+\begin{definition}
+	Sean $M$ y $N$ dos $C$-comódulos a derecha con morfismos de estructura $\rho_M$ y $\rho_N$ respectivamente.
+	Una transformación $\field$-lineal $f: M \to N$ se dice \emph{morfismo de $C$-comódulos a derecha}
+	si $\rho_N \circ f = (f \ox id) \circ \rho_M$.
+\end{definition}
+
+\begin{example}
+	Sea $C$ una coálgebra, el espacio vectorial $M = C$ es un cómodulo a derecha definiendo $\rho = \Delta$.
+\end{example}
+
+
+\begin{example} \label{exgroupgrading}
+	Si $G$ es un grupo y $M$ un $\field$-espacio vectorial, entonces $M$ es un $\field G$-comódulo si y solo si $M$ es $G$-graduado.
+	Para ver esto empecemos suponiendo que $M$ es un $\field G$-comódulo. Debido a que los elementos de $G$ forman
+	una base de $\field G$, podemos escribir $\rho(m) = \sum_{g \in G} m_g \ox g$ de manera única para todo $m \in M$.
+	Esto define, para cada $g \in G$, el subespacio $M_g = \left\lbrace m_g \mid m \in M\right\rbrace$. Como
+	\begin{align*}
+		\xymatrix@=3em{
+			m \ar@{|->}[r]^(.3){\rho} & \sum_{g \in G} m_g \ox g \ar@{|->}[r]^{id \ox \veps}
+				& \sum_{g \in G} m_g \ox 1 \ar@{|->}[r]^(.5){\sim} & \sum_{g \in G} m_g
+		}
+	\end{align*}		 
+	para todo $m \in M$ y esta composición de morfismos resulta ser la identidad, entonces $M = \sum_{g \in G} M_g$.
+	Nos resta ver que la suma es directa. Si usamos que
+	\[
+	(id \ox \Delta) \circ \rho = (\rho \ox id) \circ \rho
+	\]
+	obtenemos que para todo $m \in M$
+	\[
+	\sum_{g \in G} m_g \ox g \ox g  = \sum_{g \in G}	\sum_{h \in G} \left({m_g}\right)_{h} \ox g \ox h. 
+	\]
+	Como los elementos de $G$ forman una base de $\field G$, entonces $({m_g})_h = \delta_{g, h} m_{g}$ y luego, $M = \oplus_{g \in G} M_g$.
+	Si empezamos suponiendo que $M = \oplus_{g \in G} M_g$ definimos $\rho(m) = m \ox g$ para todo $m \in M$.
+\end{example}
+
+\subsection{Invariantes y coinvariantes}
+
+\begin{definition}
+	\begin{enumerate}[(1)]
+		\item
+		Sean $H$ un álgebra de Hopf y $M$ un $H$-módulo a izquierda. Los \emph{invariantes $M$ por las acción de $H$} son los elementos $m \in M$
+		tales que $h \cdot m = \veps(h)m$ para todo $h \in H$. Este conjunto lo denotamos por $M^{H}$.
+		\item
+		Sean $H$ un álgebra de Hopf y $M$ un $H$-comódulo a derecha. Los \emph{coinvariantes de $H$ en $M$} son los elementos $m \in M$
+		tales que $\rho(m) = m \ox 1_{H}$. Este conjunto los denotamos por $M^{coH}$
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Sea $H = \field G$. Si $M$ es un $H$-módulo a izquierda, entonces $M^{H} = M^{G}$. Si $M$ es un $H$-comódulo a derecha, entonces
+	$M^{coH} = M_1$, donde $M_1$ es la componente identidad de la graduación del Ejemplo \ref{exgroupgrading}. 
+\end{example}
+
+\begin{example}
+	Sea $H = U(\mathfrak{g})$. Si $M$ es un $H$-módulo a izquierda, entonces
+	\[
+		M^{H} = \left\lbrace m \in M \mid x \cdot m = 0 \text{ para todo } x \in \mathfrak{g} \right\rbrace.
+	\]
+\end{example}
+
+\subsection{Producto tensorial de módulos y comódulos}
+
+Sea $H$ un álgebra de Hopf y $V$ y $W$ dos $H$-módulos a izquierda. El espacio vectorial $V \ox W$ resulta ser un $H$-módulo a izquierda definiendo
+\[
+	h \cdot (v \ox w) = h_{(1)} \cdot v \ox h_{(2)} \cdot w.	
+\]
+para todo $h \in H$, $v \in V$ y $w \in W$. Lo mismo sucede para $H$-módulos a derecha.
+	
+Si $H$ es coconmutativo, entonces $V \ox W \cong W \ox V$, donde el isomorfismo está dado por la transposición $\tau_{V, W}$.
+Si removemos la hipótesis de que $H$ sea coconmutativo este resultado es falso. Por ejemplo, sea $H = \Hom_{\field}\left(\field G, \field\right)$,
+donde $G$ es un grupo finito no conmutativo. Veamos primero que $H$ es un álgebra de Hopf. Su estructura de álgebra esta dada por 
+$m_{H}\left(f \ox g\right)(x) = f(x)g(x)$ y $\eta_{H}(\lambda) = \lambda\veps_{\field G}$ para todo $f, g \in H$, $x \in G$ y $\lambda \in \field$.
+Para describir la estructura de coálgebra consideramos la base $\left\lbrace p_g \mid g \in G \right\rbrace$ de $H$ dual a la base de elementos de $G$.
+Es decir, $p_g(h) = \delta_{g, h}$ para todo $g, h \in G$. La comultiplicación se define en esta base como $\Delta_H(p_g) = \sum_{h \in G} p_h \ox p_{h^{-1}g}$ y se extiende linealmente a $H$. La counidad $\veps_{H}$ esta dada por $\veps_{H}(f) = f \circ \eta_{\field G}(1_{\field})$. Por último la
+antípoda se define como $S_{H} = S_{\field G}^{\ast}$. Sean $g, h \in G$ tales que $gh \neq hg$ y sean
+$\left\langle p_g \right\rangle \subseteq H$ y $\left\langle p_h \right\rangle \subseteq H$ los subespacios generados por $p_g$ y $p_h$ respectivamente.
+Estos subespacios son $H$-módulos con la acción dada por la multiplicación a izquierda. Es fácil ver que
+$p_{gh}(\left\langle p_g \right\rangle \ox \left\langle p_h \right\rangle) = \left\langle p_g \right\rangle \ox \left\langle p_h \right\rangle$ y que
+$p_{gh}(\left\langle p_h \right\rangle \ox \left\langle p_g \right\rangle) = 0$. Luego
+$\left\langle p_g \right\rangle \ox \left\langle p_h \right\rangle \ncong \left\langle p_h \right\rangle \ox \left\langle p_g \right\rangle$
+como $H$-módulos.
+
+Vimos que si $H$ es un álgebra de Hopf y $V$ y $W$ son dos $H$-módulos a izquierda, entonces $V\ox W$ resulta ser un $H$-módulo a izquierda y dimos
+una formula para la acción. Reescribamos esta formula en términos de morfismos para que resulte más sencillo dualizar. Si $\phi_{V}: H \ox V \to V$ y 
+$\phi_W: H \ox W \to W$ son las acciones de $H$ sobre $V$ y $W$ respectivamente, entonces la acción de $H$ sobre $V \ox W$ esta dada por
+\[
+	\phi_{V \ox W} = \left(\phi_V \ox \phi_W \right) \circ \left(id \ox \tau_{H, V} \ox id \right) \circ \left(\Delta \ox id \ox id \right).
+\]
+
+Sea $H$ un álgebra de Hopf y sean $V$ y $W$ dos $H$-comódulos a derecha con coacciones $\rho_V$ y $\rho_W$ respectivamente. El espacio vectorial $V \ox W$
+resulta ser un $H$-comódulo a derecha mediante el morfismo
+\[
+	\rho_{V\ox W} = \left(id \ox m\right) \circ \left(id \ox \tau_{H, W} \ox id\right) \circ \left(\rho_V \ox \rho_W \right).
+\]
+En notación de Sweedler $\rho(v\ox w) = v_{(0)} \ox w_{(0)} \ox v_{(1)} w_{(1)}$ para todo $v \in V$ y $w \in W$.
+
+\subsection{Módulo álgebras, comódulo álgebras y productos smash}
+
+A partir de ahora todos los módulos son módulos a izquierda y todos los comódulos son comódulos a derecha.
+
+\begin{definition}
+	Sea $H$ un álgebra de Hopf. Un álgebra $A$ es un $H$-\emph{módulo álgebra} si:
+	\begin{enumerate}[(1)]
+		\item $A$ es un $H$-módulo con acción $\cdot: H \ox A \to A$,
+		\item $h \cdot (ab) = (h_{(1)}a)(h_{(2)}b)$,
+		\item $h \cdot 1_A = \veps(h)1_A$,
+	\end{enumerate}
+	para todo $h \in H$, $a, b \in A$.
+	Las condiciones (2) y (3) dicen que la multiplicación $m_A$ y la unidad $\eta_A$ son morfismos de $H$-módulos.
+\end{definition}
+
+\begin{definition}
+	Sea $H$ un álgebra de Hopf. Un álgebra $A$ es un $H$-\emph{comódulo álgebra} si:
+	\begin{enumerate}
+		\item $A$ es un $H$-comódulo con coacción $\rho: A \to A\ox H$,
+		\item la multiplicación $m_A$ y la unidad $\eta_A$ son morfismos de $H$-comódulos.
+	\end{enumerate}
+	En notación de Sweedler la condición (2) dice que
+	\[
+		(ab)_{(0)}\ox (ab)_{(1)} = \rho(ab) = a_{(0)}b_{(0)} \ox a_{(1)}b_{(1)}
+	\] para todo $a, b \in A$ y que $\rho(1) = 1\ox 1$.
+\end{definition}
+
+\begin{definition}
+	Sean $H$ un álgebra de Hopf y $A$ un $H$-módulo álgebra.
+	Se define el \emph{producto smash} $A\#H$ de la siguiente manera:
+	\begin{enumerate}[(1)]
+		\item El espacio vectorial subyacente es $A \ox H$ y escribimos $a\#h$ en vez de $a\ox h$.
+		\item La multiplicación esta dada en los tensores elementales por
+		\[
+			(a\#h)(b\#k) = a(h_{(1)}b)\#h_{(2)}k.
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Sean $H$ un álgebra de Hopf y $A$ un álgebra. La acción trivial $h \cdot a = \veps(h) a$ para todo $h \in A$
+	y $a \in A$ le da estructura a $A$ de $H$-módulo álgebra. Es fácil ver que en este caso $A\#H \cong A\ox H$.
+\end{example}
+
+\begin{example}
+	Sea $A$ un $\field G$-módulo álgebra. Como $\Delta(g) = g \ox g$ para todo $g \in G$ y $m_A$ es un morfismo de $\field G$-módulos,
+	entonces $g \cdot (ab) = (g \cdot a)(g \cdot b)$ para todo $g \in G$ y $a,b \in A$.
+	Es decir que cada $g$ actúa como endomorfismo de $A$. Más aún como
+	$g$ es inversible, $g$ actúa como un automorfismo. Luego la estructura de $\field G$-módulo álgebra de $A$ induce
+	un morfismo de grupos $G \to \Aut_{\field}A$. Recíprocamente un morfismo de grupos de $G$ en los automorfismos
+	de $A$ induce una estructura de $\field G$-módulo álgebra en $A$. En este caso $A \# \field G$ es el producto semidirecto
+	de $A$ con $G$.
+\end{example}
+
+\begin{example}
+	Sea $A$ un $\field G$-comódulo álgebra. Ya sabemos que $A = \oplus_{g \in G} A_g$ como $\field$-espacio vectorial
+	y que para todo $a_g \in A_g$, $\rho(a_g) = a_g \ox g$. Como $m_A$ es un morfismo de $H$-comódulos, entonces
+	$\rho(a_g b_h) = a_g b_h \ox gh$, es decir, $a_g b_h \in A_{gh}$ o lo que es lo mismo $A_g A_h \subseteq A_{gh}$.
+	Más aún como $\eta_A$ es un morfismo de $H$-comódulos, entonces $\rho(1_A) = 1_A \ox 1_G$ y por lo tanto
+	$A$ es un álgebra $G$-graduada. 
+\end{example}
+
+\begin{example}
+	Sea $A$ un $U(\mathfrak{g})$-módulo álgebra. Como $\Delta(x) = x \ox 1 + 1 \ox x$ para todo $x \in \mathfrak{g}$,
+	entonces $x\cdot (ab) = (x \cdot a)b + a (x \cdot b)$ para todo $x\in \mathfrak{g}$ y $a, b \in A$, es decir,
+	los elementos de $\mathfrak{g}$ actúan como $\field$-derivaciónes y esto
+	induce un morfismo de álgebras de Lie $U(\mathfrak{g}) \to \Der_{\field}A$.
+\end{example}
+
+\subsection{Espacios vectoriales trenzados y módulos de Yetter-Drinfeld}
+
+\begin{definition}
+	Sea $V$ un $\field$-espacio vectorial y $c:V \ox V \to V \ox V$ un isomorfismo lineal. Decimos
+	que $(V,c)$ es un \emph{espacio vectorial trenzado} si $c$ es solución de la \emph{ecuación de trenzas}, es decir,
+	\[
+		(c \ox id)\circ(id \ox c)\circ(c \ox id) = (id \ox c)\circ(c \ox id)\circ(id \ox c).
+	\] 
+\end{definition}
+
+\begin{example}
+	Sea $V$ un $\field$-espacio vectorial con base $\left\lbrace x_i \right\rbrace_{i \in I}$
+	y sea $\left\lbrace q_{i, j} \right\rbrace_{i, j \in I} \subseteq \field$ un conjunto de escalares no nulos.
+	El isomorfismo $c:V \ox V \to V \ox V$ dado por
+	\[
+		c(x_i \ox x_j) = q_{i, j} x_j \ox x_i
+	\] es solución de la ecuación de trenzas.
+\end{example}
+
+En esta \myworries{sección} nos vamos a concentrar en ejemplos de espacios vectoriales trenzados que provengan de módulos
+de Yetter-Drinfeld.
+
+\begin{definition}
+	Sea $H$ un álgebra de Hopf. Un $\field$-espacio vectorial $V$ es un \emph{módulo de Yetter-Drinfeld a izquierda sobre $H$}
+	si $\left(V, \cdot\right)$ es un $H$-módulo a izquierda, $(V, \rho)$ es un $H$-comódulo a izquierda
+	y se satisface la siguiente condición de compatibilidad:
+	\[
+		\rho(h \cdot v) = h_{(1)}v_{(-1)}S(h_{(3)}) \ox h_{(2)} \cdot v	
+	\]
+	para todo $h \in H$ y $v \in V$. La categoría de módulos de Yetter-Drinfeld a izquierda sobre $H$ se denota por $\yetter$ y
+	sus morfismos preservan la acción y la coacción.
+\end{definition}
+
+Sea $H$ un álgebra de Hopf y sean $V, W \in \yetter$. El espacio vectorial $V \ox W$ resulta ser un módulo de Yetter-Drinfeld
+a izquierda sobre $H$ definiendo
+\[
+	\rho(v \ox w) = v_{(-1)}w_{(-1)} \ox (v_{(0)} \ox w_{(0)}) \quad\text{y}\quad h\cdot (v \ox w) = h_{(1)}\cdot v \ox h_{(2)} w
+\]
+para todo $v \in V$, $w \in W$ y $h \in H$.
+
+\begin{definition}
+	Sea $H$ un álgebra de Hopf y sean $V, W \in \yetter$. Definimos la trenza $c_{V, W}: V\ox W \to W\ox V$ como la única
+	transformación $\field$-lineal que cumple que
+	\[
+		c_{V, W}(v \ox w) = v_{(-1)} \cdot w \ox v	
+	\]
+	para todo $v \in V$ y $w \in W$.
+\end{definition}
+
+Los módulos de Yetter-Drinfeld sobre álgebras de grupo son muy importantes por sus aplicaciones en álgebras de Hopf punteadas.
+\begin{example}
+	Sean $G$ un grupo abeliano y $V \in \yetterg$. Análogo a lo que sucede para $\field G$-comódulos a derecha,
+	resulta que $V = \oplus_{g \in G} V_g$, donde $V_g = \left\lbrace v \in V \mid \rho(v) = g \ox v \right\rbrace$. Debido a la condición
+	de compatibilidad $\rho(h \cdot v) = hgh^{-1} \ox h \cdot v = g \ox h \cdot v$ para todo $v \in V$ y $h \in H$.
+	Luego para cada $g \in G$, el subespacio vectorial $V_g$ es un $G$-módulo.
+	En este caso la trenza asociada a $V \ox V$ esta dada por $c_{V, V}(x \ox y) = g \cdot y \ox x$ para todo $g \in G$, $x \in V_g$,
+	$y \in V$.
+	
+	Asumamos que para cada $g \in G$ el grupo $G$ actua por caracteres sobre $V_g$. Es decir, $V_g = \oplus_{\xi \in \hat{G}} V_{g}^{\xi}$,
+	donde
+	\[
+		V_{g}^{\xi} = \left\lbrace v \in V_g \mid h \cdot v = \xi(h)v \text{ para todo } h \in G \right\rbrace.	
+	\]
+	En este caso decimos que $V$ es de \emph{tipo diagonal}.
+	Si $\field$ es algebraicamente cerrado, la característica de $\field$ es cero
+	y $G$ es un grupo finito abeliano, entonces todo módulo de Yetter-Drinfeld sobre $\field G$ de dimensión finita es de tipo diagonal.
+\end{example}
+
+\subsection{Álgebras de Hopf trenzadas}
+El hecho de que haya productos tensoriales en la categoría de módulos de Yetter-Drinfeld permite definir la noción de álgebra y coálgebra
+en esta categoría.
+
+\begin{definition}
+	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es un álgebra en $\yetter$ si $\left(B,m_B,\eta_B\right)$ es un álgebra
+	tal que la multiplicación $m_B$ y la unidad $\eta_B$ son morfismos en $\yetter$.
+\end{definition}
+
+\begin{definition}
+	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es una coálgebra en $\yetter$ si $\left(B,\Delta_B,\veps_B\right)$ es una coálgebra
+	tal que la comultiplicación $\Delta_B$ y la counidad $\veps_B$ son morfismos en $\yetter$.
+\end{definition}
+
+Sean $H$ un álgebra de Hopf y $B$ un álgebra en $\yetter$.  La trenza $c_{B, B}: B \ox B \to B \ox B$ le da a $B \ox B$ estructura de álgebra en $\yetter$ definiendo
+\[
+	m_{B \ox B} = \left(m_B \ox m_B \right) \circ \left(id \ox c_{B, B} \ox id \right).
+\]
+Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebras permite hacer la siguiente definición:
+
+\begin{definition}
+	Sea $H$ un álgebra de Hopf. Decimos que $B$ es un \emph{álgebra de Hopf trenzada en $\yetter$} si
+	\begin{itemize}
+	\item $\left(B, m, \eta\right)$ es un álgebra en $\yetter$,
+	\item $\left(B, \Delta, \veps \right)$ es una coálgebra en $\yetter$,
+	\item $\Delta$ y $\veps$ son morfismos de álgebras en $\yetter$,
+	\item existe un morfismo $S:B \to B$ en $\yetter$ que resulta ser la inversa de $id_B$
+	para el producto convolución.
+	\end{itemize}
+	Un álgebra de Hopf trenzada \emph{graduada} en $\yetter$ es un álgebra de Hopf trenzada $B$ en $\yetter$ junto
+	con una graduación $B = \oplus_{n \geq 0}B(n)$ de módulos de Yetter-Drinfeld tal que $B$ con esta graduación es un álgebra graduda
+	y una coálgebra graduada.
+\end{definition}
+
+\begin{example}
+	Si $H$ es el álgebra del grupo trivial, entonces $B$ es un álgebra de Hopf trenzada en $\yetter$ si y solo si $B$ es un álgebra de Hopf.
+\end{example}
+
+\begin{example} \label{exampletensoralgebra}
+	Sean $H$ un álgebra de Hopf y $V \in \yetter$. El álgebra tensorial $T(V) = \oplus_{n \geq 0}V^{\ox n}$ es un álgebra de Hopf trenzada en $\yetter$
+	con comultiplicación y counidad dadas por
+	\[
+		\Delta(v) = v \ox 1 + 1 \ox v, \quad \veps(v) = 0 \quad\text{para todo } v \in V.	
+	\]
+	La existencia de la antípoda se puede encontrar en \myworries{REFERENCIA}.
+\end{example}
+
+\subsection{Álgebras de Nichols}
+
+Para poder definir álgebra de Nichols necesitamos enunciar el siguiente lema:
+\begin{lema}
+	Sean $H$ un álgebra de Hopf, $V \in \yetter$ y $T(V)$ el álgebra de Hopf trenzada del Ejemplo \ref{exampletensoralgebra}. Existe un único			coideal maximal $\mathfrak{J}(V)$ entre todos los ideales de $T(V)$ que están contenidos en $\oplus_{n \geq 2}V^{\ox n}$. Este ideal es homogéneo
+	con respecto a la graduación de $T(V)$.
+\end{lema}
+
+\begin{definition}
+	La coálgebra cociente $\mathfrak{B}(V) = T(V)/\mathfrak{J}(V)$ se llama \emph{álgebra de Nichols de V}. El coideal $\mathfrak{J}(V)$ es también un 		ideal y esto implica el siguiente teorema.
+\end{definition}
+
+\begin{Teorema}
+	La coálgebra $\mathfrak{B}(V)$ es un álgebra de Hopf trenzada $\NN_{0}$-graduada.
+\end{Teorema}
+
+\begin{example}
+	Si $H$ es el álgebra del grupo trivial, entonces $\mathfrak{B}(V) = S(V)$ el álgebra simétrica.
+\end{example}
+
+\begin{example}
+	Si $H = \field \ZZ_{2}$, entonces $\mathfrak{B}(V) = \bigwedge(V)$ el álgebra exterior de V.
+\end{example}
+
 \end{document}
+
+
+
+
+
