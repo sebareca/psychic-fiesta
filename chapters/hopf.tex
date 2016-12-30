@@ -7,7 +7,7 @@
 
 \section{Definiciones básicas}
 De aquí en adelante $\field$ va a ser un cuerpo. El símbolo $\ox$ representa el producto tensorial
-sobre $\field$.
+sobre $\field$. \cite{A}
 
 \subsection{Álgebras y coálgebras}
 
@@ -483,10 +483,9 @@ para todo $h \in H$, $v \in V$ y $w \in W$. Lo mismo sucede para $H$-módulos a 
 	
 Si $H$ es coconmutativo, entonces $V \ox W \cong W \ox V$, donde el isomorfismo está dado por la transposición $\tau_{V, W}$.
 Si removemos la hipótesis de que $H$ sea coconmutativo este resultado es falso. Por ejemplo, sea $H = \Hom_{\field}\left(\field G, \field\right)$,
-donde $G$ es un grupo finito no conmutativo. Veamos primero que $H$ es un álgebra de Hopf. Su estructura de álgebra esta dada por 
+donde $G$ es un grupo finito no conmutativo. Veamos primero que $H$ es un álgebra de Hopf. Su estructura de álgebra está dada por 
 $m_{H}\left(f \ox g\right)(x) = f(x)g(x)$ y $\eta_{H}(\lambda) = \lambda\veps_{\field G}$ para todo $f, g \in H$, $x \in G$ y $\lambda \in \field$.
-Para describir la estructura de coálgebra consideramos la base $\left\lbrace p_g \mid g \in G \right\rbrace$ de $H$ dual a la base de elementos de $G$.
-Es decir, $p_g(h) = \delta_{g, h}$ para todo $g, h \in G$. La comultiplicación se define en esta base como $\Delta_H(p_g) = \sum_{h \in G} p_h \ox p_{h^{-1}g}$ y se extiende linealmente a $H$. La counidad $\veps_{H}$ esta dada por $\veps_{H}(f) = f \circ \eta_{\field G}(1_{\field})$. Por último la
+Para describir la estructura de coálgebra consideramos la base $\left\lbrace p_g \mid g \in G \right\rbrace$ de $H$, dual a la base de elementos de $G$, es decir, $p_g(h) = \delta_{g, h}$ para todo $g, h \in G$. La comultiplicación se define en esta base como $\Delta_H(p_g) = \sum_{h \in G} p_h \ox p_{h^{-1}g}$ y se extiende linealmente a $H$. La counidad $\veps_{H}$ está dada por $\veps_{H}(f) = f \circ \eta_{\field G}(1_{\field})$. Por último la
 antípoda se define como $S_{H} = S_{\field G}^{\ast}$. Sean $g, h \in G$ tales que $gh \neq hg$ y sean
 $\left\langle p_g \right\rangle \subseteq H$ y $\left\langle p_h \right\rangle \subseteq H$ los subespacios generados por $p_g$ y $p_h$ respectivamente.
 Estos subespacios son $H$-módulos con la acción dada por la multiplicación a izquierda. Es fácil ver que
@@ -578,10 +577,73 @@ A partir de ahora todos los módulos son módulos a izquierda y todos los comód
 	induce un morfismo de álgebras de Lie $U(\mathfrak{g}) \to \Der_{\field}A$.
 \end{example}
 
-\subsection{Espacios vectoriales trenzados y módulos de Yetter-Drinfeld}
+\subsection{Dimensión de Gelfand-Kirillov}
+En esta subsección definimos la dimensión de Gelfand-Kirillov que será mencionada al final de la próxima sección.
+Nos basamos en \myworries{[NNR]}, Capitulo 8. Todas las demostraciones omitidas se encuentran en ese capitulo.
+
+Empezamos con una definición auxiliar.
+\begin{definition}
+	Sea $f:\NN \to \RR_{geq 1}$ una función. Decimos que $f$ tiene crecimiento polinomial si existe un $\nu \in \RR$
+	tal que $f(n) \leq n^{\nu}$ para todo $n \gg 0$. Si este es el caso llamamos
+	\[		
+		\gamma(f) = \inf \left\lbrace \nu \mid f(n) \leq n^{\nu} \text{ para todo } n \gg 0  \right\rbrace.
+	\]
+	Si $f$ no tiene crecimiento polinomial decimos que $\gamma(f) = \infty$.
+\end{definition}
+
+Sea $A$ una $\field$-álgebra finitamente generada y $V \subseteq A$ un subespacio generador de dimensión finita.
+Llamamos $V^n$ al subsespacio de $A$ generado por los elementos de la forma $x_{1} \ldots x_n$, donde $x_i \in V$ para todo $i$
+y llamamos $R_n = \sum_{i = 0}^n V^i$, donde $R_0 = V^0 = \field$. El conjunto $\left\lbrace R_n \right\rbrace_{n \geq 0}$ es una
+filtración de $A$. Resulta que $\gamma(\dim(R_n))$ no depende de el subespacio generador $V$ y eso permite hacer la siguiente definición.
 
 \begin{definition}
-	Sea $V$ un $\field$-espacio vectorial y $c:V \ox V \to V \ox V$ un isomorfismo lineal. Decimos
+	Sea $A$ una $\field$-álgebra finitamente generada, $V \subseteq A$ un subsespacio generador y $\left\lbrace R_n \right\rbrace_{n \geq 0}$
+	la filtración asociada a $V$. Se define la \emph{dimensión de Gelfand-Kirillov} de $A$ como
+	\[
+		\text{GK}(A) = \gamma(\dim(R_n)).	
+	\]
+	Esta definición se extiende a $\field$-álgebras arbitrarias $A$ definiendo
+	\[
+		\text{GK}(A) = \sup\left\lbrace \text{GK}(R) \mid R \text{ es una subálgebra de }A\text{ finitamente generada} \right\rbrace.
+	\]
+\end{definition}
+
+\begin{example}	Damos algunos ejemplos sencillos:
+	\begin{itemize}		
+		\item Si $A = \field\left[x_1, \ldots, x_s\right]$, entonces GK$(A) = s$.
+		\item Si $\mathfrak{g}$ es un álgebra de Lie de dimensión finita, entonces GK$(U(\mathfrak{g})) = \dim(\mathfrak{g})$
+		\item Si $A$ es el álgebra libre $\field <x_1, \ldots, x_s>$, con $s \geq 2$, entonces GK$(A) = \infty$.
+	\end{itemize}
+\end{example}
+
+
+\section{Álgebras de Nichols}
+Esta sección se basa en \myworries{[Pointed Hopf Algebras]} y en \myworries{[NA]}.
+Todas las demostraciones omitidas se encuentran en esos dos artículos
+salvo que aclaremos lo contrario.
+
+\subsection{Espacios vectoriales trenzados y módulos de Yetter-Drinfeld}
+
+En esta \myworries{subsección} estudiaremos cuándo el producto smash de un álgebra de Hopf $H$
+por un $H$-módulo álgebra resulta ser un álgebra de Hopf.
+Un teorema de Radford \myworries{referencia} dice que si $H$ es un álgebra de Hopf y $B$ es un 
+álgebra de Hopf en la categoría de módulos de Yetter-Drinfeld sobre H, entonces $B\#H$ es un álgebra
+de Hopf. En general que $B$ sea un álgebra, coálgebra, biálgebra o álgebra de Hopf en una categoría $\field$-lineal $\mathcal{C}$
+quiere decir que los morfismos de estructura de $B$ son morfismos en $\mathcal{C}$. Las categorías que nos interesan
+son las de módulos y comódulos sobre un álgebra de Hopf $H$. Por ejemplo, un álgebra $A$ en $\prescript{}{H}{\mathcal{M}}$
+es simplemente un $H$-módulo álgebra a izquierda. Análogamente una coálgebra $C$ en $\prescript{}{H}{\mathcal{M}}$
+es un $H$-módulo coálgebra. Para que $B$ sea una biálgebra en una categoría $\mathcal{C}$ no solo se requiere que $B$ sea
+un álgebra y una coálgebra en $\mathcal{C}$, sino que también la comultiplicación $\Delta_B:B \to B\ox B$ debe ser un morfismo en la categoría.
+En particular $B\ox B$ debe ser un álgebra en $\mathcal{C}$. La multiplicación usual del producto tensorial de dos álgebras
+$A$ y $B$ está dada por 
+\[
+	m_{A\ox B} = \left(m_A \ox m_B\right) \circ \left(id \ox \tau_{A, B} \ox id\right).
+\]
+Notar que antes de usar los morfismos $m_A$ y $m_B$ se aplica la transposición $\tau_{A, B}$. Esto sugiere
+que en la categoría $\mathcal{C}$ debe haber una forma de "torcer" productos tensoriales.
+
+\begin{definition}
+	Sean $V$ un $\field$-espacio vectorial y $c:V \ox V \to V \ox V$ un isomorfismo lineal. Decimos
 	que $(V,c)$ es un \emph{espacio vectorial trenzado} si $c$ es solución de la \emph{ecuación de trenzas}, es decir,
 	\[
 		(c \ox id)\circ(id \ox c)\circ(c \ox id) = (id \ox c)\circ(c \ox id)\circ(id \ox c).
@@ -597,7 +659,7 @@ A partir de ahora todos los módulos son módulos a izquierda y todos los comód
 	\] es solución de la ecuación de trenzas.
 \end{example}
 
-En esta \myworries{sección} nos vamos a concentrar en ejemplos de espacios vectoriales trenzados que provengan de módulos
+En esta sección nos vamos a concentrar en estudiar ejemplos de espacios vectoriales trenzados que provengan de módulos
 de Yetter-Drinfeld.
 
 \begin{definition}
@@ -605,58 +667,62 @@ de Yetter-Drinfeld.
 	si $\left(V, \cdot\right)$ es un $H$-módulo a izquierda, $(V, \rho)$ es un $H$-comódulo a izquierda
 	y se satisface la siguiente condición de compatibilidad:
 	\[
-		\rho(h \cdot v) = h_{(1)}v_{(-1)}S(h_{(3)}) \ox h_{(2)} \cdot v	
+		\rho(h \cdot v) = h_{(1)}v_{(-1)}S(h_{(3)}) \ox h_{(2)} \cdot v_{(0)}	
 	\]
-	para todo $h \in H$ y $v \in V$. La categoría de módulos de Yetter-Drinfeld a izquierda sobre $H$ se denota por $\yetter$ y
+	para todo $h \in H$ y para todo $v \in V$.
+	La categoría de módulos de Yetter-Drinfeld a izquierda sobre $H$ se denota por $\yetter$ y
 	sus morfismos preservan la acción y la coacción.
 \end{definition}
 
 Sea $H$ un álgebra de Hopf y sean $V, W \in \yetter$. El espacio vectorial $V \ox W$ resulta ser un módulo de Yetter-Drinfeld
 a izquierda sobre $H$ definiendo
 \[
-	\rho(v \ox w) = v_{(-1)}w_{(-1)} \ox (v_{(0)} \ox w_{(0)}) \quad\text{y}\quad h\cdot (v \ox w) = h_{(1)}\cdot v \ox h_{(2)} w
+	\rho(v \ox w) = v_{(-1)}w_{(-1)} \ox (v_{(0)} \ox w_{(0)}) \quad\text{y}\quad h\cdot (v \ox w) = h_{(1)}\cdot v \ox h_{(2)} \cdot w
 \]
 para todo $v \in V$, $w \in W$ y $h \in H$.
 
 \begin{definition}
-	Sea $H$ un álgebra de Hopf y sean $V, W \in \yetter$. Definimos la trenza $c_{V, W}: V\ox W \to W\ox V$ como la única
-	transformación $\field$-lineal que cumple que
+	Sea $H$ un álgebra de Hopf y sean $V, W \in \yetter$. La trenza
 	\[
-		c_{V, W}(v \ox w) = v_{(-1)} \cdot w \ox v	
+		c_{V, W}: V\ox W \to W\ox V
+	\] es la única transformación $\field$-lineal que cumple que
+	\[
+		c_{V, W}(v \ox w) = v_{(-1)} \cdot w \ox v_{(0)}
 	\]
 	para todo $v \in V$ y $w \in W$.
 \end{definition}
 
-Los módulos de Yetter-Drinfeld sobre álgebras de grupo son muy importantes por sus aplicaciones en álgebras de Hopf punteadas.
-\begin{example}
-	Sean $G$ un grupo abeliano y $V \in \yetterg$. Análogo a lo que sucede para $\field G$-comódulos a derecha,
-	resulta que $V = \oplus_{g \in G} V_g$, donde $V_g = \left\lbrace v \in V \mid \rho(v) = g \ox v \right\rbrace$. Debido a la condición
-	de compatibilidad $\rho(h \cdot v) = hgh^{-1} \ox h \cdot v = g \ox h \cdot v$ para todo $v \in V$ y $h \in H$.
+Los módulos de Yetter-Drinfeld sobre álgebras de grupo son muy importantes por sus aplicaciones al estudio de álgebras de Hopf punteadas.
+\begin{example}\label{examplegroupyetter}
+	Sean $G$ un grupo abeliano y $V \in \yetterg$. Análogamente a lo que sucede para $\field G$-comódulos a derecha,
+	resulta que $V = \oplus_{g \in G} V_g$, donde $V_g = \left\lbrace v \in V \mid \rho(v) = g \ox v \right\rbrace$.
+	Debido a la condición de compatibilidad, resulta que
+	$\rho(h \cdot v) = hgh^{-1} \ox h \cdot v = g \ox h \cdot v$ para todo $v \in V$ y $h \in H$.
 	Luego para cada $g \in G$, el subespacio vectorial $V_g$ es un $G$-módulo.
-	En este caso la trenza asociada a $V \ox V$ esta dada por $c_{V, V}(x \ox y) = g \cdot y \ox x$ para todo $g \in G$, $x \in V_g$,
+	En este caso la trenza asociada a $V \ox V$ está dada por $c_{V, V}(x \ox y) = g \cdot y \ox x$ para todo $g \in G$, $x \in V_g$,
 	$y \in V$.
 	
-	Asumamos que para cada $g \in G$ el grupo $G$ actua por caracteres sobre $V_g$. Es decir, $V_g = \oplus_{\xi \in \hat{G}} V_{g}^{\xi}$,
+	Si suponemos que para cada $g \in G$ el grupo $G$ actúa por caracteres sobre $V_g$, entonces $V_g = \oplus_{\xi \in \hat{G}} V_{g}^{\xi}$,
 	donde
 	\[
 		V_{g}^{\xi} = \left\lbrace v \in V_g \mid h \cdot v = \xi(h)v \text{ para todo } h \in G \right\rbrace.	
 	\]
-	En este caso decimos que $V$ es de \emph{tipo diagonal}.
+	En este caso decimos que $V$ es un módulo de Yetter-Drinfeld de \emph{tipo diagonal}.
 	Si $\field$ es algebraicamente cerrado, la característica de $\field$ es cero
 	y $G$ es un grupo finito abeliano, entonces todo módulo de Yetter-Drinfeld sobre $\field G$ de dimensión finita es de tipo diagonal.
 \end{example}
 
 \subsection{Álgebras de Hopf trenzadas}
-El hecho de que haya productos tensoriales en la categoría de módulos de Yetter-Drinfeld permite definir la noción de álgebra y coálgebra
-en esta categoría.
+El hecho de que haya productos tensoriales en la categoría de módulos de Yetter-Drinfeld permite definir allí la noción de álgebra y coálgebra.
 
 \begin{definition}
-	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es un álgebra en $\yetter$ si $\left(B,m_B,\eta_B\right)$ es un álgebra
+	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es un álgebra en $\yetter$ si $\left(B,m_B,\eta_B\right)$ es una $\field$-álgebra
 	tal que la multiplicación $m_B$ y la unidad $\eta_B$ son morfismos en $\yetter$.
 \end{definition}
 
 \begin{definition}
-	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es una coálgebra en $\yetter$ si $\left(B,\Delta_B,\veps_B\right)$ es una coálgebra
+	Sean $H$ un álgebra de Hopf y $B \in \yetter$. Decimos que $B$ es una coálgebra en $\yetter$ si
+	$\left(B,\Delta_B,\veps_B\right)$ es una $\field$-coálgebra
 	tal que la comultiplicación $\Delta_B$ y la counidad $\veps_B$ son morfismos en $\yetter$.
 \end{definition}
 
@@ -664,20 +730,21 @@ Sean $H$ un álgebra de Hopf y $B$ un álgebra en $\yetter$.  La trenza $c_{B, B
 \[
 	m_{B \ox B} = \left(m_B \ox m_B \right) \circ \left(id \ox c_{B, B} \ox id \right).
 \]
-Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebras permite hacer la siguiente definición:
+Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebras permite hacer la siguiente definición.
 
 \begin{definition}
 	Sea $H$ un álgebra de Hopf. Decimos que $B$ es un \emph{álgebra de Hopf trenzada en $\yetter$} si
 	\begin{itemize}
-	\item $\left(B, m, \eta\right)$ es un álgebra en $\yetter$,
-	\item $\left(B, \Delta, \veps \right)$ es una coálgebra en $\yetter$,
-	\item $\Delta$ y $\veps$ son morfismos de álgebras en $\yetter$,
-	\item existe un morfismo $S:B \to B$ en $\yetter$ que resulta ser la inversa de $id_B$
-	para el producto convolución.
+	\item $\left(B, m_B, \eta_B\right)$ es un álgebra en $\yetter$,
+	\item $\left(B, \Delta_B, \veps_B \right)$ es una coálgebra en $\yetter$,
+	\item $\Delta_B$ y $\veps_B$ son morfismos de álgebras en $\yetter$,
+	\item existe un morfismo $S_B:B \to B$ en $\yetter$ que resulta ser la inversa de $id_B$
+	para el producto de convolución.	
 	\end{itemize}
+	Para no confundir el coproducto de $B$ con el de $H$ escribimos $\Delta_B(b) = b^{(1)}\ox b^{(2)}$ para todo $b \in B$.
 	Un álgebra de Hopf trenzada \emph{graduada} en $\yetter$ es un álgebra de Hopf trenzada $B$ en $\yetter$ junto
-	con una graduación $B = \oplus_{n \geq 0}B(n)$ de módulos de Yetter-Drinfeld tal que $B$ con esta graduación es un álgebra graduda
-	y una coálgebra graduada.
+	con una graduación $B = \oplus_{n \geq 0}B(n)$, donde cada $B(n)$ es un módulo de Yetter-Drinfeld y con esta 
+	graduación $B$ es un álgebra graduada y una coálgebra graduada.
 \end{definition}
 
 \begin{example}
@@ -690,34 +757,127 @@ Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebra
 	\[
 		\Delta(v) = v \ox 1 + 1 \ox v, \quad \veps(v) = 0 \quad\text{para todo } v \in V.	
 	\]
-	La existencia de la antípoda se puede encontrar en \myworries{REFERENCIA}.
+	La existencia de la antípoda se puede encontrar en \myworries{REFERENCIA}. Si $H = \field G$, $V$ es de tipo diagonal, $g \in G$, $v \in V$ y
+	$w \in W$, entonces
+	\[
+		\Delta(vw) = 1 \ox vw + (g \cdot w) \ox v + v \ox w + vw \ox 1.
+	\]
 \end{example}
+
+\begin{prop} (Biproduct de Radford, \myworries{bosonización} de Majid) Sean $H$ un álgebra de Hopf y $B \in \yetter$ un álgebra de Hopf trenzada.
+	El product smash $B\#H$ resulta ser un álgebra de Hopf definiendo:
+	\begin{align*}
+		\Delta(b \ox h) &= \left( b^{(1)}\ox {(b^{(2)})}_{(-1)} h_{(1)} \right) \ox \left( (b^{(2)})_{(0)} \ox h_{(2)} \right),\\	
+		S(b \ox h) &= \left(1 \ox S(h) S\left( b_{(-1)}\right) \right) \left(S_B\left(b_{(0)}\right) \ox 1\right)
+	\end{align*}
+	para todo $b \in B$ y para todo $h \in H$.
+\end{prop}
+\begin{proof}
+	Ver \myworries{D.E. Radford
+The structure of Hopf algebras with a projection
+J. Algebra, 92 (1985), pp. 322–347 y S. Majid
+Crossed products by braided groups and bosonization
+J. Algebra, 163 (1994), pp. 165–190} 
+\end{proof}
 
 \subsection{Álgebras de Nichols}
 
-Para poder definir álgebra de Nichols necesitamos enunciar el siguiente lema:
+Una herramienta esencial para el estudio de álgebras de Hopf punteadas es la \emph{filtración coradical}
+\[
+	A_0 \subset A_1 \subset \cdots \subset A, \cup_{n \geq 0}A_n = A
+\]
+donde $A$ es un álgebra de Hopf, $A_0$ es la suma de todas las subcoalgebras simples de $A$ y
+$A_{n + 1} = \Delta^{-1}\left( A_n \ox A + A \ox A_0\right)$, para todo $n \geq 1$.
+En el caso en el que $A$ sea un álgebra de Hopf punteada, esta filtración
+resulta ser una filtración de álgebras de Hopf. Por un teorema de Radford \myworries{[Ra]} el graduado
+asociado gr$(A)$ a esta filtración es el biproducto $R\#\field\Gamma$, donde $\Gamma$ es el grupo de todos los elementos tipo
+grupo de $A$ y $R$ es un álgebra de Hopf trenzada graduada en la categoría de módulos a izquierda de Yetter-Drinfeld  de $\field\Gamma$.
+El espacio vectorial $V$ formado por todos los elementos primitivos de $R$ es un submódulo de Yetter-Drinfeld de $R$.
+La subálgebra $\mathfrak{B}(V)$ de $R$ generada por los elementos de $V$ es una subálgebra de Hopf trenzada.
+En su tesis \myworries{[N]}, Nichols estudió las álgebras de Hopf de la forma $\mathfrak{B}(V) \# \field\Gamma$.
+El álgebra $\mathfrak{B}(V)$ se llama \emph{álgebra de Nichols de $V$}.
+
+Para poder definir formalmente álgebra de Nichols necesitamos enunciar el siguiente lema:
 \begin{lema}
-	Sean $H$ un álgebra de Hopf, $V \in \yetter$ y $T(V)$ el álgebra de Hopf trenzada del Ejemplo \ref{exampletensoralgebra}. Existe un único			coideal maximal $\mathfrak{J}(V)$ entre todos los ideales de $T(V)$ que están contenidos en $\oplus_{n \geq 2}V^{\ox n}$. Este ideal es homogéneo
-	con respecto a la graduación de $T(V)$.
+	Sean $H$ un álgebra de Hopf, $V \in \yetter$ y $T(V)$ el álgebra de Hopf trenzada del Ejemplo \ref{exampletensoralgebra}.
+	Existe un único coideal maximal $\mathfrak{J}(V)$ entre todos los coideales de $T(V)$ que están contenidos en $\oplus_{n \geq 2}V^{\ox n}$. Este coideal es homogéneo con respecto a la graduación de $T(V)$ y resulta ser un ideal.
 \end{lema}
 
 \begin{definition}
-	La coálgebra cociente $\mathfrak{B}(V) = T(V)/\mathfrak{J}(V)$ se llama \emph{álgebra de Nichols de V}. El coideal $\mathfrak{J}(V)$ es también un 		ideal y esto implica el siguiente teorema.
+	La coálgebra cociente $\mathfrak{B}(V) = T(V)/\mathfrak{J}(V)$ se llama \emph{álgebra de Nichols de V}.
 \end{definition}
 
 \begin{Teorema}
 	La coálgebra $\mathfrak{B}(V)$ es un álgebra de Hopf trenzada $\NN_{0}$-graduada.
 \end{Teorema}
 
+Los siguientes son los dos ejemplos son los más sencillos de álgebras de Nichols. Para simplificar
+no vamos a escribir los elementos de $T(V)$ con el símbolo del producto tensorial.
 \begin{example}
-	Si $H$ es el álgebra del grupo trivial, entonces $\mathfrak{B}(V) = S(V)$ el álgebra simétrica.
+	Si $H$ es el álgebra del grupo trivial, entonces $V = V_1$ y $1\cdot v = v$ para todo $v \in V$.
+	Utilizando la formula que del Ejemplo \ref{exampletensoralgebra} obtenemos que
+	\[
+		\Delta(vw - wv) = 1\ox (vw -wv) + (vw - wv)\ox 1
+	\]
+	y por lo tanto $vw - wv \in \mathfrak{J}(V)$ para todo $v, w \in V$. Se puede ver que $\mathfrak{J}(V)$ es el ideal
+	generado por los elementos de la forma $vw - wv$ con $v, w \in V$ y luego
+	$\mathfrak{B}(V)$ resulta ser el álgebra simétrica $S(V)$.
 \end{example}
 
 \begin{example}
-	Si $H = \field \ZZ_{2}$, entonces $\mathfrak{B}(V) = \bigwedge(V)$ el álgebra exterior de V.
+	Sea $H = \field \ZZ_{2}$ y supongamos que $V = V_{-1}$ y que $-1 \cdot v = -v$ para todo $v \in V$.
+	Utilizando la misma formula que en el ejemplo anterior obtenemos que
+	\[
+		\Delta(v^2) = 1\ox v^2 + v^2 \ox 1
+	\]
+	y por lo tanto $v^2 \in \mathfrak{J}(V)$. Nuevamente se puede ver que $\mathfrak{J}(V)$
+	está generado por los elementos de la forma $v^2$ con $v \in V$.
+	En este caso $\mathfrak{B}(V)$ resulta ser el álgebra exterior $\bigwedge(V)$.
 \end{example}
+Un problema importante y difícil es determinar el coideal $\mathfrak{J}(V)$ como hicimos en los ejemplos
+anteriores.
+
+A partir de ahora $H = \field G$, donde $\field$ es un cuerpo algebraicamente cerrado, car$(\field) = 0$ y
+$G$ es un grupo abeliano. Sea $V$ un módulo de Yetter-Drinfeld a izquierda sobre $H$. Ya sabemos, por lo que vimos en el Ejemplo \ref{examplegroupyetter}, que $V = \oplus_{g \in G} V_g$ y que $V_g$ es un $G$-módulo para cada $g \in G$.
+
+En los artículos \myworries{alguno de nicolás} y las referencias incluidas, los autores estudian la siguiente versión del problema que mencionamos antes. Supongamos que la dimensión de $V$ es finita. Se quiere determinar cuando
+la dimensión de Gelfand-Kirillov de $\mathfrak{B}(V)$ es finita y describir el coideal $\mathfrak{J}(V)$.
+Por hipótesis, $V$ es suma directa de indescomponibles, lo cual permite suponer
+que $V$ es indescomponible y por lo tanto $V \subseteq V_g$ para algún $g \in G$. A su vez esto nos permite suponer
+que $V \in \prescript{\field \ZZ}{\field \ZZ}{\mathcal{YD}}$ donde $\ZZ = \left\langle g \right\rangle$. Como restringimos escalares, $V$ puede dejar de ser indescomponible. Sea $\mathcal{V}_n(\veps, l)$ un objeto en $\prescript{\field \ZZ}{\field \ZZ}{\mathcal{YD}}$, homogéneo de grado $g^n$ y dimensión $l > 1$, 
+donde la acción de $g$ está dada por un bloque de Jordan de tamaño $l$ y autovalor $\veps$.
+En este caso, vale el siguiente teorema \myworries{ref}.
+
+\begin{Teorema}
+La dimensión de Gelfand-Kirillov de $\mathfrak{B}\left(\mathcal{V}_n(\veps, l)\right)$ es finita si y solo si $l = 2$ y $\veps = \pm 1$.
+Además,
+\begin{itemize}
+	\item si $\veps = 1$, entonces
+	\[
+		\mathfrak{B}\left(\mathcal{V}_n(1, 2)\right) = \field\left\langle x, y \mid yx - xy + \frac{1}{2}x^2 \right\rangle.
+	\]
+	\item Si $\veps = -1$, entonces
+	\[
+		\mathfrak{B}\left(\mathcal{V}_n(-1, 2)\right) = \field\left\langle x, y \mid x^2, y^2x - xy^2 + xyx \right\rangle.
+	\]
+	El álgebra $\mathfrak{B}\left(\mathcal{V}_n(1, 2)\right)$ se conoce como \emph{el plano de Jordan}
+	y $\mathfrak{B}\left(\mathcal{V}_n(-1, 2)\right)$ se conoce como \emph{el super plano de Jordan}.
+\end{itemize}
+\end{Teorema}
+El super plano de Jordan es el objeto de estudio de esta tesis.
+
+\begin{thebibliography}{99}
+
+\bibitem[A]{A} Agaoka, Y. \textit{On the variety of $3$-dimensional Lie algebras}, Lobachevskii Journal of
+Mathematics {\bf 3}, (1999), pp. 5-17.
+
+\end{thebibliography}
+
 
 \end{document}
+
+
+
 
 
 

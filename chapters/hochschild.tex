@@ -1,0 +1,149 @@
+\documentclass[a4paper,oneside,fleqn,11pt,../tesis.tex]{subfiles}
+
+\begin{document}
+
+\section{Definiciones básicas}
+Esta sección se basa en \myworries{Weibel} y en \myworries{Ginzburg}.
+
+Antes de definir homología y cohomología de Hochschild es necesario hacer la siguiente observación.
+Sea $A$ una $\field$-álgebra, llamamos \emph{álgebra envolvente de $A$} a la $\field$-álgebra
+\[
+	A^{e} = A \ox A^{op}.
+\]
+Debido a que el producto en $A^{op}$ está invertido es lo mismo considerar un $A$-módulo a derecha que un $A^{op}$-módulo a izquierda.
+Por lo tanto un $A-A$ bimódulo $M$ es lo mismo que un $A^{e}$-módulo a izquierda, mediante la acción dada por $(a\ox b)\cdot m = a\cdot m \cdot b$
+para todo $a, b \in A$ y para todo $m \in M$ y también es lo mismo que un $A^{e}$-módulo a derecha, mediante la acción dada por $m \cdot (a \ox b) = b\cdot m \cdot a$.
+En particular, esto permite ver a la categoría de $A-A$ bimódulos como la categoría de $A^e$-módulos a izquierda.
+Esta observación es fundamental para la siguiente definición ya que nos dice que la categoría de $A-A$ bimódulos
+tiene suficientes proyectivos.
+
+\begin{definition}
+	Sea $A$ una $\field$-álgebra y $M$ un $A-A$ bimódulo. Se define la \emph{homología de Hochschild de $A$ con coeficientes en $M$} como
+		\[
+			\Hy_{\bullet}(A,M) = \Tor_{\bullet}^{A^e}(A, M)	
+		\]
+	y se define la \emph{cohomología de Hochschild de $A$ con coeficientes en $M$} como
+	\[
+			\Hy^{\bullet}(A,M) = \Ext^{\bullet}_{A^e}(A, M).	
+	\]
+\end{definition}
+
+Para calcular los grupos de homología y cohomología de Hochschild es necesario elegir alguna resolución de $A$ como $A-A$ bimódulo,
+o lo que es lo mismo, como $A^e$-módulos a izquierda. Sabemos que siempre existe una resolución porque la categoría tiene suficientes
+proyectivos. La resolución que fue usada en la definición original de homología y cohomología de Hochschild es la \emph{resolución bar}.
+\begin{definition}
+	Sea $A$ una $\field$ álgebra. Se define el \emph{complejo bar de $A$ de $A-A$ bimódulos}
+	\begin{align*}
+		\xymatrix{
+			B_{\bullet}A:\ldots \ar[r]^{b'_3} &  A \ox A^{\ox 3} A \ar[r]^{b'_2} & A \ox A^{\ox 2} A \ar[r]^{b'_1}
+				& A \ox A \ox A \ar[r]^{b'_0} & A \ox A \ar[r] & 0 
+		}
+	\end{align*}
+	donde, para cada $n \geq 0$, el diferencial $b_n: A \ox A^{\ox (n + 1)} \ox A \to A \ox A^{\ox n} \ox A$ está dado por
+	\begin{align*}
+		b'_n&(1\ox a_0 \ox \cdots \ox a_n \ox 1) = a_0 \ox \cdots \ox a_n \ox 1 \\
+		 & \qquad + \sum_{i = 0}^{n -1}(-1)^{i + 1} \ox a_0 \ox \cdots \ox a_i a_{i + 1} \ox \cdots \ox a_n \ox 1 + (-1)^{n + 1} \ox \cdots \ox a_n.
+	\end{align*}
+\end{definition}
+El complejo bar juntos con la multiplicación $m_A: A \ox A \to A$ es una resolución libre de $A$ como $A-A$ bimódulo. Una demostración de este hecho se puede encontrar en \myworries{[CE]}.
+
+Para calcular los espacios $\Hy_i(A,M)$ aplicamos el funtor $M\ox_{A^e}-$ al complejo bar y obtenemos
+\begin{align*}
+	\xymatrix{
+		M \ox_{A^e} B_{\bullet}A:\ldots \ar[r]^{id\ox b'_{2}} & M\ox_{A^e}A^{\ox 4} \ar[r]^{id\ox b'_{1}} & M \ox_{A^e}A^{\ox 3} \ar[r]^{id\ox b'_{0}} & M\ox_{A^e}A^{\ox 2} \ar[r] & 0.
+	}
+\end{align*}
+Es posible realizar la siguiente simplificación. Sea
+\[
+	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) \in  M\ox_{A^e}A^{\ox n}
+\]
+y escribamos
+\begin{align*}
+	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) &= m\ox_{A^e}(a_0 \ox a_{n}^{op}) \cdot (1 \ox a_1 \cdots \ox a_{n -1} \ox 1) \\
+		&=m \cdot(a_0 \ox a_{n}^{op})\ox_{A^e}(1 \ox a_1 \cdots \ox a_{n -1} \ox 1) \\
+		&= \left( a_n \cdot m \cdot a_0\right) \ox_{A^e}(1 \ox a_1 \cdots \ox a_{n -1} \ox 1).
+\end{align*}
+Esta igualdad sugiere el siguiente isomorfismo $\field$-lineal
+\[
+	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) \in  M\ox_{A^e}A^{\ox n} \mapsto
+		\left( a_n \cdot m \cdot a_0\right) \ox_{A^e}(a_1 \cdots \ox a_{n -1}) \in M\ox_{A^e}A^{\ox n - 2}
+\]
+que identifica $ M\ox_{A^e}A^{\ox n}$ con $M\ox_{A^e}A^{\ox n - 2}$ e induce el siguiente complejo isomorfo
+\begin{align*}
+	\xymatrix{
+		\ldots \ar[r]^{b_3} & M\ox A^{\ox 3} \ar[r]^{b_2}  & M\ox A^{\ox 2} \ar[r]^{b_1} & M \ox A \ar[r]^{b_0} & M \ar[r] & 0.
+	}
+\end{align*}
+donde los diferenciales están dados por
+\begin{align*}
+	&b_0(m\ox a) = m\cdot a - a\cdot m,\\
+	&b_n(m\ox a_1 \ox \ldots \ox a_n) = m \cdot a_1 \ox \cdots \ox a_n \\
+		 &\qquad + \sum_{i = 1}^{n -1}(-1)^{i} m \ox a_1 \ox \cdots \ox a_i a_{i + 1} \ox \cdots \ox a_n
+		 	+ (-1)^n a_n \cdot m \ox a_1 \ox \cdots \ox a_{n-1}.
+\end{align*}
+para todo $n \geq 1$.
+
+Para calcular la cohomología de Hochschild aplicamos el funtor $\Hom_{A^e}(-,M)$ al complejo bar y obtenemos
+\begin{align*}
+	\xymatrix{
+		\ldots & \Hom_{A^e}\left(A^{\ox 4}, M\right) \ar[l]_{d'_2} & \Hom_{A^e}\left(A^{\ox 3}, M\right) \ar[l]_{d'_1}
+			& \Hom_{A^e}\left(A^{\ox 2}, M\right) \ar[l]_{d'_0} & 0 \ar[l],
+	}
+\end{align*}
+donde $d'_n(f) = f \circ b'_n$ para todo $f \in \Hom_{A^e}\left(A^{\ox n + 2}, M\right)$ y para todo $n \geq 0$.
+
+Nuevamente es posible realizar una simplificación. Para todo
+$n \geq 0$,
+\[
+	\Hom_{A^e}\left(A^{\ox (n + 2)}, M\right) \cong \Hom_{\field}\left(A^{\ox n}, M\right),
+\]
+mediante el isomorfismo que asocia $\varphi \in \Hom_{A^e}\left(A^{\ox (n + 2)}, M \right)$ con la transformación $\field$-lineal
+\[
+	(a_1 \ox \ldots \ox a_n) \in A^{\ox n} \mapsto \varphi(1 \ox a_1 \ox \ldots \ox a_n \ox 1) \in M.
+\]
+Esto reduce el cálculo de la cohomología de Hochschild al siguiente complejo:
+\begin{align*}
+	\xymatrix{
+		\ldots & \Hom_{\field}\left(A^{\ox 2}, M\right) \ar[l]_{d_2} & \Hom_{\field}\left(A, M\right) \ar[l]_{d_1}
+			& M \ar[l]_{d_0} & 0 \ar[l],
+	}
+\end{align*}
+donde los diferenciales están dados por
+\begin{align*}
+	&d_0(m)(a) = a\cdot m - m\cdot a,\\
+	&d_n(f)(a_1 \ox \ldots \ox a_{n +1}) = a_1 \cdot f(a_2 \ox \ldots \ox a_{n + 1})\\
+	&\qquad + \sum_{i = 1}^{n}(-1)^{i} f(a_1 \ox \cdots \ox a_i a_{i + 1} \ox \cdots \ox a_{n+1})
+		 	+ (-1)^{n + 1} f(a_1 \ox \cdots \ox a_{n}) \cdot a_{n + 1}
+\end{align*}
+para todo $f \in \Hom_{\field}\left(A^{\ox n}, M\right)$ y para todo $n \geq 1$.
+
+Calculemos los primeros dos espacios de cohomología.
+\begin{itemize}
+	\item El grupo $\Hy^{0}(A, M)$ es isomorfo $\Ker(d_0)$.
+	Un elemento $m$ pertenece a $\Ker(d_0)$ si y solo si $a\cdot m - m \cdot a = 0$ para todo $a \in A$. En particular,
+	si $M = A$, resulta que $\Hy^{0}(A, A)$ es el centro del álgebra.
+	
+	\item Para obtener una descripción del espacio $\Hy^{1}(A, M)$ vamos a calcular por separado $\Ker(d_1)$
+	e $\Inn(d_0)$. Dado $f \in \Hom_{\field}\left(A, M\right)$, $f$ pertenece a $\Ker(d_1)$ si y solo si
+	\[
+		0 = d_1(f)(a_1\ox a_2) = a_1\cdot f(a_2) - f(a_1 a_2) + f(a_1)\cdot a_2
+	\]
+	para todo $a_1, a_2 \in A$. Por lo tanto, $\Ker(d_1)$ es el conjunto de \emph{derivaciones} $\Der_{\field}(A, M)$. Por otro lado
+	la imagen de $d_0$ es el conjunto de \emph{derivaciones interiores} $\Inn_{\field}(A, M)$, es decir, los morfismos de la forma
+	$a \mapsto a\cdot m - m\cdot a$ para algún $m \in M$. Luego $\Hy^{1}(A, M)$ resulta ser isomorfo al conjunto de \emph{derivaciones exteriores}
+	\[
+		\Der_{\field}(A, M) / \Inn(A, M).
+	\]
+	Notar que si $M = A$, entonces $\Der_{\field}(A) = \Der_{\field}(A,A)$ es un álgebra de Lie e $\Inn(A)$ es un ideal de Lie.
+	Por lo tanto $\Hy^{1}(A, A)$ es un álgebra de Lie.
+	
+\end{itemize}
+\end{document}
+
+
+
+
+
+
+
+
