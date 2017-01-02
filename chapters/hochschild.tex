@@ -138,6 +138,59 @@ Calculemos los primeros dos espacios de cohomología.
 	Por lo tanto $\Hy^{1}(A, A)$ es un álgebra de Lie.
 	
 \end{itemize}
+
+\subsection{Estructura de álgebra de Gerstenhaber}
+
+Sea $A$ una $\field$-álgebra. La cohomología de Hochschild de $A$ con coeficientes en $A$ tiene estructura
+de álgebra graduada super conmutativa y estructura de super álgebra de Lie junto con cierta relación de compatibilidad.
+
+\begin{definition}
+	Un \emph{álgebra de Gerstenhaber} es un álgebra graduada super conmutativa $G^{\bullet} = \oplus_{i}G^i$ junto con
+	un corchete $\left[\cdot, \cdot \right]: G^{p} \times G^{q} \to G^{p + q - 1}$
+	tal que $\left(G^{\bullet}, \left[\cdot, \cdot \right]\right)$ es una super álgebra de Lie y para todo $a \in G^{\bullet}$,
+	el morfismo $b \in G^{\bullet} \mapsto \left[a,b\right] \in G^{\bullet}$
+	es una super derivación con respecto al producto, es decir,
+	\[
+		\left[a, b c\right] = \left[a,b\right]c + (-1)^{(\gr(a) - 1)\gr(b)}b\left[a, c\right]
+	\]
+	para todo $a, b, c \in G^{\bullet}$.
+\end{definition}
+
+Empecemos dandole estructura de álgebra graduada a $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$.
+\begin{definition}
+	Sean $f \in \Hom_{\field}\left(A^{\ox n}, A\right)$ y $g \in \Hom_{\field}\left(A^{\ox m}\right)$, se define el \emph{producto cup}
+	$f \smile g \in \Hom_{\field}\left(A^{\ox n + m}, A\right)$ como la única transformación $\field$-lineal que cumple que
+	\[
+		f\smile g(a_1\ox \ldots \ox a_n \ox a_{n + 1} \ox \ldots \ox a_{n + m}) = f(a_1\ox \ldots \ox a_n)g(a_{n + 1} \ox \ldots \ox a_{n + m})
+	\]
+	para todo $a_1, \ldots, a_{n + m} \in A$.
+\end{definition}
+Los diferenciales del complejo resultan ser super derivaciones con respecto a este producto, es decir, si $f$ y $g$ son dos
+elementos homogeneos de grados $n$ y $m$ respectivamente, entonces
+\[
+	d_{n + m}(f \smile g) = d_{n}(f) \smile g + (-1)^{nm}f \smile d_{m}(g).
+\]
+Esta formula muestra que el producto de dos cociclos es un cociclo y que el producto de un coborde con un cociclo
+es un coborde. Por lo tanto $\Hy^{\bullet}(A,A)$ resulta ser una $\field$-álgebra graduada con el producto inducido por el producto cup.
+
+También existe en $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$ una estructura de super álgebra de Lie.
+\begin{definition}
+Sean $f \in \Hom_{\field}\left(A^{\ox n}, A\right)$ y $g \in \Hom_{\field}\left(A^{\ox m}\right)$, se define el \emph{asociador}
+entre $f$ y $g$, $f \circ g \in \Hom_{\field}\left(A^{\ox n + m - 1}, A\right)$ como la única transformación $\field$-lineal que cumple que
+	\begin{align*}
+		&f \circ g (a_1\ox \ldots \ox a_{n + m - 1 }) = \\
+		&\quad\sum_{i = 1}^n (-1)^{(i - 1)(m -1)}
+				f\left(a_1\ox \ldots \ox a_{i - 1} \ox g(a_{i} \ox \ldots \ox a_{i + m - 1}) \ox a_{i + m} \ox \ldots \ox a_{n + m - 1}\right)
+	\end{align*}
+	para todo $a_1, \ldots, a_{n + m - 1} \in A$.
+Se define el \emph{corchete de Gerstenhaber} entre estos dos elementos como
+\[
+	\left[f, g\right] = f \circ g  - (-1)^{(n -1)(m -1)}g \circ f.
+\] 
+\end{definition}
+
+El producto cup y el corchete de Gerstenhaber hacen de $\Hy^{\bullet}(A, A)$ un álgebra de Gerstenhaber.
+
 \end{document}
 
 
