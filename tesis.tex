@@ -28,6 +28,8 @@
 \usepackage{theoremref}
 \usepackage{subfiles}
 \usepackage{xcolor}
+\usepackage{xr}
+
 
 
 \usepackage[osf,noBBpl]{mathpazo}
@@ -50,6 +52,7 @@
 \newcommand\base{\mathcal{B}}
 \newcommand\hha{\HH_{\bullet}(A)}
 \newcommand\hcha{\HH^{\bullet}(A)}
+\newcommand{\ov}[1]{\overline{#1}}
 
 
 \theoremstyle{definition}
@@ -77,6 +80,7 @@
 \DeclareMathOperator\Inn{Inn}
 \DeclareMathOperator\Tor{Tor}
 \DeclareMathOperator\Ext{Ext}
+\DeclareMathOperator\Tot{Tot}
 \DeclareMathOperator\HH{HH}
 \DeclareMathOperator\Hy{H}
 
@@ -90,7 +94,11 @@
 \chapter{Homología y cohomología de Hochschild}
 \subfile{chapters/hochschild}
 
-\chapter{Cuentas}
+\chapter{Super plano de Jordan}
+\label{chap3}
 \subfile{chapters/cuentas}
 
+\chapter{Apéndice}
+\label{apendice}
+\subfile{chapters/apendice}
 \end{document}

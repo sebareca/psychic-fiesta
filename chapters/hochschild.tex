@@ -191,6 +191,180 @@ Se define el \emph{corchete de Gerstenhaber} entre estos dos elementos como
 
 El producto cup y el corchete de Gerstenhaber hacen de $\Hy^{\bullet}(A, A)$ un álgebra de Gerstenhaber.
 
+\section{Sucesiones espectrales}\label{sucesiones_espectrales}
+
+En esta sección daremos una introducción a las sucesiones espectrales que provienen de una filtración de un complejo.
+
+
+\subsection{Definiciones básicas}
+Empecemos considerando el problema de calcular la homología del complejo total $T_{\bullet}$ de un complejo doble
+$E_{\bullet, \bullet}$ de espacios vectoriales, cuyas únicas columnas no necesariamente nulas son  $E_{0, \bullet}$ y $E_{1, \bullet}$.
+\begin{align*}
+    \xymatrix@=3em{
+        &\ar@{-->}[d]& \ar@{-->}[d]& \ar@{-->}[d]& \ar@{-->}[d]& \\
+        & 0 \ar@{-->}[l] \ar[d]& E_{0, q + 2} \ar[l]_{d^{h}_{0, q + 2}} \ar[d]_{d^{v}_{0, q + 2}}
+            & E_{1,q + 2} \ar[l]_{d^{h}_{1, q + 2}} \ar[d]_{d^{v}_{1, q + 2}} & 0 \ar[l]_{d^{h}_{2, q + 2}} \ar[d] & \ar@{-->}[l]\\
+        & 0 \ar@{-->}[l] \ar[d]& E_{0, q + 1} \ar[l]_{d^{h}_{0, q + 1}} \ar[d]_{d^{v}_{0, q + 1}}
+            & E_{1,q + 1} \ar[l]_{d^{h}_{1, q + 1}} \ar[d]_{d^{v}_{1, q + 1}} & 0 \ar[l]_{d^{h}_{2, q + 1}} \ar[d]& \ar@{-->}[l]\\
+        & 0 \ar@{-->}[l] \ar[d]& E_{0, q} \ar[l]_{d^{h}_{0, q}} \ar[d]_{d^{v}_{0, q}}
+            & E_{1,q} \ar[l]_{d^{h}_{1, q}} \ar[d]_{d^{v}_{1, q}} & 0 \ar[l]_{d^{h}_{2, q}} \ar[d] &\ar@{-->}[l]\\
+        & 0  \ar@{-->}[l] \ar@{-->}[d] & E_{0, q - 1} \ar[l]_{d^{h}_{0, q - 1}} \ar@{-->}[d]
+            & E_{1, q- 1} \ar[l]_{d^{h}_{1 , q -1}} \ar@{-->}[d] & 0 \ar[l]_{d^{h}_{2, q - 1}} \ar@{-->}[d] &  \ar@{-->}[l]\\
+        &&&&&
+    }
+\end{align*}
+
+Como primer paso, calculamos la homología vertical $\Hy_{\bullet}(E_{p, \bullet})$ para todo $p$. Denotamos por $E_{p, q}^{1}$
+al espacio vectorial $\Hy_{q}\left(E_{p, \bullet}\right)$ y lo ubicamos en el punto $(p, q)$  de un nuevo reticulado junto con los diferenciales horizontales inducidos. 
+
+\begin{align*}
+    \xymatrix@=3em{
+        && & & & \\
+        & 0 \ar@{-->}[l] & E^1_{0, q + 2} \ar[l]_{d^{h}_{0, q + 2}}
+            & E^1_{1,q + 2} \ar[l]_{d^{h}_{1, q + 2}} & 0 \ar[l]_{d^{h}_{2, q + 2}}  & \ar@{-->}[l]\\
+        & 0 \ar@{-->}[l] & E^1_{0, q + 1} \ar[l]_{d^{h}_{0, q + 1}} 
+            & E^1_{1,q + 1} \ar[l]_{d^{h}_{1, q + 1}} & 0 \ar[l]_{d^{h}_{2, q + 1}} & \ar@{-->}[l]\\
+        & 0 \ar@{-->}[l] & E^1_{0, q} \ar[l]_{d^{h}_{0, q}} 
+            & E^1_{1,q} \ar[l]_{d^{h}_{1, q}}  & 0 \ar[l]_{d^{h}_{2, q}}  &\ar@{-->}[l]\\
+        & 0  \ar@{-->}[l]  & E^{1}_{0, q - 1} \ar[l]_{d^{h}_{0, q - 1}}  & E^{1}_{1, q - 1} \ar[l]_{d^{h}_{1, q - 1}} & 0 \ar[l]  &  \ar@{-->}[l]\\
+        &&&&&
+    }
+\end{align*}
+
+Denotamos por $E_{p, q}^2$ al espacio de homología horizontal $\Hy_{p}\left(E_{\bullet, q}^{1}\right)$. El objetivo
+es encontrar, para cada $q$, la relación entre los espacios $E_{0, q + 1}^{2}$,  $E_{1, q}^{2}$ y $H_{q + 1}(T_{\bullet})$.
+Como solo las primeras dos columnas no son nulas, escribimos $(a, b) \in E_{0, q + 1} \times E_{1, q}$ cuando nos referimos
+a un elemento de $T_{q + 1}$ y llamamos $d_{\bullet}$ a los diferenciales del complejo total.
+Si $a$ pertenece a $\Ker\left(d_{0,q + 1}^{v}\right)$, resulta que
+\[
+    d_{q + 1}(a, 0) = \left(d_{0, q + 1}^{v}(a) + d_{1, q}^{h}(0), d_{1, q}^{v}(0)\right) = (0, 0).
+\]
+Esta observación permite definir el morfismo
+\[
+    \hat{\iota}: a \in \Ker\left(d_{0,q + 1}^{v}\right) \mapsto  [(a, 0)] \in \Hy_{q + 1}(T).
+\]
+Sea $a \in \Ker\left(d_{0,q + 1}^{v}\right)$. Si $a = d_{0, q + 2}^{v}(b)$ para algún $b \in E_{0, q + 2}$, entonces $(a, 0) = d_{q + 2}(b, 0)$,
+y si $a = d_{1, q + 1}^{h}(c)$ para algún $c \in \Ker\left(d_{1, q + 1}^{v}\right)$, resulta que $(a, 0) = d_{q + 2}(0, c)$. Luego 
+el morfismo $\hat{\iota}$ pasa al cociente y obtenemos un nuevo morfismo inyectivo
+\[
+    \iota: E_{0, q + 1}^{2} \to H_{q + 1}(T).
+\]
+Por otro lado, el elemento $(a, b)$ pertenece a $\Ker\left(d_{q + 1}\right)$ si y solo si $b$ pertence a $\Ker\left(d_{1, q}^{v}\right)$
+y $d_{0, q + 1}^{v}(a) = - d_{1, q}^{h}(b)$. Esto permite definir un morfismo
+\[
+    \pi: [(a, b)] \in \Hy_{q + 1}(T)  \mapsto  [b] \in E_{1, q}^{2}.
+\]
+Es claro que $\Ima(\iota)$ esta incluida en $\Ker(\pi)$. Sea $[(a, b)] \in \Ker(\pi)$, queremos encontrar un elemento $a'$ tal que
+$(a' - a, b)$ pertenezca a $\Ima\left(d_{q + 2}\right)$. Como $\pi([(a, b)]) = 0$, existe $c \in E_{1, q + 1}$ tal que $d_{1, q + 1}^{v}(c) = b$,
+y como $(a, b)$ pertenece a $\ker(d_{q + 1})$, se cumple que
+\[
+    d_{0, q + 1}^{v}(a) = -d_{1, q}^{h}(b) = -d_{1, q}^{h} d_{1, q + 1}^{v}(c) = d_{0, q + 1}^{v} d_{1, q+ 1}^{h}(c).
+\]
+Por lo tanto $d_{0, q + 1}^{v} \left(a - d_{1, q+ 1}^{h}(c)\right) = 0$ y si llamamos $a' = a - d_{1, q+ 1}^{h}(c)$, obtenemos lo que buscabamos.
+Acabamos de probar que existe la siguiente sucesión exacta corta
+\begin{align*}
+\xymatrix{
+    0 \ar[r] & E_{0, q + 1}^{2} \ar[r]^{\iota} & H_{q + 1}(T) \ar[r]^{\pi} & E_{1, q }^{2} \ar[r] & 0,
+}
+\end{align*}
+que relaciona $E_{0, q + 1}^{2}$ y $E_{1, q}^{2}$ con $H_{q + 1}(T)$. Como estamos trabajando con espacios vectoriales, $\pi$ es una retracción y
+resulta que
+\[
+    H_{q + 1}(T) \cong E_{0, q + 1}^{2} \oplus E_{1, q}^{2}.
+\]
+
+\begin{definition}
+    Una \emph{sucesión espectral de homología (que empieza en a)} en una categoría abeliana $\mathfrak{A}$ consiste de los siguientes objetos:
+    \begin{itemize}
+        \item Una familia $\left\lbrace E_{p, q}^{r} \right\rbrace$ de objetos de $\mathfrak{A}$ definidos para todo $p, q, r\in \ZZ$, $r\geq a$.
+        \item Una familia de morfismos  $\left\lbrace d_{p, q}^{r}: E_{p, q}^{r} \to E_{p - r, q + r - 1}^{r} \right\rbrace$ que resultan
+        ser diferenciales, es decir $d_{p, q}^{r} \circ d_{p + r, q - r + 1}^{r} = 0$, de manera que la recta de pendiente $-(r + 1)/r$ en el reticulado $E_{\bullet, \bullet}^{r}$ resulte ser un complejo.
+        \item Isomorfismos entre $E_{p, q}^{r + 1}$ y la homología de $E^{r}_{\bullet, \bullet}$ en el punto $E_{p, q}^{r}$:
+        \[
+           E_{p, q}^{r + 1} \cong \Ker\left(d^{r}_{p, q}\right) / \Ima\left(d^{r}_{p + r, q - r + 1}\right).
+        \]
+    \end{itemize}
+    El \emph{grado total} de $E_{p, q}^{r}$ es $n = p + q$. Los términos de grado total $n$ yacen en una recta de pendiente $-1$ y cada
+    diferencial hace decrecer el grado total por uno. Llamamos \emph{páginas} a cada reticulado $E_{\bullet, \bullet}^{r}$ para todo $r\geq a$.
+\end{definition}
+
+Una sucesión espectral de homología ubicada en \emph{el primer cuadrante}  es una sucesión espectral tal que $E_{p, q}^{r} = 0$ a menos que
+$p \geq 0$ y $q \geq 0$. Si fijamos $p$ y $q$, entonces $E_{p, q}^{r} = E_{p, q}^{r + 1}$ para todo $r$ los suficientemente grande. Esto se debe
+a que eventualmente el dominio de $d^{r}_{p + r, q - r + 1}$ va a estar ubicado en el cuarto cuadrante y el codominio de $d^{r}_{p, q}$ en el segundo cuadrante. Denotamos por $E_{p, q}^{\infty}$ a este valor estable de $E_{p, q}^{r}$.
+
+\begin{definition}
+    Una \emph{sucesión espectral de cohomología (que arranca en a)} en $\mathfrak{A}$ es una familia $\left\lbrace E^{p, q}_{r} \right\rbrace$
+    de objetos de $\mathfrak{A}$ junto con morfismos $\left\lbrace d^{p, q}_{r}: E^{p, q}_{r} \to E^{p + r, q - r + 1}_{r} \right\rbrace$
+    que son diferenciales, es decir $d_r \circ d_r = 0$, e isomorfismos entre $E_{r + 1}$ y la homología de $E_r$.
+\end{definition}
+
+\begin{definition}
+    Una sucesión espectral de homología  se dice \emph{acotada} si para todo $n$ existe una cantidad finita del terminos no nulos de grado total
+    $n$ en $E^{a}_{\bullet,\bullet}$. Recordar que $E^{a}_{\bullet,\bullet}$ es la primer página. Si este es el caso, para cada $p, q$ existe 
+    un $r_0$ tal que $E_{p, q}^{r} = E_{p, q}^{r_0}$ para todo $r \geq r_0$.
+    Denotamos por $E_{p, q}^{\infty}$ a este valor estable de $E_{p, q}^{r}$. Decimos que una sucesión espectral acotada \emph{converge}
+    a $\Hy_{\bullet}$ si existe una familia de objetos $\left\lbrace \Hy_{n} \right\rbrace_{n \in \ZZ}$ en $\mathfrak{A}$, cada uno con una
+    filtración finita
+    \[
+        0 = F_s \Hy_n \subseteq \cdots \subseteq F_{p - 1}\Hy_n \subseteq
+            F_{p}\Hy_n \subseteq F_{p + 1}\Hy_n \subseteq \cdots \subseteq F_t \Hy_n = 0
+    \]
+    tal que $E_{p, q}^{\infty} \cong F_{p}\Hy_{p + q} / F_{p - 1} \Hy_{p + q}$. Si la sucesión espectral $E$ converge a $\Hy_{\bullet}$
+    escribimos $E_{p, q}^{a} \Rightarrow H_{p + q}$.
+    
+    Una sucesión espectral de cohomología  se dice \emph{acotada} si para todo $n$ existe una cantidad finita del terminos no nulos de grado total
+    $n$ en $E_{a}^{\bullet,\bullet}$. Decimos que una sucesión espectral acotada converge a $\Hy^{\bullet}$ si existe una familia de objetos 
+    $\left\lbrace \Hy^{n} \right\rbrace_{n \in \ZZ}$ en $\mathfrak{A}$, cada uno con una
+    filtración finita
+    \[
+        0 = F^t \Hy^n \subseteq \cdots \subseteq F^{p + 1}\Hy^n \subseteq
+            F^{p}\Hy^n \subseteq F^{p - 1}\Hy^n \subseteq \cdots \subseteq F^s \Hy^n = 0
+    \]
+    tal que $E^{p, q}_{\infty} \cong F^{p}\Hy^{p + q} / F^{p + 1} \Hy^{p + q}$.
+\end{definition}
+
+
+Una \emph{filtración} $F$ de un complejo $C$ es una familia ordenada de subcomplejos de  $C$
+\[
+        \cdots \subseteq F_{p - 1}C \subseteq F_{p}C \subseteq \cdots .
+\]
+Como en los cálculos que se harán en esta
+tesis las sucesiones espectrales se estabilizaran en la segunda página, al igual que en el ejemplo introductorio de esta sección,
+omitimos la demostración del siguiente teorema. Ver el capitulo 5 de \myworries{[W]}.
+
+\begin{Teorema} Una filtración $F$ de un complejo $C$ determina una sucesión espectral que empieza con
+$E_{p, q}^{0} = F_{p} C_{p + q} / F_{p - 1}C_{p + q}$ y continua con $E_{p, q}^{1} = \Hy_{p + q}(E_{p, \bullet}^{0})$.
+\end{Teorema}
+
+Una filtración de un complejo $C$ induce una filtración en la homología de $C$, el espacio $F_p \Hy_{n}(C)$ es la imagen
+del morfismo $\Hy_{n}(F_p C) \to \Hy_{n}(C)$.
+
+\begin{Teorema}
+    Si $C$ un complejo y $F$ una filtración de $C$ acotada, entonces la sucesión espectral es acotada y converge a $\Hy_{\bullet}(C)$:
+    \[
+        E_{p, q}^{1} = H_{p + q}(F_p C / F_{p - 1}(C)) \Rightarrow H_{p + q}(C).
+    \]
+\end{Teorema}
+
+Hay dos filtraciones usuales asociadas a cualquier complejo doble $C$ que resultan en sucesiones espectrales relacionadas con la homología
+del complejo total $\Tot(C)$. En esta tesis vamos a hacer uso de una de estas.
+
+\begin{definition} (Filtración por columnas) Si $C$ es un complejo doble, se puede filtrar el complejo total $\Tot(C)$ de la siguiente manera. Sea $\prescript{1}{}{F_{n}}\Tot(C)$ el complejo total del subcomplejo doble de $C$
+\[
+	\left(\prescript{}{\tau \leq n}{C}\right)_{p, q} = \left\{\begin{array}{cc}
+    C_{p, q} &\text{ si } p \leq n,\\
+    &\\
+    0 & \text{ si no}. \\
+	\end{array}\right.
+\]
+Esta filtración da lugar a una sucesión espectral $\left\lbrace E_{p, q}^{r}\right\rbrace$ que empieza con $E_{p, q}^{0} = C_{p, q}$. Los morfismos
+$d^{0}$ son los morfismos verticales $d^{v}$ de $C$ y por lo tanto $E^{1}_{p, q} = \Hy_{q}^{v}(C_{p, \bullet})$. Los morfismos $d^{1}$
+son los morfismos horizontales $d^{h}$ inducidos en al homología. Si $C$ es un complejo doble ubicado en el primer cuadrante
+la filtración es acotada y por lo tanto la sucesión espectral es convergente: $E_{p, q}^{0} \Rightarrow H_{p + q}(\Tot(C))$. 
+\end{definition}
+
+La otra sucesión espectral usual es la que surge de filtrar por filas y se define de manera análoga. 
+
 \end{document}
 
 

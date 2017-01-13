@@ -1,0 +1,100 @@
+\documentclass[a4paper,oneside,fleqn,11pt,../tesis.tex]{subfiles}
+\externaldocument{tesis}
+
+\begin{document}
+
+En este apéndice se incluyen ciertas proposiciones técnicas que decidimos no incluir en el Capitulo \ref{chap3}.
+
+\section{Reglas de conmutación}
+
+\begin{prop}
+\label{cp_conmutatividad}
+Para todo $c \geq 0$,
+\[
+	y^cx = \left\{\begin{array}{cc}
+			\sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} \quad&\text{si } c = 2k,\\
+			&\\
+			\sum_{i = 0}^k \frac{k!}{i!}(yx)^{k - i + 1}y^{2i} \quad&\text{si } c = 2k + 1.
+	\end{array}\right.
+\]
+\end{prop}
+\begin{proof}
+Lo probaremos por inducción. Los casos $c = 0, 1, 2$ son claros. 
+Si $k \geq 1$ y $c = 2k + 1$,
+\begin{align*}
+	y^{2k + 1}x = y(y^{2k}x) = y(\sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i}) = \sum_{i = 0}^k \frac{k!}{i!}(yx)^{k - i + 1}y^{2i}.
+\end{align*}
+Si $k \geq 1$ y $c = 2k + 2$,
+\begin{align*}
+	y^{2k + 2}x &= y^{2k}y^2x = y^{2k}(xy^2 + xyx) = y^{2k}x(y^2 + yx)\\
+	 &= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i}(y^2 + yx) \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2} + \sum_{i = 0}^k\frac{k!}{i!} x(yx)^{k - i}y^{2i + 1}x \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2}
+		+ \sum_{i = 0}^k\frac{k!}{i!} x(yx)^{k - i}\left(\sum_{j = 0}^i\frac{i!}{j!}(yx)^{i - j + 1}y^{2j}\right) \\
+	&= \sum_{i = 0}^k \frac{k!}{i!}x(yx)^{k - i}y^{2i + 2}
+		+ \sum_{i = 0}^k \sum_{j = 0}^i \frac{k!}{j!} x(yx)^{k - j + 1}y^{2j} \\
+	&= \sum_{j = 1}^{k + 1} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j}
+		+ \sum_{i = 0}^k \sum_{j = 0}^i \frac{k!}{j!} x(yx)^{k - j + 1}y^{2j} \\
+	&= \sum_{j = 1}^{k + 1} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j}
+		+ \sum_{j = 0}^k (k - j + 1)\frac{k!}{j!} x(yx)^{k - j + 1}y^{2j} \displaybreak[4]\\
+	&= xy^{2k + 1} + \sum_{j = 1}^{k} \frac{k!}{(j-1)!} x(yx)^{k - i + 1}y^{2j} \\
+		&\hspace{70pt}+ (k+1)!x(yx)^{k + 1} + \sum_{j = 1}^k (k - j + 1)\frac{k!}{j!} (yx)^{k - j + 1}y^{2j} \\
+	&= xy^{2k + 1} + \sum_{j = 1}^k \left( \frac{k!}{(j-1)!} + (k - j + 1)\frac{k!}{j!} \right) (yx)^{k - j + 1}y^{2j} 
+		+ (k+1)!x(yx)^{k + 1}\\
+	&= xy^{2k + 1} +\sum_{j = 1}^k \frac{(k + 1)!}{j!} (yx)^{k - j + 1}y^{2j} + (k+1)!x(yx)^{k + 1} \\
+	&= \sum_{j = 0}^{k + 1} \frac{(k + 1)!}{j!} (yx)^{k - j + 1}y^{2j}.
+\end{align*}
+\end{proof}
+
+El siguiente resultado será utilizado en la demostración de la Proposición \ref{prop_conmutatividad2}.
+\begin{prop}
+\label{prop_conmutatividad2_aux}
+Sea $b \geq 1$, entonces $y(yx)^b = x(yx)^{b - 1}y^2 + bx(yx)^b$.
+\end{prop}
+\begin{proof}
+Lo probaremos por inducción. El caso $b = 1$ es claro. Sea $b \geq 1$, luego
+\begin{align*}
+	y(yx)^{b + 1} &= y(yx)^b(yx) = (x(yx)^{b - 1}y^2 + bx(yx)^b)yx = x(yx)^{b - 1}y^3x + bx(yx)^{b + 1}\\
+	&= x(yx)^{b - 1}(yxy^2 + (yx)^2) + bx(yx)^{b + 1} = x(yx)^{b}y^2 + (b + 1)x(yx)^{b + 1}.
+\end{align*}
+\end{proof}
+
+\begin{prop}
+\label{prop_conmutatividad2}
+Si $k \geq 0$ y $b \geq 1$, entonces
+\begin{align*}
+    y^{2k}(yx)^b = \sum_{i = 0}^{k}\binom{k}{i} \frac{(b + k - i - 1)!}{(b - 1)!} (yx)^{b + k - i}y^{2i},\\
+    y^{2k + 1}(yx)^{b} = \sum_{i = 0}^{k + 1}\binom{k + 1}{i}\frac{(b + k - i)!}{(b - 1)!}(yx)^{b + k - i}y^{2i}.
+\end{align*}
+\end{prop}
+\begin{proof}
+    Lo probaremos haciendo inducción en $k$. Empecemos con los elementos de la forma $y^{2k}(yx)^b$. El caso $k = 0$
+    es claro. Si $k \geq 1$,
+    \begin{align*}
+        y^{2k}(yx)^{b} &= y y^{2(k - 1) + 1}(yx)^b = y \sum_{i = 0}^{k}\binom{k}{i}\frac{(b + k  -1 - i)!}{(b - 1)!}x(yx)^{b + k - 1 - i}y^{2i}\\
+        &= \sum_{i = 0}^{k}\binom{k}{i}\frac{(b + k  -1 - i)!}{(b - 1)!}(yx)^{b + k - i}y^{2i}.\\
+    \end{align*}
+    Continuemos con los elementos de la forma $y^{2k + 1}(yx)^{b}$.
+    El caso $k = 0$ es el resultado de la Proposición \ref{prop_conmutatividad2_aux}. Si $k \geq 1$,
+    \begin{align*}
+        y^{2k + 1}(yx)^b &= yy^{2k}(yx)^b =  \sum_{i = 0}^{k}\binom{k}{i} \frac{(b + k - i - 1)!}{(b - 1)!} y (yx)^{b + k - i}y^{2i}
+    \end{align*}
+    y debido a la Proposición \ref{prop_conmutatividad2_aux}, resulta que
+    \begin{align*}
+        y^{2k + 1}(yx)^b &= \sum_{i = 0}^{k}\binom{k}{i} \frac{(b + k - i - 1)!}{(b - 1)!} x (yx)^{b + k -1 - i}y^{2(i + 1)}\\
+            &\qquad + \sum_{i = 0}^{k}\binom{k}{i} \frac{(b + k - i)!}{(b - 1)!} x (yx)^{b + k - i}y^{2i}\\
+        &= \sum_{j = 1}^{k + 1}\binom{k}{j - 1} \frac{(b + k - j)!}{(b - 1)!} x (yx)^{b + k - j}y^{2j}\\
+            &\qquad + \sum_{i = 0}^{k}\binom{k}{i} \frac{(b + k - i)!}{(b - 1)!} x (yx)^{b + k - i}y^{2i}\\
+        &= \sum_{i = 0}^{k + 1}\binom{k + 1}{i}\frac{(b + k - i)!}{(b - 1)!}(yx)^{b + k - i}y^{2i}.
+    \end{align*}     
+\end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
