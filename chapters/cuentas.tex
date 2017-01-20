@@ -73,7 +73,7 @@ Denotamos por $E$ a la sucesión espectral.
 
 \subsection{Primera página}
 Para poder calcular los espacios de homología de la primera página de la sucesión espectral
-vamos a necesitar saber qué valores toman los morfismos $\overline{\delta}$, $\delta$ y $\partial$
+vamos a necesitar saber qué valores toman los morfismos $overline{\delta}$, $\delta$ y $\partial$
 en los elementos de la base $\base$.
 
 Empecemos con $\delta$. Sea $z = x^a(yx)^by^c \in \base$, luego $\delta(z) = x^a(yx)^by^cx + x^{a + 1}(yx)^by^c$. Nos va a
@@ -1126,7 +1126,7 @@ y
 \end{align*}
 Para enunciar la próxima proposición vamos a utilizar la siguiente notación:
 \begin{align*}
-    \eta_k &= \left(\sum_{l = 0}^{k - 1}\frac{k!}{i!}\left[x(yx)^{k -i}y^{2i}\right], 0\right),\\
+    \eta_k &= \left(\sum_{l = 0}^{k - 1}\frac{k!}{l!}\left[x(yx)^{k -l}y^{2l}\right], 0\right),\\
     \theta_{b,k} &= \left(\left[x(yx)^{b + 1}y^{2k}\right], \left[x(yx)^{b}y^{2k + 2}\right] + (b + 1)\left[x(yx)^{b  + 1}y^{2k}\right] 
         - \left[(yx)^{b + 1}y^{2k + 1}\right]\right),\\
     \lambda_{k} &= \left(\sum_{l = 0}^{k}\frac{k!}{l!}\left[(yx)^{k + 1 - l}\right] - \left[xy^{2k + 1}\right], 0\right),\\
@@ -1228,7 +1228,7 @@ Si $z = (0, x^{a}(yx)^{b}y^{c})$, separamos el cálculo en distintos casos.
         \]
     \end{itemize}
 \end{itemize}
-Como $\sum_{i = 0}^{k}\frac{k!}{i!}(k + b)\left[x(yx)^{k +  b + 1 - i}y^{2i}\right]$ y $\sum_{i = 0}^{k - 1}x(yx)^{k + b + 1 -i}y^{2i}$
+Como $\sum_{i = 0}^{k}\frac{k!}{i!}\left[x(yx)^{k +  b + 1 - i}y^{2i}\right]$ y $\sum_{i = 0}^{k - 1}\left[x(yx)^{k + b + 1 -i}y^{2i}\right]$
 pertenecen a $\Ima\left(d^{1}_{(1)}\right)$, entonces su resta también, es decir, $\left[x(yx)^{b + 1}y^{2i}\right]$ pertenece a $\Ima\left(d^{1}_{(1)}\right)$
 para todo $b, i \geq 0$. Con esta observación y el cálculo anterior probamos la siguiente proposición.
 \begin{prop}
@@ -1381,8 +1381,9 @@ Con este cálculo probamos que
 Vamos a utilizar la notación de la Proposición \ref{coh_ima_d01}. Es un cálculo directo verificar las siguientes igualdades:
 \begin{align*}
     &\left(0, \left[x(yx)^{k + 1}\right]\right) = \frac{1}{k + 1}\xi_{0, k},\\
-    &\left(0, (yx)y^{2k + 1} - xy^{2k + 2}\right) = -\theta_{0, k} + \xi_{0, k} + \frac{1}{k + 1}\eta_{k + 1},\\
-    &\left(0, (yx)^{b + 1}y^{2k + 1} - \frac{b +k + 1}{k + 1}x(yx)^{b}y^{2k + 2}\right)
+    &\left(0, \left[(yx)y^{2k + 1}\right] - \left[xy^{2k + 2}\right]\right) =
+    		-\theta_{0, k} + \xi_{0, k} + \frac{1}{k + 1}\eta_{k + 1},\\
+    &\left(0, \left[(yx)^{b + 1}y^{2k + 1}\right] - \frac{b +k + 1}{k + 1}\left[x(yx)^{b}y^{2k + 2}\right]\right)
         = -\theta_{b, k} + \xi_{b, k} -\frac{1}{k + 1}\xi_{b - 1, k + 1}
 \end{align*}
 para todo $b \geq 1$ y para todo $k \geq 0$. Por lo tanto, el conjunto del enunciado genera $E^{1, 0}_2$. Sea $w$
@@ -1412,11 +1413,953 @@ de esta observación es sencillo verificar la siguiente proposición.
     \begin{align*}
         &H^0(A,A) \cong \Bbbk, \\
   		&H^1(A,A) \cong \left\langle \left(0, \ov{x}\right), \left((2n + 1)\ov{xy^{2n}}, \ov{y^{2n + 1}}\right): n \geq 0\right\rangle, \\
-  		&HH^{2p}(A) \cong \left\langle \left(0, xy^{2n}\right),
-  			\left(\sum_{i = 0}^n\frac{n!}{i!}(yx)^{n - i}y^{2i}, -y^{2n + 1} \right): n \geq 0\right\rangle,\\
-  		&HH^{2p + 1}(A) \cong \left\langle \left(0, \sum_{i = 0}^n\frac{n!}{i!}(yx)^{n - i}y^{2i}\right),
-  			\left(xy^{2n}, xy^{2n + 1}\right) : n \geq 0\right\rangle 
+  		&HH^{2p}(A) \cong \left\langle \left(0, \ov{xy^{2n}}\right),
+  			\left(\sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}, -\ov{y^{2n + 1}} \right): n \geq 0\right\rangle,\\
+  		&HH^{2p + 1}(A) \cong \left\langle \left(0, \sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}\right),
+  			\left(\ov{xy^{2n}}, \ov{xy^{2n + 1}}\right) : n \geq 0\right\rangle 
     \end{align*}
     para todo $p\geq 1$.
 \end{prop}
+
+\section{Estructura de álgebra de Gerstenhaber de $\Hy^{\bullet}(A, A)$}
+En la Sección \ref{hochschild_gerstenhaber} vimos que la cohomología de Hochschild de un álgebra $A$ con
+coeficientes en la misma álgebra tiene estructura de álgebra de Gerstenhaber. El objetivo de esta
+sección es calcular la estructura de anillo graduado de la cohomología en el caso en el que $A$ es el 
+super plano de Jordan. También calcularemos la estructura de álgebra de Lie de $\Hy^{1}(A, A)$.
+
+\subsection{Morfismos de comparación}
+Si bien la resolución $P_{\bullet}A$ resulto muy útil para calcular la homología y la cohomología de Hochschild,
+el producto cup y el corchete de Gerstenhaber están definidos a partir de la resolución bar $B_{\bullet}A$.
+Es por esto que necesitamos encontrar morfismos de comparación entre las dos resoluciones, es decir, morfismos
+de complejos
+\[
+	f_{\bullet} : P_{\bullet}A \to B_{\bullet}A \text{ y } g_{\bullet} : B_{\bullet}A \to P_{\bullet}A
+\]
+que extiendan a $id_A$. Como las dos resoluciones son proyectivas, sabemos que estos morfismos existen.
+
+\begin{prop}
+	Sea $f_{\bullet} : P_{\bullet}A \to B_{\bullet}A$ la sucesión de morfismos de $A-A$ bimódulos
+	$\left\lbrace f_{n} : P_{n}A \to B_{n}A \right\rbrace_{n \geq 0}$ definidos como
+	\begin{itemize}
+		\item si $n = 0$,
+		\begin{align*}
+			f_0 : A \ox A \to A \ox A, \quad f_0 = id_{A\ox A},
+		\end{align*}
+		\item si $n = 1$,
+		\begin{align*}
+			&f_1 : A \ox \field \left\lbrace x, y \right\rbrace \ox A \to A \ox A \ox A,\\
+			&f_1(1 \ox v \ox 1) = 1 \ox v \ox 1 \quad\text{para todo } v \in \field \left\lbrace x, y \right\rbrace,
+		\end{align*}
+		\item si $n \geq 2 $,
+		\begin{align*}
+			&f_n : A \ox \field \left\lbrace x^{n}, y^2x^{n - 1} \right\rbrace \ox A \to A^{n} \ox A \ox A,\\
+			&f_n(1 \ox x^{n} \ox 1) = 1 \ox x^{\ox n} \ox 1,\\
+			&f_n(1 \ox y^2x^{n - 1} \ox 1) = y \ox y \ox x^{\ox n - 1}\ox 1 + 1 \ox y \ox yx \ox x^{ \ox n - 2}\ox 1\\
+			&\qquad - x \ox y \ox y \ox x^{\ox n - 2}\ox 1 - 1 \ox x \ox y^{2}\ox x^{\ox n - 2} \ox 1\\
+			&\qquad -x \ox y \ox x^{\ox n - 1} \ox 1 - 1 \ox x \ox yx \ox x^{\ox n - 2} \ox 1\\
+			&\qquad + \sum_{i = 0}^{n - 3}(-1)^{i}\left(1\ox x^{\ox 2 + i} \ox y^2 \ox x^{\ox n - 3 - i} \ox 1
+				+ 1 \ox x^{\ox 2 + i} \ox yx \ox x^{\ox n - 3 - i} \ox 1\right),
+		\end{align*}
+		donde la última suma es cero si $n = 2$.
+	\end{itemize}
+	La sucesión $f_{\bullet}$ resulta ser un morfismo de complejo que levanta a la identidad.
+\end{prop}
+\begin{proof}
+	Es claro que $f_{\bullet}$ levanta a la identidad ya que $f_0 = id_{A \ox A}$. Para probar que
+	$f$ es un morfismo de complejos debemos verificar que $b_n \circ f_{n + 1} = f_n \circ d_n$ para todo
+	$n \geq 0$. Es cálculo directo, aunque tedioso, hacer esta verificación por inducción y omitiremos la demostración. 
+\end{proof}
+El morfismo $f_{\bullet}$ guarda la información de los distintos términos que aparecen al aplicarle las reglas
+de re-escritura a las $n-$ambigüedades. Para ver estos términos alcanza con cambiar los tensores por productos
+en la definición de $f_n(1 \ox x^{n} \ox 1)$ y de $f_n(1 \ox y^2x^{n - 1} \ox 1)$.
+
+No vamos a dar una fórmula explicita de $g_{\bullet} : B_{\bullet}A \to P_{\bullet}A$ sobre todo el complejo bar
+sino que solo sobre los términos que nos interesan para poder calcular el producto cup y el corchete de Gerstenhaber.
+Como $B_{\bullet}A$ es una resolución libre, es posible definir, para cada $n \geq  0$, el morfismo $g_n$
+sobre un conjunto linealmente independiente $B_n \subseteq A\ox A^{\ox n}\ox A$ siempre y cuando
+$d_n \circ g_n(z) = g_n \circ b_n(z)$ para cada $z \in B_{n + 1}$. Notar que para que sea posible verificar esta
+condición $b_n(B_{n + 1})$ debe estar incluido en $ B_{n}$. Al igual que para el morfismo $f_{\bullet}$
+no daremos una demostración de la siguiente proposición ya que es una verificación directa por inducción.
+
+\begin{prop}
+	Existe un morfismo de complejos $g_{\bullet} : B_{\bullet}A \to P_{\bullet}A$ que cumple que
+	\begin{itemize}
+		\item $g_0 = id_{A\ox A}$,
+		\item para todo $x^{a}(yx)^{b}y^c$ perteneciente a la base de $A$,
+		\begin{align*}
+			&g_1\left(x^{a}(yx)^{b}y^c\right) = a\ox x \ox (yx)^by^c
+				+ \sum_{i = 0}^{b - 1} x^{a}(yx)^{i}\ox y \ox x(yx)^{b - 1 - i}y^c\\
+			&\qquad + \sum_{i = 0}^{b - 1}x^{a}(yx)^{i}y \ox x \ox (yx)^{b - 1 - i}y^c
+				+ \sum_{i =0}^{c - 1}x^{a}(yx)^{b} y^{i}\ox y \ox y^{c - 1 - i}
+		\end{align*}
+	\end{itemize}
+	y para todo $n \geq 2$,
+	\begin{itemize}
+		\item $g_n\left(1\ox y \ox x^{\ox n - 1}\ox 1\right) = 0$,
+		\item $g_n\left(1\ox y \ox yx \ox x^{ \ox n - 2} \ox 1\right) = 1\ox y^2 x^{n - 1} \ox 1$,
+		\item $g_n\left(1\ox y \ox y \ox x^{\ox n - 2} \ox 1\right) = 0$,
+		\item $g_n\left(1\ox x^{\ox n} \ox 1\right) = 1\ox x^n \ox 1$,
+		\item $g_n\left(1\ox y^2 \ox x^{\ox n - 1}\ox 1\right) = 1 \ox y^{2}x^{n - 1 \ox 1}$,
+		\item $g_n\left(1\ox x^{\ox i} \ox y^{2} \ox x^{n - 1 - i} \ox 1\right) =  0$
+			para todo $i$, $1 \leq i \leq n  - 1$,
+		\item $g_n\left(1\ox yx \ox x^{n - 1} \ox 1\right) = y\ox x^{n}\ox 1$,
+		\item $g_n\left(1\ox x^{\ox i} \ox yx \ox x^{\ox n - 1 - i}\ox 1\right) = 0$
+			para todo $i$, $1 \leq i \leq n  - 1$,
+		\item $g_n\left(1 \ox xy^{2} \ox x^{\ox n - 1}\ox 1\right) = x \ox y^2x^{n - 1} \ox 1
+			+ 1 \ox x^{n} \ox y^{2} + 1 \ox x^{n} \ox yx$
+		\item $g_n\left(1 \ox x^{\ox i}\ox xy^{2} \ox x^{\ox n - 1 - i}\ox 1\right) =
+			1 \ox x^{n} \ox y^{2} + 1 \ox x^{n} \ox yx$ para todo $i$,\\ $1 \leq i \leq n  - 2$,
+		\item $g_n\left(1 \ox x^{\ox n - 1}\ox xy^{2} \ox 1\right) = 1 \ox x^{n} \ox y^{2}$,
+		\item $g_n\left(1 \ox xyx \ox x^{\ox n - 1}\ox 1\right) = xy \ox x^{n} \ox 1$,
+		\item $g_n\left(1 \ox x^{\ox i}\ox xyx \ox x^{\ox n - 1 - i}\ox 1\right) = 0$
+			para todo $i$, $1 \leq i \leq n  - 2$,
+		\item $g_n\left(1 \ox x^{\ox n - 1}\ox xyx \ox 1\right) = 1 \ox x^{n} \ox yx$.
+	\end{itemize}
+\end{prop}
+El morfismo $g_{\bullet}$ también guarda la información de los distintos términos que aparecen al aplicarle las reglas
+de re-escritura a las $n-$ambigüedades.
+
+\subsection{Producto cup}
+Como $f$ y $g$ son levantados de la identidad, resulta que los morfismos inducidos en la cohomología $f^{\ast}$
+y $g^{\ast}$ son isomorfismos y más aún $\left(f^{\ast}\right)^{-1} = g^{\ast}$. Esta observación nos permite 
+transportar la estructura de álgebra de Gerstenhaber de la cohomología calculada a partir de la resolución bar
+a la cohomología calculada a partir de $P_{\bullet}A$. Sean $\varphi \in \Hom_{A^e}\left(P_n A, A\right)$
+y $\phi \in \Hom_{A^e}\left(P_m A, A\right)$, el producto cup entre las clases de estos dos elementos
+resula ser $\ov{\varphi} \smile \ov{\phi} = \ov{\left(\varphi g_n \smile \phi g_m\right) f_{n + m}}$.
+Como todos los cálculos serán realizados en la cohomología, dejaremos de escribir la barra sobre los elementos
+para indicar que es una clase en el cociente. Además, utilizaremos indistintamente la notación de morfismo
+y la notación de vector de dos coordenadas para los elementos de $\Hy^{\bullet}(A, A)$.
+
+Antes de calcular los productos entre los distintos generadores
+de $\Hy^{\bullet}(A, A)$ vamos a introducir una notación para estos elementos:
+\begin{align*}
+	&c = \left(0,x\right) \in \Hy^1(A, A),\\
+	&s_n = \left((2n + 1)xy^{2n}, y^{2n + 1}\right)\in \Hy^1(A, A),\\
+	&t_n^{2p} = \left(0, xy^{2n}\right) \in 	\Hy^{2p}(A, A),\\
+	&u_n^{2p} = \left(\sum_{i = 0}^{n}\frac{n!}{l!}(yx)^{n - i}y^{2i}, -y^{2n + 1}\right)
+		\in 	\Hy^{2p}(A, A),\\
+	&v_n^{2p + 1} = \left(0, \sum_{i = 0}^{n}\frac{n!}{l!}(yx)^{n - i}y^{2i}\right)
+		\in 	\Hy^{2p + 1}(A, A),\\
+	&w_n^{2p + 1} = \left(xy^{2n}, xy^{2n + 1}\right)
+		\in 	\Hy^{2p + 1}(A, A)
+\end{align*}
+para todo $n \geq 0$. 
+
+Es sencillo verificar que si $\lambda \in \Hy^{0}(A, A)$ y $\varphi \in \Hy^{n}(A, A)$,
+entonces
+\[
+	\varphi \smile \lambda = \lambda \smile \varphi = \lambda \varphi.
+\]
+Sean $n, m \geq 1$
+y sean $\varphi \in \Hy^{n}(A, A)$ y $\phi \in \Hy^{m}(A, A)$ elementos homogéneos de la cohomología.
+Por definición del producto cup, el morfismo $\varphi \smile \phi$ pertenece a $\Hy^{n + m}(A, A)$,
+por lo tanto para calcular $\varphi \smile \phi$ debemos saber que valor toma en $1\ox x^{n + m} \ox 1$
+y en $1\ox y^{2}x^{n + m -1}\ox 1$. Como el producto cup es super conmutativo podemos
+calcular los producto en el orden que nos resulte más conveniente.
+\subsubsection{1) $c \smile s_n$:}
+\begin{align*}
+	c &\smile s_n\left(1\ox x^{2} \ox 1\right) = \left(c g_1 \smile s_n g_1\right)f_2\left(1\ox x^2 \ox 1\right)
+		= \left(c g_1 \smile s_n g_1\right)(1 \ox x^{\ox 2}\ox 1)\\
+	&= c(1\ox x \ox 1)s_n(1 \ox x \ox 1) = 0 (2n + 1)xy^{2n} = 0,
+\end{align*}
+\begin{align*}
+	c &\smile s_n\left(1\ox y^2x \ox 1\right) = \left(c g_1 \smile s_n g_1\right)f_2\left(1\ox y^2x \ox 1\right)\\
+	&= \left(c g_1 \smile s_n g_1\right)\bigg(y \ox y \ox x \ox 1 + 1 \ox y \ox yx \ox 1 
+		- x \ox y \ox y \ox 1\\ &\qquad - 1\ox x \ox y^2 \ox 1 - x \ox y \ox x \ox 1 
+		- 1\ox x \ox yx \ox 1\bigg) \\
+	&= y c(1 \ox y \ox 1)s_n(1 \ox x \ox 1) + c(1\ox y \ox 1)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&\qquad -xc(1\ox y \ox 1)s_n(1 \ox y \ox 1) -c(1\ox x \ox 1)s_n(y \ox y \ox 1 + 1\ox y \ox y)\\
+	&\qquad -xc(1\ox y \ox 1)s_n(1 \ox x \ox 1) -c(1\ox x \ox 1)s_n(y \ox x \ox 1 + 1\ox y \ox x)\\
+	&= yx(2n + 1)xy^{2n} + x\left(y(2n + 1)xy^{2n} + y^{2n + 1}x\right) - x^2y^{2n + 1} \\
+	&\qquad - 0\left(y^{2n + 2} + y^{2n + 2}\right) - x^2(2n + 1)xy^{2n}
+		- 0\left(y(2n + 1)xy^{2n} + y^{2n + 1} x\right)\\
+	&= (2n + 1)xyxy^{2n} + xy^{2n + 1}x = (2n + 1)xyxy^{2n} + \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n  + 1 -i}y^{2i}.
+\end{align*}
+Si bien con este cálculo obtuvimos que
+\[
+	c \smile s_n = \left(0, (2n + 1)xyxy^{2n} + \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n  + 1 -i}y^{2i}\right),
+\]
+el producto no está escrito en términos de la base de $\Hy^{2}(A, A)$. Esto dice que es posible reducir
+a $c \smile s_n$ módulo borde. Vamos a denotar por $d^{n}$ a los diferenciales del complejo
+$\Hom_{A^e}\left(P_{\bullet}A, A\right)$. Sea $\alpha \in \Hom_{A^e}\left(A\ox \field\{x, y\}\ox A, A\right)$
+tal que \[\alpha(1\ox x \ox 1) = -xy^{2n} \text{ y } \alpha(1\ox y \ox 1) = 0,\]
+luego
+\begin{align*}
+	d^{1}&(\alpha)\left(1 \ox x^{2} \ox 1\right) = \alpha \left(d_1\left(1\ox x^{2} \ox 1\right)\right)
+		= \alpha(x \ox  x \ox 1 + 1 \ox x \ox x) \\
+	&= x \left(-xy^{2n}\right) - xy^{2n}x = 0
+\end{align*}
+y
+\begin{align*}
+	d^{1}&(\alpha)\left(1 \ox y^2x \ox 1\right) = \alpha \left(d_1\left(1\ox y^2x \ox 1\right)\right)\\
+	&=\alpha\bigg(y^2 \ox x \ox 1 + y \ox y \ox x + 1 \ox y \ox yx - xy \ox y \ox 1 - x \ox y \ox y
+		- 1 \ox x \ox y^2\\
+ 	&\qquad- xy \ox x \ox 1 - x \ox y \ox x - 1 \ox x \ox yx\bigg) \\
+ 	&= -y^2xy^{2n} + xy^{2n + 2} + xyxy^{2n} + x y^{2n + 1}x\\
+ 	&= -xy^{2n + 2} - xyxy^{2n}+ xy^{2n + 2} + xyxy^{2n} + \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n  + 1 -i}y^{2i}\\
+ 	&= \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n  + 1 -i}y^{2i}.
+\end{align*}
+Por otro lado, sea $\beta \in \Hom_{A^e}\left(A\ox \field\{x, y\} \ox A, A\right)$ tal que 
+\[
+	\beta(1\ox x \ox 1) = 0 \text{ y } \beta(1 \ox y \ox 1) = y^{2n + 1} - (2n + 1)xy^{2n},
+\]
+luego
+\begin{align*}
+	d^1(\beta)\left(1\ox x^{2} \ox 1\right) = \beta(x \ox x \ox 1 + 1 \ox x \ox x) = 0	
+\end{align*}
+y
+\begin{align*}
+	d^1&(\beta)\left(1\ox y^2x \ox 1\right) = \beta \left(d_1\left(1\ox y^2x \ox 1\right)\right)\\
+	&=\beta\bigg(y^2 \ox x \ox 1 + y \ox y \ox x + 1 \ox y \ox yx - xy \ox y \ox 1 - x \ox y \ox y
+		- 1 \ox x \ox y^2\\
+ 	&\qquad- xy \ox x \ox 1 - x \ox y \ox x - 1 \ox x \ox yx\bigg) \\
+ 	&= 2\left(y^{2n + 2}x - xy^{2n + 2}\right) - xy^{2n + 1}x
+ 		-(2n + 1)\left(xy^{2n + 1}x -xyxy^{2n}\right)\\
+ 	&= 2\left(\sum_{i = 0}^{n}\frac{(n + 1)!}{i!}x(yx)^{n + 1 -i}y^{2i}\right)
+ 		- \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n + 1 -i}y^{2i}\\
+ 	&\qquad - (2n + 1) \sum_{i = 0}^{n - 1}\frac{n!}{i!}x(yx)^{n + 1 -i}y^{2i}\\
+ 	&= \sum_{i = 0}^{n}\left(\frac{2(n + 1)!}{i!} - \frac{n!}{i!}\right)x(yx)^{n + 1 -i}y^{2i}
+ 		- (2n + 1) \sum_{i = 0}^{n - 1}\frac{n!}{i!}x(yx)^{n + 1 -i}y^{2i}\\
+ 	&= (2n + 1)\sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n + 1 -i}y^{2i}
+ 		- (2n + 1) \sum_{i = 0}^{n - 1}\frac{n!}{i!}x(yx)^{n + 1 -i}y^{2i}\\
+ 	&= (2n + 1)xyxy^{2n}.
+\end{align*}
+Por lo tanto $c \smile s_n = d^1(\alpha + \beta) = 0$.
+\subsubsection{2) $s_m \smile s_n$:}
+\begin{align*}
+	s_m &\smile s_n\left(1\ox x^{2} \ox 1\right) = \left(s_m g_1 \smile s_n g_1\right)f_2\left(1\ox x^2 \ox 1\right)\\
+	&= \left(s_m g_1 \smile s_n g_1\right)(1 \ox x^{\ox 2}\ox 1) = s_m(1\ox x \ox 1)s_n(1 \ox x \ox 1)\\
+	&= (2m + 1)xy^{2m} (2n + 1)xy^{2n} = 0,
+\end{align*}
+\begin{align*}
+	s_m &\smile s_n\left(1\ox y^2x \ox 1\right) = \left(s_m g_1 \smile s_n g_1\right)f_2\left(1\ox y^2x \ox 1\right)\\
+	&= \left(s_m g_1 \smile s_n g_1\right)\bigg(y \ox y \ox x \ox 1 + 1 \ox y \ox yx \ox 1 
+		- x \ox y \ox y \ox 1\\ &\qquad - 1\ox x \ox y^2 \ox 1 - x \ox y \ox x \ox 1 
+		- 1\ox x \ox yx \ox 1\bigg) \\
+	&= y s_m(1 \ox y \ox 1)s_n(1 \ox x \ox 1) + s_m(1\ox y \ox 1)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&\qquad -xs_m(1\ox y \ox 1)s_n(1 \ox y \ox 1) -s_m(1\ox x \ox 1)s_n(y \ox y \ox 1 + 1\ox y \ox y)\\
+	&\qquad -xs_m(1\ox y \ox 1)s_n(1 \ox x \ox 1) -s_m(1\ox x \ox 1)s_n(y \ox x \ox 1 + 1\ox y \ox x)\\
+	&= (2n + 1)y^{2m + 2}xy^{2n} + (2n + 1)y^{2m + 2}xy^{2n} + y^{2(m + n + 1)}x - xy^{2(m + n + 1)}\\
+	&\qquad + 2(2m + 1)xy^{2(m + n + 1)} - (2n + 1)xy^{2m + 1}xy^{2n} - (2m + 1)(2n + 1)xy^{2m + 1}xy^{2n}\\
+	&\qquad -(2m + 1)xy^{2(m + n) + 1}x\\
+	&=(4n + 2)\sum_{i = 0}^{m + 1}\frac{(m + 1)!}{i!}x(yx)^{m + 1 - i}y^{2(i + n)}
+		+\sum_{i = 0}^{m + n + 1}\frac{(m + n + 1)!}{i!}x(yx)^{m + n + 1 - i}y^{2i}\\
+	&\qquad -(4m + 3)xy^{2(m + n + 1)}
+		- (2m + 2)(2n + 1)\sum_{i = 0}^{m + 1}\frac{(m + 1)!}{i!}x(yx)^{m + 1 - i}y^{2(i + n)}\\
+	&\qquad -(2m + 1)\sum_{i = 0}^{m + n}\frac{(m + n)!}{i!}x(yx)^{m + n + 1 - i}y^{2i}.
+\end{align*}
+Cuando escribimos a $c\smile s_n$ en términos de la base, encontramos un elemento
+$\beta$, tal que $d^1(\beta)(1\ox x^2\ox 1) = 0$
+y $d^1(\beta)(1\ox y^2x\ox 1) = (2n + 1)x(yx)^{2n}$. Esto permite borrar cualquier termino de la forma
+$x(yx)y^{2i}$ de la segunda coordenada de $s_m \smile s_n$. Notar que es esencial que $d^1(\beta)(1\ox x^2\ox 1) = 0$.
+Sean $b \geq  1$ y $i \geq 0$ y sea $\gamma_{b, i} \in \Hom_{A^e}\left(A\ox \field\{x, y\}\ox A, A\right)$ tal que
+\[
+	\gamma_{b, i}(1\ox x \ox 1) = 0 \text{ y }
+		\gamma_{b, i}(1 \ox y \ox 1) = \frac{1}{b + i}(yx)^{b}y^{2i + 1} - x(yx)^{b}y^{2i},
+\]
+resulta que
+\[
+	d^1(\gamma_{b, i})\left(1\ox x^2 \ox 1\right) = 0
+		\text{ y } d^1(\gamma_{b, i})\left(1\ox y^2x \ox 1\right) = x(yx)^{b + 1}y^{2i}.
+\]
+Por lo tanto podemos borrar cualquiera término de la forma $x(yx)^{b + 1}y^{2n}$ de la segunda coordenada
+de $s_m \smile s_n$ y obtenemos que
+\begin{align*}
+	s_m &\smile s_n(1 \ox y^2x\ox 1) = (4n + 2)y^{2(m + n + 1)} + xy^{2( m + n + 1)} - (4m + 3)xy^{2(m + n + 1)}\\
+	&= 4(n - m)xy^{m + n + 1},
+\end{align*}
+es decir, $s_m \smile s_n = 4(n - m)t_{n + m + 1}^{2}$.
+\subsubsection{3) $c \smile c$:}
+Como el producto cup es super conmutativo y el grado de $c$ es $1$, resulta que $c \smile c = 0$.
+
+\subsubsection{4) $t_m^{2p} \smile c$:}
+\begin{align*}
+	t_m^{2p}&\smile c(1 \ox x^{2p + 1} \ox 1) = t_m^{2p}\left(1\ox x^{2p} \ox 1\right)c(1 \ox x \ox 1) = 0,
+\end{align*}	
+\begin{align*}
+	t_m^{2p}&\smile c(1 \ox y^2x^{2p} \ox 1) = \left(t_m^{2p}g_{2p}\smile cg_1\right)
+		\Bigg(y\ox y \ox x^{\ox 2p} \ox 1  + 1 \ox y \ox yx \ox x^{ \ox 2p - 1} \\
+	&\qquad - x \ox y \ox y \ox x^{\ox 2p - 1} \ox 1 - 1\ox x \ox y^{2} \ox x^{\ox 2p - 1}\ox 1
+		- x \ox y \ox x^{\ox 2p}\\
+	&\qquad -1 \ox x \ox yx \ox x^{\ox 2p - 1} \ox 1
+		+ \sum_{i = 0}^{2p - 2}(-1)^{i}\bigg(1\ox x^{\ox 2 + i} \ox y^2 \ox x^{\ox 2p - 2 - i} \ox 1\\
+	&\qquad\qquad + 1 \ox x^{\ox 2 + i} \ox yx \ox x^{\ox 2p - 2 - i} \ox 1\bigg) \Bigg)\\
+	&= yt_m^{2p}(0)c(1 \ox x \ox 1) + t_m^{2p}\left(1 \ox y^2x^{2p - 1} \ox 1\right) c(1 \ox x \ox 1)
+		- x t_m^{2p}(0)c(1 \ox x \ox 1)\\	
+	&\qquad - t_m^{2p}(0)c(1 \ox x \ox 1) -xt_m^{2p}(0)c(1 \ox x \ox 1) -t_m^{2p}(0)c(1 \ox x \ox 1)\\
+	&\qquad + \sum_{i = 0}^{2p - 3}(-1)^{i}\bigg(t_m^{2p}(0)c(1 \ox x \ox 1) + t_m^{2p}(0)c(1 \ox x \ox 1)\bigg)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)c(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)c(y \ox x \ox 1 + 1 \ox y \ox x) = 0,
+	\end{align*}	
+ya que $c(1\ox x \ox 1) = t_m^{2p}\left(1 \ox x^{2p} \ox 1\right) = 0$ y por lo tanto
+$t_m^{2p}\smile c$ es igual a $0$.
+\subsubsection{5) $t_m^{2p} \smile s_n$:}
+\begin{align*}
+	t_m^{2p} \smile s_n\left(1 \ox x^{2 p + 1}\ox 1\right) = t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)
+		s_n(1 \ox x \ox 1) = 0,
+\end{align*}
+\begin{align*}
+	t_m^{2p} &\smile s_n\left(1 \ox y^2x^{2 p}\ox 1\right) =
+		t_m^{2p}\left(1 \ox y^{2}x^{2p - 1}\ox 1\right)s_n(1 \ox x \ox 1)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&= xy^{2m}(2n + 1)xy^{2n} = 0.
+\end{align*}
+Por lo tanto $t_m^{2p} \smile s_n$ es igual a $0$.
+
+\subsubsection{6) $u_m^{2p} \smile c$:}
+\begin{align*}
+	u_{m}^{2p} \smile c \left(1 \ox x^{2p + 1} \ox 1\right) = u_{m}^{2p}\left(1\ox x^{2p} \ox 1\right)c(1 \ox x \ox 1)
+	=0,
+\end{align*}
+\begin{align*}
+	u_{m}^{2p} &\smile c \left(1 \ox y^2x^{2p} \ox 1 \right) =
+		u_m^{2p}\left(1 \ox y^{2}x^{2p - 1}\ox 1\right)c(1 \ox x \ox 1)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)c(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)c(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\left(yx + xy\right)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i + 1}x + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}xy\\ 
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}\sum_{l = 0}^{i}\frac{i!}{l!}(yx)^{m + 1 - l}y^{2l} + y^{2m}xy\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}\sum_{l = 0}^{i}\frac{i!}{l!}(yx)^{m + 1 - l}y^{2l}
+		+ \sum_{i = 0}^{m}\frac{m!}{i!}x(yx)^{m - i}y^{2i + 1}\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}\left(\sum_{l = 0}^{i}\frac{i!}{l!}(yx)^{m + 1 - l}y^{2l}
+		+ x(yx)^{m - i}y^{2i + 1}\right).
+\end{align*}
+Sea $\alpha_{b, i} \in \Hom_{A^e}\left(P_{2p}A, A\right)$ tal que
+\[
+	\alpha_{b, i}\left(1 \ox x^{2p} \ox 1\right) = 0 \text{ y }
+		\alpha_{b, i}\left(1 \ox y^2x^{2p - 1}\ox 1\right) = -(yx)^by^{2i},
+\]
+luego
+\[
+	d^{2p}(\alpha)\left(1 \ox x^{2p + 1} \ox 1\right) = 0 \text{ y }
+d^{2p}(\alpha)\left(1 \ox y^2x^{2p} \ox 1\right) = \sum_{l = 0}^{i}\frac{i!}{l!}(yx)^{b + i + 1 - l}y^{2l}
+		+ x(yx)^{b}y^{2i + 1}
+\]
+y por lo tanto $u_{m}^{2p} \smile c = \sum_{i =0}^{m}\frac{m!}{i!}d^{2p}\left(\alpha_{m - i, i}\right) = 0$.
+
+Antes de continuar calculando los productos vamos a probar una proposición que será
+útil.
+
+\begin{prop}\label{combinatorio_recursivo}
+	Sean $n, m\geq 0$, resulta que
+	$\sum_{i = 0}^{m}\frac{(n + i)!}{i!} = \frac{(m + n + 1)!}{m!(n + 1)}$.
+\end{prop}
+\begin{proof}
+	Si dividimos por $n!$ ambos lados de la igualdad que aparece enunciado obtenemos
+	la siguiente expresión $\sum_{i = 0}^{m}\binom{n + i}{i} = \binom{m + n + 1}{m}$.
+	Probaremos por inducción en $m$ que esta nueva igualdad vale para todo $n,m \geq 0$.
+	Si $m = 0$, resulta que
+	\begin{align*}
+		\sum_{i = 0}^{m}\binom{n + i}{i} = \binom{n}{0} = 1 = \binom{n + 1}{0}.
+	\end{align*}
+	Si $m \geq 1$,
+	\begin{align*}
+		\sum_{i = 0}^{m}\binom{n + i}{i} &= \sum_{i = 0}^{m - 1}\binom{n + i}{i} + \binom{n + m}{m}
+			= \binom{m + n}{m - 1} + \binom{n + m}{m} = \binom{m + n + 1}{m}.
+	\end{align*}
+\end{proof}
+
+\subsubsection{7) $u_m^{2p} \smile s_n$:}
+\begin{align*}
+	u_m^{2p}& \smile s_n\left(1 \ox x^{2p + 1} \ox 1\right)
+		= u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(1 \ox x \ox 1)\\
+	&= \sum_{i = 0}^{m}(yx)^{m  -i}y^{2i}(2n + 1)xy^{2n}
+		= (2n + 1)\sum_{i = 0}^{m}\frac{m!}{i!} x(yx)^{m  -i}y^{2(i + n)},
+\end{align*}
+\begin{align*}
+	u_m^{2p}& \smile s_n\left(1 \ox y^2x^{2p} \ox 1\right)
+		= u_m^{2p}\left(1 \ox y^2x^{2p - 1} \ox 1\right)s_n(1 \ox x \ox 1)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(y \ox x \ox 1 + 1 \ox x \ox y)\\
+	&= -y^{2m + 1}(2n + 1)xy^{2n} + 2\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}y^{2n + 2}\\
+	&\qquad + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\left((2n + 1)yxy^{2n} + y^{2n + 1}x\right)\\
+	&= 2\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n + 1)}
+		+ (2n + 1)\sum_{i = 0}^{m - 1}\frac{m!}{i!}(yx)^{m - i}y^{2i + 1}xy^{2n}\\
+	&\qquad+ \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n) + 1}x.
+\end{align*}
+Calcularemos cada una de las sumas por separado:
+\begin{align*}
+	2\sum_{i = 0}^{m} & \frac{m!}{i!}(yx)^{m - i}y^{2(i + n + 1)} =
+		2\sum_{l = n + 1}^{m + n + 1}\frac{m!}{(l - n - 1)!}(yx)^{m + n + 1 - l}y^2l,
+\end{align*}
+\begin{align*}
+	(2n + 1)\sum_{i = 0}^{m - 1} &\frac{m!}{i!}(yx)^{m - i}y^{2i + 1}xy^{2n} =
+		\sum_{i = 0}^{m - 1}\sum_{l = 0}^{i}\frac{m!}{l!}(yx)^{m + 1 - l}y^{l + n}\\
+	&=(2n + 1)\sum_{l = 0}^{m - 1}\frac{m!}{l!}(m - l)(yx)^{m + 1 - l}y^{2(l + n)}\\
+	&= (2n + 1)\sum_{l = n}^{m + n - 1}\frac{m!}{(l - n)!}(m + n - l)(yx)^{m + n + 1 - l}y^{2l},
+\end{align*}
+\begin{align*}
+	\sum_{i = 0}^{m} & \frac{m!}{i!}(yx)^{m - i}y^{2(i + n) + 1}x =
+		\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}\sum_{l = 0}^{i + n}\frac{(i +n)!}{l!}(yx)^{i + n + 1 - l}y^{2l}\\
+	&= \sum_{i = 0}^{m}\sum_{l = 0}^{i + n}\frac{m!}{l!}\frac{(i + n)!}{i!}(yx)^{m + n + 1 - l}y^{2l}
+		= \sum_{l = 0}^{n}\frac{m!}{l!}\left(\sum_{i = 0}^{m}\frac{(i + n!)}{i!}\right)(yx)^{m + n + 1 - l}y^{2l}\\
+		&\qquad +\sum_{l = n + 1}^{m + n}\frac{m!}{l!}\left(\sum_{i = l - n}^{m}\frac{(i + n!)}{i!}\right)(yx)^{m + n + 1 - l}y^{2l}
+\end{align*}
+Debido a la Proposición \ref{combinatorio_recursivo}, resulta que
+\begin{align*}
+	\sum_{i = 0}^{m} & \frac{m!}{i!}(yx)^{m - i}y^{2(i + n) + 1}x
+		= \sum_{l = 0}^{n + m}\frac{m!}{l!}\left(\frac{(n + m + 1)!}{m!(n + 1)}\right)(yx)^{m + n + 1 - l}y^{2l}\\
+	&\qquad -\sum_{l = n + 1}^{m + n}\frac{m!}{l!}\left(\frac{l!}{(l - n - 1)!(n + 1)}\right)(yx)^{m + n + 1 - l}y^{2l}
+\end{align*}
+A partir de ahora denotaremos por $\lambda_l$ a $(yx)^{m + n + 1 - l}y^{2l}$. Con los cálculos que hicimos obtuvimos que
+\begin{align*}
+	u_m^{2p}& \smile s_n\left(1 \ox y^2x^{2p} \ox 1\right) =
+		2\sum_{l = n + 1}^{m + n + 1}\frac{m!}{(l - n - 1)!}\lambda_l
+		+\sum_{l = 0}^{n + m}\frac{(n + m + 1)!}{l!(n + 1)}\lambda_l\\
+	&\qquad+ (2n + 1)\sum_{l = n}^{m + n - 1}\frac{m!}{(l - n)!}(m + n - l)\lambda_l
+		-\sum_{l = n + 1}^{m + n}\frac{m!}{(l - n - 1)!(n + 1)}\lambda_l.
+\end{align*}
+Sea $i$, $0 \leq i < m$ y sea $\alpha_i \in \Hom_{A^e}\left(P_{2p}A, A\right)$ tal que
+\[
+	\alpha_i\left(1\ox x^{2p} \ox 1\right) = (2n + 1)\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}
+	\text{ y } \alpha_i\left(1\ox y^2x^{2p - 1} \ox 1\right) = 0,
+\]
+resulta que
+\begin{align*}
+	d^{2p}(\alpha_i)\left(1 \ox x^{2p + 1}\ox 1\right) = (2n + 1)\frac{m!}{i!}x(yx)^{m - i}y^{2(i + n)}
+\end{align*}
+y
+\begin{align*}
+	d^{2p}&(\alpha_i)\left(1 \ox y^2x^{2p}\ox 1\right) =
+		(2n + 1)\frac{m!(m  - i)}{i!}(yx)^{m - i + 1}y^{2(i + n)}\\
+	&\qquad- (2n + 1)\frac{m!}{i!}\sum_{i = 0}^{i + n}\frac{(i + n)!}{i!}(yx)^{m + n + 1 - l}y^{2l}.
+\end{align*}
+Reduciendo a $u_m^{2p} \smile s_n$ módulo borde, obtenemos que
+\begin{align*}
+	u_m^{2p}& \smile s_n\left(1 \ox x^{2p + 1} \ox 1\right) = 
+		\left(u_m^{2p} \smile s_n - \sum_{i =0}^{m - 1}d^{2p}(\alpha_i)\right)
+		\left(1 \ox x^{2p + 1} \ox 1\right)\\ &= (2n + 1)xy^{2(n + m)}
+\end{align*}
+y
+\begin{align*}
+	u_m^{2p}& \smile s_n\left(1 \ox y^2x^{2p} \ox 1\right) =
+		\left(u_m^{2p} \smile s_n - \sum_{i =0}^{m - 1}d^{2p}(\alpha_i)\right)
+		\left(1 \ox y^2x^{2p} \ox 1\right)\\
+	&=2\sum_{l = n + 1}^{m + n + 1}\frac{m!}{(l - n - 1)!}\lambda_l
+		+\sum_{l = 0}^{n + m}\frac{(n + m + 1)!}{l!(n + 1)}\lambda_l\\
+	&\qquad -\sum_{l = n + 1}^{m + n}\frac{m!}{(l - n - 1)!(n + 1)}\lambda_l
+		+(2n + 1)\sum_{i = 0}^{m - 1}\frac{m!}{i!}\sum_{l = 0}^{i + n}\frac{(i + n)!}{l!}\lambda_l\\
+	&= 2\sum_{l = n + 1}^{m + n + 1}\frac{m!}{(l - n - 1)!}\lambda_l
+		+\sum_{l = 0}^{n + m}\frac{(n + m + 1)!}{l!(n + 1)}\lambda_l
+	 	-\sum_{l = n + 1}^{m + n}\frac{m!}{(l - n - 1)!(n + 1)}\lambda_l\\
+	&\qquad+(2n + 1)\sum_{i = 0}^{m}\sum_{l = 0}^{i + n}\frac{m!}{i!}\frac{(i + n)!}{l!}\lambda_l
+		-(2n + 1)\sum_{l = 0}^{m + n}\frac{(m + n)!}{l!}\lambda_l\\
+	&= 2\sum_{l = n + 1}^{m + n + 1}\frac{m!}{(l - n - 1)!}\lambda_l
+		+(2n + 2)\sum_{l = 0}^{n + m}\frac{(n + m + 1)!}{l!(n + 1)}\lambda_l\\
+	&\qquad -(2n + 2)\sum_{l = n + 1}^{m + n}\frac{m!}{(l - n - 1)!(n + 1)}\lambda_l
+		-(2n + 1)\sum_{l = 0}^{m + n}\frac{(m + n)!}{l!}\lambda_l\\
+	&= 2\lambda_{n + m + 1} + (2m + 1)\sum_{l = 0}^{n + m}\frac{(n + m)!}{l!}\lambda_l\\
+	&= 2\left(\sum_{l = 0}^{n + m + 1}\frac{(n + m + 1)!}{l!} \lambda_l
+		- \sum_{l = 0}^{n + m}\frac{(n + m + 1)!}{l!} \lambda_l\right)
+		+ (2m + 1)\sum_{l = 0}^{n + m}\frac{(n + m)!}{l!}\lambda_l\\
+	&= 	2\sum_{l = 0}^{n + m + 1}\frac{(n + m + 1)!}{l!} \lambda_l
+		- (2n + 1)\sum_{l = 0}^{n + m}\frac{(n + m)!}{l!}\lambda_l
+\end{align*}
+Sea $\beta \in \Hom_{A^e}\left(P_{2p}A, A\right)$ tal que
+\[
+	\beta\left(1\ox x^{2p} \ox 1\right) = 0 \text{ y } \beta\left(1\ox y^2x^{2p - 1} \ox 1\right) = -y^{2(n + m)+ 1},
+\]
+resulta que
+\[
+	d^{2p}(\beta)(1\ox x^{2p + 1} \ox 1) =0 \text{ y }
+		d^{2p}(\beta)(1\ox y^2x^{2p} \ox 1) = \sum_{l = 0}^{n + m}\frac{(n + m)!}{l!}\lambda_l + xy^{2(n + m) + 1}
+\]
+y por lo tanto
+\[
+	u_m^{2p} \smile s_n = u_m^{2p} \smile s_n - \sum_{i =0}^{m - 1}d^{2p}(\alpha_i) + d^{2p}((2n + 1)\beta)
+		= 2v_{n + m + 1}^{2p + 1} + (2n + 1)w_{n + m}^{2p + 1}.
+\]
+\subsubsection{8) $v_m^{2p + 1} \smile c$:}
+\begin{align*}
+	v_m^{2p + 1} \smile c\left(1 \ox x^{2p + 2} \ox 1\right)
+		= v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(1 \ox x \ox 1) = 0,
+\end{align*}
+\begin{align*}
+	v_m^{2p + 1}& \smile c\left(1 \ox y^2x^{2p + 1} \ox 1\right)
+		= v_m^{2p + 1}\left(1 \ox y^2 x^{2p} \ox 1\right)c(1 \ox x \ox 1)\\
+		&\qquad- v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(y \ox y \ox 1 + 1 \ox y \ox y)\\
+		&\qquad -v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(y \ox x \ox 1 + 1 \ox y \ox x) = 0
+\end{align*}
+Por lo tanto $v_m^{2p + 1} \smile c$ es igual a cero.
+\subsubsection{9) $v_m^{2p + 1} \smile s_n$:}
+\begin{align*}
+	v_m^{2p + 1} \smile s_n\left(1 \ox x^{2p + 2} \ox 1\right)
+		= v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(1 \ox x \ox 1) = 0,
+\end{align*}	
+\begin{align*}
+	v_m^{2p + 1}& \smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right)
+		= v_m^{2p + 1}\left(1 \ox y^2 x^{2p} \ox 1\right)s_n(1 \ox x \ox 1)\\
+	&\qquad- v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad -v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}(2n + 1)xy^{2n}
+		=(2n + 1)\sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)}.
+\end{align*}
+Como $x(yx)^{b}y^{2i}$ pertenece a $\Ima\left(\partial\right)$ para todo $b\geq 1$ y para todo
+$i \geq 0$, resulta que $v_m^{2p + 1}\smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right) = (2n + 1)xy^{2(n + m)}$
+y por lo tanto \[v_m^{2p + 1}\smile s_n =(2n + 1)t_{m + n}^{2p + 2}.\]
+Es importante notar que este argumento solo puede ser utilizado para términos que aparezcan en la segunda coordenada
+del producto que estemos calculando.
+\subsubsection{10) $w_m^{2p + 1} \smile c$:}
+\begin{align*}
+	w_m^{2p + 1} \smile c\left(1 \ox x^{2p + 2} \ox 1\right)
+		= w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(1 \ox x \ox 1) = 0,
+\end{align*}
+\begin{align*}
+	w_m^{2p + 1}& \smile c\left(1 \ox y^2x^{2p + 1} \ox 1\right)
+		= w_m^{2p + 1}\left(1 \ox y^2 x^{2p} \ox 1\right)c(1 \ox x \ox 1)\\
+	&\qquad- w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad -w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)c(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&= -xy^{2m}(yx+ xy) = \sum_{i = 0}^{m}\frac{m!}{i!}x(yx)^{m + 1 - i}y^{2i}.
+\end{align*}
+Como $x(yx)^{b}y^{2i}$ pertenece a $\Ima\left(\partial\right)$ para todo $b\geq 1$ y para todo
+$i \geq 0$, resulta que $w_m^{2p + 1}\smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right) = 0$
+y por lo tanto $w_m^{2p + 1} \smile c = 0$
+\subsubsection{11) $w_m^{2p + 1} \smile s_n$:}
+\begin{align*}
+	w_m^{2p + 1} &\smile s_n\left(1 \ox x^{2p + 2} \ox 1\right)
+		= w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(1 \ox x \ox 1)\\
+	&= xy^{2m}(2n + 1)xy^{2n} = 0,
+\end{align*}	
+\begin{align*}
+	w_m^{2p + 1}& \smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right)
+		= w_m^{2p + 1}\left(1 \ox y^2 x^{2p} \ox 1\right)s_n(1 \ox x \ox 1)\\
+	&\qquad -w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(y \ox y \ox 1 + 1 \ox y \ox y)\\
+	&\qquad -w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
+	&= xy^{2m + 1}(2n + 1)xy^{2n} -2xy^{2m}y^{2n + 2} - xy^{2m}\left((2n + 1)yxy^{2n} + y^{2n + 1}x\right)\\
+	&= -2xy^{2m}y^{2n + 2} -xy^{2(n + m) + 1}x\\
+	&= -2xy^{2(m + n + 1)}
+		-\sum_{i = 0}^{n +m}\frac{(n + m)!}{i!}x(yx)^{m  + n  + 1 -i}y^{2i}.
+\end{align*}
+Como $x(yx)^{m  + n  + 1 -i}y^{2i}$ pertenece a $\Ima\left(\partial\right)$ para todo $i$, $0 \leq i \leq n + m$,
+resulta que \[w_m^{2p + 1} \smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right) = 2xy^{2(n + m + 1)}\]
+y por lo tanto $w_m^{2p + 1} \smile s_n = -2t_{n + m + 1}^{2p + 2}$.
+\subsubsection{12) $t_m^{2p} \smile t_n^{2q}$:}
+\begin{align*}
+	t_m^{2p}\smile t_n^{2q}\left(1\ox x^{2p + 2q} \ox 1\right)
+		= t_m^{2p}\left(1\ox x^{2p}\ox 1\right)t_n^{2q}\left(1\ox x^{2q}\ox 1\right) = 0,
+\end{align*}
+\begin{align*}
+	t_m^{2p} & \smile t_n^{2q}\left(1\ox y^2x^{2p + 2q - 1} \ox 1\right)
+		= t_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)t_n^{2q}\left(1\ox x^{2q}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(1\ox y^2x^{2q - 1}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(y\ox x^{2q}\ox 1\right) = 0.
+\end{align*}
+Por lo tanto $t_m^{2p}\smile t_n^{2q}$ es igual a cero.
+\subsubsection{13) $u_m^{2p} \smile t_n^{2q}$:}
+\begin{align*}
+	u_m^{2p}\smile t_n^{2q}\left(1\ox x^{2p + 2q} \ox 1\right)
+		= u_m^{2p}\left(1\ox x^{2p}\ox 1\right)t_n^{2q}\left(1\ox x^{2q}\ox 1\right) = 0,
+\end{align*}
+\begin{align*}
+	u_m^{2p} & \smile t_n^{2q}\left(1\ox y^2x^{2p + 2q - 1} \ox 1\right)
+		= u_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)t_n^{2q}\left(1\ox x^{2q}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(1\ox y^2x^{2q - 1}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(y\ox x^{2q}\ox 1\right)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - l}y^{2i}xy^{2n}
+		= \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)}
+\end{align*}
+Como $x(yx)^{m - l}y^{2(l + n)}$ pertenece a $\Ima\left(\partial\right)$ para todo $l$, $0 \leq l \leq m - 1$,
+resulta que \[u_m^{2p}  \smile t_n^{2q} = t_{n + m}^{2p + 2q}.\]
+
+Antes de continuar calculando productos vamos a probar la siguiente proposición que
+será útil.
+\begin{prop}
+	Sean $n, m \geq 0$, resulta que
+	\begin{align*}
+		\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)
+			= \sum_{k = 0}^{m + n}\frac{(m + n)!}{k!}(yx)^{m + n - k}y^{2k}
+	\end{align*}
+\end{prop}
+\begin{proof}
+	Sean $n ,m \geq 0$, luego
+	\begin{align*}
+		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)
+			= \sum_{i = 0}^{m}\sum_{j = 0}^{n}\frac{m!n!}{i!j!}(yx)^{m - i}y^{2i}(yx)^{n - j}y^{2j}\\
+		&=\sum_{i = 0}^{m}\sum_{j = 0}^{n - 1}\frac{m!n!}{i!j!}(yx)^{m - i}y^{2i}(yx)^{n - j}y^{2j}
+			+\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}.
+	\end{align*}
+	Debido a la Proposición \ref{prop_conmutatividad2}, obtenemos que
+	\begin{align*}
+		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)\\
+		&=\sum_{i = 0}^{m}\sum_{j = 0}^{n - 1}\frac{m!n!}{i!j!}(yx)^{m - i}
+			\sum_{l = 0}^{i}\binom{i}{l}\frac{(n - j + i - l - 1)!}{(n -j - 1)!}(yx)^{n - j + i - l}y^{2(l + j)}\\
+		&\qquad + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
+		&=\sum_{i = 0}^{m}\sum_{j = 0}^{n - 1}\sum_{l = 0}^{i}\frac{m!n!}{i!j!}
+			\binom{i}{l}\frac{(n - j + i - l - 1)!}{(n -j - 1)!}(yx)^{m + n - (j + l)}y^{2(l + j)}\\
+		&\qquad + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
+		&=\sum_{j = 0}^{n - 1}\sum_{l = 0}^{m}
+			\left(\sum_{i = l}^{m}\frac{(n - j + i - l - 1)!}{(n -j - 1)!(i - l)!}\right)\frac{m!n!}{l!j!}
+			(yx)^{m + n - (j + l)}y^{2(l + j)}\\
+		&\qquad + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
+		&=\sum_{j = 0}^{n - 1}\sum_{l = 0}^{m}
+			\left(\sum_{r = 0}^{m - l}\binom{n - 1 - j + r}{r}\right)\frac{m!n!}{l!j!}
+			(yx)^{m + n - (j + l)}y^{2(l + j)}
+		 + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
+	\end{align*}
+	Debido a la proposición \ref{combinatorio_recursivo}, resulta que
+	$\sum_{r = 0}^{m - l}\binom{n - 1 - j + r}{r} = \binom{m + n - (j + l)}{n - j}$ y por lo tanto
+	\begin{align*}
+		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)\\
+		&=\sum_{j = 0}^{n - 1}\sum_{l = 0}^{m}
+			\binom{m + n - (j + l)}{n - j}\frac{m!n!}{l!j!}(yx)^{m + n - (j + l)}y^{2(l + j)}
+		+ \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
+		&= \sum_{j = 0}^{n}\sum_{l = 0}^{m}
+			\binom{m}{l}\binom{n}{j}(n + m - (j + l))!(yx)^{m + n - (j + l)}y^{2(l + j)}\\
+	\end{align*}
+	Como la igualdad que queremos probar es simétrica en $m$ y en $n$, podemos
+	suponer, sin perdida de generalidad, que $n \leq m$ y escribir $m = n + t$ con $t \geq 0$.
+	Realizamos el cambio de índice $k = j + l$
+	y denotamos por $\lambda_k$ a $(yx)^{m + n - k}y^{2k}$ para simplificar la escritura.
+	Separamos la suma en tres, según el valor de $k$
+	\begin{align*}
+		&\sum_{j = 0}^{n}\sum_{l = 0}^{m}
+			\binom{m}{l}\binom{n}{j}(n + m - (j + l))!(yx)^{m + n - (j + l)}y^{2(l + j)}\\
+		&= \sum_{k = 0}^{n}\sum_{j = 0}^{k}
+			\binom{n + t}{k - j}\binom{n}{j}(2n + t -k)!\lambda_k
+			 +\sum_{k = n + 1}^{n + t}\sum_{j = 0}^{n}
+			\binom{n + t}{k - j}\binom{n}{j}(2n + t -k)!\lambda_k\\
+		&\qquad  +\sum_{k = n + t  + 1}^{2n + t}\sum_{j = k - (n + t)}^{n}
+			\binom{n + t}{k - j}\binom{n}{j}(2n + t -k)!\lambda_k.
+	\end{align*}
+	Para probar la proposición lo único que falta verificar es que se cumplen las siguientes igualdades
+	\begin{align*}
+		\sum_{j = 0}^{k}\binom{n + t}{k - j}\binom{n}{j} &= \binom{2n + t}{k} \text{ para todo }k, 0\leq k \leq n,\\
+		\sum_{j = 0}^{n}\binom{n + t}{k - j}\binom{n}{j} &= \binom{2n + t}{k}
+			\text{ para todo }k, n + 1 \leq k \leq n + t,\\
+		\sum_{j = k - (n + t)}^{n}\binom{n + t}{k - j}\binom{n}{j} &= \binom{2n + t}{k}
+			\text{ para todo }k, n + t + 1 \leq k \leq 2n + t.\\
+	\end{align*}
+	Una manera de probar estas igualdades es mediante un argumento combinatorio.
+	El coeficiente binomial $\binom{2n + t}{k}$ cuenta de cuantas maneras es posible elegir
+	$k$ elementos de un conjunto de tamaño $2n + t$. Una manera de calcular esto es dividir
+	el conjunto en dos subconjuntos, uno de tamaño $n$ y el otro de tamaño $n + t$, y elegir
+	$j$ elementos del primer conjunto y $k - j$ del segundo.
+\end{proof}
+\subsubsection{14) $u_m^{2p} \smile u_n^{2q}$:}
+\begin{align*}
+	u_m^{2p} &\smile u_n^{2q}(1 \ox x^{2p + 2q} \ox 1) = \left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)\\
+	&= \sum_{k = 0}^{m + n}\frac{(m + n)!}{k!}(yx)^{m + n - k}y^{2k},
+\end{align*}
+\begin{align*}
+	u_m^{2p} &\smile u_n^{2q}(1 \ox y^2x^{2p + 2q - 1} \ox 1) = 
+		u_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)u_n^{2q}\left(1\ox x^{2q}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)u_n^{2q}\left(1\ox y^2x^{2q - 1}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)u_n^{2q}\left(y\ox x^{2q}\ox 1\right)\\
+	&= -\sum_{l = 0}^{n}\frac{n!}{l!}y^{2m + 1}(yx)^{n - l}y^{2l}
+		-\sum_{l = 0}^{m}\frac{m!}{l!}(yx)^{n - l}y^{2l}y^{2n + 1}\\
+	&\qquad + \sum_{l = 0}^{m}\frac{m!}{l!}(yx)^{m - l}y^{2l + 1}\sum_{i = 0}^{n}\frac{n!}{i!}(yx)^{n - i}y^{2i}\\
+	&= -\sum_{l = 0}^{n}\frac{n!}{l!}y^{2m + 1}(yx)^{n - l}y^{2l}
+		-\sum_{l = 0}^{m}\frac{m!}{l!}(yx)^{n - l}y^{2(n + l) + 1}\\
+	&\qquad +\sum_{l = 0}^{m- 1}\frac{m!}{l!}(yx)^{n - l}y^{2(n + l) + 1}
+		+ \sum_{l = 0}^{m - 1}\sum_{l = 0}^{n -1}\frac{m!n!}{l!i!}(yx)^{m - l}y^{2l + 1}(yx)^{n - i}y^{2i}\\
+	&\qquad + \sum_{l = 0}^{n}\frac{n!}{l!}y^{2m + 1}(yx)^{n - l}y^{2l} = -y^{2(m + n) + 1}.
+\end{align*}
+Por lo tanto $u_m^{2p} \smile u_n^{2q}$ es igual a $u_{m + n}^{2p + 2q}$.
+\subsubsection{15) $t_m^{2p} \smile v_n^{2q + 1}$:}
+\begin{align*}
+	t_m^{2p}\smile v_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
+		= t_m^{2p}\left(1\ox x^{2p}\ox 1\right)v_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right) = 0,
+\end{align*}
+\begin{align*}
+	t_m^{2p} & \smile v_n^{2q + 1}\left(1\ox y^2x^{2p + 2q} \ox 1\right)
+		= t_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)v_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)v_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)v_n^{2q + 1}\left(y\ox x^{2q +1}\ox 1\right) = 0.
+\end{align*}
+Por lo tanto $t_m^{2p}\smile v_n^{2q + 1}$ es igual a cero.
+\subsubsection{16) $t_m^{2p} \smile w_n^{2q + 1}$:}
+\begin{align*}
+	t_m^{2p}\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
+		= t_m^{2p}\left(1\ox x^{2p}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right) = 0,
+\end{align*}
+\begin{align*}
+	t_m^{2p} & \smile w_n^{2q + 1}\left(1\ox y^2x^{2p + 2q} \ox 1\right)
+		= t_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(y\ox x^{2q +1}\ox 1\right)
+	= xy^{2m}xy^{2m} = 0
+\end{align*}
+Por lo tanto $t_m^{2p}\smile w_n^{2q + 1}$ es igual a cero.
+\subsubsection{17) $v_m^{2p + 1} \smile u_n^{2q}$:}
+\begin{align*}
+	v_m^{2p + 1} \smile u_n^{2q}(1 \ox x^{2q + 2p + 1} \ox 1) = 0,
+\end{align*}
+\begin{align*}
+	v_m^{2p + 1} &\smile u_n^{2q}(1 \ox y^2x^{2q + 2p} \ox 1)
+		= v_m^{2p + 1}\left(1\ox y^2x^{2p}\ox 1\right)u_n^{2q}\left(1\ox x^{2q}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1}  \ox 1\right)u_n^{2q}\left(1\ox y^2x^{2q - 1}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)u_n^{2q}\left(y\ox x^{2q}\ox 1\right)\\
+	&= \left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
+		\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{m - j}y^{2j}\right)\\
+	&= \sum_{i = 0}^{m + n}\frac{(m + n)!}{i!}(yx)^{m + n - i}y^{2i}.
+\end{align*}
+Por lo tanto $v_m^{2p + 1} \smile u_n^{2q}$ es igual a $v_{m + n}^{2p + 2q + 1}$
+\subsubsection{18) $u_m^{2p} \smile w_n^{2q + 1}$:}
+\begin{align*}
+	u_m^{2p} & \smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
+		= u_m^{2p}\left(1\ox x^{2p}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}xy^{2n} = y^{2m}xy^{2n}
+		= \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)},
+\end{align*}
+\begin{align*}
+	u_m^{2p} & \smile w_n^{2q + 1}\left(1\ox y^2x^{2p + 2q} \ox 1\right)
+		= u_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad + u_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(y\ox x^{2q +1}\ox 1\right)\\
+	&= -y^{2m + 1}xy^{2n} + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}xy^{2n + 1}
+		+ \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i + 1}xy^{2n}\\
+	&= y^{2m}xy^{2n + 1}
+		+ \sum_{i = 0}^{m - 1}\sum_{l =0}^{i}\frac{m!}{l!}(yx)^{m + 1 - l}y^{2(l + n)}\\
+	&= \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n) + 1}
+		+ \sum_{i = 0}^{m - 1}\frac{m!(m - l)}{l!}(yx)^{m + 1 - l}y^{2(l + n)}\\
+\end{align*}
+Como $x(yx)^{m - l}y^{2(l + n) + 1}
+	+ \sum_{i = 0}^{l + n}\frac{(l + n)!}{i!}(yx)^{m + n + 1 -i}y^{2i}$ pertenece a $\Ima(\delta)$
+	para todo \\ $l$, $0 \leq l \leq m - 1$, resulta que
+\begin{align*}
+	u_m^{2p} & \smile w_n^{2q + 1}\left(1\ox y^2x^{2p + 2q} \ox 1\right) = xy^{2(m + n) + 1}\\
+		&\qquad - \sum_{l = 0}^{m - 1}\sum_{i = 0}^{l + n}\frac{m!(l + n)!}{l!i!}(yx)^{m + n + 1 -i}y^{2i}
+		+\sum_{l = 0}^{m - 1}\frac{m!(m - l)}{l!}(yx)^{m + 1 - l}y^{2(l + n)}.
+\end{align*}
+Sea $l$, $0\leq l \leq m - 1$ y $\alpha_l \in \Hom_{A^{e}}\left(P_{2p + 2q}A, A\right)$, tal que
+\[
+	\alpha_l\left(1 \ox x^{2p + 2q} \ox 1\right) = (yx)^{m -l}y^{2(l + n)} \text{ y }
+		\alpha_l\left(1 \ox y^2x^{2p + 2q - 1} \ox 1\right) = 0,
+\]
+resulta que
+\begin{align*}
+	&d^{2p + 2q}(\alpha_l)\left(1 \ox x^{2p + 2q + 1} \ox 1\right) = x(yx)^{m - l}y^{2(l + n)},\\
+	&d^{2p + 2q}(\alpha_l)\left(1 \ox y^2x^{2p + 2q - 1} \ox 1\right)
+		=(m - l)(yx)^{m  + 1 - l}y^{2(l + n)}\\
+	&\qquad- \sum_{i = 0}^{l + n}\frac{(l + n)!}{i!}(yx)^{m + n  +1 -l}y^{2l}
+\end{align*}
+y por lo tanto
+\[
+	u_m^{2p}  \smile w_n^{2q + 1} = u_m^{2p}  \smile w_n^{2q + 1}
+		- \sum_{l = 0}^{m - 1}d^{2p + 2q}(\alpha_l) = w_{n + m}^{2p + 2q + 1}.
+\]
+
+\subsubsection{19) $v_m^{2p} \smile v_n^{2q}$:}
+\begin{align*}
+	v_m^{2p + 1}\smile v_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
+		= v_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)v_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)
+		= 0,
+\end{align*}
+\begin{align*}
+	v_m^{2p + 1} &\smile v_n^{2q + 1}\left(1\ox y^2x^{2p + 2q  + 1} \ox 1\right)
+		= v_m^{2p + 1}\left(1\ox y^2x^{2p}\ox 1\right)v_n^{2q} \left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		v_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		v_n^{2q + 1}\left(y\ox x^{2q + 1}\ox 1\right) = 0.
+\end{align*}
+Por lo tanto $v_m^{2p + 1}\smile v_n^{2q + 1}$ es igual a cero.
+\subsubsection{20) $v_m^{2p} \smile w_n^{2q}$:}
+\begin{align*}
+	v_m^{2p + 1} &\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
+		= v_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+		&= 0,
+\end{align*}
+\begin{align*}
+	v_m^{2p + 1} &\smile w_n^{2q + 1}\left(1\ox y^2x^{2p + 2q  + 1} \ox 1\right)
+		= v_m^{2p + 1}\left(1\ox y^2x^{2p}\ox 1\right)w_n^{2q} \left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		w_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		w_n^{2q + 1}\left(y\ox x^{2q + 1}\ox 1\right)\\
+	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}xy^{2n}
+		=  \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)}
+\end{align*}
+Por lo tanto $v_m^{2p + 1}\smile w_n^{2q + 1}$ es igual a cero $t_{n + m}^{2p + 2q + 2}$.
+\subsubsection{21) $w_m^{2p} \smile w_n^{2q}$:}
+\begin{align*}
+	w_m^{2p + 1}&\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
+		= w_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
+	&= xy^{2m}xy^{2n} = 0,
+\end{align*}
+\begin{align*}
+	w_m^{2p + 1} &\smile w_n^{2q + 1}\left(1\ox y^2x^{2p + 2q  + 1} \ox 1\right)
+		= w_m^{2p + 1}\left(1\ox y^2x^{2p}\ox 1\right)w_n^{2q} \left(1\ox x^{2q + 1}\ox 1\right)\\
+	&\qquad - w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		w_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
+	&\qquad - w_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
+		w_n^{2q + 1}\left(y\ox x^{2q + 1}\ox 1\right)\\
+	&= xy^{2m +1}xy^{2n} -xy^{2m}xy^{2n + 1} - xy^{2m + 2}xy^{2n}\\
+	&= \sum_{i = 0}^{m }\frac{m!}{i!}x(yx)^{m  + 1 - i}y^{2(i + n)}
+\end{align*}
+Como $x(yx)^{m + 1 - i}y^{2(i + n)}$ pertenece a $\Ima\left(\partial\right)$ para todo
+$i$, $0 \leq i \leq m$,
+resulta que \[w_m^{2p + 1} \smile w_n^{2q + 1} = 0.\]
+
+La siguiente tabla incluye todos los productos entre los elementos de la base de $\Hy^{\bullet}(A, A)$.
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c| } 
+\hline
+& $c$ & $s_n$ & $t_n^{2q}$ & $u_n^{2q}$ & $v_n^{2q + 1}$ & $w_n^{2q + 1}$ \\
+\hline
+$c$ & $0$ & $0$ & $ 0$ & $ 0$ & $0$ & $0$ \\
+\hline
+$s_m$ & $0$ & $4(n - m)t^{2}_{n + m + 1}$ & $0$ &
+	$2v^{2q +1}_{n + m + 1} + (2n + 1)w_{n + m}^{2q + 1}$
+		& $-(2n + 1)t_{n + m}^{2p + 2}$ & $2t_{n + m + 1}^{2p + 2}$ \\
+\hline
+$t_m^{2p}$ & $0$ & $0$ & $0$ & $t_{m + n}^{2p + 2q}$ & $0$ & $0$ \\
+\hline
+$u_m^{2p}$ & $0$ &$2v^{2p +1}_{n + m + 1} + (2n + 1)w_{n + m}^{2p + 1}$ & $t_{n + m}^{2p + 2q}$ &
+	$u_{m + n}^{2p + 2q}$
+		& $v_{n + m}^{2p + 2q + 1}$ & $w_{n + m}^{2p + 2q +1}$ \\
+\hline
+$v_m^{2p + 1}$ & $0$ &$(2n + 1)t_{n + m}^{2p + 2}$ & $0$ &
+	$v_{m + n}^{2p + 2q + 1}$
+		& $0$ & $t_{m + n}^{2p + 2q + 2}$ \\
+\hline
+$w_m^{2p + 1}$ & $0$ &$-2t_{n + m + 1}^{2p + 2}$ & $0$ &
+	$w_{m + n}^{2p + 2q + 1}$
+		& $-t_{m +n}^{2p + 2q + 2}$ & $0$\\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Estructura de álgebra de Lie de $\Hy^{1}(A, A)$}
+Si restringimos el corchete de Gerstenhaber a $\Hy^{1}(A, A)$ obtenemos un álgebra de Lie.
+En esta subsección vamos calcular esta estructura que resultara ser isomorfa a una
+subálgebra de Lie del álgebra de \emph{Virasoro}. Al igual que para el producto solo vamos a calcular
+el corchete entre los elementos de la base de $\Hy^{1}(A, A)$. Vamos a empezar con el corchete
+entre $c$ y $s_n$ y para eso debemos calcular los respectivos asociadores:
+\begin{align*}
+	c \circ & s_n(1 \ox x \ox 1) =  \left( cg_1 \circ s_n g_ 1\right)f_1(1 \ox x \ox 1)
+		= \left( cg_1 \circ s_n g_ 1\right)(1 \ox x \ox 1)\\
+	&= cg_1\left(1 \ox s_n(1\ox x \ox 1) \ox 1\right) = cg_1\left(1 \ox (2n + 1)xy^{2n} \ox 1\right)\\
+	&= (2n+1)c\left(1 \ox x \ox y^{2n} + \sum_{i = 0}^{2n - 1}xy^i \ox y \ox y^{2n -1 -i}\right)\\
+	&= (2n + 1)\sum_{i = 0}^{2n - 1}xy^i x y^{2n -1 -i}
+		= (2n + 1)\sum_{i = 0}^{n - 1}xy^{2i + 1} x y^{2(n -i -1)}\\
+	&=(2n + 1)\sum_{i = 0}^{n - 1}x\sum_{l = 0}^{n}\frac{j!}{l!}(yx)^{j - l + 1}y^{2(n - j + l - 1)}\\
+	&=(2n +1)\sum_{j = 0}^{n - 1}\sum_{k = 0}^{j}\frac{j!}{(k - j)!}x(yx)^{k + 1}y^{2(n - 1 -k)}\\
+	&=(2n + 1)\sum_{k = 0}^{n -1}
+		\left(\sum_{j = k}^{n - 1}\frac{j!}{(j - k)!}\right)x(yx)^{k + 1}y^{2(n - 1 - k)}\\
+	&=(2n + 1)\sum_{k = 0}^{n -1}
+		\left(\sum_{l = 0}^{n - 1 - k}\frac{(k + l)!}{l!}\right)x(yx)^{k + 1}y^{2(n - 1 - k)}\\
+	&=(2n + 1)\sum_{k = 0}^{n -1}\frac{n!}{l!(n - l)} x(yx)^{n - l}y^{2l},
+\end{align*}
+\begin{align*}
+	c \circ & s_n(1 \ox y \ox 1) =  \left( cg_1 \circ s_n g_1\right)f_1(1 \ox y \ox 1)
+		= \left( cg_1 \circ s_n g_ 1\right)(1 \ox y \ox 1)\\
+	&= cg_1\left(1 \ox s_n(1\ox y\ox 1) \ox 1\right) = cg_1\left(1 \ox y^{2n + 1} \ox 1\right)\\
+	&= c\left(\sum_{i = 0}^{2n}y^{i}\ox y \ox y^{2n - i}\right)
+		= \sum_{i = 0}^{2n}y^{i} x y^{2n - i}
+		= \sum_{i = 0}^{n}y^{2i}xy^{2(n - i)} + \sum_{i = 0}^{n - 1}y^{2i + 1}xy^{2(n - i) - 1}\\
+	&= \sum_{i = 0}^{n}\sum_{l = 0}^{i}\frac{i!}{l!}x(yx)^{i - l}y^{2(n - i + l)}
+		+ \sum_{i = 0}^{n - 1}\sum_{i =0}^{l}\frac{i!}{l!}(yx)^{i - l + 1}y^{2(n - i + l) -1}\\
+	&= \sum_{i = 0}^{n}\sum_{k = 0}^{i}\frac{i!}{(i - k)!}x(yx)^{k}y^{2(n - k)}
+		+ \sum_{i = 0}^{n - 1}\sum_{k = 1}^{i + 1}\frac{i!}{(i - k + 1)!}(yx)^{k}y^{2(n - k) +1}\\
+	&= \sum_{k = 0}^{n}\left(\sum_{i = k}^{n}\frac{i!}{(i - k)!}\right)x(yx)^{k}y^{2(n - k)}
+		+ \sum_{k = 1}^{n}
+			\left(\sum_{i = k - 1}^{n - 1}\frac{i!}{(i - k + 1)!}\right)(yx)^{k}y^{2(n - k) +1}\\
+	&= \sum_{k = 0}^{n}\left(\sum_{l = 0}^{n - k}\frac{(k + l)!}{l!}\right)x(yx)^{k}y^{2(n - k)}
+		+ \sum_{k = 1}^{n}
+			\left(\sum_{l = 0}^{n - k}\frac{(k + l - 1)!}{l!}\right)(yx)^{k}y^{2(n - k) +1}\\
+	&= \sum_{i = 0}^{n}\frac{(n + 1)!}{i!(n -i + 1)} x(yx)^{k - i}y^{2i}
+		+ \sum_{i = 0}^{n - 1}\frac{n!}{i!(n -i)} (yx)^{k}y^{2i +1},
+\end{align*}
+\begin{align*}
+	s_n \circ & c(1 \ox x \ox 1) =  \left( s_ng_1 \circ c g_1\right)f_1(1 \ox x \ox 1)
+		= \left( s_ng_1 \circ c g_ 1\right)(1 \ox x \ox 1)\\
+	&= s_ng_1\left(1 \ox c(1\ox x \ox 1) \ox 1\right) = s_ng_1\left(1 \ox 0 \ox 1\right) = 0,
+\end{align*}
+\begin{align*}
+	s_n \circ & c(1 \ox y \ox 1) =  \left( s_ng_1 \circ c g_1\right)f_1(1 \ox y \ox 1)
+		= \left( s_ng_1 \circ c g_ 1\right)(1 \ox y \ox 1)\\
+	&= s_ng_1\left(1 \ox c(1\ox y \ox 1) \ox 1\right) = s_ng_1\left(1 \ox x \ox 1\right) = (2n + 1)xy^{2n},
+\end{align*}
+luego
+\begin{align*}
+	&\left[c, s_n\right](1\ox x \ox 1)
+		= (2n + 1)\sum_{k = 0}^{n -1}\frac{n!}{l!(n - l)} x(yx)^{n - l}y^{2l},\\
+	&\left[c, s_n\right](1\ox y \ox 1)
+		= \sum_{l = 0}^{n}\frac{(n + 1)!}{l!(n -l + 1)} x(yx)^{k - l}y^{2l}
+		+ \sum_{l = 0}^{n - 1}\frac{n!}{l!(n -l)} (yx)^{k}y^{2l +1}\\
+	&\qquad- (2n +  1)xy^{2n}.
+\end{align*}
+Utilizando la notación de la Proposición \ref{coh_ima_d01}, sea $l$, $0 \leq l \leq n - 1$ y sean
+\begin{align*}
+	&\theta_{n - l - 1, l} = \left(x(yx)^{n - l}y^{2l}, x(yx)^{n - l - 1}y^{2l + 2}
+		 + (n - l)x(yx)^{n - l}y^{2l} -(yx)^{n - l}y^{2l + 1}\right),\\
+	&\xi_{n - l - 1, l} = \left(-\sum_{i = 0}^{l - 1}\frac{l!}{i!}x(yx)^{n - i}y^{2i},
+		(n - l)x(yx)^{n - l}y^{2l}\right),\\
+	&\eta_n = \left(\sum_{l = 0}^{n - 1}\frac{n!}{l!}x(yx)^{n -l}y^{2l}, 0\right)
+\end{align*}
+pertenecientes a $\Ima\left(d^{0}\right)$, resulta que
+\begin{align*}
+	\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}(1 \ox x \ox 1)
+		= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}x(yx)^{n - l}y^{2l},
+\end{align*}
+\begin{align*}
+	&\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}(1 \ox y \ox 1)
+		= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\bigg(x(yx)^{n - l - 1}y^{2l + 2}\\
+	&\qquad+ (n - l)x(yx)^{n - l}y^{2l}-(yx)^{n - l}y^{2l + 1}\bigg)\\
+	&= \sum_{l = 1}^{n}\frac{n!}{(l - 1)!(n - l + 1)}x(yx)^{n - l}y^{2l}
+		 + \sum_{l = 0}^{n - 1}\frac{n!}{l!}x(yx)^{n - l}y^{2l}\\
+	&\qquad -\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}(yx)^{n - l}y^{2l + 1}\\
+	&= nxy^{2n} + \sum_{l = 1}^{n -1}\left(\frac{n!}{(l - 1)!(n - l + 1)}
+		+ \frac{n!}{l!}\right)x(yx)^{n - l}y^{2l} + n!x(yx)^{n}\\
+	&\qquad -\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}(yx)^{n - l}y^{2l + 1}\\
+	&= -nxy^{2n} + \sum_{l = 0}^{n}\frac{(n + 1)!}{l!(n - l + 1)} x(yx)^{n - l}y^{2l}
+		-\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}(yx)^{n - l}y^{2l + 1},
+\end{align*}
+\begin{align*}
+	&\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}(1\ox y\ox 1)
+		=\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}x(yx)^{n - l}y^{2l},
+\end{align*}
+\begin{align*}
+	&\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}(1\ox x\ox 1)\\
+	&=-\sum_{l = 0}^{n - 1}\sum_{i = 0}^{l-1}\frac{2(n + 1)!}{(n -l + 1)(n - l)i!}x(yx)^{n -i}y^{2i}\\
+	&=-\sum_{i = 0}^{n - 2}\left(\sum_{l = i + 1}^{n - 1}\frac{1}{(n -l + 1)(n - l)}\right)
+		\frac{2(n + 1)!}{i!}x(yx)^{n - i}y^{2i}\\
+	&=-\sum_{i = 0}^{n - 2}\left(\sum_{k = 1}^{n - i- 1}\frac{1}{(k + 1)(k)}\right)
+		\frac{2(n + 1)!}{i!}x(yx)^{n - i}y^{2i}\\
+	&=-\sum_{i = 0}^{n - 2}\frac{(n - i - 1)2(n + 1)!}{(n - i)i!}x(yx)^{n - i}y^{2i},
+\end{align*}
+donde en la última igualdad usamos que $\sum_{i = 1 }^{n}\frac{1}{(i + 1)i} = \frac{n}{n + 1}$. Es
+sencillo verificar que
+\[
+	\left[c, s_n\right] + \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}
+	 - \sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}= \eta_n
+\]
+y por lo tanto $\left[c, s_n\right] = 0$.
+
+Ahora vamos a calcular el corchete entre $s_m$ y $s_n$ para todo $m, n \geq 0$. Empezamos
+con los asociadores:
+\begin{align*}
+	s_m \circ & s_n(1 \ox x \ox 1)
+		= (2n + 1)s_m\left(1 \ox x \ox y^{2n}
+			+ \sum_{i = 0}^{2n - 1}xy^i \ox y \ox y^{2n -1 -i}\right)\\
+	&= (2n + 1)(2m + 1)xy^{2(n + m)} + (2n + 1)\sum_{i = 0}^{2n - 1}xy^{i}y^{2m + 1}y^{2n - 1 -i}\\
+	&= (2n + 1)(2m + 1)xy^{2(n + m)} + (2n + 1)2nxy^{2(m + n)}\\
+	&= (2n + 1)(2(m +n) + 1)xy^{2(m + n)},
+\end{align*}
+\begin{align*}
+	s_m \circ & s_n(1 \ox y \ox 1)
+		=s_m\left(\sum_{i = 0}^{2n}y^{i}\ox y \ox y^{2n - i}\right) = (2n + 1)y^{2(n + m)+ 1},
+\end{align*}
+luego $\left[s_m, s_n\right] = 2(n - m)s_{m + n}$.
+
+El \emph{álgebra de Virasoro} es el álgebra de Lie con base
+	$\left\lbrace L_n, c \mid n \in \ZZ\right\rbrace$ y corchete definido, para todo $n, m \in \ZZ$, como
+\[
+	\left[L_m, L_n\right] = (n - m)L_{m + n} + \delta_{m, -n}\frac{m^3 - m}{12}c
+		\text{ y } \left[L_m, c\right] = 0.	
+\]
+Para identificar a $\Hy^{1}(A,A)$ con una subálgebra de Lie del álgebra Virasoro va a ser conveniente
+hacer un cambio de base. Llamamos $L_m = 2^{m - 1}s_m$ para todo $m \geq 0$. Es claro
+que el conjunto $\left\lbrace L_m, c \mid m \geq 0 \right\rbrace$ resulta ser una base $\Hy^{1}(A,A)$
+y es sencillo verificar que el corchete cumple las siguientes igualdades
+\[
+	\left[L_m, L_n\right] = (n - m)L_{m + n} \text{ y } \left[L_m, c\right] = 0.	
+\]
+A partir de esta observación es claro que $\Hy^{1}(A,A)$ es una subálgebra de Lie del álgebra Virasoro.
 \end{document}
