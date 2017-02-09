@@ -29,6 +29,7 @@
 \usepackage{subfiles}
 \usepackage{xcolor}
 \usepackage{xr}
+\usepackage{hyperref}
 
 
 
@@ -53,6 +54,7 @@
 \newcommand\hha{\HH_{\bullet}(A)}
 \newcommand\hcha{\HH^{\bullet}(A)}
 \newcommand{\ov}[1]{\overline{#1}}
+\renewcommand\spanishtablename{Tabla}
 
 
 \theoremstyle{definition}
@@ -83,22 +85,190 @@
 \DeclareMathOperator\Tot{Tot}
 \DeclareMathOperator\HH{HH}
 \DeclareMathOperator\Hy{H}
+\DeclareMathOperator\Vir{Vir}
 
 
 \date{23/03/2015}
 \begin{document}
+\begin {center}
+
+\includegraphics[scale=.3]{uba2.jpg}
+
+\medskip
+\textbf{UNIVERSIDAD DE BUENOS AIRES}
+
+\smallskip
+
+\textbf{Facultad de Ciencias Exactas y Naturales}
+
+\smallskip
+
+\textbf{Departamento de Matem\'atica}
+
+\vspace{3.5cm}
+
+\textbf{\large Tesis de Licenciatura}
+
+
+\vspace{1.5cm}
+
+\textbf{\large HOMOLOGÍA Y COHOMOLOGÍA DEL SUPER PLANO DE JORDAN}
+
+\vspace{1.5cm}
+
+
+\textbf{Sebastián Gustavo Reca}
+
+\end {center}
+
+
+\vspace{1.5cm}
+
+\noindent \textbf{Director: Andrea Solotar} \ 
+
+
+\vspace{3cm}
+
+\rightline{9/03/2017}
+
+\tableofcontents
+
+\chapter*{Introducción}
+\label{introduccion}
+\addcontentsline{toc}{chapter}{\nameref{introduccion}}
+\subfile{chapters/introduccion}
 
 \chapter{Álgebras de Hopf}
+\label{hopf}
 \subfile{chapters/hopf}
 
-\chapter{Homología y cohomología de Hochschild}
+\chapter{Preliminares homológicos}
 \subfile{chapters/hochschild}
 
 \chapter{Super plano de Jordan}
 \label{chap3}
 \subfile{chapters/cuentas}
 
-\chapter{Apéndice}
+\appendix
+\chapter{Reglas de conmutación}
 \label{apendice}
 \subfile{chapters/apendice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{999999}
+
+\bibitem[AAH]{AAH} Andruskiewitsch, Nicolás; Angiono, Iván; Heckenberger, István, \textit{Liftings of Jordan and super Jordan planes}. \texttt{arXiv:1512.09271}.
+
+\bibitem [AAH2]{AAH2} Andruskiewitsch, Nicolás; Angiono, Iván; Heckenberger, István, \textit{On finite GK-dimensional Nichols algebras over abelian groups}. \texttt{arXiv:1606.02521}.
+
+%\bibitem[AS]{AS} Andruskiewitsch, Nicolás, and Hans-Jürgen Schneider. \textit{Finite quantum groups and Cartan matrices}. Advances in Mathematics 154.1 (2000): 1-45.
+
+\bibitem [AS]{AS} Andruskiewitsch, Nicolás; Schneider, Hans-Jürgen,
+\textit{Finite quantum groups and Cartan matrices}. Adv. Math. 154 (2000), no. 1, 1–45. 
+
+%\bibitem [AS2]{AS2} Andruskiewitsch, Nicolás, and Hans-Jürgen Schneider. \textit{Pointed Hopf algebras}. New directions in Hopf algebras 43 (2002): 1-68.
+
+\bibitem [AS2]{AS2} Andruskiewitsch, Nicolás; Schneider, Hans-Jürgen,
+\textit{Pointed Hopf algebras}. New directions in Hopf algebras, 1–68, 
+Math. Sci. Res. Inst. Publ., 43, Cambridge Univ. Press, Cambridge, 2002. 
+
+%\bibitem[Ang]{Ang} Angiono, Ivan. \textit{On Nichols algebras of diagonal type}. Journal für die reine und angewandte Mathematik (Crelles Journal) 2013.683 (2013): 189-251.
+
+\bibitem [Ang]{Ang} Angiono, Iván, \textit{On Nichols algebras of diagonal type}.
+J. Reine Angew. Math. 683 (2013), 189–251. 
+
+%\bibitem[BNPP]{BNPP} C. Bendel, D. Nakano, B. Parshall, and C. Pillen. \textit{Cohomology for quantum groups via the geometry of the nullcone}. arXiv preprint arXiv:1102.3639 (2011).
+
+\bibitem[BNPP]{BNPP} Bendel, Christopher P.; Nakano, Daniel K.; Parshall, Brian J.; Pillen, Cornelius,
+\textit{Cohomology for quantum groups via the geometry of the nullcone}. 
+Mem. Amer. Math. Soc. 229 (2014), no. 1077, x+93 pp.
+
+%\bibitem[BK]{BK} Butler, M. C. R., and A. D. King. \textit{Minimal resolutions of algebras}. Journal of Algebra 212.1 (1999): 323-362.
+
+\bibitem [BK]{BK} Butler, M. C. R.; King, A. D., \textit{Minimal resolutions of algebras}. 
+J. Algebra 212 (1999), no. 1, 323–362.
+
+%\bibitem[CE]{CE} Cartan, Henry, and Samuel Eilenberg. \textit{Homological Algebra} (PMS-19). Vol. 19. Princeton University Press, 2016.
+
+\bibitem[CE]{CE} Cartan, Henri; Eilenberg, Samuel, \textit{Homological algebra}. Princeton University Press, Princeton, N. J., 1956. xv+390 pp.
+
+%\bibitem[CS]{CS} Chouhy, Sergio, and Andrea Solotar. \textit{Projective resolutions of associative algebras and ambiguities}. Journal of Algebra 432 (2015): 22-61.
+
+\bibitem[CS]{CS} Chouhy, Sergio; Solotar, Andrea,
+\textit{Projective resolutions of associative algebras and ambiguities}. 
+J. Algebra 432 (2015), 22–61.
+
+%\bibitem[EtOs]{EtOs} Etingof, Pavel, and Viktor Ostrik. \textit{Finite tensor categories}. Mosc. Math. J 4.3 (2004): 627-654.
+
+\bibitem[EtOs]{EtOs} Etingof, Pavel; Ostrik, Viktor, \textit{Finite tensor categories}. Mosc. Math. J. 4 (2004), no. 3, 627–654.
+
+%\bibitem[Ev]{Ev} Evens, Leonard. \textit{The cohomology ring of a finite group}. Transactions of the American Mathematical Society 101.2 (1961): 224-239.
+
+\bibitem[Ev]{Ev} Evens, Leonard,
+\textit{The cohomology ring of a finite group}. 
+Trans. Amer. Math. Soc. 101 (1961), 224–239.  
+
+%\bibitem[FrSu]{FrSu} Friedlander, Eric M., and Andrei Suslin. \textit{Cohomology of finite group schemes over a field}. Inventiones mathematicae 127.2 (1997): 209-270.
+
+\bibitem[FrSu]{FrSu} Friedlander, Eric M.; Suslin, Andrei,
+\textit{Cohomology of finite group schemes over a field}. 
+Invent. Math. 127 (1997), no. 2, 209–270.
+
+\bibitem[GGRSV]{GGRSV} Buenos Aires Cyclic Homology Group, \textit{Cyclic homology of algebras with one generator}. Jorge A. Guccione, Juan José Guccione, María Julia Redondo, Andrea Solotar and Orlando E. Villamayor participated in this research. K-Theory 5 (1991), no. 1, 51–69.
+
+\bibitem[Gi]{Gi} Ginzburg, Victor, \textit{Lectures on noncommutative geometry}. \texttt{arXivmath/0506603}.
+
+%\bibitem[GiKu]{GiKu} Ginzburg, Victor, and Shrawan Kumar. \textit{Cohomology of quantum groups at roots of unity}. Duke Math. J 69.1 (1993): 179-198.
+
+\bibitem[GiKu]{GiKu} Ginzburg, Victor; Kumar, Shrawan,
+\textit{Cohomology of quantum groups at roots of unity}. 
+Duke Math. J. 69 (1993), no. 1, 179–198. 
+
+%\bibitem[Go]{Go} Golod, E. \textit{The cohomology ring of a finite p-group}. Dokl. Akad. Nauk SSSR. Vol. 125. 1959.
+
+\bibitem[Go]{Go} Golod, E.,
+\textit{The cohomology ring of a finite p-group}.
+Dokl. Akad. Nauk SSSR 125 (1959), 703–706. 
+
+%\bibitem [McR] {McR} McConnell, John C., James Christopher Robson, and Lance W. Small. \textit{Noncommutative noetherian rings}. Vol. 30. American Mathematical Soc., 2001.
+
+\bibitem [McR]{McR} McConnell, J. C.; Robson, J. C., \textit{Noncommutative Noetherian rings}. With the cooperation of L. W. Small. Revised edition. Graduate Studies in Mathematics, 30. American Mathematical Society, Providence, RI, 2001. xx+636 pp.
+
+%\bibitem[Mon]{Mon} Montgomery, Susan. \textit{Hopf algebras and their actions on rings}. No. 82. American Mathematical Soc., 1993.
+
+\bibitem[Mon]{Mon}  Montgomery, Susan, \textit{Hopf algebras and their actions on rings}. CBMS Regional Conference Series in Mathematics, 82. Published for the Conference Board of the Mathematical Sciences, Washington, DC; by the American Mathematical Society, Providence, RI, 1993. xiv+238 pp.
+
+%\bibitem[MPSW]{MPSW} Mastnak, Mitja, Julia Pevtsova, Peter Schauenburg, and Sarah Witherspoon. \textit{Cohomology of finite-dimensional pointed Hopf algebras}. Proc. Lond. Math. Soc. (3) 100 (2010), no. 2, 377-404.
+
+\bibitem[MPSW]{MPSW} Mastnak, M.; Pevtsova, J.; Schauenburg, P.; Witherspoon, S.,
+\textit{Cohomology of finite-dimensional pointed Hopf algebras}. 
+Proc. Lond. Math. Soc. (3) 100 (2010), no. 2, 377–404.
+
+%\bibitem[Ni]{Ni} Nichols, Warren D. \textit{Bialgebras of type one}. Communications in Algebra 6.15 (1978): 1521-1552.
+
+\bibitem[Ni]{Ni} Nichols, Warren D., \textit{Bialgebras of type one}. Comm. Algebra 6 (1978), no. 15, 1521–1552.
+
+\bibitem [Ra]{Ra} Radford, David E., \textit{The structure of Hopf algebras with a projection}. J. Algebra 92 (1985), no. 2, 322–347.
+
+\bibitem[Ve]{Ve} Venkov, B. B.,
+\textit{Cohomology algebras for some classifying spaces}.
+Dokl. Akad. Nauk SSSR 127 (1959), 943–944.
+
+\bibitem[We]{We} Weibel, Charles A.
+\textit{An introduction to homological algebra}. 
+Cambridge Studies in Advanced Mathematics, 38. Cambridge University Press, Cambridge, 1994. xiv+450 pp.
+
+\bibitem[Wo]{Wo} Woronowicz, S. L.,
+\textit{Differential calculus on compact matrix pseudogroups (quantum groups)}. 
+Comm. Math. Phys. 122 (1989), no. 1, 125–170. 
+
+
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{document}

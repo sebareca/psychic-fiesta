@@ -2,20 +2,23 @@
 
 \begin{document}
 
-\section{Definiciones básicas}
-Esta sección se basa en \myworries{Weibel} y en \myworries{Ginzburg}.
+En este capítulo daremos ciertas definiciones y resultados del álgebra homológica que serán necesarios
+para el próximo capítulo. En la primera sección daremos una definición de la homología y la cohomología
+de Hochschild. En la segunda sección describiremos ciertas estructuras algebraicas que tiene
+la cohomología de Hochschild. En la última sección resumiremos algunos
+resultados de sucesiones espectrales que serán utilizados para facilitar los cálculos del siguiente capítulo.
 
-Antes de definir homología y cohomología de Hochschild es necesario hacer la siguiente observación.
-Sea $A$ una $\field$-álgebra, llamamos \emph{álgebra envolvente de $A$} a la $\field$-álgebra
-\[
-	A^{e} = A \ox A^{op}.
-\]
-Debido a que el producto en $A^{op}$ está invertido es lo mismo considerar un $A$-módulo a derecha que un $A^{op}$-módulo a izquierda.
-Por lo tanto un $A-A$ bimódulo $M$ es lo mismo que un $A^{e}$-módulo a izquierda, mediante la acción dada por $(a\ox b)\cdot m = a\cdot m \cdot b$
-para todo $a, b \in A$ y para todo $m \in M$ y también es lo mismo que un $A^{e}$-módulo a derecha, mediante la acción dada por $m \cdot (a \ox b) = b\cdot m \cdot a$.
-En particular, esto permite ver a la categoría de $A-A$ bimódulos como la categoría de $A^e$-módulos a izquierda.
-Esta observación es fundamental para la siguiente definición ya que nos dice que la categoría de $A-A$ bimódulos
-tiene suficientes proyectivos.
+\section{Homología y cohomología de Hochschild}
+Esta sección se basa en \cite{We} y en \cite{Gi}.
+
+Antes de definir homología y cohomología de Hochschild es necesario observar el siguiente hecho.
+Debido a que el producto en $A^{op}$ está invertido, es lo mismo considerar un $A$-módulo a derecha que un $A^{op}$-módulo a izquierda.
+Por lo tanto darse un $A-A$ bimódulo $M$ es lo mismo que darse un $A^{e}$-módulo a izquierda, con acción de $A^e$
+dada por $(a\ox b)\cdot m = a\cdot m \cdot b$ para todo $a, b \in A$ y para todo $m \in M$; también es lo mismo que un $A^{e}$-módulo a derecha,
+con acción dada por $m \cdot (a \ox b) = b\cdot m \cdot a$.
+Esto permite identificar a la categoría de $A-A$ bimódulos con la categoría de $A^e$-módulos a izquierda,
+lo cual asegura que la categoría de $A-A$ bimódulos tiene suficientes proyectivos. Recordemos
+que $A^e = A\ox A^{op}$ es la $\field$-álgebra envolvente de $A$.
 
 \begin{definition}
 	Sea $A$ una $\field$-álgebra y $M$ un $A-A$ bimódulo. Se define la \emph{homología de Hochschild de $A$ con coeficientes en $M$} como
@@ -29,10 +32,10 @@ tiene suficientes proyectivos.
 \end{definition}
 
 Para calcular los grupos de homología y cohomología de Hochschild es necesario elegir alguna resolución de $A$ como $A-A$ bimódulo,
-o lo que es lo mismo, como $A^e$-módulos a izquierda. Sabemos que siempre existe una resolución porque la categoría tiene suficientes
+o lo que es lo mismo, como $A^e$-módulo a izquierda. Sabemos que siempre existe una tal resolución porque la categoría tiene suficientes
 proyectivos. La resolución que fue usada en la definición original de homología y cohomología de Hochschild es la \emph{resolución bar}.
 \begin{definition}
-	Sea $A$ una $\field$ álgebra. Se define el \emph{complejo bar de $A$ de $A-A$ bimódulos}
+	Sea $A$ una $\field$-álgebra. Se define el \emph{complejo bar de $A$ de $A-A$ bimódulos}
 	\begin{align*}
 		\xymatrix{
 			B_{\bullet}A:\ldots \ar[r]^{b'_3} &  A \ox A^{\ox 3} A \ar[r]^{b'_2} & A \ox A^{\ox 2} A \ar[r]^{b'_1}
@@ -45,7 +48,8 @@ proyectivos. La resolución que fue usada en la definición original de homolog�
 		 & \qquad + \sum_{i = 0}^{n -1}(-1)^{i + 1} \ox a_0 \ox \cdots \ox a_i a_{i + 1} \ox \cdots \ox a_n \ox 1 + (-1)^{n + 1} \ox \cdots \ox a_n.
 	\end{align*}
 \end{definition}
-El complejo bar juntos con la multiplicación $m_A: A \ox A \to A$ es una resolución libre de $A$ como $A-A$ bimódulo. Una demostración de este hecho se puede encontrar en \myworries{[CE]}.
+El complejo bar junto con la multiplicación $m_A: A \ox A \to A$ es una resolución libre de $A$ como $A^e$-módulo a izquierda.
+Una demostración de este hecho se puede encontrar en \cite[Capitulo 9]{CE}.
 
 Para calcular los espacios $\Hy_i(A,M)$ aplicamos el funtor $M\ox_{A^e}-$ al complejo bar y obtenemos
 \begin{align*}
@@ -53,11 +57,11 @@ Para calcular los espacios $\Hy_i(A,M)$ aplicamos el funtor $M\ox_{A^e}-$ al com
 		M \ox_{A^e} B_{\bullet}A:\ldots \ar[r]^{id\ox b'_{2}} & M\ox_{A^e}A^{\ox 4} \ar[r]^{id\ox b'_{1}} & M \ox_{A^e}A^{\ox 3} \ar[r]^{id\ox b'_{0}} & M\ox_{A^e}A^{\ox 2} \ar[r] & 0.
 	}
 \end{align*}
-Es posible realizar la siguiente simplificación. Sea
+Es posible realizar la siguiente simplificación. Dado
 \[
-	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) \in  M\ox_{A^e}A^{\ox n}
+	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) \in  M\ox_{A^e}A^{\ox n},
 \]
-y escribamos
+observemos que:
 \begin{align*}
 	m\ox_{A^e}(a_0 \ox \cdots \ox a_n) &= m\ox_{A^e}(a_0 \ox a_{n}^{op}) \cdot (1 \ox a_1 \cdots \ox a_{n -1} \ox 1) \\
 		&=m \cdot(a_0 \ox a_{n}^{op})\ox_{A^e}(1 \ox a_1 \cdots \ox a_{n -1} \ox 1) \\
@@ -71,7 +75,7 @@ Esta igualdad sugiere el siguiente isomorfismo $\field$-lineal
 que identifica $ M\ox_{A^e}A^{\ox n}$ con $M\ox_{A^e}A^{\ox n - 2}$ e induce el siguiente complejo isomorfo
 \begin{align*}
 	\xymatrix{
-		\ldots \ar[r]^{b_3} & M\ox A^{\ox 3} \ar[r]^{b_2}  & M\ox A^{\ox 2} \ar[r]^{b_1} & M \ox A \ar[r]^{b_0} & M \ar[r] & 0.
+		\ldots \ar[r]^(.4){b_3} & M\ox A^{\ox 3} \ar[r]^{b_2}  & M\ox A^{\ox 2} \ar[r]^{b_1} & M \ox A \ar[r]^{b_0} & M \ar[r] & 0.
 	}
 \end{align*}
 donde los diferenciales están dados por
@@ -86,11 +90,11 @@ para todo $n \geq 1$.
 Para calcular la cohomología de Hochschild aplicamos el funtor $\Hom_{A^e}(-,M)$ al complejo bar y obtenemos
 \begin{align*}
 	\xymatrix{
-		\ldots & \Hom_{A^e}\left(A^{\ox 4}, M\right) \ar[l]_{d'_2} & \Hom_{A^e}\left(A^{\ox 3}, M\right) \ar[l]_{d'_1}
+		\ldots & \Hom_{A^e}\left(A^{\ox 4}, M\right) \ar[l]_(.7){d'_2} & \Hom_{A^e}\left(A^{\ox 3}, M\right) \ar[l]_{d'_1}
 			& \Hom_{A^e}\left(A^{\ox 2}, M\right) \ar[l]_{d'_0} & 0 \ar[l],
 	}
 \end{align*}
-donde $d'_n(f) = f \circ b'_n$ para todo $f \in \Hom_{A^e}\left(A^{\ox n + 2}, M\right)$ y para todo $n \geq 0$.
+donde $d'_n(f) = f b'_n$ para todo $f \in \Hom_{A^e}\left(A^{\ox n + 2}, M\right)$ y para todo $n \geq 0$.
 
 Nuevamente es posible realizar una simplificación. Para todo
 $n \geq 0$,
@@ -101,11 +105,11 @@ mediante el isomorfismo que asocia $\varphi \in \Hom_{A^e}\left(A^{\ox (n + 2)},
 \[
 	(a_1 \ox \ldots \ox a_n) \in A^{\ox n} \mapsto \varphi(1 \ox a_1 \ox \ldots \ox a_n \ox 1) \in M.
 \]
-Esto reduce el cálculo de la cohomología de Hochschild al siguiente complejo:
+Esto reduce el cálculo de la cohomología de Hochschild al cálculo de la homología del siguiente complejo:
 \begin{align*}
 	\xymatrix{
-		\ldots & \Hom_{\field}\left(A^{\ox 2}, M\right) \ar[l]_{d_2} & \Hom_{\field}\left(A, M\right) \ar[l]_{d_1}
-			& M \ar[l]_{d_0} & 0 \ar[l],
+		\ldots & \Hom_{\field}\left(A^{\ox 2}, M\right) \ar[l]_(.7){d_2} & \Hom_{\field}\left(A, M\right) \ar[l]_(.45){d_1}
+			& M \ar[l]_(.3){d_0} & 0 \ar[l],
 	}
 \end{align*}
 donde los diferenciales están dados por
@@ -117,46 +121,199 @@ donde los diferenciales están dados por
 \end{align*}
 para todo $f \in \Hom_{\field}\left(A^{\ox n}, M\right)$ y para todo $n \geq 1$.
 
-Calculemos los primeros dos espacios de cohomología.
+A partir de la definición, es claro que si $A$ es proyectivo como $A^e$-módulo, resulta que $\Hy^{n}(A, M) = \Hy_{n}(A,M) = 0$ para todo $n \geq 0$
+y para todo $A^e$-módulo $M$. Por lo tanto, es importante poder determinar cuando $A$ es $A^e$-proyectivo. Al igual
+que en el capitulo \ref{hopf}, llamamos $m_A :A^e \to A$ a la multiplicación del álgebra.
+\begin{prop}
+	El álgebra $A$ es $A^e$-proyectiva si y solo si existe un elemento $e \in A^e$ tal que $m_A(e) = 1$ y
+	$ae = ea$ para todo $a \in A$.
+\end{prop}
+\begin{proof}
+	Supongamos primero que $A$ es un $A^e$-módulo proyectivo. Como el morfismo $m_A$ es sobreyectivo, existe un morfismo
+	$\sigma: A \to A^e$ tal que $m_A \sigma = id_A$. Llamamos $e = \sigma(1)$, luego $m_A(e) = 1$ y
+	$ae = a\sigma(1) = \sigma(a) = \sigma(1)a = ea$ para todo $a \in A$.
+	
+	Ahora supongamos que existe un elemento $e$ perteneciente a $A^e$ que cumple las condiciones del enunciado.
+	Sea $\sigma: A \to A^e$ la función dada por $\sigma(a) = ae$. Debido a que $ae = ea$ para todo $a \in A$, resulta que
+	$\sigma$ es un morfismo de $A^e$-módulos y como $m_A(e) = 1$, entonces $m_A \sigma = id_A$. Veamos que $A$ es
+	$A^e$-proyectivo. Sean $M$ y $N$ dos $A^e$-bimódulos y sean $f:M \to N$ y $g: A \to M$ dos morfismos de $A^e$-módulos,
+	con $f$ sobreyectivo. Como $A^e$ es $A^e$-proyectivo, existe un morfismo $h: A^e \to M$ tal que
+	$fh = gm_A$ y por lo tanto $fh\sigma = g$.
+\end{proof}
+
+\begin{example}
+	Sea $A = M_n(\field)$, el álgebra de matrices cuadradas de tamaño $n$ con coeficientes en un cuerpo $\field$ y 
+	sea $e = \sum_{i = 1}^{n}E_{i1} \ox E_{1i} \in A^e$. Veamos que $e$ verifica las condiciones de la proposición
+	anterior. Dado $B \in A$, resulta que
+	\begin{align*}
+		Be &= \sum_{i = 1}^{n} B E_{i1} \ox E_{1i} = \sum_{i = 1}^{n} \left(\sum_{j = 1}^{n} B_{ji} E_{j1}\right) \ox E_{1i}
+			= \sum_{i = 1}^{n} \sum_{j = 1}^{n} E_{j1}  \ox B_{ji}  E_{1i}\\
+		&= \sum_{j = 1}^{n} \sum_{i = 1}^{n} E_{j1}  \ox   E_{1i} B_{ji} = \sum_{j = 1}^{n} \sum_{i = 1}^{n} E_{j1}  \ox   E_{1i} B_{ji}
+			= \sum_{j = 1}^{n} E_{j1}  \ox    \left(\sum_{i = 1}^{n}E_{1i} B_{ji}\right)\\
+		&= \sum_{j = 1}^{n} E_{j1} \ox E_{1j} B = eB.
+	\end{align*}
+	Por otro lado, $m_A(e) = \sum_{i = 1}^{n}E_{i1} E_{1i} = Id_A$ y por lo tanto $\Hy^{m}( M_n(\field), M)$ y $\Hy_{m}( M_n(\field),M)$
+	son nulos para todo $m \geq 1$ y para todo $ M_n(\field)$-módulo $M$.
+\end{example}
+\begin{example}
+	Sea $A =\field G$, donde $G$ es un grupo finito tal que su cardinal es inversible en $\field$.
+	El elemento $e = \frac{1}{|G|}\sum_{x\in G}x^{-1}\ox x \in A^e$ verifica las condiciones de la proposición anterior
+	y por lo tanto $\Hy^{m}(\field G, M)$ y $\Hy_{m}( \field G,M)$ son nulos
+	para todo $m \geq 1$ y para todo $\field G$-módulo $M$.
+\end{example}
+
+Describamos ahora los primeros dos espacios de cohomología.
 \begin{itemize}
-	\item El grupo $\Hy^{0}(A, M)$ es isomorfo $\Ker(d_0)$.
-	Un elemento $m$ pertenece a $\Ker(d_0)$ si y solo si $a\cdot m - m \cdot a = 0$ para todo $a \in A$. En particular,
+	\item $\Hy^{0}(A, M)$ es isomorfo $\Ker(d_0)$.
+	Un elemento $m$ pertenece a $\Ker\left(d_0\right)$ si y solo si $a\cdot m - m \cdot a = 0$ para todo $a \in A$. En particular,
 	si $M = A$, resulta que $\Hy^{0}(A, A)$ es el centro del álgebra.
 	
-	\item Para obtener una descripción del espacio $\Hy^{1}(A, M)$ vamos a calcular por separado $\Ker(d_1)$
-	e $\Inn(d_0)$. Dado $f \in \Hom_{\field}\left(A, M\right)$, $f$ pertenece a $\Ker(d_1)$ si y solo si
+	\item Para obtener una descripción de $\Hy^{1}(A, M)$ vamos a calcular por separado $\Ker(d_1)$
+	e $\Ima(d_0)$. Dado $f \in \Hom_{\field}\left(A, M\right)$, $f$ pertenece a $\Ker(d_1)$ si y solo si
 	\[
 		0 = d_1(f)(a_1\ox a_2) = a_1\cdot f(a_2) - f(a_1 a_2) + f(a_1)\cdot a_2
 	\]
-	para todo $a_1, a_2 \in A$. Por lo tanto, $\Ker(d_1)$ es el conjunto de \emph{derivaciones} $\Der_{\field}(A, M)$. Por otro lado
+	para todo $a_1, a_2 \in A$. Por lo tanto, $\Ker(d_1)$ es el subespacio de $\Hom_{\field}\left(A, M\right)$
+	cuyos elementos son las \emph{derivaciones}, $\Der_{\field}(A, M)$. Por otro lado
 	la imagen de $d_0$ es el conjunto de \emph{derivaciones interiores} $\Inn_{\field}(A, M)$, es decir, los morfismos de la forma
 	$a \mapsto a\cdot m - m\cdot a$ para algún $m \in M$. Luego $\Hy^{1}(A, M)$ resulta ser isomorfo al conjunto de \emph{derivaciones exteriores}
 	\[
-		\Der_{\field}(A, M) / \Inn(A, M).
+		\Der_{\field}(A, M) / \Inn_{\field}(A, M).
 	\]
-	Notar que si $M = A$, entonces $\Der_{\field}(A) = \Der_{\field}(A,A)$ es un álgebra de Lie e $\Inn(A)$ es un ideal de Lie.
+	Notar que si $M = A$, entonces $\Der_{\field}(A) := \Der_{\field}(A,A)$ es un álgebra de Lie e $\Inn_{\field}(A)$ es un ideal de Lie.
 	Por lo tanto $\Hy^{1}(A, A)$ es un álgebra de Lie.
-	
 \end{itemize}
+\begin{example}
+	Sea $Q$ un carcaj finito y sea $\field Q$ el álgebra de caminos.
+	Sea $A = \field Q / J^2$, donde $J$ es el ideal generado por las flechas.
+	Vamos a probar que si $\Hy^1(A, A)$ es igual	a cero, entonces $Q$ es un árbol. Sea $Q_0 = \lbrace e_1, \ldots, e_n\rbrace$
+	el conjunto de vértices, sea $Q_1 = \lbrace \alpha_1, \ldots, \alpha_r \rbrace$ el conjunto de flechas
+	y llamamos $G$ al grafo que resulta de ignorar el sentido de las flechas en $Q$. Dada una flecha $\alpha$, llamamos
+	$G \setminus \alpha$ al grafo que resulta de eliminar la arista correspondiente.
+	Si $Q$ no es un árbol, entonces existe una flecha $\alpha \in Q_1$ tal que $G \setminus \alpha$ es conexo.
+	Supongamos que $\alpha = \alpha_1$. Sea $\delta : A\to A$ la derivación definida como
+	\begin{align*}
+		\delta(e_i) &= 0 \text{ para todo } i,\text{ }1\leq 1 \leq n,\\
+		\delta(\alpha_1) &= \alpha_1,\\
+		\delta(\alpha_i) &= 0 \text{ para todo } i,\text{ } 2 \leq i \leq r.
+	\end{align*}
+	Si vemos que $\delta$ no es una derivación interior obtendremos el resultado buscado
+	ya que $\Hy^1(A, A)$ es isomorfo a $\Der_{\field}(A, M) / \Inn_{\field}(A, M)$.  Supongamos que
+	$\delta$ es una derivación interior y sea $x \in A$
+	tal que $\delta(a) = ax - xa$ para todo $a \in A$. Escribimos $x = \sum_{i = 1}^{n}\lambda_i e_i + \sum_{j = 1}^r\mu_j \alpha_j$,
+	donde $\lambda_i$ y $\mu_j$ pertenecen a $\field$ para todo $i$ y para todo $j$. Llamamos, para todo $\alpha \in Q_1$,
+	$s(\alpha)$ al vértice donde empieza $\alpha$ y $t(\alpha)$ al vértice donde termina. Como $\delta(a) = ax - xa$ para todo $a \in A$, resulta que
+	\begin{align*}
+		\alpha_1 &= \delta(\alpha_1) = \alpha_1 x - x\alpha_1 = \left(\lambda_{s(\alpha_1)} - \lambda_{t(\alpha_1)}\right)\alpha_1,\\
+		0 &= \delta(\alpha_i) = \alpha_i x - x\alpha_i
+			= \left(\lambda_{s(\alpha_i)} - \lambda_{t(\alpha_i)}\right)\alpha_i \text{ para todo } i, \text{ }2\leq i \leq r.
+	\end{align*}
+	Por lo tanto $\lambda_{s(\alpha_1)} - \lambda_{t(\alpha_1)} = 1$ y $\lambda_{s(\alpha_i)}
+			- \lambda_{t(\alpha_i)} = 0$ para todo $i$, $2\leq i \leq r$. 
+	Como $G \setminus \alpha_1$ es conexo, existe un camino en $G \setminus \alpha_1$ que conecta $s(\alpha_1)$ con $t(\alpha_1)$.
+	Sean $\alpha_{i_1}, \alpha_{i_2}, \ldots, \alpha_{i_k}$ las flechas que componen este camino.
+	\begin{align*}
+		\xymatrix{
+			s(\alpha_1) \ar[rd]^{\alpha_{i_1}} & & & \cdots \ar@{-->}[r]& \cdots\ar[dr]^{\alpha_{i_{k - 1}}} & & t(\alpha_1) \ar[ld]^{\alpha_{i_k}}\\
+			& \cdot & \cdot \ar[l]^{\alpha_{i_2}} \ar[ru]^{\alpha_{i_3}}& & & \cdot &
+		}
+	\end{align*}
+	Al recorrer el camino empezando en $s(\alpha_1)$ podemos asignarle a cada flecha un número, $1$ ó $-1$, según si la flecha apunta en el sentido del
+	recorrido o no, respectivamente. Para cada $j$, llamamos $sg(\alpha_{i_j})$ a este número. Resulta que
+	\[
+		1 = 	\lambda_{s(\alpha_1)} - \lambda_{t(\alpha_1)}
+			= \sum_{j = 1}^{k}sg(\alpha_{i_j})\left(\lambda_{s(\alpha_{i_j})} - \lambda_{t(\alpha_{i_j})}\right)
+				=  \sum_{j = 1}^{k} 0  = 0,
+	\]
+	lo cual es absurdo. Esta contradicción proviene de suponer que $\delta$ es una derivación interior.
+\end{example}
+
+\begin{example}\label{example_x2}
+	Sea $\field$ un cuerpo de característica distinta de $2$ y sea $A = \field[x]/(x^2)$. En este ejemplo vamos
+	a calcular la homología y la cohomología de Hochschild de $A$ con coeficientes en $A$. Consideramos
+	el siguiente complejo de $A^e$-módulos
+	\begin{align*}
+		\xymatrix{
+		\cdots \ar[r] & A^e \ar[r]^{\delta_n} & A^e \ar[r] &\cdots \ar[r] & A^e \ar[r]^{\delta_2} & A^e \ar[r]^{\delta_1}
+			& A^e \ar[r]^{\delta_0} & A^e \ar[r]^{m_A} & A \ar[r] & 0,
+		}
+	\end{align*}	
+	donde $m_A$ es la multiplicación del álgebra y para todo $i \geq 0$, $\delta_{2i}$ es la multiplicación por $ x \ox 1 - 1\ox x$  y
+	$\delta_{2i + 1}$ es la multiplicación por $1 \ox x + x \ox 1$. Veamos que el complejo es una resolución proyectiva de $A$ como $A^e$-módulo.
+	El conjunto $\lbrace 1,x \rbrace$ es una base de $A$ como $\field$-espacio vectorial
+	y por lo tanto $\lbrace 1\ox 1, 1 \ox x, x \ox 1, x \ox x\rbrace$ es una base de $A^e$ como $\field$-espacio vectorial. Resulta que
+	\begin{align*}
+		m_A\left( a \cdot 1\ox 1 + b \cdot 1 \ox x +  c \cdot x \ox 1 + d \cdot x \ox x\right) &= a \cdot 1 + (b + c) \cdot x,\\
+		\delta_{2i}\left( a \cdot 1\ox 1 + b \cdot 1 \ox x +  c \cdot x \ox 1 + d \cdot x \ox x\right) &= a\cdot ( x \ox 1 - 1\ox x)
+			+ (b - c)(x \ox x),\\
+		\delta_{2i + 1}\left( a \cdot 1\ox 1 + b \cdot 1 \ox x +  c \cdot x \ox 1 + d \cdot x \ox x\right) &= a\cdot ( x \ox 1 + 1\ox x)
+			+ (b + c)(x \ox x).
+	\end{align*}
+	A partir de este cálculo es sencillo verificar que el complejo es efectivamente una resolución.
+	Empecemos con el cálculo de la homología de Hochschild. Aplicamos el funtor $A\ox_{A^e}-$ al complejo truncado
+	y obtenemos el siguiente complejo
+	\begin{align*}
+		\xymatrix{
+		\cdots \ar[r] & A\ox_{A^e}A^e \ar[r]^{id \ox \delta_2} & A\ox_{A^e}A^e \ar[r]^{id \ox \delta_1}
+			& A\ox_{A^e}A^e \ar[r]^{id \ox \delta_0} & A\ox_{A^e}A^e \ar[r] & 0,
+		}
+	\end{align*}	
+	que a su vez resulta ser isomorfo al complejo
+	\begin{align*}
+		\xymatrix{
+			\cdots \ar[r] & A \ar[r]^{d_2} & A \ar[r]^{d_1}
+			& A \ar[r]^{d_0} & A \ar[r] & 0,
+		}
+	\end{align*}
+	donde los diferenciales están dados por $d_{2i}(a) = ax - xa = [a, x]$ y $d_{2i + 1}(a) = ax + xa$ para todo $i \geq 0$ y para
+	todo $a \in A$. Es fácil verificar que $\Ker(d_{2i})$ es igual a $A$ y que $\Ima(d_{2i + 1}) = \Ker(d_{2i + 1})$ esta generado por $x$, luego
+	se tienen los siguientes isomorfismos
+	\begin{align*}
+		\Hy_0(A,A) \cong A, \quad \Hy_n(A,A) \cong \field \text{ para todo } n \geq 1.
+	\end{align*}	
+	Continuemos con la cohomología de Hochschild. Aplicamos el funtor $\Hom_{A^e}(-,A)$ a la resolución proyectiva y obtenemos 
+	el siguiente complejo
+	\begin{align*}
+		\xymatrix{
+		\cdots & \Hom_{A^e}(A^e,A) \ar[l]_(.65){\delta_2^{\ast}} & \Hom_{A^e}(A^e,A) \ar[l]_{\delta_1^{\ast}}
+			& \Hom_{A^e}(A^e,A) \ar[l]_{\delta_0^{\ast}} & 0 \ar[l],
+		}
+	\end{align*}	
+	donde $\delta_i^{\ast}(f) = f \delta_i$ para todo $i \geq 0$ y para todo $f \in \Hom_{A^e}(A^e,A)$. A su vez, este nuevo
+	complejo es isomorfo al siguiente complejo
+	\begin{align*}
+		\xymatrix{
+		\cdots & A \ar[l]_{d^2} & A \ar[l]_{d^1}
+			& A \ar[l]_{d^0} & 0 \ar[l],
+		}
+	\end{align*}	
+	donde los diferenciales están dados por $d^{2i + 1} = d_{2i + 1}$ y $d^{2i} = -d_{2i} = 0$. Debido a que los diferenciales
+	son los mismos que para la homología, se tienen los siguientes isomorfismos
+	\begin{align*}
+		\Hy^0(A,A) \cong A, \quad \Hy^n(A,A) \cong \field \text{ para todo } n \geq 1.
+	\end{align*}	
+	Es importante aclarar que si bien los espacios $\Hy^{2i}(A,A)$ y $\Hy^{2i + 1}(A,A)$ son isomorfos a $\field$ para todo $i \geq 1$,
+	el primero está generado por el morfismo $1 \ox 1 \mapsto 1$, mientras que el segundo está generado por el morfismo $1\ox 1 \mapsto x$.
+\end{example}
 
 \section{Estructura de álgebra de Gerstenhaber}\label{hochschild_gerstenhaber}
 
 Sea $A$ una $\field$-álgebra. La cohomología de Hochschild de $A$ con coeficientes en $A$ tiene estructura
-de álgebra graduada super conmutativa y estructura de super álgebra de Lie junto con cierta relación de compatibilidad.
+de álgebra conmutativa graduada y de álgebra de Lie graduada junto con cierta relación de compatibilidad.
 
 \begin{definition}
-	Un \emph{álgebra de Gerstenhaber} es un álgebra graduada super conmutativa $G^{\bullet} = \oplus_{i}G^i$ junto con
+	Un \emph{álgebra de Gerstenhaber} es un álgebra conmutativa graduada $G^{\bullet} = \oplus_{i}G^i$ junto con
 	un corchete $\left[\cdot, \cdot \right]: G^{p} \times G^{q} \to G^{p + q - 1}$
-	tal que $\left(G^{\bullet}, \left[\cdot, \cdot \right]\right)$ es una super álgebra de Lie y para todo $a \in G^{\bullet}$,
+	tal que $\left(G^{\bullet}, \left[\cdot, \cdot \right]\right)$ es una álgebra de Lie graduada y para todo $a \in G^{\bullet}$,
 	el morfismo $b \in G^{\bullet} \mapsto \left[a,b\right] \in G^{\bullet}$
-	es una super derivación con respecto al producto, es decir,
+	es una derivación graduada con respecto al producto, es decir,
 	\[
 		\left[a, b c\right] = \left[a,b\right]c + (-1)^{(\gr(a) - 1)\gr(b)}b\left[a, c\right]
 	\]
 	para todo $a, b, c \in G^{\bullet}$.
 \end{definition}
 
-Empecemos dandole estructura de álgebra graduada a $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$.
+Empecemos dándole estructura de álgebra graduada a $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$.
 \begin{definition}
 	Sean $f \in \Hom_{\field}\left(A^{\ox n}, A\right)$ y $g \in \Hom_{\field}\left(A^{\ox m}\right)$, se define el \emph{producto cup}
 	$f \smile g \in \Hom_{\field}\left(A^{\ox n + m}, A\right)$ como la única transformación $\field$-lineal que cumple que
@@ -165,15 +322,15 @@ Empecemos dandole estructura de álgebra graduada a $\oplus_{n \geq 0}\Hom_{\fie
 	\]
 	para todo $a_1, \ldots, a_{n + m} \in A$.
 \end{definition}
-Los diferenciales del complejo resultan ser super derivaciones con respecto a este producto, es decir, si $f$ y $g$ son dos
-elementos homogeneos de grados $n$ y $m$ respectivamente, entonces
+Los diferenciales del complejo resultan ser derivaciones graduadas con respecto a este producto, es decir, si $f$ y $g$ son dos
+elementos homogéneos de grados $n$ y $m$ respectivamente, entonces
 \[
 	d_{n + m}(f \smile g) = d_{n}(f) \smile g + (-1)^{nm}f \smile d_{m}(g).
 \]
-Esta formula muestra que el producto de dos cociclos es un cociclo y que el producto de un coborde con un cociclo
+Esta fórmula muestra que el producto de dos cociclos es un cociclo y que el producto de un coborde con un cociclo
 es un coborde. Por lo tanto $\Hy^{\bullet}(A,A)$ resulta ser una $\field$-álgebra graduada con el producto inducido por el producto cup.
 
-También existe en $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$ una estructura de super álgebra de Lie.
+También existe en $\oplus_{n \geq 0}\Hom_{\field}\left(A^{\ox n}, A\right)$ una estructura de álgebra de Lie graduada.
 \begin{definition}
 Sean $f \in \Hom_{\field}\left(A^{\ox n}, A\right)$ y $g \in \Hom_{\field}\left(A^{\ox m}\right)$, se define el \emph{asociador}
 entre $f$ y $g$, $f \circ g \in \Hom_{\field}\left(A^{\ox n + m - 1}, A\right)$ como la única transformación $\field$-lineal que cumple que
@@ -191,12 +348,113 @@ Se define el \emph{corchete de Gerstenhaber} entre estos dos elementos como
 
 El producto cup y el corchete de Gerstenhaber hacen de $\Hy^{\bullet}(A, A)$ un álgebra de Gerstenhaber.
 
+\begin{example}
+	Vamos a calcular la estructura de álgebra de Gerstenhaber de la cohomología de Hochschild del álgebra $A = \field[x]/(x^2)$, donde
+	$\field$ es un cuerpo de característica distinta de dos. Si bien para calcular la cohomología podemos usar cualquier resolución proyectiva,
+	el producto cup y el corchete de Gerstenhaber están definidos a partir de la resolución bar. Para transportar la estructura de álgebra
+	de Gerstenhaber de la cohomología calculada a partir de la resolución bar a la cohomología calculada en el Ejemplo \ref{example_x2}
+	es necesario encontrar morfismos de comparación $f$ y $g$ entre las dos resoluciones:
+	\begin{align*}
+		\xymatrix{
+			\cdots \ar[r] &  A^e \ar[r]^{\delta_2} \ar[d]^{f_3} & A^e \ar[r]^{\delta_1} \ar[d]^{f_2}
+				& A^e \ar[r]^{\delta_0} \ar[d]^{f_1} & A^e \ar[r]^{m_A} \ar@{=}[d]^{id_{A\ox A}} & A \ar[r] \ar@{=}[d]^{id_A} & 0\\
+			\cdots \ar[r] & A \ox A^{\ox 3} \ox A \ar[r]^{b_2'} \ar@<1ex>[u]^{g_3} & A \ox A^{\ox 2} \ox A \ar[r]^{b_1'} \ar@<1ex>[u]^{g_2}
+				& A \ox A \ox A \ar[r]^{b_0'} \ar@<1ex>[u]^{g_1} & A^e \ar[r]^{m_A} & A \ar[r] & 0\\
+		}
+	\end{align*}
+	Es sencillo verificar que la sucesión de morfismos de $A^e$-módulos $\lbrace f_{n}: A^e \to A\ox A^{\ox n} \ox A\rbrace_{n \geq 0}$ definida como
+	$f_0 = id_{A\ox A}$ y $f_n(1\ox 1) = 1 \ox x^{\ox n} \ox 1$ para todo $n \geq 1$ resulta ser un morfismo de complejos
+	y un levantado de la identidad. Para todo $n \geq 0$, definimos el morfismo de $A^e$-módulos $g_n: A \ox A^{\ox n} \ox A \to A^e$ como
+	\begin{align*}
+		&g_n(1\ox x^{\ox n}\ox 1) = 1\ox 1,\\
+		&g_n(1\ox a_1 \ox \ldots \ox a_{i - 1} \ox 1 \ox a_{i + 1}\ox \ldots \ox a_n) = 0
+	\end{align*}
+	para todo $i$, $1 \leq i \leq n$ y para todo $a_1, \ldots a_{i - 1}, a_{i + 1}, \ldots a_n \in A$.
+ 	La sucesión $\lbrace g_n \rbrace_{n \geq 0}$ resulta ser un levantado de la identidad. Para encontrar estos morfismos
+	nos basamos en \cite{GGRSV}.
+	
+	Ya estamos en condiciones de calcular el product cup. Debido a que le producto es bilineal, alcanza con calcular
+	los productos entre los elementos de la base de $\Hy^{\bullet}(A,A)$. El espacio $\Hy^{0}(A,A)$ tiene como
+	base al conjunto formado por el morfismo $\alpha_0: 1\ox 1 \mapsto 1$ y el morfismo $\alpha_1: 1\ox 1 \mapsto x$.
+	Denotamos por
+	\[
+		\beta^{2n} : 1\ox 1 \mapsto 1 \in \Hy^{2n}(A, A) \text{ y } \gamma^{2m + 1} : 1\ox 1 \mapsto x\in \Hy^{2m + 1}(A, A)
+	\]
+	a los generadores
+	de sus respectivos espacios de cohomología para todo $n \geq 1$ y para todo $m \geq 0$. Por definición,
+	si $\varphi \in \Hy^{i}(A,A)$ y $\psi \in \Hy^{j}(A,A)$, entonces $\varphi \smile \psi \in \Hy^{i + j}(A,A)$. Por lo tanto,
+	para calcular $\varphi \smile \psi$ necesitamos saber que valor toma en el elemento $1\ox 1$. Resulta que
+	\begin{align*}
+		\varphi \smile \psi(1 \ox 1) &= \left(\varphi g_i \smile \psi g_j\right) f_{i + j}(1 \ox 1)
+			=  \left(\varphi g_i \smile \psi g_j\right)\left(1\ox x^{\ox i + j} \ox 1\right)\\
+		&= \varphi g_i\left(1\ox x^{\ox i} \ox 1\right)\psi g_j\left(1\ox x^{\ox j} \ox 1\right) = \varphi(1 \ox 1)\psi(1 \ox 1)
+	\end{align*}
+	y por lo tanto es sencillo verificar las siguientes igualdades:
+	\begin{center}
+	\begin{tabular}{ c c }
+ 		$\alpha_0 \smile \alpha_0 = \alpha_0$ & $\alpha_1 \smile \beta^{2i} = 0$ \\ 
+ 		$\alpha_0 \smile \alpha_1 = \alpha_1$ & $\alpha_1 \smile \gamma^{2j + 1} = 0$\\  
+ 		$\alpha_0 \smile \beta^{2i} = \beta^{2i}$ & $\beta^{2i} \smile \beta^{2j} = \beta^{2(i + j)}$ \\
+ 		$\alpha_0 \smile \gamma^{2j + 1} = \gamma^{2j + 1}$ & $\beta^{2i} \smile \gamma^{2j + 1} = \gamma^{2(i + j) + 1}$ \\
+ 		$\alpha_1 \smile \alpha_1 = 0$ & $\gamma^{2i + 1} \smile \gamma^{2j + 1} = 0$ \\  
+	\end{tabular}
+	\end{center}
+	para todo $i$ y para todo $j$.
+	
+	Por último vamos a calcular la estructura de álgebra de Lie graduada. Al igual que para el producto, solo es necesario
+	conocer los valores que toma el corchete de Gerstenhaber entre los elementos de la base. Empecemos calculando los asociadores.
+	Si $\varphi \in \Hy^{m}(A,A)$ y $\psi \in \Hy^{n}(A,A)$, resulta que
+	\begin{align*}
+		\varphi \circ \psi(1\ox 1) &= \left(\varphi g_m \circ \psi g_n\right) f_{m + n - 1}(1\ox 1)
+			= \left(\varphi g_m \circ \psi g_n\right) \left(1\ox x^{n + m - 1} \ox 1\right)\\
+		&= \sum_{i = 1}^{m}(-1)^{(i -1)(n - 1)}
+			\varphi g_m\left(1\ox x^{\ox i - 1}\ox \psi g_n\left(1 \ox x^{\ox n} \ox 1\right)\ox x^{\ox m -i}\ox 1\right)\\
+		&= \sum_{i = 1}^{m}(-1)^{(i -1)(n - 1)}\varphi g_m\left(1\ox x^{\ox i - 1}\ox \psi (1\ox 1)\ox x^{\ox m -i}\ox 1\right).
+	\end{align*}
+	Separamos el calculo del asociador en casos.
+	\begin{itemize}
+		\item Si $n$ es par,
+		\begin{align*}
+			\varphi \circ \psi(1\ox 1) &=
+				\sum_{i = 1}^{m}(-1)^{(i -1)}\varphi g_m\left(1\ox x^{\ox i - 1}\ox \psi (1\ox 1)\ox x^{\ox m -i}\ox 1\right),
+		\end{align*}
+		\begin{itemize}
+			\item si $m$ es par,
+				\begin{align*}
+					\varphi \circ \psi(1\ox 1) = 0,
+				\end{align*}
+			\item si $m$ es impar y $\psi(1\ox 1) = 1$,
+				\begin{align*}
+					\varphi \circ \psi(1\ox 1) = 0,
+				\end{align*}
+			\item si $m$ es impar y $\psi(1\ox 1) = x$,
+				\begin{align*}
+					\varphi \circ \psi(1\ox 1) = \varphi(1 \ox 1),
+				\end{align*}
+		\end{itemize}
+	\item si $n$ es impar,
+	\begin{align*}
+		\varphi \circ \psi(1\ox 1) &=
+			\sum_{i = 1}^{m} \varphi g_m\left(1\ox x^{\ox m}\ox 1\right) = m\varphi(1\ox 1).
+	\end{align*}
+	\end{itemize}
+	A partir de este cálculo es fácil verificar las siguientes igualdades:
+	\begin{center}
+	\begin{tabular}{ c c }
+ 		$\left[\alpha_0, \alpha_0\right] = 0$ & $\left[\alpha_1, \beta^{2i}\right] = 0$ \\ 
+ 		$\left[\alpha_0, \alpha_1\right] = 0$ & $\left[\alpha_1, \gamma^{2j + 1}\right] = 0$\\  
+ 		$\left[\alpha_0, \beta^{2i}\right] = 0$ & $\left[\beta^{2i}, \beta^{2j}\right] = 0$ \\
+ 		$\left[\alpha_0, \gamma^{2j + 1}\right] = 0$ & $\left[\beta^{2i}, \gamma^{2j + 1}\right] = 2i\beta^{2(i + j)}$ \\
+ 		$\left[\alpha_1, \alpha_1\right] = 0$ & $\left[\gamma^{2i + 1}, \gamma^{2j + 1}\right] = 2(i - j)\gamma^{2(i + j) + 1}$ \\  
+	\end{tabular}
+	\end{center}
+	para todo $i$ y para todo $j$.
+\end{example}
+
 \section{Sucesiones espectrales}\label{sucesiones_espectrales}
 
-En esta sección daremos una introducción a las sucesiones espectrales que provienen de una filtración de un complejo.
+En esta sección resumiremos algunos resultados sobre sucesiones espectrales que provienen de una filtración de un complejo.
 
-
-\subsection{Definiciones básicas}
 Empecemos considerando el problema de calcular la homología del complejo total $T_{\bullet}$ de un complejo doble
 $E_{\bullet, \bullet}$ de espacios vectoriales, cuyas únicas columnas no necesariamente nulas son  $E_{0, \bullet}$ y $E_{1, \bullet}$.
 \begin{align*}
@@ -215,25 +473,23 @@ $E_{\bullet, \bullet}$ de espacios vectoriales, cuyas únicas columnas no necesa
 \end{align*}
 
 Como primer paso, calculamos la homología vertical $\Hy_{\bullet}(E_{p, \bullet})$ para todo $p$. Denotamos por $E_{p, q}^{1}$
-al espacio vectorial $\Hy_{q}\left(E_{p, \bullet}\right)$ y lo ubicamos en el punto $(p, q)$  de un nuevo reticulado junto con los diferenciales horizontales inducidos. 
+al espacio vectorial $\Hy_{q}\left(E_{p, \bullet}\right)$ y lo ubicamos en el punto $(p, q)$  de un nuevo diagrama junto con los diferenciales horizontales inducidos. 
 
 \begin{align*}
     \xymatrix@=3em{
-        && & & & \\
         & 0 \ar@{-->}[l] & E^1_{0, q + 2} \ar[l]_{d^{h}_{0, q + 2}}
             & E^1_{1,q + 2} \ar[l]_{d^{h}_{1, q + 2}} & 0 \ar[l]_{d^{h}_{2, q + 2}}  & \ar@{-->}[l]\\
         & 0 \ar@{-->}[l] & E^1_{0, q + 1} \ar[l]_{d^{h}_{0, q + 1}} 
             & E^1_{1,q + 1} \ar[l]_{d^{h}_{1, q + 1}} & 0 \ar[l]_{d^{h}_{2, q + 1}} & \ar@{-->}[l]\\
         & 0 \ar@{-->}[l] & E^1_{0, q} \ar[l]_{d^{h}_{0, q}} 
             & E^1_{1,q} \ar[l]_{d^{h}_{1, q}}  & 0 \ar[l]_{d^{h}_{2, q}}  &\ar@{-->}[l]\\
-        & 0  \ar@{-->}[l]  & E^{1}_{0, q - 1} \ar[l]_{d^{h}_{0, q - 1}}  & E^{1}_{1, q - 1} \ar[l]_{d^{h}_{1, q - 1}} & 0 \ar[l]  &  \ar@{-->}[l]\\
-        &&&&&
+        & 0  \ar@{-->}[l]  & E^{1}_{0, q - 1} \ar[l]_{d^{h}_{0, q - 1}}  & E^{1}_{1, q - 1} \ar[l]_{d^{h}_{1, q - 1}} & 0 \ar[l]_{d^{h}_{2, q - 1}}  &  \ar@{-->}[l]
     }
 \end{align*}
 
 Denotamos por $E_{p, q}^2$ al espacio de homología horizontal $\Hy_{p}\left(E_{\bullet, q}^{1}\right)$. El objetivo
 es encontrar, para cada $q$, la relación entre los espacios $E_{0, q + 1}^{2}$,  $E_{1, q}^{2}$ y $H_{q + 1}(T_{\bullet})$.
-Como solo las primeras dos columnas no son nulas, escribimos $(a, b) \in E_{0, q + 1} \times E_{1, q}$ cuando nos referimos
+Como solo las columnas $E_{0, \bullet}$ y $E_{1, \bullet}$ son no necesariamente nulas, escribimos $(a, b) \in E_{0, q + 1} \times E_{1, q}$ cuando nos referimos
 a un elemento de $T_{q + 1}$ y llamamos $d_{\bullet}$ a los diferenciales del complejo total.
 Si $a$ pertenece a $\Ker\left(d_{0,q + 1}^{v}\right)$, resulta que
 \[
@@ -249,19 +505,19 @@ el morfismo $\hat{\iota}$ pasa al cociente y obtenemos un nuevo morfismo inyecti
 \[
     \iota: E_{0, q + 1}^{2} \to H_{q + 1}(T).
 \]
-Por otro lado, el elemento $(a, b)$ pertenece a $\Ker\left(d_{q + 1}\right)$ si y solo si $b$ pertence a $\Ker\left(d_{1, q}^{v}\right)$
+Por otro lado, el elemento $(a, b)$ pertenece a $\Ker\left(d_{q + 1}\right)$ si y solo si $b$ pertenece a $\Ker\left(d_{1, q}^{v}\right)$
 y $d_{0, q + 1}^{v}(a) = - d_{1, q}^{h}(b)$. Esto permite definir un morfismo
 \[
     \pi: [(a, b)] \in \Hy_{q + 1}(T)  \mapsto  [b] \in E_{1, q}^{2}.
 \]
 Es claro que $\Ima(\iota)$ esta incluida en $\Ker(\pi)$. Sea $[(a, b)] \in \Ker(\pi)$, queremos encontrar un elemento $a'$ tal que
 $(a' - a, b)$ pertenezca a $\Ima\left(d_{q + 2}\right)$. Como $\pi([(a, b)]) = 0$, existe $c \in E_{1, q + 1}$ tal que $d_{1, q + 1}^{v}(c) = b$,
-y como $(a, b)$ pertenece a $\ker(d_{q + 1})$, se cumple que
+y como $(a, b)$ pertenece a $\Ker(d_{q + 1})$, se cumple que
 \[
     d_{0, q + 1}^{v}(a) = -d_{1, q}^{h}(b) = -d_{1, q}^{h} d_{1, q + 1}^{v}(c) = d_{0, q + 1}^{v} d_{1, q+ 1}^{h}(c).
 \]
-Por lo tanto $d_{0, q + 1}^{v} \left(a - d_{1, q+ 1}^{h}(c)\right) = 0$ y si llamamos $a' = a - d_{1, q+ 1}^{h}(c)$, obtenemos lo que buscabamos.
-Acabamos de probar que existe la siguiente sucesión exacta corta
+Por lo tanto $d_{0, q + 1}^{v} \left(a - d_{1, q+ 1}^{h}(c)\right) = 0$ y si llamamos $a' = a - d_{1, q+ 1}^{h}(c)$, obtenemos lo que buscábamos.
+Acabamos de probar que hay una sucesión exacta corta
 \begin{align*}
 \xymatrix{
     0 \ar[r] & E_{0, q + 1}^{2} \ar[r]^{\iota} & H_{q + 1}(T) \ar[r]^{\pi} & E_{1, q }^{2} \ar[r] & 0,
@@ -274,9 +530,9 @@ resulta que
 \]
 
 \begin{definition}
-    Una \emph{sucesión espectral de homología (que empieza en a)} en una categoría abeliana $\mathfrak{A}$ consiste de los siguientes objetos:
+    Una \emph{sucesión espectral de homología (que empieza en s)} en una categoría abeliana $\mathfrak{A}$ consiste de los siguientes objetos:
     \begin{itemize}
-        \item Una familia $\left\lbrace E_{p, q}^{r} \right\rbrace$ de objetos de $\mathfrak{A}$ definidos para todo $p, q, r\in \ZZ$, $r\geq a$.
+        \item Una familia $\left\lbrace E_{p, q}^{r} \right\rbrace$ de objetos de $\mathfrak{A}$ definidos para todo $p, q, r\in \ZZ$, $r\geq s$.
         \item Una familia de morfismos  $\left\lbrace d_{p, q}^{r}: E_{p, q}^{r} \to E_{p - r, q + r - 1}^{r} \right\rbrace$ que resultan
         ser diferenciales, es decir $d_{p, q}^{r} \circ d_{p + r, q - r + 1}^{r} = 0$, de manera que la recta de pendiente $-(r + 1)/r$ en el reticulado $E_{\bullet, \bullet}^{r}$ resulte ser un complejo.
         \item Isomorfismos entre $E_{p, q}^{r + 1}$ y la homología de $E^{r}_{\bullet, \bullet}$ en el punto $E_{p, q}^{r}$:
@@ -285,22 +541,22 @@ resulta que
         \]
     \end{itemize}
     El \emph{grado total} de $E_{p, q}^{r}$ es $n = p + q$. Los términos de grado total $n$ yacen en una recta de pendiente $-1$ y cada
-    diferencial hace decrecer el grado total por uno. Llamamos \emph{páginas} a cada reticulado $E_{\bullet, \bullet}^{r}$ para todo $r\geq a$.
+    diferencial hace decrecer el grado total por uno. Llamamos \emph{páginas} a cada reticulado $E_{\bullet, \bullet}^{r}$ para todo $r\geq s$.
 \end{definition}
 
 Una sucesión espectral de homología ubicada en \emph{el primer cuadrante}  es una sucesión espectral tal que $E_{p, q}^{r} = 0$ a menos que
-$p \geq 0$ y $q \geq 0$. Si fijamos $p$ y $q$, entonces $E_{p, q}^{r} = E_{p, q}^{r + 1}$ para todo $r$ los suficientemente grande. Esto se debe
+$p \geq 0$ y $q \geq 0$. Si fijamos $p$ y $q$, entonces $E_{p, q}^{r} = E_{p, q}^{r + 1}$ para todo $r$ suficientemente grande. Esto se debe
 a que eventualmente el dominio de $d^{r}_{p + r, q - r + 1}$ va a estar ubicado en el cuarto cuadrante y el codominio de $d^{r}_{p, q}$ en el segundo cuadrante. Denotamos por $E_{p, q}^{\infty}$ a este valor estable de $E_{p, q}^{r}$.
 
 \begin{definition}
-    Una \emph{sucesión espectral de cohomología (que arranca en a)} en $\mathfrak{A}$ es una familia $\left\lbrace E^{p, q}_{r} \right\rbrace$
+    Una \emph{sucesión espectral de cohomología (que arranca en s)} en $\mathfrak{A}$ es una familia $\left\lbrace E^{p, q}_{r} \right\rbrace$
     de objetos de $\mathfrak{A}$ junto con morfismos $\left\lbrace d^{p, q}_{r}: E^{p, q}_{r} \to E^{p + r, q - r + 1}_{r} \right\rbrace$
     que son diferenciales, es decir $d_r \circ d_r = 0$, e isomorfismos entre $E_{r + 1}$ y la homología de $E_r$.
 \end{definition}
 
 \begin{definition}
-    Una sucesión espectral de homología  se dice \emph{acotada} si para todo $n$ existe una cantidad finita del terminos no nulos de grado total
-    $n$ en $E^{a}_{\bullet,\bullet}$. Recordar que $E^{a}_{\bullet,\bullet}$ es la primer página. Si este es el caso, para cada $p, q$ existe 
+    Una sucesión espectral de homología  se dice \emph{acotada} si para todo $n$ existe una cantidad finita del términos no nulos de grado total
+    $n$ en $E^{s}_{\bullet,\bullet}$. Recordar que $E^{s}_{\bullet,\bullet}$ es la primera página. Si este es el caso, para cada $p, q$ existe 
     un $r_0$ tal que $E_{p, q}^{r} = E_{p, q}^{r_0}$ para todo $r \geq r_0$.
     Denotamos por $E_{p, q}^{\infty}$ a este valor estable de $E_{p, q}^{r}$. Decimos que una sucesión espectral acotada \emph{converge}
     a $\Hy_{\bullet}$ si existe una familia de objetos $\left\lbrace \Hy_{n} \right\rbrace_{n \in \ZZ}$ en $\mathfrak{A}$, cada uno con una
@@ -310,10 +566,10 @@ a que eventualmente el dominio de $d^{r}_{p + r, q - r + 1}$ va a estar ubicado 
             F_{p}\Hy_n \subseteq F_{p + 1}\Hy_n \subseteq \cdots \subseteq F_t \Hy_n = 0
     \]
     tal que $E_{p, q}^{\infty} \cong F_{p}\Hy_{p + q} / F_{p - 1} \Hy_{p + q}$. Si la sucesión espectral $E$ converge a $\Hy_{\bullet}$
-    escribimos $E_{p, q}^{a} \Rightarrow H_{p + q}$.
+    escribimos $E_{p, q}^{s} \Rightarrow H_{p + q}$.
     
     Una sucesión espectral de cohomología  se dice \emph{acotada} si para todo $n$ existe una cantidad finita del terminos no nulos de grado total
-    $n$ en $E_{a}^{\bullet,\bullet}$. Decimos que una sucesión espectral acotada converge a $\Hy^{\bullet}$ si existe una familia de objetos 
+    $n$ en $E_{s}^{\bullet,\bullet}$. Decimos que una sucesión espectral acotada converge a $\Hy^{\bullet}$ si existe una familia de objetos 
     $\left\lbrace \Hy^{n} \right\rbrace_{n \in \ZZ}$ en $\mathfrak{A}$, cada uno con una
     filtración finita
     \[
@@ -323,24 +579,24 @@ a que eventualmente el dominio de $d^{r}_{p + r, q - r + 1}$ va a estar ubicado 
     tal que $E^{p, q}_{\infty} \cong F^{p}\Hy^{p + q} / F^{p + 1} \Hy^{p + q}$.
 \end{definition}
 
-
+$ $\\
 Una \emph{filtración} $F$ de un complejo $C$ es una familia ordenada de subcomplejos de  $C$
 \[
         \cdots \subseteq F_{p - 1}C \subseteq F_{p}C \subseteq \cdots .
 \]
 Como en los cálculos que se harán en esta
-tesis las sucesiones espectrales se estabilizaran en la segunda página, al igual que en el ejemplo introductorio de esta sección,
-omitimos la demostración del siguiente teorema. Ver el capitulo 5 de \myworries{[W]}.
+tesis las sucesiones espectrales se estabilizarán en la segunda página, al igual que en el ejemplo introductorio de esta sección,
+omitimos la demostración del siguiente teorema. Ver el capitulo 5 de \cite{We}.
 
 \begin{Teorema} Una filtración $F$ de un complejo $C$ determina una sucesión espectral que empieza con
-$E_{p, q}^{0} = F_{p} C_{p + q} / F_{p - 1}C_{p + q}$ y continua con $E_{p, q}^{1} = \Hy_{p + q}(E_{p, \bullet}^{0})$.
+$E_{p, q}^{0} = F_{p} C_{p + q} / F_{p - 1}C_{p + q}$ y continúa con $E_{p, q}^{1} = \Hy_{p + q}(E_{p, \bullet}^{0})$.
 \end{Teorema}
 
 Una filtración de un complejo $C$ induce una filtración en la homología de $C$, el espacio $F_p \Hy_{n}(C)$ es la imagen
 del morfismo $\Hy_{n}(F_p C) \to \Hy_{n}(C)$.
 
 \begin{Teorema}
-    Si $C$ un complejo y $F$ una filtración de $C$ acotada, entonces la sucesión espectral es acotada y converge a $\Hy_{\bullet}(C)$:
+    Si $C$ un complejo provisto de una filtración $F$ acotada, entonces la sucesión espectral asociada es acotada y converge a $\Hy_{\bullet}(C)$:
     \[
         E_{p, q}^{1} = H_{p + q}(F_p C / F_{p - 1}(C)) \Rightarrow H_{p + q}(C).
     \]

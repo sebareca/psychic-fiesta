@@ -1,0 +1,23 @@
+\select@language {spanish}
+\contentsline {chapter}{\nameref {introduccion}}{3}{chapter*.2}
+\contentsline {chapter}{\numberline {1}\IeC {\'A}lgebras de Hopf}{6}{chapter.1}
+\contentsline {section}{\numberline {1.1}Definiciones b\IeC {\'a}sicas}{6}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}\IeC {\'A}lgebras y co\IeC {\'a}lgebras}{6}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Bi\IeC {\'a}lgebras}{8}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Notaci\IeC {\'o}n de Sweedler y producto de convoluci\IeC {\'o}n}{10}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}\IeC {\'A}lgebras de Hopf}{10}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}M\IeC {\'o}dulos y com\IeC {\'o}dulos}{12}{subsection.1.1.5}
+\contentsline {subsection}{\numberline {1.1.6}Invariantes y coinvariantes}{14}{subsection.1.1.6}
+\contentsline {subsection}{\numberline {1.1.7}Producto tensorial de m\IeC {\'o}dulos y com\IeC {\'o}dulos}{14}{subsection.1.1.7}
+\contentsline {subsection}{\numberline {1.1.8}M\IeC {\'o}dulo \IeC {\'a}lgebras, com\IeC {\'o}dulo \IeC {\'a}lgebras y productos smash}{15}{subsection.1.1.8}
+\contentsline {subsection}{\numberline {1.1.9}Dimensi\IeC {\'o}n de Gelfand-Kirillov}{16}{subsection.1.1.9}
+\contentsline {section}{\numberline {1.2}\IeC {\'A}lgebras de Nichols}{16}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Espacios vectoriales trenzados y m\IeC {\'o}dulos de Yetter-Drinfeld}{17}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}\IeC {\'A}lgebras de Hopf trenzadas}{18}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Definiciones y ejemplos de \IeC {\'A}lgebras de Nichols}{19}{subsection.1.2.3}
+\contentsline {chapter}{\numberline {2}Preliminares homol\IeC {\'o}gicos}{22}{chapter.2}
+\contentsline {section}{\numberline {2.1}Homolog\IeC {\'\i }a y cohomolog\IeC {\'\i }a de Hochschild}{22}{section.2.1}
+\contentsline {section}{\numberline {2.2}Estructura de \IeC {\'a}lgebra de Gerstenhaber}{27}{section.2.2}
+\contentsline {section}{\numberline {2.3}Sucesiones espectrales}{30}{section.2.3}
+\contentsline {chapter}{\numberline {3}Super plano de Jordan}{34}{chapter.3}
+\contentsline {chapter}{\numberline {A}Reglas de conmutaci\IeC {\'o}n}{35}{appendix.A}

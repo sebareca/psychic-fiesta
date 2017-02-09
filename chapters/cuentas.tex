@@ -5,52 +5,201 @@
 
 \begin{document}
 
-\section{Homología de Hochschild}
-Sea $\mathbf{X}_{\bullet,\bullet}$ el siguiente complejo doble ubicado en el primer cuadrante
+El super plano de Jordan es la $\field$-álgebra $A = \field\left\langle x, y \mid x^2, y^2x - xy^2 - xyx \right\rangle$.
+En este capítulo calcularemos la homología y cohomología de Hochschild de $A$ con coeficientes en la misma
+álgebra. Luego describiremos la estructura de álgebra graduada que tiene $\Hy^{\bullet}(A,A)$ y
+por último calcularemos la estructura de álgebra de Lie de $\Hy^{1}(A, A)$.
+
+El álgebra libre $\field\left\langle x, y \right\rangle$ tiene una graduación tal que el grado $x$ y el grado de $y$ es 1.
+Como el ideal $(x^2, y^2x - xy^2 - xyx)$ es homogéneo con respecto a esta graduación,
+resulta que $A$ es un álgebra graduada. Dado $a \in A$, denotaremos por gr$(a)$ al grado
+de este elemento. Recordemos que $A$ tiene como base al conjunto
+\[
+	\mathcal{B} = \left\lbrace x^{a}(yx)^{b}y^c \mid a \in \lbrace 0, 1 \rbrace, b, c \geq 0\right\rbrace.
+\]
+Todos los cálculos los haremos utilizando esta base, por eso es necesario conocer las reglas de conmutación
+del álgebra que se encuentran en el Apéndice \ref{apendice}.
+
+\section{La resolución proyectiva}
+Si bien la resolución bar es muy útil para probar resultados teóricos, a la hora de realizar cálculos explícitos
+es conveniente trabajar con resoluciones más chicas. Cuando se trata de un álgebra graduada, como es el caso
+del super plano de Jordan, sabemos que existe una resolución minimal. En esta sección construiremos
+una resolución proyectiva minimal de $A$ como $A^e$-módulo utilizando el método desarrollado
+en el articulo \cite{CS}.
+
+Primero debemos definir un sistema de reducción $\mathfrak{R}$ que satisfaga la \emph{condición del diamante}
+para el el ideal $I = \left(x^2, y^2x - xy^2 - xyx\right)$. Fijamos el orden $y < x$ entre las variables, que induce un orden entre
+los monomios de $\field\langle x, y\rangle$ y sea
+\[
+	\mathfrak{R} = \lbrace (x^2, 0), (y^2, xy^2 + xyx) \rbrace
+\]
+el sistema de reducción asociado a este orden y a el ideal $I$. Es claro que, para todo $(s, f) \in \mathfrak{R}$, $f$ es irreducible.
+Nos resta verificar que todas las ambigüedades se resuelven. El conjunto de ambigüedades es $\lbrace x^3, y^2x^2 \rbrace$
+y los siguientes diagramas muestran que ambas ambigüedades se resuelven:
 \begin{align*}
 \xymatrix{
-	& & \\
-	& A \ox k\{x^4\} \ox A \ar[d]^{\delta} \ar@{<--}[u]_{\partial} & A \ox k\{y^2x^4\} \ox A \ar[l]_d \ar[d]^{\delta'} \ar@{<--}[u]_{\partial'} \\
-	& A \ox k\{x^3\} \ox A \ar[d]^{\partial} & A \ox k\{y^2x^3\} \ox A \ar[l]_d \ar[d]^{\partial'} \\
-	& A \ox k\{x^2\} \ox A \ar[d]^{\delta} & A \ox k \{y^2x^2\} \ox A \ar[l]_d \ar[d]^{\delta'} \\
-	A \ox A & A \ox k\{x, y\} \ox A \ar[l]_{d_0} & A \ox k \{y^2x\} \ox A \ar[l]_{d_1} \\
+ 	& x(x^2) \ar[r]& x 0 \ar@{=}[dr]&\\
+	x^3 \ar@{=}[ur] \ar@{=}[dr] & & & 0\\
+	& (x^2)x \ar[r]& 0 x \ar@{=}[ur]&
 }
 \end{align*}
-donde los diferenciales de $A$-bimódulos se definen de la siguiente manera:
 \begin{align*}
-	d_0(1 \ox v \ox 1) &= v \ox 1 - 1 \ox v, \quad\text{ para todo } v \in k\{x, y\}, \\
-	\\
-	d_1(1 \ox y^2x \ox 1) &= y^2 \ox x \ox 1 + y \ox y \ox x + 1 \ox y \ox yx \\
-		&-(xy \ox y \ox 1 + x \ox y \ox y + 1 \ox x \ox y^2) \\
-		&-(xy \ox x \ox 1 + x \ox y \ox x + 1 \ox x \ox yx), \\
-	\\	
-	d(1 \ox y^2x^n \ox 1) &= y^2 \ox x^n \ox 1 - xy \ox x^n \ox 1 - 1 \ox x^n \ox y^2 - 1 \ox x^n \ox yx,\\
-	\\	
-	\delta(1 \ox x^n \ox 1) &= x \ox x^{n -1} \ox 1 + 1 \ox x^{n - 1} \ox x,\\
-	\delta'(1 \ox y^2x^n \ox 1) &= - (x \ox y^2 x^{n -1} \ox 1 + 1 \ox y^2x^{n - 1} \ox x),\\
-	\\	
-	\partial(1 \ox x^n \ox 1) &= x \ox x^{n -1} \ox 1 - 1 \ox x^{n - 1} \ox x,\\
-	\partial'(1 \ox y^2x^n \ox 1) &= -(x \ox y^2 x^{n -1} \ox 1 - 1 \ox y^2x^{n - 1} \ox x). \\
+\xymatrix{
+	& (y^2x)x \ar[r]& (xy^2 + xyx) x \ar@{=}[r]& xy^2x + xyx^2 \ar[r] & x(xy^2 + xyx) \ar[dr]&\\
+	y^2x^2 \ar@{=}[ur] \ar@{=}[dr]& & & & & 0\\
+	& y^2(x^2) \ar[r]& y^2 0 \ar@{=}[rr]& & 0 \ar@{=}[ur] &
+}
 \end{align*}
-
-Aplicamos el funtor $A \ox_{A^e}(-)$ a $\mathbf{X}_{\bullet,\bullet}$ y obtenemos un nuevo
-complejo doble tal que la homología de su complejo total es $HH_*(A)$. El complejo es el siguiente
+Denotamos por $\mathcal{A}_{n}$
+al conjunto de $n$-ambigüedades para todo $n\geq 2$. Es inmediato verificar que $\mathcal{A}_{n} = \lbrace x^{n + 1}, y^{2}x^n\rbrace$.
+Además llamamos $\mathcal{A}_0$
+al conjunto $\lbrace x, y \rbrace$ y $\mathcal{A}_1$ al conjunto $\lbrace x^2, y^2x\rbrace$.
+Ya estamos en condiciones de construir la resolución proyectiva. Consideramos
+el siguiente complejo $P_{\bullet}A$ de $A^e$-módulos
+\begin{align*}
+\xymatrix@=1.5em{
+	P_{\bullet}A: \cdots \ar[r]^{d_{3}} & A \ox \field \mathcal{A}_2 \ox A \ar[r]^{d_2}
+		& A \ox \field \mathcal{A}_1 \ox A \ar[r]^{d_1} \ar[r]
+		& A \ox \field \mathcal{A}_0 \ox A \ar[r]^{d_0} & A\ox A \ar[r] & 0
+}
+\end{align*}
+donde los diferenciales están definidos como
+\begin{align*}
+	d_0(1\ox x \ox 1) &= x \ox 1 - 1 \ox x,\\
+	d_0(1 \ox y \ox 1) &= y \ox 1 - 1\ox y,
+\end{align*}
+\begin{align*}
+	d_1(1\ox x^2 \ox 1) &= x \ox x \ox 1 + 1 \ox x \ox x,\\
+	d_1(1\ox y^2x \ox 1) &= y^2 \ox x \ox 1 + y \ox y \ox x  + 1 \ox y \ox yx\\
+	&\qquad - \left(xy \ox y \ox 1 + x \ox y \ox y + 1 \ox x \ox y^2\right)\\
+	&\qquad - \left(xy \ox x \ox 1 + x \ox y \ox x + 1 \ox x \ox yx\right),\\
+\end{align*}
+\begin{align*}
+	d_n(1\ox x^{n + 1} \ox 1) &= x \ox x^{n} \ox 1 + (-1)^{n + 1} \ox x^{n} \ox x,\\
+	d_n(1\ox y^2x^{n} \ox 1) &= y^2 \ox x^{n} \ox 1 +  (-1)^{n + 1} \ox y^2x^{n - 1} \ox x\\
+	&\qquad - \left(x\ox y^{2}x^{n - 1} \ox 1 + xy \ox x^{n} \ox 1 + 1 \ox x^{n} \ox y^2 + 1 \ox x^{n}\ox yx\right)
+\end{align*}
+para todo $n \geq 2$.
+Veamos que $P_{\bullet}A$ resulta ser una resolución proyectiva de $A$.
+Primero debemos verificar que $m_A d_0 = 0$:
+\begin{align*}
+	m_A d_0(1\ox x \ox 1) &= m_A(x \ox 1 - 1 \ox x) = x - x = 0,\\
+	m_A d_0(1\ox y \ox 1) &= m_A(y \ox 1 - 1 \ox y) = y - y = 0.
+\end{align*}
+Ahora vamos a probar que $P_{\bullet}A$ es efectivamente un complejo:
+\begin{align*}
+	d_0 d_1\left(1\ox x^2 \ox 1\right) &= d_0(x \ox x \ox 1 + 1 \ox x \ox x) = x (x \ox 1 - 1 \ox x)\\
+	&\qquad + (x \ox 1 - 1 \ox x)x\\
+	&= x^2 \ox 1 - x \ox x + x\ox x - 1 \ox x^2 = 0 \ox 1 - 1 \ox 0 = 0,\\
+	d_0 d_1\left(1\ox y^2x \ox 1\right) &= d_1\bigg(y^2 \ox x \ox 1 + y \ox y \ox x  + 1 \ox y \ox yx\\
+	&\qquad - \left(xy \ox y \ox 1 + x \ox y \ox y + 1 \ox x \ox y^2\right)\\
+	&\qquad - \left(xy \ox x \ox 1 + x \ox y \ox x + 1 \ox x \ox yx\right)\bigg)\\
+	&= y^2(x \ox 1 - 1 \ox x) + y(y \ox 1 - 1 \ox y)x  + (y \ox 1 - 1 \ox y) yx\\
+	&\qquad -xy(y \ox 1 - 1 \ox y) - x(y \ox 1 - 1 \ox y)y - (x \ox 1 - 1 \ox x)y^2\\
+	&\qquad -xy(x \ox 1 - 1 \ox x) - x(y \ox 1 - 1 \ox y)x - (x \ox 1 - 1 \ox x)yx\\
+	&= \left(y^2x - xy^2 - xyx\right)\ox 1 - 1 \ox\left(y^2x - xy^2 - xyx\right)  = 0,
+\end{align*}
+\begin{align*}
+	d_1 d_2\left(1 \ox x^3 \ox 1\right) &= d_1(x \ox x^2 \ox 1 - 1 \ox x^2 \ox x)\\
+	&= x(x \ox x \ox 1 + 1 \ox x \ox x) - (x \ox x \ox 1 + 1 \ox x \ox x) x\\
+	&= x^2 \ox x \ox 1 + x \ox x \ox x - x \ox x \ox x + 1 \ox x \ox x^2  = 0,
+\end{align*}
+\begin{align*}
+	d_1 d_2\left(1 \ox y^2x^2 \ox 1\right) &= d_1\bigg(y^2 \ox x^2 \ox 1 - 1 \ox y^2x \ox x - x \ox y^2x \ox 1 - xy\ox x^2 \ox 1 \\
+	&\qquad - 1 \ox x^2\ox y^2 - 1 \ox x^2 \ox yx\bigg)\\
+	&= y^2x \ox  x \ox 1  + y^2 \ox x \ox x - y^2 \ox x \ox x + xy \ox y \ox x \\
+	&\qquad+ x \ox y \ox yx + 1 \ox x \ox y^2x + xy \ox x \ox x - xy^2 \ox x \ox 1\\
+	&\qquad -xy \ox y\ox x - x \ox y \ox yx + x \ox x \ox y^2 + x \ox x \ox yx \\
+	&\qquad - xyx \ox x \ox 1 - xy \ox x \ox x - x \ox x \ox y^2 - 1 \ox x \ox xy^2\\
+	&\qquad - x \ox x \ox yx - 1 \ox x \ox xyx\\
+	&= \left(y^2x - xy^2 - xyx\right) \ox x \ox 1 + 1 \ox x \ox \left(y^2x -xy^2 - xyx\right)\\
+	&= 0,
+\end{align*}
+\begin{align*}
+	d_n d_{n + 1}\left(1\ox x^{n + 2}\ox 1\right) &=
+		d_n\left(x\ox x^{n + 1}\ox 1 + (-1)^{n + 2}\ox x^{n + 1}\ox x\right)\\
+	&= x\left(x \ox x^{n}\ox 1 + (-1)^{n + 1}\ox x^{n}\ox x\right)\\
+	&\qquad + (-1)^{n + 2}\left(x \ox x^{n}\ox 1 + (-1)^{n + 1}\ox x^{n}\ox x\right)x\\
+	&= (-1)^{n + 1}x\ox x^{n}\ox x + (-1)^{n + 2}x\ox x^{n}\ox x = 0,
+\end{align*}
+\begin{align*}
+	d_n d_{n + 1}\left(1\ox y^{2}x^{n + 1} \ox 1\right) &=
+		d_n\bigg(y^2 \ox x^{n + 1} \ox 1 +  (-1)^{n + 2} \ox y^2x^{n} \ox x - x\ox y^{2}x^{n} \ox 1 \\
+	&\qquad - xy \ox x^{n + 1} \ox 1 - 1 \ox x^{n + 1} \ox y^2 - 1 \ox x^{n + 1}\ox yx\bigg)\\
+	&= y^2\ox x^{n} \ox 1 + (-1)^{n + 1}y^{2}\ox x^{n}\ox x\\
+	&\qquad + (-1)^{n + 2}\bigg(y^2 \ox x^{n} \ox x -x \ox y^{2}x^{n - 1}\ox x\\
+	&\qquad - xy \ox x^{n} \ox x - 1 \ox x^n \ox y^2x\bigg) -xy^{2}\ox x^{n} \ox 1\\
+	&\qquad + (-1)^{n + 2}x \ox y^2x^{n - 1}\ox x + x \ox x^{n}\ox y^2\\
+	&\qquad + x\ox x^{n}\ox yx - xyx \ox x^{n} \ox 1 + (-1)^{n + 2}xy \ox x^{n} \ox x\\
+	&\qquad - x \ox x^{n}\ox y^2 + (-1)^{n + 2}\ox x^{n} \ox xy^{2} - x \ox x^{n} \ox yx\\
+	&\qquad + (-1)^{n+ 2} \ox x^{n} \ox xyx\\
+	&= \left(y^2x - xy^2 - xyx\right)\ox x^{n} \ox 1\\
+	&\qquad + (-1)^{n + 1} \ox x^{n} \ox\left(y^2x - xy^2 - xyx\right) = 0.
+\end{align*}
+Llamamos $\delta_n$ a los diferenciales de la resolución de Bardzell del álgebra monomial asociada $\field\langle x,y \rangle/(x^2, y^2x)$. El teorema \cite[4.1]{CS} dice que si $P_{\bullet}A$ es un complejo y para todo $i \geq 0$, los elementos
+que aparecen en la expresión $(d_i - \delta_i) (1 \ox q \ox 1)$ al borrar los tensores, son más chicos en el orden
+inducido por el sistema de reducción, entonces $P_{\bullet}A \to A \to 0$ resulta ser exacto. Como este es el caso
+y todos los $A^e$-módulos que componen la resolución son libres, resulta que $P_{\bullet}A$ es una resolución
+proyectiva. Como la imagen de cada diferencial está contenido en el radical del módulo codominio, la resolución es minimal.
+\section{Homología de Hochschild}
+Para calcular la homología y al cohomología va a ser conveniente pensar a la resolución $P_{\bullet}A$
+como el complejo total del siguiente complejo doble
 \begin{align*}
 \xymatrix{
 	& & \\
-	& A \ox_{A^e} (A \ox k\{x^4\} \ox A) \ar[d]^{id\ox\delta} \ar@{<--}[u]_{id\ox\partial}
-		& A \ox_{A^e} (A \ox k\{y^2x^4\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \ar@{<--}[u]_{id\ox\partial'} \\
-	& A \ox_{A^e} (A \ox k\{x^3\} \ox A) \ar[d]^{id\ox\partial}
-		& A \ox_{A^e} (A \ox k\{y^2x^3\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\partial'} \\
-	& A \ox_{A^e} (A \ox k\{x^2\} \ox A) \ar[d]^{id\ox\delta}
-		& A \ox_{A^e} (A \ox k \{y^2x^2\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \\
-	A \ox_{A^e} (A \ox A) & A \ox_{A^e} (A \ox k\{x, y\} \ox A) \ar[l]_{id\ox d_0} & A \ox k \{y^2x\} \ox A \ar[l]_{id\ox d_1} \\
+	& A \ox \field\{x^4\} \ox A \ar[d]^{\delta} \ar@{<--}[u]_{\partial} & A \ox \field\{y^2x^4\} \ox A \ar[l]_d \ar[d]^{\delta'} \ar@{<--}[u]_{\partial'} \\
+	& A \ox \field\{x^3\} \ox A \ar[d]^{\partial} & A \ox \field\{y^2x^3\} \ox A \ar[l]_d \ar[d]^{\partial'} \\
+	& A \ox \field\{x^2\} \ox A \ar[d]^{\delta} & A \ox \field\{y^2x^2\} \ox A \ar[l]_d \ar[d]^{\delta'} \\
+	A \ox A & A \ox \field\{x, y\} \ox A \ar[l]_{d_0} & A \ox \field \{y^2x\} \ox A \ar[l]_{d_1} \\
+}
+\end{align*}
+donde $A\ox A$ está en la posición $(0,0)$, $A \ox k\{x, y\} \ox A$ está en el lugar $(1,0)$ y así sucesivamente.
+Los diferenciales de $A^e$-módulos son los siguientes:
+\begin{align*}
+	d_0(1 \ox v \ox 1) = v \ox 1 - 1 \ox v, \quad\text{ para todo } v \in k\{x, y\},
+\end{align*}
+\begin{align*}
+	d_1(1 \ox y^2x \ox 1) &= y^2 \ox x \ox 1 + y \ox y \ox x + 1 \ox y \ox yx \\
+		&-(xy \ox y \ox 1 + x \ox y \ox y + 1 \ox x \ox y^2) \\
+		&-(xy \ox x \ox 1 + x \ox y \ox x + 1 \ox x \ox yx),
+\end{align*}
+\begin{align*}
+	d(1 \ox y^2x^n \ox 1) &= y^2 \ox x^n \ox 1 - xy \ox x^n \ox 1 - 1 \ox x^n \ox y^2 - 1 \ox x^n \ox yx \quad n\geq 2,
+\end{align*}
+\begin{align*}	
+	&\delta(1 \ox x^n \ox 1) = x \ox x^{n -1} \ox 1 + 1 \ox x^{n - 1} \ox x,\\
+	&\delta'(1 \ox y^2x^n \ox 1) = - (x \ox y^2 x^{n -1} \ox 1 + 1 \ox y^2x^{n - 1} \ox x) \quad n \geq 2,
+\end{align*}
+\begin{align*}
+	&\partial(1 \ox x^n \ox 1) = x \ox x^{n -1} \ox 1 - 1 \ox x^{n - 1} \ox x,\\
+	&\partial'(1 \ox y^2x^n \ox 1) = -(x \ox y^2 x^{n -1} \ox 1 - 1 \ox y^2x^{n - 1} \ox x) \quad n \geq 3.
+\end{align*}
+Llamamos $X_{\bullet, \bullet}$ a este complejo doble. Los diferenciales están elegidos
+de manera tal que el complejo total de $X_{\bullet, \bullet}$ sea $P_{\bullet}A$. Al
+mirar las columnas, vemos que los diferenciales son muy similares a los diferenciales
+de la resolución proyectiva de $\field\left[x\right]/(x^2)$. Esto se debe
+a que las columnas se corresponden con la relación cuadrática. Por otro lado
+las filas se corresponden con la relación cúbica y son finitas debido a que
+esta relación no produce ambigüedades consigo misma.
+
+Para calcular la homología de Hochschild aplicamos el funtor $A \ox_{A^e}(-)$ al complejo doble $\mathbf{X}_{\bullet,\bullet}$ y obtenemos un nuevo
+complejo doble tal que la homología de su complejo total es isomorfa a $H_{\bullet}(A, A)$. El complejo es el siguiente
+\begin{align*}
+\xymatrix{
+	& & \\
+	& A \ox_{A^e} (A \ox \field\{x^4\} \ox A) \ar[d]^{id\ox\delta} \ar@{<--}[u]_{id\ox\partial}
+		& A \ox_{A^e} (A \ox \field\{y^2x^4\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \ar@{<--}[u]_{id\ox\partial'} \\
+	& A \ox_{A^e} (A \ox \field\{x^3\} \ox A) \ar[d]^{id\ox\partial}
+		& A \ox_{A^e} (A \ox \field\{y^2x^3\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\partial'} \\
+	& A \ox_{A^e} (A \ox \field\{x^2\} \ox A) \ar[d]^{id\ox\delta}
+		& A \ox_{A^e} (A \ox \field \{y^2x^2\} \ox A) \ar[l]_{id\ox d} \ar[d]^{id\ox\delta'} \\
+	A \ox_{A^e} (A \ox A) & A \ox_{A^e} (A \ox \field\{x, y\} \ox A) \ar[l]_(.58){id\ox d_0} & A \ox_{A^e} (A \ox \field \{y^2x\} \ox A) \ar[l]_{id\ox d_1} \\
 }
 \end{align*}
 Identificando de manera natural $A \ox_{A^e} (A \ox W \ox A)$ con $A \ox W$ para todo espacio vectorial $W$ resulta
 el complejo doble
 \begin{align*}
-\xymatrix{
+\xymatrix@=2em{
 	& & \\
 	& A \ar[d]^{\delta} \ar@{--}[u]_{\partial} & A\ar[l]_{d} \ar[d]^{-\delta} \ar@{--}[u]_{-\partial} \\
 	& A \ar[d]^{\partial} & A \ar[l]_{d} \ar[d]^{-\partial} \\
@@ -60,57 +209,57 @@ el complejo doble
 \end{align*}
 con los siguientes diferenciales $k$-lineales
 \begin{align*}
-&d_0(a,b) = \left[a,x\right] + \left[b,y\right(],\\
-&d_1(a) = (\left[a,y^2\right] - (axy + yxa), \left[x,a\right]y + y\left[x,a\right] - xax),\\
-&d(a) = \left[a,y^2\right] - (axy + yxa),\\
+&d_0(a,b) = \left[a,x\right] + \left[b,y\right],\\
+&d_1(a) = \left([a,y^2] - (axy + yxa), [x,a]y + y\left[x,a\right] - xax\right),\\
+&d(a) = [a,y^2] - (axy + yxa),\\
 &\overline{\delta}(a) = (ax + xa, 0),\\
 &\delta(a) = ax + xa,\\
 &\partial(a) = \left[a, x\right].
 \end{align*}
-Para calcular la homología de Hochschild vamos a utilizar una sucesión espectral inducida por la filtración por columnas del bicomplejo.
-Denotamos por $E$ a la sucesión espectral.
-
+Para calcular la homología total de este complejo vamos a utilizar la sucesión espectral inducida por la filtración por columnas.
+Denotamos por $E_{\bullet, \bullet}^{r}$ a la sucesión espectral.
 
 \subsection{Primera página}
 Para poder calcular los espacios de homología de la primera página de la sucesión espectral
-vamos a necesitar saber qué valores toman los morfismos $overline{\delta}$, $\delta$ y $\partial$
+vamos a necesitar saber qué valores toman los morfismos $\overline{\delta}$, $\delta$ y $\partial$
 en los elementos de la base $\base$.
 
 Empecemos con $\delta$. Sea $z = x^a(yx)^by^c \in \base$, luego $\delta(z) = x^a(yx)^by^cx + x^{a + 1}(yx)^by^c$. Nos va a
-resultar conveniente escribir esta última expresión como combinación lineal de elementos de $\base$. Para eso vamos a necesitar considerar
+resultar conveniente escribir esta última expresión como combinación lineal de elementos de $\base$ usando
+las reglas de conmutación demostradas en el Apéndice. Para eso vamos a necesitar considerar
 diferentes casos.
 \begin{itemize}
-\item Si $a = 0$ y $c = 2k$,
-\begin{align*}
-	\delta(z) &= (yx)^by^{2k}x + x(yx)^by^{2k} = (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) + x(yx)^by^{2k} \\
-	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} + x(yx)^by^{2k}. 
-\end{align*}
-\begin{itemize}
-\item Si $b = 0$,
-\[
-	\delta(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}.
-\]
-\item Si $b \geq 1$, como $x^2 = 0$,
-\begin{align*}
-	\delta(z) &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}(yx)x(yx)^{k - i}y^{2i} + x(yx)^by^{2k} \\
-	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}yx^2(yx)^{k - i}y^{2i} + x(yx)^by^{2k} = x(yx)^by^{2k}.
-\end{align*}
-\end{itemize}
-\item Si $a = 0$ y $c = 2k + 1$,
-\begin{align*}
-	\delta(z) &= (yx)^by^{2k + 1}x + x(yx)^by^{2k + 1} \\
-	&= (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}(yx)^{k - i + 1}y^{2i}\right) + x(yx)^by^{2k + 1} \\
-	&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1}.
-\end{align*}
-\item Si $a = 1$ y $c = 2k$,
+	\item Si $a = 0$ y $c = 2k$,
 	\begin{align*}
-		\delta(z) &= x(yx)^by^{2k}x + x^2(yx)^by^c = x(yx)^by^{2k}x \\
-		&= x(yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) \\
-		&= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^bx(yx)^{k - i}y^{2i}. \\
-		& = 0,
+		\delta(z) &= (yx)^by^{2k}x + x(yx)^by^{2k}
+			= (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) + x(yx)^by^{2k} \\
+		&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} + x(yx)^by^{2k}. 
 	\end{align*}
-	ya que como $x^2 = 0$, resulta que $x(yx)^bx = 0$ para todo $b \geq 0$.
-\item Si $a = 1$ y $c = 2k + 1$
+	\begin{itemize}
+		\item Si $b = 0$,
+		\[
+			\delta(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}.
+		\]
+		\item Si $b \geq 1$, como $x^2 = 0$,
+		\begin{align*}
+			\delta(z) &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}(yx)x(yx)^{k - i}y^{2i} + x(yx)^by^{2k} = x(yx)^by^{2k}.
+		\end{align*}
+	\end{itemize}
+	\item Si $a = 0$ y $c = 2k + 1$,
+	\begin{align*}
+		\delta(z) &= (yx)^by^{2k + 1}x + x(yx)^by^{2k + 1} \\
+		&= (yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}(yx)^{k - i + 1}y^{2i}\right) + x(yx)^by^{2k + 1} \\
+		&= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1}.
+	\end{align*}
+	\item Si $a = 1$ y $c = 2k$,
+		\begin{align*}
+			\delta(z) &= x(yx)^by^{2k}x + x^2(yx)^by^c = x(yx)^by^{2k}x \\
+			&= x(yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i}\right) \\
+			&= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^bx(yx)^{k - i}y^{2i}. \\
+			& = 0,
+		\end{align*}
+		ya que como $x^2 = 0$, resulta que $x(yx)^bx = 0$ para todo $b \geq 0$.
+	\item Si $a = 1$ y $c = 2k + 1$
 	\begin{align*}
 		\delta(x) &= x(yx)^by^{2k + 1}x = x(yx)^b\left( \sum_{i = 0}^k\frac{k!}{i!}(yx)^{k - i + 1}y^{2i}\right) \\
 		&= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}.
@@ -145,12 +294,12 @@ Como
 \begin{align*}
 	\eta_k &= \sum_{i = 0}^{k}\frac{k!}{i!}x(yx)^{k - i}y^{2i} + xy^{2k}
 		= \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i} + 2xy^{2k} \\
-	&\hspace{100pt}= \sum_{i = 0}^{k -1}\frac{k!}{i!}\theta_{k - i, i} + 2xy^{2k}
+	&\hspace{100pt}= \sum_{i = 0}^{k -1}\frac{k!}{i!}\theta_{k - i - 1, i} + 2xy^{2k}
 \end{align*}
-y la característica de $\field$ es cero, resulta que $xy^{2k}$ pertenece a $\Ima(\delta)$ para todo $k \geq 0$. Por otro lado,
+y la característica de $\field$ es 0, resulta que $xy^{2k}$ pertenece a $\Ima(\delta)$ para todo $k \geq 0$. Por otro lado,
 \begin{align*}
 	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}
-		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i + 1, i}.
+		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i, i}.
 \end{align*}
 Por lo tanto
 \begin{align*}
@@ -174,24 +323,29 @@ es una base de $\Ima(\overline{\delta})$.
 \end{proof}
 
 Nos resta calcular los valores que toma $\partial$ en los elementos de la base y obtener una base de su imagen.
-Calculemos $\partial(z)$ para $z = x^a(yx)^by^c \in \mathcal{B}$. Como \[\partial(z) = x^a(yx)^by^cx - x^{a + 1}(yx)^by^c,\] resulta que
+Calculemos $\partial(z)$ para $z = x^a(yx)^by^c \in \mathcal{B}$. Como
+\[
+	\partial(z) = x^a(yx)^by^cx - x^{a + 1}(yx)^by^c,
+\]
+resulta que
 \begin{itemize}
-\item si $a = 0$ y $c = 2k$,
-	\begin{align*}
-		\partial(z) &= (yx)^by^{2k}x - x(yx)^by^{2k} = \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} - x(yx)^by^{2k}.
-	\end{align*}
-	\begin{itemize}
-	\item Si $b = 0$,
+	\item si $a = 0$ y $c = 2k$,
 		\begin{align*}
-			\partial(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} - xy^{2k} = \sum_{i = 0}^{k - 1}\frac{k!}{i!}x(yx)^{k - i}y^{2i}.
+			\partial(z) &= (yx)^by^{2k}x - x(yx)^by^{2k}
+				= \sum_{i = 0}^k\frac{k!}{i!}(yx)^bx(yx)^{k - i}y^{2i} - x(yx)^by^{2k}.
 		\end{align*}
-	\item Si $b \geq 1$, usando nuevamente que $x^2 = 0,$
-		\begin{align*}
-			\partial(z) &= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b-1}(yx)x(yx)^{k - i}y^{2i} - x(yx)^by^{2k} \\
-			&=  -x(yx)^by^{2k}.
-		\end{align*}
-	\end{itemize}
-\item Si $a = 0$ y $c = 2k + 1$,
+		\begin{itemize}
+			\item Si $b = 0$,
+			\begin{align*}
+				\partial(z) = \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{k - i}y^{2i} - xy^{2k}
+					= \sum_{i = 0}^{k - 1}\frac{k!}{i!}x(yx)^{k - i}y^{2i}.
+			\end{align*}
+			\item Si $b \geq 1$, usando nuevamente que $x^2 = 0,$
+			\begin{align*}
+				\partial(z) = -x(yx)^by^{2k}.
+			\end{align*}
+		\end{itemize}
+		\item Si $a = 0$ y $c = 2k + 1$,
 	\begin{align*}
 		\partial(z) &= (yx)^by^{2k + 1}x - x(yx)^by^{2k + 1}
 			= \sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} - x(yx)^by^{2k + 1}.
@@ -233,12 +387,13 @@ Llamamos como antes
 \end{align*}
 Como $k - i \geq 1$ para todo $i$,  $0 \leq i \leq k -1$, entonces
 \begin{align*}
-	\eta_{k - 1} &= \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i} = \sum_{i = 0}^{k-1}\frac{k!}{i!}\theta_{k-1,i}.
+	\eta_{k - 1} &= \sum_{i = 0}^{k-1}\frac{k!}{i!}x(yx)^{k - i}y^{2i}
+		= \sum_{i = 0}^{k-1}\frac{k!}{i!}\theta_{k - 1 - i,i}.
 \end{align*}
 Por otro lado como $b + k - i + 1 \geq 1$ para todo $i$, $0 \leq i \leq k$, entonces
 \begin{align*}
 	\mu_{b,k} &= \sum_{i = 0}^k\frac{k!}{i!}x(yx)^{b + k - i + 1}y^{2i}
-		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i + 1, i}.
+		= \sum_{i = 0}^k\frac{k!}{i!}\theta_{b + k - i, i}.
 \end{align*}
 Luego el conjunto
 \begin{align*}
@@ -268,7 +423,7 @@ Ya estamos en condiciones de calcular la primera página de la sucesión espectr
 \end{proof}
 Vamos a identificar a $E_{1,0}^1 = \frac{A \oplus A}{\Ima(\overline{\delta})}$ con $\frac{A}{\Ima(\delta)} \oplus A$
 y vamos escribir a los elementos $\left[\left(a, b\right)\right] \in E_{1,0}^1$ como $\left(\left[a\right], \left[b\right]\right)$ para poder
-trabajar más fácil con cada coordenada por separado.
+trabajar más fácilmente con cada coordenada por separado.
 \begin{prop}
 	El espacio vectorial $E_{2,0}^1 = \frac{A}{\Ima(\delta)}$ tiene como base al conjunto
 	\begin{align*}
@@ -276,30 +431,28 @@ trabajar más fácil con cada coordenada por separado.
 	\end{align*}
 \end{prop}
 \begin{proof}
-	Se deduce con un razonamiento análogo al anterior.
+	Se deduce mediante un razonamiento análogo al anterior.
 \end{proof}
 \begin{prop}
-	Los espacios vectoriales
-	\begin{align*}
-		E_{1,2i + 1}^1 = E_{2, 2i + 1}^1 = \frac{\Ker(\delta)}{\Ima(\partial)}
-	\end{align*}
+	Los espacios vectoriales $E_{1,2i + 1}^1 \cong E_{2, 2i + 1}^1$
 	tienen como base al conjunto $\left\{ \left[xy^{2n}\right] \ :\ n \geq 0\right\}$ , para todo $i \geq 0$.
 \end{prop}
 \begin{proof}
-	Es claro que el núcleo y la imagen de $\delta$ coinciden respectivamente con el núcleo
-	y la imagen de $-\delta$. Lo mismo ocurre con los morfismos
-	$\partial$ y $-\partial$. Luego $E_{1,2i + 1}^1 = E_{2, 2i + 1}^1$, para todo $i \geq 0$.
-	Sea $z \in \Ker(\delta)$, como $\delta(w) = 0$ o $\gr(\delta(w)) = \gr(w) + 1$ para todo $w \in A$
+	Es claro que el núcleo y la imagen de $\delta:E^{0}_{1,2i + 1} \to E^{0}_{1, 2i}$ son isomorfos, respectivamente, al núcleo
+	y la imagen de $-\delta:E^{0}_{2,2i + 1} \to E^{0}_{2, 2i}$. Lo mismo ocurre con los morfismos
+	$\partial$ y $-\partial$. Además $\Ker(\delta)$ es igual a $\Ker(\overline{\delta})$
+	y luego $E_{1,2i + 1}^1$ es isomorfo $E_{2, 2i + 1}^1$, para todo $i \geq 0$.
+	Sea $z \in \Ker(\delta)$, como $\delta(w) = 0$ ó $\gr(\delta(w)) = \gr(w) + 1$ para todo $w \in A$
 	y las relaciones que definen a $A$ son homogéneas, podemos suponer que $z$ es homogéneo.
-	Separamos el cálculo de $z$ según la paridad de su grado.
+	Separamos el cálculo según la paridad del grado de $z$.
 	\begin{itemize}
 		\item Si $\gr(z) = 2n$, entonces
 		\begin{align*}
 			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l} + \sum_{i = 1}^n\beta_ix(yx)^{n - i}y^{2i - 1}.
 		\end{align*}
-		Por la Proposición \ref{impartial}, $x(yx)^{n - i}y^{2i - 1} - \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j}$
+		Por la Proposición \ref{impartial}, sabemos que $x(yx)^{n - i}y^{2i - 1} - \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j}$
 		pertenece a la imagen de $\partial$ para todo $1 \leq i \leq n$.
-		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
+		Por lo tanto, reduciendo módulo bordes, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
 		Si $z$ pertenece al núcleo de $\delta$, entonces
 		\begin{align*}
 			0 &= \delta(z) = \delta\left(\sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}\right) = \sum_{l = 0}^n\alpha_l\delta((yx)^{n - l}y^{2l}) \\
@@ -318,8 +471,8 @@ trabajar más fácil con cada coordenada por separado.
 		\begin{align*}
 			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \sum_{l = 0}^n\beta_lx(yx)^{n - l}y^{2l}.
 		\end{align*}
-		Por la Proposición \ref{impartial}, $x(yx)^{n - l}y^{2l} \in \Ima(\partial)$ para todo $0 \leq l \leq n - 1$.
-		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \beta xy^{2n}$.
+		La Proposición \ref{impartial}, asegura que $x(yx)^{n - l}y^{2l} \in \Ima(\partial)$ para todo $0 \leq l \leq n - 1$.
+		Por lo tanto, reduciendo módulo bordes, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \beta xy^{2n}$.
 		Si $z$ pertenece a el núcleo de $\delta$, entonces
 		\begin{align*}
 			0 &= \delta(z) = \sum_{l = 0}^n\alpha_l\delta((yx)^{n - l}y^{2l + 1}) + \beta \delta(xy^{2n}) \\
@@ -341,10 +494,7 @@ trabajar más fácil con cada coordenada por separado.
 		Por lo tanto $\lambda = 0$ y el conjunto $\left\{ [xy^{2n}] \ :\ n \geq 0\right\}$ es una base de $\frac{\Ker(\delta)}{\Ima(\partial)}$.	 
 \end{proof}
 \begin{prop}
-	Para todo $i \geq 1$, los espacios vectoriales
-	\begin{align*}
-		E_{1,2i}^1 = E_{2, 2i}^1 = \frac{\Ker(\partial)}{\Ima(\delta)}
-	\end{align*}
+	Para todo $i \geq 1$, los espacios vectoriales $E_{1,2i}^1 \cong E_{2, 2i}^1$
 	tienen como base al conjunto $\left\{ \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \ :\ n \geq 0\right\}$.
 \end{prop}
 \begin{proof}
@@ -355,9 +505,9 @@ trabajar más fácil con cada coordenada por separado.
 		\begin{align*}
 			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l} + \sum_{i = 1}^n\beta_ix(yx)^{n - i}y^{2i - 1}.
 		\end{align*}
-		Por la Proposición \ref{imdelta}, $x(yx)^{n - i}y^{2i - 1} + \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j} \in \Ima(\delta)$
+		Debido a la Proposición \ref{imdelta}, sabemos que $x(yx)^{n - i}y^{2i - 1} + \sum_{j = 0}^{i - 1}\frac{(i-1)!}{j!}(yx)^{n - j}y^{2j} \in \Ima(\delta)$
 		para todo $1 \leq i \leq n$.
-		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
+		Por lo tanto, reduciendo módulo bordes, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l}$.
 		Si $z \in \Ker(\partial)$, entonces
 		\begin{align*}
 			0 &= \sum_{l = 0}^n\alpha_l\partial((yx)^{n - l}y^{2l})
@@ -374,7 +524,7 @@ trabajar más fácil con cada coordenada por separado.
 			z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1} + \sum_{l = 0}^n\beta_lx(yx)^{n - l}y^{2l}.
 		\end{align*}
 		Por la Proposición \ref{imdelta}, $x(yx)^{n - l}y^{2l} \in \Ima(\delta)$ para todo $l$, $0 \leq l \leq n$.
-		Por lo tanto, reduciendo módulo borde, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1}$.
+		Nuevamente reduciendo módulo bordes, podemos suponer que $z = \sum_{l = 0}^n\alpha_l(yx)^{n - l}y^{2l + 1}$.
 		Si $z$ pertenece al núcleo de $\partial$, entonces
 		\begin{align*}
 			0 &= \sum_{l = 0}^n\alpha_l\partial((yx)^{n - l}y^{2l + 1})
@@ -382,9 +532,9 @@ trabajar más fácil con cada coordenada por separado.
 			&= \sum_{l = 0}^n\sum_{i = 0}^l\alpha_l\frac{l!}{i!}(yx)^{n - i + 1}y^{2i} - \sum_{l = 0}^n\alpha_lx(yx)^{n - l}y^{2l + 1}.
 		\end{align*}
 		En particular $\sum_{l = 0}^n\alpha_lx(yx)^{n - l}y^{2l + 1} = 0$ y por lo tanto $\alpha_l = 0$ para todo $0 \leq l \leq n$.
-		Luego
+		Luego $E_{1,2i}^1 \cong E_{2, 2i}^1$ y están generados por el conjunto
 		\[
-			E_{1,2i}^1 = E_{2, 2i}^1 = \left\langle \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \ :\ n \geq 0\right\rangle.
+			\left\lbrace \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] \ :\ n \geq 0\right\rbrace.
 		\]
 	\end{itemize}
 	Nuevamente para verificar que estos generadores forman una base alcanza con probar que para  todo $n \geq 0$,
@@ -408,11 +558,11 @@ El siguiente diagrama describe la primera página de la sucesión espectral:
 		& \left\langle \left[(yx)^by^c\right] \right\rangle \ar[l]_{d_1^{(1)}} \ar@{--}[u] \\
 }
 \end{align*}
-donde $d_0^{(1)}$, $d_1^{(1)}$ y $d^{(1)}$ son los morfismos inducidos en la homología por $d_0$, $d_1$ y $d$ respectivamente.
+donde $d_0^{(1)}$, $d_1^{(1)}$ y $d^{(1)}$ son los morfismos inducidos en la homología por $d_0$, $d_1$ y $d$, respectivamente.
 
 
 
-\subsection{Segunda Página}
+\subsection{Segunda página}
 Debido a la forma del complejo doble, la sucesión espectral se estaciona rápidamente y $E^2 = E^{\infty}$. Para el cálculo de la segunda página procederemos de igual manera que para la primera. Calcularemos
 qué valores toman los morfismos $d_0^{(1)}, d_1^{(1)}$ y $d^{(1)}$ en los elementos de las bases correspondientes y luego obtendremos una descripción
 de las imágenes de estos morfismos. Por último calcularemos las homologías en cada lugar.
@@ -427,7 +577,7 @@ de las imágenes de estos morfismos. Por último calcularemos las homologías en
 		&= \left[ xy^{2n}, y^2 \right] = \left[x, y^2 \right]y^{2n} + x\left[y^{2n}, y^2\right] =  \left[x, y^2 \right]y^{2n} \\
 		&= (xy^2 - y^2x)y^{2n} = (-xyx)y^{2n}. 
 	\end{align*}
-	Luego $d(xy^{2n}) \in \Ima(\partial)$ y por lo tanto $d^{(1)}(\left[xy^{2n}\right]) = 0$
+	Luego $d(xy^{2n}) \in \Ima(\partial)$ y por lo tanto $d^{(1)}(\left[xy^{2n}\right]) = 0$.
 	\end{proof}
 \begin{prop}  \label{prop_imad1par}
 Para todo $k \geq 1$, el morfismo $d^{(1)}: E_{2, 2k}^1 \to E_{1, 2k}^1$ es nulo.
@@ -442,8 +592,8 @@ Para todo $k \geq 1$, el morfismo $d^{(1)}: E_{2, 2k}^1 \to E_{1, 2k}^1$ es nulo
 			Luego $d(w) \in \Ima(\delta)$ y $d^{(1)}(\left[w\right]) = 0$.
 			De hecho, utilizando la notación de la demostración de la Proposición \ref{imdelta}, resulta que
 			$d(w) = -\lambda_{0,0}$.
-		\item Si $n \geq 1$ podemos suponer que $n = m + 1$, donde $m \geq 0$. Debido a la Proposición \ref{cp_conmutatividad}
-		del Apéndice
+		\item Si $n \geq 1$ podemos suponer que $n = m + 1$, donde $m \geq 0$. Usando en la última
+		igualdad la Proposición \ref{cp_conmutatividad}, deducimos que
 			\begin{align*}
 				w &= \sum_{l = 0}^{m + 1} \frac{(m + 1)!}{l!}(yx)^{m + 1 - l}y^{2l}
 					= \left((m + 1)\sum_{l = 0}^m\frac{m!}{l!}(yx)^{m + 1 - l}y^{2l}\right) + y^{2m + 2} \\
@@ -477,10 +627,10 @@ Para todo $k \geq 1$, el morfismo $d^{(1)}: E_{2, 2k}^1 \to E_{1, 2k}^1$ es nulo
 			\begin{align*}
 				d^{(1)}(\left[w\right]) &=
 					-\sum_{j = 0}^m(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				&\hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right]
+				&\qquad -\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right]
 						- \left[yxy^{2m + 2}\right]\\
 				&= -\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right]			
+				& \qquad-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right].			
 			\end{align*}
 			Como $\sum_{i = 0}^k\frac{k!}{i!}(yx)^{b + k - i + 1}y^{2i} + x(yx)^by^{2k + 1} \in \Ima(\delta)$
 			para todo $b,k \geq 0$, eligiendo $k = l$, $b = m - l + 1$, obtenemos que
@@ -491,39 +641,39 @@ Para todo $k \geq 1$, el morfismo $d^{(1)}: E_{2, 2k}^1 \to E_{1, 2k}^1$ es nulo
 			%& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right] \\
 			\begin{align*}
 				d^1(\left[w\right]) &=
-					\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt}-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right] \\
+					\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]
+				-\sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}\left[x(yx)^{m - l + 1}y^{2l + 1}\right] \\
 				&=-\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt} + \sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}
+				& \qquad + \sum_{l = 0}^{m + 1}\frac{(m + 1)!}{l!}
 					\left(\sum_{j = 0}^l\frac{l!}{j!}\left[(yx)^{m - j + 2}y^{2j}\right]\right) \\
 				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt} + \sum_{l = 0}^{m + 1}\sum_{j = 0}^{l}\frac{(m + 1)!}{j!}
+				& \qquad + \sum_{l = 0}^{m + 1}\sum_{j = 0}^{l}\frac{(m + 1)!}{j!}
 					\left[(yx)^{m - j + 2}y^{2j}\right]\\
 				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt} + \sum_{j = 0}^{m + 1}\sum_{l = j}^{m + 1}\frac{(m + 1)!}{j!}
+				& \qquad + \sum_{j = 0}^{m + 1}\sum_{l = j}^{m + 1}\frac{(m + 1)!}{j!}
 					\left[(yx)^{m - j + 2}y^{2j}\right]\\
 				&= -	\sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}\left[(yx)^{m -j + 2}y^{2j}\right]\\
-				& \hspace{70pt} + \sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}
+				& \qquad + \sum_{j = 0}^{m + 1}(m - j + 2)\frac{(m + 1)!}{j!}
 					\left[(yx)^{m - j + 2}y^{2j}\right]\\
 				&= 0.
 			\end{align*}	 
 	\end{itemize}
 \end{proof}
 
-El siguiente paso va a ser calcular que valores toma $d_1^{(1)}$ en los elementos de la base de $E^1_{2, 0}$. Llamemos
+El siguiente paso va a ser calcular qué valores toma $d_1^{(1)}$ en los elementos de la base de $E^1_{2, 0}$. Llamemos
 $f$ a la composición de $d_1$ con la proyección en la primera coordenada y llamemos $g$ a la composición de $d_1$ con la proyección en la segunda coordenada, de modo que
 \[
 	d_1(a) =  \left(\left[a,y^2\right] - (axy + yxa), \left[x,a\right]y + y\left[x,a\right] - xax\right) = (f(a), g(a)), \text{ para todo } a \in A.
 \]
-Para no complicar la notación notaremos $f$ al morfismo inducido por $f$ en la homología. Lo mismo haremos con $g$.
-Empecemos calculando que valores toma $f$ en los elementos de la base de $E^1_{2, 0}$. Sean $b, c \geq 0$ y $z = (yx)^by^c$, de modo que $\left[z\right]$
+Para no complicar la notación seguiremos llamando $f$ al morfismo inducido por $f$ en la homología. Lo mismo haremos con $g$.
+Empecemos calculando qué valores toma $f$ en los elementos de la base de $E^1_{2, 0}$. Sean $b, c \geq 0$ y $z = (yx)^by^c$, de modo que $\left[z\right]$
 sea un elemento de la base de $E^1_{2, 0}$. Luego
 \begin{align*}
 	f(z) &= \left[(yx)^by^c, y^2\right] - \left((yx)^by^cxy + yx(yx)^by^c\right)\\
 	&= \left[(yx)^b, y^2\right]y^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
 	&= (yx)^by^{c + 2} - y^2(yx)^by^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
 \end{align*}
-y debido a la Proposición \ref{prop_conmutatividad2} del Apéndice,
+y debido a la Proposición \ref{prop_conmutatividad2},
 \begin{align*}
 	f(z) &= (yx)^by^{c + 2} - ((yx)^by^2 + b(yx)^{b + 1})y^c - (yx)^b(y^cx)y - (yx)^{b + 1}y^c \\
 	&= - (b + 1)(yx)^{b + 1}y^c - (yx)^b(y^cx)y.
@@ -559,7 +709,7 @@ En la homología, resulta que
 	\item Si $c = 2k + 1$,
 	\begin{align*}
 	    f([z]) &= -(b + 1)\left[(yx)^{b + 1}y^{2k + 1}\right] - \sum_{i  = 0}^k\frac{k!}{i!}\left[(yx)^{k + b - i + 1}y^{2i + 1}\right]\\
-	    &= -(b + 2)\left[(yx)^{b + 1}y^{2k + 1}\right] - \sum_{i  = 0}^{k - 1}\frac{k!}{i!}\left[(yx)^{k + b - i + 1}y^{2i + 1}\right]
+	    &= -(b + 2)\left[(yx)^{b + 1}y^{2k + 1}\right] - \sum_{i  = 0}^{k - 1}\frac{k!}{i!}\left[(yx)^{k + b - i + 1}y^{2i + 1}\right].
 	\end{align*}
 \end{itemize}
 
@@ -593,7 +743,7 @@ Ahora vamos a calcular qué valores toma $g$. Dados $b, c$ y $z$ como antes,
                     - \sum_{i = 0}^{k}\frac{(k + 2)k!}{i!}x(yx)^{k + 1 -i}y^{2i}.\\
             \end{align*}
         \end{itemize}
-    \item Si $b \geq 1$, debido a la Proposición \ref{prop_conmutatividad2} del Apéndice,
+    \item Si $b \geq 1$, debido a la Proposición \ref{prop_conmutatividad2},
     \[
        g(z) = x(yx)^by^{c + 1} - (yx)^by^{c}xy + (yx)^{b + 1}y^c - x(yx)^{b -1}y^{c + 2}x - (b + 1)x(yx)^by^cx.
     \]
@@ -652,8 +802,8 @@ Por lo tanto el conjunto $\left\lbrace\left(\theta^{1}_{b, k}, \theta^{2}_{b, k}
 y es fácil ver que es una base.
 \end{proof}
 
-Nos resta calcular que valores toma $d_{0}^{(1)}$ en los elementos de la base de $E_{1, 0}^1$ y obtener una base de su imagen.
-Recordemos que $E_{1, 0}^1$ esta generado por los elementos de la forma $\left(\left[(yx)^by^c\right], 0\right)$ y $\left(0, \left[x^a(yx)^by^c\right]\right)$
+Nos resta calcular qué valores toma $d_{0}^{(1)}$ en los elementos de la base de $E_{1, 0}^1$ y obtener una base de su imagen.
+Recordemos que $E_{1, 0}^1$ está generado por los elementos de la forma $\left(\left[(yx)^by^c\right], 0\right)$ y $\left(0, \left[x^a(yx)^by^c\right]\right)$
 para todo $a \in \{0, 1\}$ y para todo $b, c \geq 0$. Sea $z = ((yx)^by^c, 0) \in A\oplus A$, como $d_0(z) = \partial(z)$, resulta que:
 \begin{itemize}
     \item si $c = 2k$ y $b = 0$,
@@ -685,7 +835,7 @@ a estos generadores, como hicimos antes, para simplificar la escritura del cálc
     \theta_{b, k} &= x(yx)^{b + 1}y^{2k},\\
     \lambda_{b, k} &= \sum_{i = 0}^k \frac{k!}{i!}(yx)^{k + b + 1 - i}y^{2i} - x(yx)^by^{2k + 1},\\
     \mu_{b, c} &= x(yx)^by^{c + 1} - (yx)^{b + 1}y^c,\\
-    \nu_{b, c} &= (yx)^{b + 1}y^{c + 1} - x(yx)^{b}y^{c + 2} -(b + 1)x(yx)^{b + 1}y^c
+    \nu_{b, c} &= (yx)^{b + 1}y^{c + 1} - x(yx)^{b}y^{c + 2} -(b + 1)x(yx)^{b + 1}y^c,
 \end{align*}
 para todo $b, k, c \geq 0$. Sabemos que el conjunto
 \[
@@ -705,18 +855,18 @@ A partir de esta observación es fácil probar la siguiente proposición.
     es una base de $\Ima\left(d_0^{(1)}\right)$.
 \end{prop}
 
-Ya estamos en condiciones de calcular los espacios de homología de $E^{2}$. Vamos
-a escribir $\ov{a}$, en vez de $\left[a\right]$, cuando nos refiramos a un elemento de la segunda pagina.
+Ya estamos en condiciones de calcular $E^{2}$. Vamos
+a escribir $\ov{a}$, en vez de $\left[a\right]$, cuando nos refiramos a un elemento de la segunda página.
 
 Las siguientes tres proposiciones son consecuencia inmediata de las Proposiciones \ref{prop_imad1impar}, \ref{prop_imad1par} y \ref{prop_imad01}
 respectivamente.
 \begin{prop} 
-    Para todo $i \geq 0$, los espacios vectoriales $E_{1,2i + 1}^2 = E_{2, 2i + 1}^2$
+    Para todo $i \geq 0$, los espacios vectoriales $E_{1,2i + 1}^2 \cong E_{2, 2i + 1}^2$
 	tienen como base al conjunto $\left\{ \ov{xy^{2n}} \ :\ n \geq 0\right\}$.
 \end{prop}
 
 \begin{prop}
-    Para todo $i \geq 1$, los espacios vectoriales $E_{1,2i}^2 = E_{2, 2i}^2$
+    Para todo $i \geq 1$, los espacios vectoriales $E_{1,2i}^2 \cong E_{2, 2i}^2$
 	tienen como base al conjunto $\left\{ \sum_{l = 0}^n \frac{n!}{l!}\ov{(yx)^{n - l}y^{2l}} \ :\ n \geq 0\right\}$.
 \end{prop}
 
@@ -734,7 +884,8 @@ Nos resta calcular $E^2_{1,0}$ y $E^2_{2, 0}$.
 \end{prop}
 \begin{proof}
     Nuevamente escribimos $d_1^{(1)} = (f, g)$. Sea $[z] \in \Ker\left(d_{1}^{(1)}\right)$,
-    como $f(z) = 0$ o $\gr(f(z)) = gr(z) + 3$, $g(z) = 0$ o $\gr(g(z)) = gr(z) + 3$ y la graduación pasa a la homología, podemos
+    como $f(z) = 0$ ó $\gr(f(z)) = gr(z) + 3$, $g(z) = 0$ ó $\gr(g(z)) = gr(z) + 3$ y la graduación pasa a la homología,
+    debido a que los diferenciales son graduados, podemos
     suponer que $[z]$ es homogéneo. Separamos el cálculo de $[z]$ según la paridad de su grado.
     \begin{itemize}
         \item Si $\gr(z) = 2n$, $z = \sum_{l = 0}^n \alpha_l (yx)^{n - l}y^{2l}$.
@@ -743,7 +894,7 @@ Nos resta calcular $E^2_{1,0}$ y $E^2_{2, 0}$.
             0 &= f([z]) = \sum_{l = 0}^{n}\alpha_l f\left(\left[(yx)^{n - l}y^{2l}\right]\right)\\
             &= -\sum_{l = 0}^{n - 1} \alpha_l (n - l + 1)\left[(yx)^{n - l + 1}y^{2l}\right]
                 + \sum_{l = 0}^{n - 1} \alpha_n (n - l + 1) \frac{n!}{l!}\left[(yx)^{n - l + 1}y^{2l}\right] \\
-            &= \sum_{l = 0}^{n - 1} \left(\alpha_n \frac{n!}{l!} - \alpha_l\right)\left[(yx)^{n - l + 1}y^{2l}\right]. 
+            &= \sum_{l = 0}^{n - 1}(n - l - 1)\left(\alpha_n \frac{n!}{l!} - \alpha_l\right)\left[(yx)^{n - l + 1}y^{2l}\right]. 
         \end{align*}
         Por lo tanto $\alpha_l = \alpha_n \frac{n!}{l!}$ para todo $l$, $0 \leq l \leq n$ y
         $[z] = \alpha_n \sum_{l = 0}^n \frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right]$. Es fácil verificar que si este el caso,
@@ -771,7 +922,7 @@ Nos resta calcular $E^2_{1,0}$ y $E^2_{2, 0}$.
     \Bigg\lbrace &\sum_{l = 0}^n \frac{n!}{l!}\left(\ov{(yx)^{n - l}y^{2l}}, 0\right), 
         \left(-\ov{(yx)^{2n}}, \ov{xy^{2n + 1} + (yx)y^{2n}}\right), \left(0, \ov{y^{n}}\right),\\
         &\qquad \left(\ov{y^{2n + 1}}, \sum_{l = 0}^n \frac{n!}{l!}\frac{n + 1}{n + 1 - l}\ov{x(yx)^{n - l}y^{2l}} 
-            + \sum_{l = 0}^n \frac{n!}{l!}\frac{1}{n - l}\ov{(yx)^{n - l}y^{2l + 1}} \right) \mid n \geq 0 \Bigg\rbrace.
+            + \sum_{l = 0}^n \frac{n!}{l!}\frac{1}{n - l}\ov{(yx)^{n - l}y^{2l + 1}} \right), n \geq 0 \Bigg\rbrace.
     \end{align*}
 \end{prop}
 \begin{proof}
@@ -787,8 +938,8 @@ Nos resta calcular $E^2_{1,0}$ y $E^2_{2, 0}$.
         y por lo tanto
         \begin{align*}
             0 &= d_{0}^{(1)}([z], [w]) = \alpha_n \sum_{l = 0}^{n - 1}\frac{n!}{l!}\left[x(yx)^{n - l}y^{2l}\right]
-               + \sum_{l = 0}^{n - 1}\alpha_l \left[x(yx)^{n - l}y^{2l}\right]\\
-            &\qquad  + \sum_{l = 0}^{n - 1}\beta_l \left(\left[x(yx)^{n - l - 1}y^{2l + 2}\right] + \left[(yx)^{n - l}y^{2l} \right] \right)\\
+               - \sum_{l = 0}^{n - 1}\alpha_l \left[x(yx)^{n - l}y^{2l}\right]\\
+            &\qquad  + \sum_{l = 0}^{n - 1}\beta_l \left(\left[x(yx)^{n - l - 1}y^{2l + 2}\right] - \left[(yx)^{n - l}y^{2l + 1} \right] \right)\\
             &\qquad + \sum_{l = 0}^{n - 1}\gamma_l \left(\left[(yx)^{n - l}y^{2l + 1} \right]
                 - \left[x(yx)^{n - l - 1}y^{2l + 2}\right] - (n - l)\left[x(yx)^{n - l}y^{2l} \right]\right)\\
             &= \sum_{l = 0}^{n - 1}(\gamma_l - \beta_l)\left[(yx)^{n - l}y^{2l + 1}\right]
@@ -831,7 +982,7 @@ Nos resta calcular $E^2_{1,0}$ y $E^2_{2, 0}$.
     \]
     Por la Proposición \ref{prop_imad11}, $\left(\lambda_{b, k}^{1}, \lambda_{b, k}^{2}\right)$ pertenece
     a la imagen de $d_1^{(1)}$  para todo $b\geq 1$ y para todo $k \geq 0$. Por lo tanto
-    reduciendo módulo borde podemos suponer que 
+    reduciendo módulo bordes podemos suponer que 
     \[
         ([z], [w]) = \left(\alpha_n \left[y^{2n + 1}\right],
             \sum_{l = 0}^{n}\beta_l \left[x(yx)^{n - l}y^{2l}\right]
@@ -874,18 +1025,19 @@ De manera similar al ejemplo introductorio de la Sección \ref{sucesiones_espect
 exacta corta
 \begin{align*}
 \xymatrix{
-    0 \ar[r] & E_{1, p}^{2} \ar[r]^{\iota} & \Hy_{p + 1}(A) \ar[r]^{\pi} & E_{2, p - 1}^{2} \ar[r] & 0.
+    0 \ar[r] & E_{1, p}^{2} \ar[r]^(.4){\iota} & \Hy_{p + 1}(A) \ar[r]^{\pi} & E_{2, p - 1}^{2} \ar[r] & 0.
 }
 \end{align*}
 Para encontrar una
 base de $\Hy_{p + 1}(A, A)$ alcanza con completar una base de $\iota\left(E_{1, p}^{2}\right)$ con elementos
 tales que sus imágenes, por medio de $\pi$, formen una base de $E_{2, p - 1}^{2}$. Más concretamente, si $\{\ov{a_i}\}_i$
 es una base de $E_{1, p}^{2}$, el conjunto $\{\ov{b_j}\}_j$ es una base de $E_{2, p - 1}^{2}$ y $\{\ov{c_j}\}_j$ son
-elementos tales que $f(c_j) = -d(b_j)$ para todo $j$, donde $f = \delta$ o $f = \partial$ según corresponda, entonces 
+elementos tales que $f(c_j) = -d(b_j)$ para todo $j$, donde $f = \delta$ ó $f = \partial$ según corresponda, entonces 
 el conjunto $\{(\ov{a_i}, 0)\}_i \cup \{(\ov{b_j}, \ov{c_j})\}_j$ es una base de $\Hy_{p + 1}(A, A)$. A partir
-de esta observación es sencillo verificar la siguiente proposición.
+de esta observación es sencillo verificar el siguiente teorema.
 
-\begin{prop} Se tienen los siguientes isomorfismos:
+\begin{Teorema} \label{teo_homologia}
+Se tienen los siguientes isomorfismos:
 \begin{align*}
     		&\Hy_0(A, A) \cong \left\langle \ov{xy^n}, \ov{y^n} \mid n \geq 0 \right\rangle, \\
     		&\Hy_1(A, A) \cong \\
@@ -902,11 +1054,11 @@ de esta observación es sencillo verificar la siguiente proposición.
     				n \geq 0 \right\rangle, \\
     \end{align*}
     para todo $p \geq 1$. En cada caso los conjuntos generadores son bases del espacio que generan.
-\end{prop}
+\end{Teorema}
 
-\section{Cohomología de Hochschild}
+\section{Cohomología de Hochschild}\label{cohomología_de_hochschild}
 Para calcular la cohomología de Hochschild procederemos de manera similar al cálculo de la homología. Nuevamente consideramos
-el complejo doble $X_{\bullet, \bullet}$ y le aplicamos el funtor $\Hom_{A^e}(-, A)$. La homología total
+el complejo doble $X_{\bullet, \bullet}$ pero esta vez le aplicamos el funtor $\Hom_{A^e}(-, A)$. La homología total
 de este nuevo complejo es isomorfa a $H^{\bullet}(A, A)$. Identificando de manera natural $\Hom_{A^{e}}(A\ox W \ox A)$ con
 $\Hom_{\field}(W, A)$, $\Hom_{\field}(W, A)$ con $W^{\ast}\ox A$ y luego este último con $A^{dim(W)}$ para todo
 espacio vectorial $W$ de dimension finita, resulta el complejo doble
@@ -928,12 +1080,12 @@ con los siguientes diferenciales $\field$-lineales
     \delta(a) &= xa + ax,\\
     \partial(a) &= [x, a].
 \end{align*}
-Para calcular al homología total de este complejo vamos a utilizar la sucesión espectral inducida por la filtración por columnas.
+Para calcular la homología total de este complejo vamos a utilizar la sucesión espectral inducida por la filtración por columnas.
 Denotamos por $E^{\bullet, \bullet}_{r}$ a la sucesión espectral.
 
 \subsection{Primera página}
 Esta vez no es necesario calcular las imágenes de los morfismos verticales
-debido a que ya lo hicimos para el cálculo de la homología de Hochschild. Procederemos directamente al cálculo de la primera página.
+debido a que los morfismos son los mismos que en el complejo doble asociado a la homología de Hochschild. Procederemos directamente al cálculo de la primera página.
 Es claro que $E^{0, 0}_{1} = A$, $E^{1, 0}_{1} = \Ker(\hat{\delta}) = \Ker(\delta)\oplus A$ y $E^{2, 0}_{1} = \Ker(\delta') = \Ker(\delta)$,
 por lo tanto empezamos calculando $\Ker(\delta)$.
 
@@ -941,7 +1093,7 @@ por lo tanto empezamos calculando $\Ker(\delta)$.
 El espacio vectorial $\Ker(\delta)$ tiene como base al conjunto
 \begin{align*}
     \Bigg\lbrace \left[x(yx)^{b}y^{2k + 1}\right] - \sum_{i = 0}^k \frac{k!}{i!}\left[(yx)^{k + b + 1 - i}y^{2i}\right],
-    \left[x(yx)^{b}y^{2k}\right] \mid b, k \geq 0\Bigg\rbrace
+    \left[x(yx)^{b}y^{2k}\right] \mid b, k \geq 0\Bigg\rbrace.
 \end{align*}
 \end{prop}
 \begin{proof}
@@ -977,23 +1129,23 @@ El espacio vectorial $\Ker(\delta)$ tiene como base al conjunto
          \begin{align*}
               0 &= \delta(z) = \sum_{l = 0}^{n}\alpha_l\delta \left((yx)^{n - l}y^{2l + 1}\right)
                   + \sum_{l = 0}^{n}\beta_l \delta \left( x(yx)^{n - l}y^{2l}\right)\\
-                &= \sum_{l = 0}^{n}\sum_{i = 0}^{l}\alpha_l \frac{l!}{i!}(yx)^{n + 1 - i}y^{2i} + \sum_{l = 0}^{n}\alpha_l x(yx)^{n - l}y^{2l + 1}.
+                &= \sum_{l = 0}^{n}\sum_{i = 0}^{l}\alpha_l \frac{l!}{i!}(yx)^{n + 1 - i}y^{2i} + \sum_{l = 0}^{n}\alpha_l x(yx)^{n - l}y^{2l + 1}
          \end{align*}
          y por lo tanto $\alpha_l = 0$ para todo $l$, $0 \leq l \leq n$, es decir,  $z=\sum_{l = 0}^{n}\beta_l x(yx)^{n - l}y^{2l}$.
     \end{itemize}
     Este cálculo prueba que el conjunto del enunciado genera $\Ker(\delta)$ y es claro que es linealmente independiente.
 \end{proof}
 
-Como $E_{1}^{1, 2i + 1} = E_{1}^{2, 2i + 1} = \Ker(\partial)/ \Ima(\delta)$ para todo $i \geq 0$
-y $E_{1}^{1, 2i} = E_{1}^{2, 2i} = \Ker(\delta)/ \Ima(\partial)$, se obtienen las siguientes dos proposiciones.
+Como $E_{1}^{1, 2i + 1} \cong E_{1}^{2, 2i + 1} \cong \Ker(\partial)/ \Ima(\delta)$ para todo $i \geq 0$
+y $E_{1}^{1, 2i} \cong E_{1}^{2, 2i} \cong \Ker(\delta)/ \Ima(\partial)$, se obtienen las siguientes dos proposiciones.
 
 \begin{prop}
-    Los espacios vectoriales $E_{1}^{1, 2i + 1} = E_{1}^{2, 2i + 1} = \Ker(\partial)/ \Ima(\delta)$ tienen como base
+    Los espacios vectoriales $E_{1}^{1, 2i + 1} \cong E_{1}^{2, 2i + 1} \cong \Ker(\partial)/ \Ima(\delta)$ tienen como base
     al conjunto $\left\lbrace \sum_{l = 0}^{n}\frac{n!}{l!}\left[(yx)^{n - l}y^{2l}\right] | n \geq 0 \right\rbrace$, para todo $i \geq 0$.
 \end{prop}
 
 \begin{prop}
-    Los espacios vectoriales $E_{1}^{1, 2i} = E_{1}^{2, 2i} = \Ker(\delta)/ \Ima(\partial)$ tienen como base
+    Los espacios vectoriales $E_{1}^{1, 2i} \cong E_{1}^{2, 2i} \cong \Ker(\delta)/ \Ima(\partial)$ tienen como base
     al conjunto $\left\lbrace \left[xy^{2n}\right] | n \geq 0 \right\rbrace$, para todo $i \geq 1$.
 \end{prop}
 
@@ -1049,7 +1201,7 @@ Sea $w = \sum_{l = 0}^{n}\frac{n!}{l!}(yx)^{n - l}y^{2l}$, de modo que $[w]$ es 
     Para todo $i \geq 1$, el morfismo $d_{(1)}: E^{1, 2i}_{1} \to E^{2, 2i}_{1}$ es nulo.
 \end{prop}
 \begin{proof}
-Sea $\left[xy^{2n}\right]$ un elemento de la base de $E^{1, 2i}_{1}$, luego
+Dado un elemento $\left[xy^{2n}\right]$ de la base de $E^{1, 2i}_{1}$, sabemos que
 \begin{align*}
     d(xy^{2n}) &= \left[y^{2}, xy^{2n}\right] - xyxy^{2n} - xy^{2n + 1}x \\
     &= y^{2}xy^{2n} - xy^{2n + 2} - xyxy^{2n} - \sum_{l = 0}^{n}\frac{n!}{l!}x(yx)^{n - l + 1}y^{2l} \\
@@ -1061,12 +1213,12 @@ $d_{(1)}(\left[xy^{2n}\right]) = 0$ para todo $n \geq 0$.
 \end{proof}
 
 \begin{coro}
-    Para todo $i \geq 0$, los espacios vectoriales $E_{2}^{1, 2i} = E_{2}^{2, 2i}$ tienen como base
+    Para todo $i \geq 0$, los espacios vectoriales $E_{2}^{1, 2i}$ y $E_{2}^{2, 2i}$ tienen como base
     al conjunto
        $\left\lbrace \ov{xy^{2n}} | n \geq 0 \right\rbrace$.
 \end{coro}
 
-El siguiente paso consiste en calcular que valores toma $d_{(1)}^{0}$ en los elementos de la base de $E^{0, 0}_{1} = A$.
+El siguiente paso consiste en calcular qué valores toma $d_{(1)}^{0}$ en los elementos de la base de $E^{0, 0}_{1} = A$.
 Por definición $d^{0}(z) = \left([x,z], [y,z]\right)$ para todo $z \in A$. Ya hemos escrito $[x, z]$ y $[y, z]$ en términos de la base de $A$
  cuando obtuvimos las bases de las imágenes de los morfismos $\partial$ y $d_0$ en el cálculo
 de la homología de Hochschild. Si $z  = x^a(yx)^by^c\in B$, resulta que
@@ -1077,9 +1229,9 @@ de la homología de Hochschild. Si $z  = x^a(yx)^by^c\in B$, resulta que
         \begin{itemize}
             \item si $b = 0$,
             \[
-                d^{0}_{(1)}([z]) = \left(-\sum_{l = 0}^{k -1}\frac{k!}{l!}\left[x(yx)^{k - l}y^{2l}\right], 0\right).
+                d^{0}_{(1)}([z]) = \left(-\sum_{l = 0}^{k -1}\frac{k!}{l!}\left[x(yx)^{k - l}y^{2l}\right], 0\right),
             \]
-            \item Si $b \geq 1$,
+            \item si $b \geq 1$,
             \[
                 d^0_{(1)}([z]) = \left(\left[x(yx)^by^{2k}\right],\left[x(yx)^{b - 1}y^{2k + 2}\right]
                     + b\left[x(yx)^{b}y^{2k}\right] - \left[(yx)^{b}y^{2k + 1}\right]\right).
@@ -1089,9 +1241,9 @@ de la homología de Hochschild. Si $z  = x^a(yx)^by^c\in B$, resulta que
         \begin{itemize}
             \item si $b = 0$,
             \[
-                d^{0}_{(1)}([z]) = \left(-\sum_{l = 0}^{k}\frac{k!}{l!}\left[(yx)^{k + 1 - l}y^{2l}\right] + \left[xy^{2k + 1}\right], 0\right).
+                d^{0}_{(1)}([z]) = \left(-\sum_{l = 0}^{k}\frac{k!}{l!}\left[(yx)^{k + 1 - l}y^{2l}\right] + \left[xy^{2k + 1}\right], 0\right),
             \]
-            \item Si $b \geq 1$,
+            \item si $b \geq 1$,
             \begin{align*}
                 d^{0}_{(1)}([z]) &= \Bigg(-\sum_{l = 0}^{k}\frac{k!}{l!}\left[(yx)^{k + 1 + b - l}y^{2l}\right]
                     + \left[x(yx)^{b}y^{2k + 1}\right],\\
@@ -1104,12 +1256,12 @@ de la homología de Hochschild. Si $z  = x^a(yx)^by^c\in B$, resulta que
      \begin{itemize}
           \item si $c = 2k$,
           \[
-               d^{0}_{(1)}([z]) = \left(0, \left[(yx)^{b + 1}y^{2k}\right] - \left[x(yx)^by^{2k + 1}\right] \right).          
+               d^{0}_{(1)}([z]) = \left(0, \left[(yx)^{b + 1}y^{2k}\right] - \left[x(yx)^by^{2k + 1}\right] \right),          
           \]
-          \item Si $c = 2k + 1$,
+          \item si $c = 2k + 1$,
           \[
               d^{0}_{(1)}([z]) = \Bigg(-\sum_{l = 0}^{k}\frac{k!}{l!}\left[x(yx)^{k + 1 + b - l}y^{2l}\right],
-                  \left[(yx)^{b + 1}y^{2k + 1}\right] - \left[x(yx)^{b}y^{2k + 2}\right]\Bigg)
+                  \left[(yx)^{b + 1}y^{2k + 1}\right] - \left[x(yx)^{b}y^{2k + 2}\right]\Bigg).
           \]      
      \end{itemize}
 \end{itemize}
@@ -1151,9 +1303,9 @@ Para enunciar la próxima proposición vamos a utilizar la siguiente notación:
         = \alpha \eta_k + \sum_{i = 0}^{k - 1}\gamma_i \xi_{k - i - 1, i}\\
         &\qquad + \sum_{i = 0}^{k - 1} \beta_i \Bigg(\left[x(yx)^{k - i}y^{2i}\right],
             \left[x(yx)^{k - i - 1}y^{2i + 2}\right] + (k - i)\left[x(yx)^{k - i}y^{2i}\right]\\
-            &\qquad \qquad - \left[(yx)^{k - i}y^{2i + 1}\right]\Bigg)
+            &\qquad \qquad - \left[(yx)^{k - i}y^{2i + 1}\right]\Bigg).
     \end{align*}
-    Los terminos de la forma $(yx)^{k - i}y^{2i + 1}$ no aparecen en los elementos $\xi_{\ast, \ast}$ o $\eta_{\ast}$ por lo tanto $\beta_i = 0$ para todo $i$, $0 \leq i \leq k - 1$ y obtenemos la siguiente igualdad
+    Los términos de la forma $(yx)^{k - i}y^{2i + 1}$ no aparecen en los elementos $\xi_{\ast, \ast}$ ni en los elementos $\eta_{\ast}$, por lo tanto $\beta_i = 0$ para todo $i$, $0 \leq i \leq k - 1$ y obtenemos la siguiente igualdad
     \begin{align*}
         0 &= w = \alpha \eta_k +  \sum_{i = 0}^{k - 1}\gamma_i \xi_{k - i - 1, i} \\
         &= \alpha \eta_k + \sum_{i = 0}^{k - 1}\gamma_i \Bigg(-\sum_{l = 0}^{i - 1}\frac{i!}{l!}\left[x(yx)^{k - l}y^{2l}\right],
@@ -1165,8 +1317,8 @@ Para enunciar la próxima proposición vamos a utilizar la siguiente notación:
 
 Nos resta calcular una base de $\Ima\left(d^{1}_{(1)}\right)$. Sea $z = (z_1, z_2)$ un elemento de la base de $\Ker(\delta) \oplus A$.
 Como ya obtuvimos una base de $\Ima\left(d^{0}_{(1)}\right)$ podemos reducir a $z$ módulo $\Ima\left(d^{0}_{(1)}\right)$ para simplificar el cálculo. Utilizando la notación de la proposición anterior, 
-sabemos que $\theta_{b, k}, \lambda_k$ y $\mu_{b, k} \in \Ima\left(d^{0}_{(1)}\right)$ para todo $b, k \geq 0$ y por lo tanto podemos
-restarle a $z$ una combinación lineal de estos elementos. Esta observación permite suponer que $z = (xy^{2k}, 0)$ o 
+sabemos que $\theta_{b, k}, \lambda_k$ y $\mu_{b, k}$ pertenecen $\Ima\left(d^{0}_{(1)}\right)$ para todo $b, k \geq 0$ y por lo tanto podemos
+restarle a $z$ una combinación lineal de estos elementos. Esta observación permite suponer que $z = (xy^{2k}, 0)$ ó 
 $z = (0, x^{a}(yx)^{b}y^{c})$. Si $z = (xy^{2k}, 0)$ para algún $k \geq 0$, entonces
 \[
     d^1(z) = \left[y^{2}, xy^{2k}\right] - x(yx)y^{2k} - xy^{2k + 1}x = -\sum_{i = 0}^{k}\frac{k!}{i!}x(yx)^{k + 1- i}y^{2i}.
@@ -1235,11 +1387,12 @@ para todo $b, i \geq 0$. Con esta observación y el cálculo anterior probamos l
     El conjunto
     \[
         \left\lbrace \sum_{i = 0}^{k}\frac{k!}{i!}(yx)^{k + b + 1 - i}y^{2i} - x(yx)^{b}y^{2k + 1},
-            x(yx)^{b + 1}y^{2i} \mid b, k \geq 0 \right\rbrace.    
+            x(yx)^{b + 1}y^{2i} \mid b, k \geq 0 \right\rbrace
     \]
+    es una base de $\Ima\left(d^{1}_{(1)}\right)$.
 \end{prop}
-Es claro que este conjunto se trata de una base de $\Ima\left(d^{1}_{(1)}\right)$. El siguiente corolario
-es consecuencia inmediata de la proposición anterior.
+
+La siguiente proposición es consecuencia inmediata de la proposición anterior.
 \begin{prop}
     El espacio vectorial $E^{2, 0}_{2}$ tiene como base al conjunto $\left\lbrace \ov{xy^{2n}} \mid n \geq 0\right\rbrace$.
 \end{prop}
@@ -1251,8 +1404,9 @@ Nos resta calcular $E^{0,0}_{2}$ y $E^{1, 0}_{2}$.
 \begin{proof}
     Sea $[z] \in \Ker\left(d^{0}_{(1)}\right)$ homogéneo de grado $2n$.
     Por definición, $z \in \Ker\left(d^{0}\right)$ si y solo si $[x, z] = [y, z] = 0$.
-    Veamos que condiciones impone sobre $z$ la ecuación $[y, z] = 0$. Como $\gr(z) = 2n$, resulta que
-    $z= \sum_{l = 0}^{n}\alpha_l(yx)^{n - l}y^{2l} + \sum_{l = 0}^{n - 1}\beta_l x(yx)^{n - l - 1}y^{2l + 1}$ y por lo tanto
+    Veamos qué condiciones impone sobre $z$ la ecuación $[y, z] = 0$. Como $\gr(z) = 2n$, resulta que
+    $z= \sum_{l = 0}^{n}\alpha_l(yx)^{n - l}y^{2l} + \sum_{l = 0}^{n - 1}\beta_l x(yx)^{n - l - 1}y^{2l + 1}$ y por lo tanto,
+    usando la Proposición \ref{prop_conmutatividad2_aux}, sabemos que
     \begin{align*}
         0 &= [y, z] = \sum_{l = 0}^{n}\alpha_l\left[y, (yx)^{n - l}y^{2l}\right]
             + \sum_{l = 0}^{n - 1}\beta_l\left[y, x(yx)^{n - l - 1}y^{2l + 1}\right] \\
@@ -1267,12 +1421,12 @@ Nos resta calcular $E^{0,0}_{2}$ y $E^{1, 0}_{2}$.
     \[
         \sum_{l = -1}^{n - 2}\alpha_{l + 1} (n - l - 1) x(yx)^{n - l - 1}y^{2l + 2} = 0.
     \]
-    Por lo tanto $\alpha_l = 0$ para todo $l$, $0 \leq l \leq n- 1$ y $z = \alpha_n y^{2n}$. Por otro lado $z$ debe cumplir
+    Por lo tanto $\alpha_l = 0$ para todo $l$ tal que $0 \leq l \leq n- 1$ y $z = \alpha_n y^{2n}$. Por otro lado $z$ debe cumplir
     la ecuación $[x, z] = 0$, es decir,
     \[
         0 = [x, z] = \alpha_n \left( xy^{2n} - \sum_{l = 0}^{n}\frac{n!}{l!}x(yx)^{n - l}y^{2l}\right).    
     \]
-    Luego $\alpha_n = 0$ o $n = 0$ y entonces $z$ debe pertenecer a $\field$.
+    Luego $\alpha_n = 0$ ó $n = 0$ y entonces $z$ debe pertenecer a $\field$.
     
     Si el grado de $z$ es $2n + 1$, resulta que
     $z = \sum_{l = 0}^{n}\alpha_n (yx)^{n - l}y^{2l + 1} + \sum_{l = 0}^{n}\beta_l x (yx)^{n - l}y^{2l}$.
@@ -1296,9 +1450,9 @@ Nos resta calcular $E^{0,0}_{2}$ y $E^{1, 0}_{2}$.
         &\alpha_0 n - \beta_0 = 0,\\
         &\alpha_{l - 1} +  \alpha_l(n - l) -\beta_l = 0 \text{ para todo } l, 1 \leq l \leq n - 1.
     \end{align}
-    Sumando (1) y (2) obtenemos que $\alpha_l = 0$ para todo $l$, $0 \leq l \leq n - 1$. De (1) y (3) se deduce que $\alpha_0 = 0$
-    y de (1) y (2) se deduce que $\beta_l = 0$ para todo $l$, $0\leq l \leq n$. Luego $z$ es igual a $\alpha_n y^{2n + 1}$. Además
-    $[x, z]$ debe ser igual a cero, por lo tanto
+    Sumando (3.1) y (3.4) obtenemos que $\alpha_l = 0$ para todo $l$, $1 \leq l \leq n - 1$. De (3.1) y (3.3) se deduce que $\alpha_0 = 0$
+    y de (3.1) y (3.2) se deduce que $\beta_l = 0$ para todo $l$, $0\leq l \leq n$. Luego $z$ es igual a $\alpha_n y^{2n + 1}$. Además
+    $[x, z]$ debe ser nulo, es decir
     \[
         0 = [x, z] = [x, \alpha_n y^{2n + 1}] = \alpha_n \left(xy^{2n + 1} - \sum_{l = 0}^{n}\frac{n!}{l!}(yx)^{n + 1- l}y^{2l}\right).
     \]
@@ -1306,8 +1460,8 @@ Nos resta calcular $E^{0,0}_{2}$ y $E^{1, 0}_{2}$.
 \end{proof}
 Para terminar de calcular la segunda página de la sucesión espectral debemos obtener una base de $E^{1, 0}_{2}$.
 Sea $[z] = ([z_1], [z_2]) \in \Ker\left(d^{1}_{(1)}\right)$. Como siempre, podemos suponer que cada coordenada de $[z]$
-es homogénea y que tienen el mismo grado. Al igual que en el cálculo de una base de $\Ima\left(d^{1}_{(1)}\right)$, podemos
-reducir a $[z]$ módulo borde y suponer que se escribe como combinación lineal de elementos del conjunto
+es homogénea y que $z_1$ y $z_2$ tienen el mismo grado. Al igual que en el cálculo de la base de $\Ima\left(d^{1}_{(1)}\right)$, podemos
+reducir a $[z]$ módulo bordes y suponer que $[z]$ se escribe como combinación lineal de elementos del conjunto
 \[
     \left\lbrace \left(\left[xy^{2n}\right], 0\right), \left(0, \left[x^{a}(yx)^{b}y^c\right]\right)
         \mid n \geq 0, a \in \{0, 1\}, b, c \geq 0  \right\rbrace.
@@ -1335,7 +1489,7 @@ De esta igualdad se deduce que $\alpha_i = -\beta_i$ para todo $i$, $0\leq i \le
 \]
 donde la última igualdad proviene de que $\left[(yx)^{k - i}y^{2i}\right] - \left[x(yx)^{k - i - 1}y^{2i + 1}\right]$ pertenece a $\Ima\left(d^{0}_{(1)}\right)$ para todo $i$, $0\leq i \leq k - 1$.
 
-Si el grado de $z$ es $2k + 1$,
+Mientras que si el grado de $z$ es $2k + 1$, podemos escribir
 \[
     z = \sum_{i = 0}^{k}\alpha_i \left(0, (yx)^{k - i}y^{2i + 1}\right) + \sum_{i = 0}^{k}\beta_i \left(0, x(yx)^{k - i}y^{2i}\right)
         +\gamma\left(xy^{2k}, 0\right)
@@ -1346,14 +1500,14 @@ y luego
         + \sum_{i = 0}^{k}\sum_{l = 0}^{i - 1}\beta_i\frac{i!}{l!}x(yx)^{k + 1 - l}y^{2l}\\
         &\qquad + \left(\alpha_k (2k + 1) - \gamma\right)\sum_{i = 0}^{k}\frac{k!}{i!}x(yx)^{k + 1- i}y^{2i}.
 \end{align*}
-Debido a que el término $x(yx)y^{2k}$ solo aparece en al última suma, resulta que $\alpha_k (2k + 1) = \gamma$ y por lo tanto
+Esta ecuación dice que $\alpha_k (2k + 1) = \gamma$, ya que solo podemos encontrar al término $x(yx)y^{2k}$ en la última suma, y por lo tanto 
 \begin{align*}
     0 &= \sum_{i = 0}^{k - 1}\sum_{l = 0}^{i}\alpha_i \frac{i!}{l!}kx(yx)^{k + 1 - l}y^{2l}
         + \sum_{i = 0}^{k}\sum_{l = 0}^{i - 1}\beta_i\frac{i!}{l!}x(yx)^{k + 1 - l}y^{2l}\\
     &=   \sum_{l = 0}^{k - 1}\left(\sum_{i = l}^{k - 1}\alpha_i \frac{i!}{l!}k\right)x(yx)^{k + 1 - l}y^{2l}
-        + \sum_{l = 0}^{k - 1}\left(\sum_{i = l + 1}^{k}\beta_i\frac{i!}{l!}\right)x(yx)^{k + 1 - l}y^{2l}\\
+        + \sum_{l = 0}^{k - 1}\left(\sum_{i = l + 1}^{k}\beta_i\frac{i!}{l!}\right)x(yx)^{k + 1 - l}y^{2l}.\\
 \end{align*}
-De esta igualdad se deduce que
+A partir de esta observación obtenemos que
 $\sum_{i = l}^{k - 1}\alpha_i \frac{i!}{l!}k = -\sum_{i = l + 1}^{k}\beta_i\frac{i!}{l!} = -\sum_{i = l}^{k - 1}\beta_{i + 1}\frac{(i + 1)!}{l!}$
 para todo $l$, $0\leq l \leq k - 1$. Si llamamos $c_l = \sum_{i = l}^{k - 1}\alpha_i i!k + \beta_{i + 1}(i + 1)! = 0$, resulta que
 $0 = c_l - c_{l + 1} = \alpha_l l!k + \beta_{l + 1}(l + 1)!$ y por lo tanto $\beta_{l + 1} = -\alpha_l \frac{k}{l + 1}$ para todo $l$,
@@ -1387,10 +1541,11 @@ Vamos a utilizar la notación de la Proposición \ref{coh_ima_d01}. Es un cálcu
         = -\theta_{b, k} + \xi_{b, k} -\frac{1}{k + 1}\xi_{b - 1, k + 1}
 \end{align*}
 para todo $b \geq 1$ y para todo $k \geq 0$. Por lo tanto, el conjunto del enunciado genera $E^{1, 0}_2$. Sea $w$
-una combinación lineal homogénea de estos generadores y supongamos que $w = 0$. Si el grado de $w$ es $1$, entonces
+una combinación lineal homogénea de estos generadores y supongamos que $w = 0$. Si $w$ es combinación lineal de elementos de 
+grado $1$ de este conjunto, entonces
 $0 = w = \alpha (0, \ov{x})$ + $\beta(\ov{x}, \ov{y})$. Como no aparecen monomios de grado $1$ en las segundas coordenadas
-de los generadores que encontramos de $\Ima\left(d^{0}_{(1)}\right)$, resulta que $\alpha = \beta = 0$. Si el grado
-de $w$ es mayor que 1, entonces $w = \left((2k + 1)\ov{xy^{2k}}, \ov{y^{2k + 1}}\right)$ para algún $k \geq 1$. El monomio
+de los generadores de $\Ima\left(d^{0}_{(1)}\right)$, resulta que $\alpha = \beta = 0$. Si $w$ se escribe como
+combinación lineal de elementos de grado mayor que 1, entonces $w = \left((2k + 1)\ov{xy^{2k}}, \ov{y^{2k + 1}}\right)$ para algún $k \geq 1$. El monomio
 $\left[y^{2k + 1}\right]$ no aparece en las segundas coordenadas de los generadores de $\Ima\left(d^{0}_{(1)}\right)$, por lo tanto
 $\alpha = 0$.
 \end{proof}
@@ -1400,36 +1555,65 @@ similar al ejemplo introductorio de la sección \ref{sucesiones_espectrales}, so
 sucesión exacta corta
 \begin{align*}
 \xymatrix{
-    0 \ar[r] & E^{2, p - 1}_{2} \ar[r]^{\iota} & \Hy^{p + 1}(A, A) \ar[r]^{\pi} & E^{1, p}_2 \ar[r] & 0.
+    0 \ar[r] & E^{2, p - 1}_{2} \ar[r]^(0.4){\iota} & \Hy^{p + 1}(A, A) \ar[r]^(.6){\pi} & E^{1, p}_2 \ar[r] & 0.
 }
 \end{align*}
 donde $\iota(\ov{a}) = \ov{(0, a)}$ para todo $\ov{a} \in E^{2, p - 1}_{2}$ y $\pi(\ov{(a, b)}) = \ov{b}$ para todo
 $\ov{(a, b)} \in \Hy^{p + 1}(A, A)$.Para encontrar una
 base de $\Hy^{p + 1}(A, A)$ alcanza con completar una base de $\iota\left(E^{2, p - 1}_{2}\right)$ con elementos
-tales que sus imágenes, por medio de $\pi$, formen una base de $E^{1, p}_{2}$.A partir
-de esta observación es sencillo verificar la siguiente proposición.
-\begin{prop}
-    Se tienen los siguientes isomorfismos:
+tales que sus imágenes, por medio de $\pi$, formen una base de $E^{1, p}_{2}$. A partir
+de esta observación es sencillo verificar el siguiente teorema.
+\begin{Teorema} \label{teo_cohomologia}
+    Los espacios de cohomología de Hochschild de $A$ con coeficientes en $A$ puede describirse como:
     \begin{align*}
-        &H^0(A,A) \cong \Bbbk, \\
-  		&H^1(A,A) \cong \left\langle \left(0, \ov{x}\right), \left((2n + 1)\ov{xy^{2n}}, \ov{y^{2n + 1}}\right): n \geq 0\right\rangle, \\
-  		&HH^{2p}(A) \cong \left\langle \left(0, \ov{xy^{2n}}\right),
+        &\Hy^0(A,A) \cong \Bbbk, \\
+  		&\Hy^1(A,A) \cong \left\langle \left(0, \ov{x}\right), \left((2n + 1)\ov{xy^{2n}}, \ov{y^{2n + 1}}\right): n \geq 0\right\rangle, \\
+  		&\Hy^{2p}(A) \cong \left\langle \left(0, \ov{xy^{2n}}\right),
   			\left(\sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}, -\ov{y^{2n + 1}} \right): n \geq 0\right\rangle,\\
-  		&HH^{2p + 1}(A) \cong \left\langle \left(0, \sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}\right),
+  		&\Hy^{2p + 1}(A) \cong \left\langle \left(0, \sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}\right),
   			\left(\ov{xy^{2n}}, \ov{xy^{2n + 1}}\right) : n \geq 0\right\rangle 
     \end{align*}
     para todo $p\geq 1$.
-\end{prop}
+\end{Teorema}
 
-\section{Estructura de álgebra de Gerstenhaber de $\Hy^{\bullet}(A, A)$}
+Existe una clara identificación entre los espacios de cohomología de grado par positivo, dada por
+el siguiente isomorfismo
+\begin{align*}
+	\xymatrix@=1em{
+		\Hy^{2p} \ar[r] & \Hy^{2q}\\
+		\left(\sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}, -\ov{y^{2n + 1}}\right) \ar@{|->}[r] &
+			\left(\sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}, -\ov{y^{2n + 1}}\right)\\
+		\left(0, \sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}\right)\ar@{|->}[r] &
+			\left(0, \sum_{i = 0}^n\frac{n!}{i!}\ov{(yx)^{n - i}y^{2i}}\right)
+	}
+\end{align*}
+De manera análoga existe una identificación entre los espacios de cohomología de grado $2p + 1$, con $p\geq 1$.
+Dos espacios vectoriales que tienen la misma dimensión son isomorfos, por lo tanto no resulta interesante
+decir que los espacios de cohomología de grado $2p$, con $p \geq 1$, son simplemente isomorfos, lo importante
+es cuál es el isomorfismo entre ellos. Lo mismo podemos decir para los espacios de cohomología de grado impar. La identificación evidente que mencionamos antes proviene del hecho que la resolución es periódica, de período 2, a partir de grado 2, explicitamente
+para todo $n, m \geq 2$, los $A-A$ bimódulos $P_{n}A$ y $P_{m}A$ son isomorfos mediante
+\begin{align*}
+ \xymatrix@=1em{
+	 P_{m}A \ar[r] & P_{n}A\\
+	 x^{m} \ar@{|->}[r] & x^{n}\\
+	 y^2x^{m - 1} \ar@{|->}[r] & y^2x^{n - 1}\\
+ }
+\end{align*}
+Una vez que realizamos estas identificaciones entre los $A-A$ bimodulos que componen la resolución, los isomorfismos entre
+los espacios de cohomología que mencionamos antes se vuelven igualdades. Más adelante, cuando calculemos la estructura
+de álgebra graduada que tiene la cohomología, vamos a ver que estas identificaciones entre los espacios de cohomología
+pueden ser pensadas de otra manera.
+\section{Estructura de álgebra graduada de $\Hy^{\bullet}(A, A)$}
 En la Sección \ref{hochschild_gerstenhaber} vimos que la cohomología de Hochschild de un álgebra $A$ con
-coeficientes en la misma álgebra tiene estructura de álgebra de Gerstenhaber. El objetivo de esta
-sección es calcular la estructura de anillo graduado de la cohomología en el caso en el que $A$ es el 
-super plano de Jordan. También calcularemos la estructura de álgebra de Lie de $\Hy^{1}(A, A)$.
+coeficientes en $A$ tiene estructura de álgebra de Gerstenhaber. El objetivo de esta
+sección es calcular la estructura de álgebra graduada de la cohomología en el caso en el que $A$ es el 
+super plano de Jordan.
 
 \subsection{Morfismos de comparación}
 Si bien la resolución $P_{\bullet}A$ resulto muy útil para calcular la homología y la cohomología de Hochschild,
 el producto cup y el corchete de Gerstenhaber están definidos a partir de la resolución bar $B_{\bullet}A$.
+Si bien suele ser posible calcular el producto cup a partir de otra resolución no sucede lo mismo
+con el corchete de Gerstenhaber.
 Es por esto que necesitamos encontrar morfismos de comparación entre las dos resoluciones, es decir, morfismos
 de complejos
 \[
@@ -1438,8 +1622,10 @@ de complejos
 que extiendan a $id_A$. Como las dos resoluciones son proyectivas, sabemos que estos morfismos existen.
 
 \begin{prop}
-	Sea $f_{\bullet} : P_{\bullet}A \to B_{\bullet}A$ la sucesión de morfismos de $A-A$ bimódulos
-	$\left\lbrace f_{n} : P_{n}A \to B_{n}A \right\rbrace_{n \geq 0}$ definidos como
+	Sea $f_{\bullet} : P_{\bullet}A \to B_{\bullet}A$ la sucesión de morfismos de $A^e$-módulos
+	\[
+		\left\lbrace f_{n} : P_{n}A \to B_{n}A \right\rbrace_{n \geq 0}
+	\] definidos como
 	\begin{itemize}
 		\item si $n = 0$,
 		\begin{align*}
@@ -1462,19 +1648,19 @@ que extiendan a $id_A$. Como las dos resoluciones son proyectivas, sabemos que e
 		\end{align*}
 		donde la última suma es cero si $n = 2$.
 	\end{itemize}
-	La sucesión $f_{\bullet}$ resulta ser un morfismo de complejo que levanta a la identidad.
+	El morfismo $f_{\bullet}$ resulta ser un morfismo de complejos que levanta a la identidad.
 \end{prop}
 \begin{proof}
 	Es claro que $f_{\bullet}$ levanta a la identidad ya que $f_0 = id_{A \ox A}$. Para probar que
 	$f$ es un morfismo de complejos debemos verificar que $b_n \circ f_{n + 1} = f_n \circ d_n$ para todo
-	$n \geq 0$. Es cálculo directo, aunque tedioso, hacer esta verificación por inducción y omitiremos la demostración. 
+	$n \geq 0$. Es un cálculo directo, aunque tedioso, hacer esta verificación por inducción y omitiremos la demostración. 
 \end{proof}
 El morfismo $f_{\bullet}$ guarda la información de los distintos términos que aparecen al aplicarle las reglas
-de re-escritura a las $n-$ambigüedades. Para ver estos términos alcanza con cambiar los tensores por productos
+de reescritura a las $n-$ambigüedades: estos términos pueden obtenerse cambiando los tensores por productos
 en la definición de $f_n(1 \ox x^{n} \ox 1)$ y de $f_n(1 \ox y^2x^{n - 1} \ox 1)$.
 
 No vamos a dar una fórmula explicita de $g_{\bullet} : B_{\bullet}A \to P_{\bullet}A$ sobre todo el complejo bar
-sino que solo sobre los términos que nos interesan para poder calcular el producto cup y el corchete de Gerstenhaber.
+sino solo sobre los términos que nos interesan para poder calcular el producto cup y el corchete de Gerstenhaber.
 Como $B_{\bullet}A$ es una resolución libre, es posible definir, para cada $n \geq  0$, el morfismo $g_n$
 sobre un conjunto linealmente independiente $B_n \subseteq A\ox A^{\ox n}\ox A$ siempre y cuando
 $d_n \circ g_n(z) = g_n \circ b_n(z)$ para cada $z \in B_{n + 1}$. Notar que para que sea posible verificar esta
@@ -1517,17 +1703,17 @@ no daremos una demostración de la siguiente proposición ya que es una verifica
 	\end{itemize}
 \end{prop}
 El morfismo $g_{\bullet}$ también guarda la información de los distintos términos que aparecen al aplicarle las reglas
-de re-escritura a las $n-$ambigüedades.
+de reescritura a las $n-$ambigüedades.
 
 \subsection{Producto cup}
 Como $f$ y $g$ son levantados de la identidad, resulta que los morfismos inducidos en la cohomología $f^{\ast}$
 y $g^{\ast}$ son isomorfismos y más aún $\left(f^{\ast}\right)^{-1} = g^{\ast}$. Esta observación nos permite 
 transportar la estructura de álgebra de Gerstenhaber de la cohomología calculada a partir de la resolución bar
-a la cohomología calculada a partir de $P_{\bullet}A$. Sean $\varphi \in \Hom_{A^e}\left(P_n A, A\right)$
+a la cohomología calculada a partir de $P_{\bullet}A$. Dados $\varphi \in \Hom_{A^e}\left(P_n A, A\right)$
 y $\phi \in \Hom_{A^e}\left(P_m A, A\right)$, el producto cup entre las clases de estos dos elementos
 resula ser $\ov{\varphi} \smile \ov{\phi} = \ov{\left(\varphi g_n \smile \phi g_m\right) f_{n + m}}$.
 Como todos los cálculos serán realizados en la cohomología, dejaremos de escribir la barra sobre los elementos
-para indicar que es una clase en el cociente. Además, utilizaremos indistintamente la notación de morfismo
+para indicar que se trata de una clase en el cociente. Además, utilizaremos indistintamente la notación de morfismo
 y la notación de vector de dos coordenadas para los elementos de $\Hy^{\bullet}(A, A)$.
 
 Antes de calcular los productos entre los distintos generadores
@@ -1550,12 +1736,20 @@ entonces
 \[
 	\varphi \smile \lambda = \lambda \smile \varphi = \lambda \varphi.
 \]
+\begin{obs}
+Como $\Hy^1(A,A)$ es de dimensión infinita y $\Hy^{0}(A, A) \cong \field$ actúa sobre la cohomología
+como producto por escalares, resulta que $\Hy^{\bullet}(A, A)$ no es finitamente generada como
+álgebra.
+\end{obs}
+
 Sean $n, m \geq 1$
 y sean $\varphi \in \Hy^{n}(A, A)$ y $\phi \in \Hy^{m}(A, A)$ elementos homogéneos de la cohomología.
 Por definición del producto cup, el morfismo $\varphi \smile \phi$ pertenece a $\Hy^{n + m}(A, A)$,
 por lo tanto para calcular $\varphi \smile \phi$ debemos saber que valor toma en $1\ox x^{n + m} \ox 1$
-y en $1\ox y^{2}x^{n + m -1}\ox 1$. Como el producto cup es super conmutativo podemos
-calcular los producto en el orden que nos resulte más conveniente.
+y en $1\ox y^{2}x^{n + m -1}\ox 1$. Como el producto cup es conmutativo en el sentido graduado, podemos
+calcular los productos en el orden que nos resulte más conveniente.
+
+Ahora vamos a calcular estos productos para finalmente resumir los resultados en la Tabla \ref{table:1}.
 \subsubsection{1) $c \smile s_n$:}
 \begin{align*}
 	c &\smile s_n\left(1\ox x^{2} \ox 1\right) = \left(c g_1 \smile s_n g_1\right)f_2\left(1\ox x^2 \ox 1\right)
@@ -1580,7 +1774,8 @@ Si bien con este cálculo obtuvimos que
 	c \smile s_n = \left(0, (2n + 1)xyxy^{2n} + \sum_{i = 0}^{n}\frac{n!}{i!}x(yx)^{n  + 1 -i}y^{2i}\right),
 \]
 el producto no está escrito en términos de la base de $\Hy^{2}(A, A)$. Esto dice que es posible reducir
-a $c \smile s_n$ módulo borde. Vamos a denotar por $d^{n}$ a los diferenciales del complejo
+a $c \smile s_n$ módulo bordes. Haciendo esto veremos que este producto es nulo. Para esto,
+denotamos por $d^{n}$ a los diferenciales del complejo
 $\Hom_{A^e}\left(P_{\bullet}A, A\right)$. Sea $\alpha \in \Hom_{A^e}\left(A\ox \field\{x, y\}\ox A, A\right)$
 tal que \[\alpha(1\ox x \ox 1) = -xy^{2n} \text{ y } \alpha(1\ox y \ox 1) = 0,\]
 luego
@@ -1650,9 +1845,10 @@ Por lo tanto $c \smile s_n = d^1(\alpha + \beta) = 0$.
 \end{align*}
 Cuando escribimos a $c\smile s_n$ en términos de la base, encontramos un elemento
 $\beta$, tal que $d^1(\beta)(1\ox x^2\ox 1) = 0$
-y $d^1(\beta)(1\ox y^2x\ox 1) = (2n + 1)x(yx)^{2n}$. Esto permite borrar cualquier termino de la forma
-$x(yx)y^{2i}$ de la segunda coordenada de $s_m \smile s_n$. Notar que es esencial que $d^1(\beta)(1\ox x^2\ox 1) = 0$.
-Sean $b \geq  1$ y $i \geq 0$ y sea $\gamma_{b, i} \in \Hom_{A^e}\left(A\ox \field\{x, y\}\ox A, A\right)$ tal que
+y $d^1(\beta)(1\ox y^2x\ox 1) = (2n + 1)x(yx)y^{2n}$. Esto permite borrar cualquier término de la forma
+$x(yx)y^{2i}$ de la segunda coordenada de $s_m \smile s_n$. Notar que es esencial que $d^1(\beta)(1\ox x^2\ox 1)$ sea $0$.
+
+Ahora sean $b \geq  1$ e $i \geq 0$ y sea $\gamma_{b, i} \in \Hom_{A^e}\left(A\ox \field\{x, y\}\ox A, A\right)$ tal que
 \[
 	\gamma_{b, i}(1\ox x \ox 1) = 0 \text{ y }
 		\gamma_{b, i}(1 \ox y \ox 1) = \frac{1}{b + i}(yx)^{b}y^{2i + 1} - x(yx)^{b}y^{2i},
@@ -1662,7 +1858,7 @@ resulta que
 	d^1(\gamma_{b, i})\left(1\ox x^2 \ox 1\right) = 0
 		\text{ y } d^1(\gamma_{b, i})\left(1\ox y^2x \ox 1\right) = x(yx)^{b + 1}y^{2i}.
 \]
-Por lo tanto podemos borrar cualquiera término de la forma $x(yx)^{b + 1}y^{2n}$ de la segunda coordenada
+Por lo tanto podemos borrar cualquier término de la forma $x(yx)^{b + 1}y^{2n}$ de la segunda coordenada
 de $s_m \smile s_n$ y obtenemos que
 \begin{align*}
 	s_m &\smile s_n(1 \ox y^2x\ox 1) = (4n + 2)y^{2(m + n + 1)} + xy^{2( m + n + 1)} - (4m + 3)xy^{2(m + n + 1)}\\
@@ -1670,7 +1866,7 @@ de $s_m \smile s_n$ y obtenemos que
 \end{align*}
 es decir, $s_m \smile s_n = 4(n - m)t_{n + m + 1}^{2}$.
 \subsubsection{3) $c \smile c$:}
-Como el producto cup es super conmutativo y el grado de $c$ es $1$, resulta que $c \smile c = 0$.
+Como el producto cup es conmutativo graduado y el grado de $c$ es $1$, resulta $c \smile c = 0$.
 
 \subsubsection{4) $t_m^{2p} \smile c$:}
 \begin{align*}
@@ -1705,7 +1901,7 @@ $t_m^{2p}\smile c$ es igual a $0$.
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)s_n(y \ox x \ox 1 + 1 \ox y \ox x)\\
 	&= xy^{2m}(2n + 1)xy^{2n} = 0.
 \end{align*}
-Por lo tanto $t_m^{2p} \smile s_n$ es igual a $0$.
+Nuevamente resulta que $t_m^{2p} \smile s_n$ es igual a $0$.
 
 \subsubsection{6) $u_m^{2p} \smile c$:}
 \begin{align*}
@@ -1738,20 +1934,22 @@ d^{2p}(\alpha)\left(1 \ox y^2x^{2p} \ox 1\right) = \sum_{l = 0}^{i}\frac{i!}{l!}
 \]
 y por lo tanto $u_{m}^{2p} \smile c = \sum_{i =0}^{m}\frac{m!}{i!}d^{2p}\left(\alpha_{m - i, i}\right) = 0$.
 
-Antes de continuar calculando los productos vamos a probar una proposición que será
-útil.
+$ $
 
-\begin{prop}\label{combinatorio_recursivo}
+Antes de continuar calculando los productos vamos a probar un lema auxiliar.
+\begin{lema}\label{combinatorio_recursivo}
 	Sean $n, m\geq 0$, resulta que
-	$\sum_{i = 0}^{m}\frac{(n + i)!}{i!} = \frac{(m + n + 1)!}{m!(n + 1)}$.
-\end{prop}
+	\[
+		\sum_{i = 0}^{m}\frac{(n + i)!}{i!} = \frac{(m + n + 1)!}{m!(n + 1)}.
+	\]
+\end{lema}
 \begin{proof}
-	Si dividimos por $n!$ ambos lados de la igualdad que aparece enunciado obtenemos
+	Si dividimos por $n!$ ambos lados de la igualdad que aparece en el enunciado obtenemos
 	la siguiente expresión $\sum_{i = 0}^{m}\binom{n + i}{i} = \binom{m + n + 1}{m}$.
 	Probaremos por inducción en $m$ que esta nueva igualdad vale para todo $n,m \geq 0$.
 	Si $m = 0$, resulta que
 	\begin{align*}
-		\sum_{i = 0}^{m}\binom{n + i}{i} = \binom{n}{0} = 1 = \binom{n + 1}{0}.
+		\sum_{i = 0}^{0}\binom{n + i}{i} = \binom{n}{0} = 1 = \binom{n + 1}{0}.
 	\end{align*}
 	Si $m \geq 1$,
 	\begin{align*}
@@ -1760,6 +1958,7 @@ Antes de continuar calculando los productos vamos a probar una proposición que 
 	\end{align*}
 \end{proof}
 
+Sigamos ahora calculando el producto cup entre los generadores.
 \subsubsection{7) $u_m^{2p} \smile s_n$:}
 \begin{align*}
 	u_m^{2p}& \smile s_n\left(1 \ox x^{2p + 1} \ox 1\right)
@@ -1796,7 +1995,7 @@ Calcularemos cada una de las sumas por separado:
 		= \sum_{l = 0}^{n}\frac{m!}{l!}\left(\sum_{i = 0}^{m}\frac{(i + n!)}{i!}\right)(yx)^{m + n + 1 - l}y^{2l}\\
 		&\qquad +\sum_{l = n + 1}^{m + n}\frac{m!}{l!}\left(\sum_{i = l - n}^{m}\frac{(i + n!)}{i!}\right)(yx)^{m + n + 1 - l}y^{2l}
 \end{align*}
-Debido a la Proposición \ref{combinatorio_recursivo}, resulta que
+Debido a las reglas de conmutación del Apéndice y al Lema \ref{combinatorio_recursivo}, resulta que
 \begin{align*}
 	\sum_{i = 0}^{m} & \frac{m!}{i!}(yx)^{m - i}y^{2(i + n) + 1}x
 		= \sum_{l = 0}^{n + m}\frac{m!}{l!}\left(\frac{(n + m + 1)!}{m!(n + 1)}\right)(yx)^{m + n + 1 - l}y^{2l}\\
@@ -1825,7 +2024,7 @@ y
 		(2n + 1)\frac{m!(m  - i)}{i!}(yx)^{m - i + 1}y^{2(i + n)}\\
 	&\qquad- (2n + 1)\frac{m!}{i!}\sum_{i = 0}^{i + n}\frac{(i + n)!}{i!}(yx)^{m + n + 1 - l}y^{2l}.
 \end{align*}
-Reduciendo a $u_m^{2p} \smile s_n$ módulo borde, obtenemos que
+Reduciendo a $u_m^{2p} \smile s_n$ módulo bordes, obtenemos que
 \begin{align*}
 	u_m^{2p}& \smile s_n\left(1 \ox x^{2p + 1} \ox 1\right) = 
 		\left(u_m^{2p} \smile s_n - \sum_{i =0}^{m - 1}d^{2p}(\alpha_i)\right)
@@ -1865,7 +2064,7 @@ resulta que
 	d^{2p}(\beta)(1\ox x^{2p + 1} \ox 1) =0 \text{ y }
 		d^{2p}(\beta)(1\ox y^2x^{2p} \ox 1) = \sum_{l = 0}^{n + m}\frac{(n + m)!}{l!}\lambda_l + xy^{2(n + m) + 1}
 \]
-y por lo tanto
+y por lo tanto el producto cup $u_m^{2p} \smile s_n$ queda escrito en términos de la base como sigue
 \[
 	u_m^{2p} \smile s_n = u_m^{2p} \smile s_n - \sum_{i =0}^{m - 1}d^{2p}(\alpha_i) + d^{2p}((2n + 1)\beta)
 		= 2v_{n + m + 1}^{2p + 1} + (2n + 1)w_{n + m}^{2p + 1}.
@@ -1898,7 +2097,7 @@ Por lo tanto $v_m^{2p + 1} \smile c$ es igual a cero.
 Como $x(yx)^{b}y^{2i}$ pertenece a $\Ima\left(\partial\right)$ para todo $b\geq 1$ y para todo
 $i \geq 0$, resulta que $v_m^{2p + 1}\smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right) = (2n + 1)xy^{2(n + m)}$
 y por lo tanto \[v_m^{2p + 1}\smile s_n =(2n + 1)t_{m + n}^{2p + 2}.\]
-Es importante notar que este argumento solo puede ser utilizado para términos que aparezcan en la segunda coordenada
+Es importante notar nuevamente que este argumento solo puede ser utilizado para términos que aparezcan en la segunda coordenada
 del producto que estemos calculando.
 \subsubsection{10) $w_m^{2p + 1} \smile c$:}
 \begin{align*}
@@ -1914,7 +2113,7 @@ del producto que estemos calculando.
 \end{align*}
 Como $x(yx)^{b}y^{2i}$ pertenece a $\Ima\left(\partial\right)$ para todo $b\geq 1$ y para todo
 $i \geq 0$, resulta que $w_m^{2p + 1}\smile s_n\left(1 \ox y^2x^{2p + 1} \ox 1\right) = 0$
-y por lo tanto $w_m^{2p + 1} \smile c = 0$
+y por lo tanto $w_m^{2p + 1} \smile c = 0$.
 \subsubsection{11) $w_m^{2p + 1} \smile s_n$:}
 \begin{align*}
 	w_m^{2p + 1} &\smile s_n\left(1 \ox x^{2p + 2} \ox 1\right)
@@ -1945,7 +2144,7 @@ y por lo tanto $w_m^{2p + 1} \smile s_n = -2t_{n + m + 1}^{2p + 2}$.
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(1\ox y^2x^{2q - 1}\ox 1\right)\\
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)t_n^{2q}\left(y\ox x^{2q}\ox 1\right) = 0.
 \end{align*}
-Por lo tanto $t_m^{2p}\smile t_n^{2q}$ es igual a cero.
+En consecuencia, $t_m^{2p}\smile t_n^{2q}$ es igual a cero.
 \subsubsection{13) $u_m^{2p} \smile t_n^{2q}$:}
 \begin{align*}
 	u_m^{2p}\smile t_n^{2q}\left(1\ox x^{2p + 2q} \ox 1\right)
@@ -1962,18 +2161,17 @@ Por lo tanto $t_m^{2p}\smile t_n^{2q}$ es igual a cero.
 Como $x(yx)^{m - l}y^{2(l + n)}$ pertenece a $\Ima\left(\partial\right)$ para todo $l$, $0 \leq l \leq m - 1$,
 resulta que \[u_m^{2p}  \smile t_n^{2q} = t_{n + m}^{2p + 2q}.\]
 
-Antes de continuar calculando productos vamos a probar la siguiente proposición que
-será útil.
-\begin{prop}
+Antes de continuar calculando productos vamos a probar el siguiente lema que utilizaremos en los cálculos que siguen.
+\begin{lema}
 	Sean $n, m \geq 0$, resulta que
 	\begin{align*}
 		\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
 			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)
 			= \sum_{k = 0}^{m + n}\frac{(m + n)!}{k!}(yx)^{m + n - k}y^{2k}
 	\end{align*}
-\end{prop}
+\end{lema}
 \begin{proof}
-	Sean $n ,m \geq 0$, luego
+	Dados $n ,m \geq 0$, calculamos el producto de la izquierda de la igualdad
 	\begin{align*}
 		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
 			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)
@@ -1981,7 +2179,7 @@ será útil.
 		&=\sum_{i = 0}^{m}\sum_{j = 0}^{n - 1}\frac{m!n!}{i!j!}(yx)^{m - i}y^{2i}(yx)^{n - j}y^{2j}
 			+\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}.
 	\end{align*}
-	Debido a la Proposición \ref{prop_conmutatividad2}, obtenemos que
+	Debido a las reglas de conmutación del Apéndice, obtenemos que
 	\begin{align*}
 		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
 			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)\\
@@ -2000,7 +2198,7 @@ será útil.
 			(yx)^{m + n - (j + l)}y^{2(l + j)}
 		 + \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
 	\end{align*}
-	Debido a la proposición \ref{combinatorio_recursivo}, resulta que
+	Debido al Lema \ref{combinatorio_recursivo}, resulta que
 	$\sum_{r = 0}^{m - l}\binom{n - 1 - j + r}{r} = \binom{m + n - (j + l)}{n - j}$ y por lo tanto
 	\begin{align*}
 		&\left(\sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}\right)
@@ -2009,13 +2207,13 @@ será útil.
 			\binom{m + n - (j + l)}{n - j}\frac{m!n!}{l!j!}(yx)^{m + n - (j + l)}y^{2(l + j)}
 		+ \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2(i + n)}\\
 		&= \sum_{j = 0}^{n}\sum_{l = 0}^{m}
-			\binom{m}{l}\binom{n}{j}(n + m - (j + l))!(yx)^{m + n - (j + l)}y^{2(l + j)}\\
+			\binom{m}{l}\binom{n}{j}(n + m - (j + l))!(yx)^{m + n - (j + l)}y^{2(l + j)}.
 	\end{align*}
 	Como la igualdad que queremos probar es simétrica en $m$ y en $n$, podemos
 	suponer, sin perdida de generalidad, que $n \leq m$ y escribir $m = n + t$ con $t \geq 0$.
 	Realizamos el cambio de índice $k = j + l$
 	y denotamos por $\lambda_k$ a $(yx)^{m + n - k}y^{2k}$ para simplificar la escritura.
-	Separamos la suma en tres, según el valor de $k$
+	Separamos la suma en tres partes, según el valor de $k$
 	\begin{align*}
 		&\sum_{j = 0}^{n}\sum_{l = 0}^{m}
 			\binom{m}{l}\binom{n}{j}(n + m - (j + l))!(yx)^{m + n - (j + l)}y^{2(l + j)}\\
@@ -2034,8 +2232,8 @@ será útil.
 		\sum_{j = k - (n + t)}^{n}\binom{n + t}{k - j}\binom{n}{j} &= \binom{2n + t}{k}
 			\text{ para todo }k, n + t + 1 \leq k \leq 2n + t.\\
 	\end{align*}
-	Una manera de probar estas igualdades es mediante un argumento combinatorio.
-	El coeficiente binomial $\binom{2n + t}{k}$ cuenta de cuantas maneras es posible elegir
+	Vamos a probar estas igualdades mediante un argumento combinatorio.
+	El coeficiente binomial $\binom{2n + t}{k}$ cuenta de cuántas maneras es posible elegir
 	$k$ elementos de un conjunto de tamaño $2n + t$. Una manera de calcular esto es dividir
 	el conjunto en dos subconjuntos, uno de tamaño $n$ y el otro de tamaño $n + t$, y elegir
 	$j$ elementos del primer conjunto y $k - j$ del segundo.
@@ -2046,6 +2244,7 @@ será útil.
 			\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{n - j}y^{2j}\right)\\
 	&= \sum_{k = 0}^{m + n}\frac{(m + n)!}{k!}(yx)^{m + n - k}y^{2k},
 \end{align*}
+donde la igualdad se desprende del lema anterior.
 \begin{align*}
 	u_m^{2p} &\smile u_n^{2q}(1 \ox y^2x^{2p + 2q - 1} \ox 1) = 
 		u_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)u_n^{2q}\left(1\ox x^{2q}\ox 1\right)\\
@@ -2060,7 +2259,7 @@ será útil.
 		+ \sum_{l = 0}^{m - 1}\sum_{l = 0}^{n -1}\frac{m!n!}{l!i!}(yx)^{m - l}y^{2l + 1}(yx)^{n - i}y^{2i}\\
 	&\qquad + \sum_{l = 0}^{n}\frac{n!}{l!}y^{2m + 1}(yx)^{n - l}y^{2l} = -y^{2(m + n) + 1}.
 \end{align*}
-Por lo tanto $u_m^{2p} \smile u_n^{2q}$ es igual a $u_{m + n}^{2p + 2q}$.
+Es decir, $u_m^{2p} \smile u_n^{2q}$ es igual a $u_{m + n}^{2p + 2q}$.
 \subsubsection{15) $t_m^{2p} \smile v_n^{2q + 1}$:}
 \begin{align*}
 	t_m^{2p}\smile v_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
@@ -2072,7 +2271,7 @@ Por lo tanto $u_m^{2p} \smile u_n^{2q}$ es igual a $u_{m + n}^{2p + 2q}$.
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)v_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)v_n^{2q + 1}\left(y\ox x^{2q +1}\ox 1\right) = 0.
 \end{align*}
-Por lo tanto $t_m^{2p}\smile v_n^{2q + 1}$ es igual a cero.
+y en consecuencia $t_m^{2p}\smile v_n^{2q + 1}$ es igual a cero.
 \subsubsection{16) $t_m^{2p} \smile w_n^{2q + 1}$:}
 \begin{align*}
 	t_m^{2p}\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
@@ -2083,7 +2282,7 @@ Por lo tanto $t_m^{2p}\smile v_n^{2q + 1}$ es igual a cero.
 		= t_m^{2p}\left(1\ox y^2x^{2p - 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(1\ox y^2x^{2q}\ox 1\right)\\
 	&\qquad + t_m^{2p}\left(1 \ox x^{2p} \ox 1\right)w_n^{2q + 1}\left(y\ox x^{2q +1}\ox 1\right)
-	= xy^{2m}xy^{2m} = 0
+	= xy^{2m}xy^{2m} = 0.
 \end{align*}
 Por lo tanto $t_m^{2p}\smile w_n^{2q + 1}$ es igual a cero.
 \subsubsection{17) $v_m^{2p + 1} \smile u_n^{2q}$:}
@@ -2099,7 +2298,7 @@ Por lo tanto $t_m^{2p}\smile w_n^{2q + 1}$ es igual a cero.
 		\left(\sum_{j = 0}^{n}\frac{n!}{j!}(yx)^{m - j}y^{2j}\right)\\
 	&= \sum_{i = 0}^{m + n}\frac{(m + n)!}{i!}(yx)^{m + n - i}y^{2i}.
 \end{align*}
-Por lo tanto $v_m^{2p + 1} \smile u_n^{2q}$ es igual a $v_{m + n}^{2p + 2q + 1}$
+y luego $v_m^{2p + 1} \smile u_n^{2q}$ es igual a $v_{m + n}^{2p + 2q + 1}$.
 \subsubsection{18) $u_m^{2p} \smile w_n^{2q + 1}$:}
 \begin{align*}
 	u_m^{2p} & \smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 1} \ox 1\right)
@@ -2117,7 +2316,7 @@ Por lo tanto $v_m^{2p + 1} \smile u_n^{2q}$ es igual a $v_{m + n}^{2p + 2q + 1}$
 	&= y^{2m}xy^{2n + 1}
 		+ \sum_{i = 0}^{m - 1}\sum_{l =0}^{i}\frac{m!}{l!}(yx)^{m + 1 - l}y^{2(l + n)}\\
 	&= \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n) + 1}
-		+ \sum_{i = 0}^{m - 1}\frac{m!(m - l)}{l!}(yx)^{m + 1 - l}y^{2(l + n)}\\
+		+ \sum_{i = 0}^{m - 1}\frac{m!(m - l)}{l!}(yx)^{m + 1 - l}y^{2(l + n)}.
 \end{align*}
 Como $x(yx)^{m - l}y^{2(l + n) + 1}
 	+ \sum_{i = 0}^{l + n}\frac{(l + n)!}{i!}(yx)^{m + n + 1 -i}y^{2i}$ pertenece a $\Ima(\delta)$
@@ -2127,7 +2326,7 @@ Como $x(yx)^{m - l}y^{2(l + n) + 1}
 		&\qquad - \sum_{l = 0}^{m - 1}\sum_{i = 0}^{l + n}\frac{m!(l + n)!}{l!i!}(yx)^{m + n + 1 -i}y^{2i}
 		+\sum_{l = 0}^{m - 1}\frac{m!(m - l)}{l!}(yx)^{m + 1 - l}y^{2(l + n)}.
 \end{align*}
-Sea $l$, $0\leq l \leq m - 1$ y $\alpha_l \in \Hom_{A^{e}}\left(P_{2p + 2q}A, A\right)$, tal que
+Sean $l$, $0\leq l \leq m - 1$ y $\alpha_l \in \Hom_{A^{e}}\left(P_{2p + 2q}A, A\right)$, tales que
 \[
 	\alpha_l\left(1 \ox x^{2p + 2q} \ox 1\right) = (yx)^{m -l}y^{2(l + n)} \text{ y }
 		\alpha_l\left(1 \ox y^2x^{2p + 2q - 1} \ox 1\right) = 0,
@@ -2145,7 +2344,7 @@ y por lo tanto
 		- \sum_{l = 0}^{m - 1}d^{2p + 2q}(\alpha_l) = w_{n + m}^{2p + 2q + 1}.
 \]
 
-\subsubsection{19) $v_m^{2p} \smile v_n^{2q}$:}
+\subsubsection{19) $v_m^{2p + 1} \smile v_n^{2q + 1}$:}
 \begin{align*}
 	v_m^{2p + 1}\smile v_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
 		= v_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)v_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)
@@ -2159,8 +2358,8 @@ y por lo tanto
 	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
 		v_n^{2q + 1}\left(y\ox x^{2q + 1}\ox 1\right) = 0.
 \end{align*}
-Por lo tanto $v_m^{2p + 1}\smile v_n^{2q + 1}$ es igual a cero.
-\subsubsection{20) $v_m^{2p} \smile w_n^{2q}$:}
+Lo cual implica que $v_m^{2p + 1}\smile v_n^{2q + 1}$ es igual a cero.
+\subsubsection{20) $v_m^{2p + 1} \smile w_n^{2q + 1}$:}
 \begin{align*}
 	v_m^{2p + 1} &\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
 		= v_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
@@ -2174,10 +2373,11 @@ Por lo tanto $v_m^{2p + 1}\smile v_n^{2q + 1}$ es igual a cero.
 	&\qquad - v_m^{2p + 1}\left(1 \ox x^{2p + 1} \ox 1\right)
 		w_n^{2q + 1}\left(y\ox x^{2q + 1}\ox 1\right)\\
 	&= \sum_{i = 0}^{m}\frac{m!}{i!}(yx)^{m - i}y^{2i}xy^{2n}
-		=  \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)}
+		=  \sum_{l = 0}^{m}\frac{m!}{l!}x(yx)^{m - l}y^{2(l + n)}.
 \end{align*}
-Por lo tanto $v_m^{2p + 1}\smile w_n^{2q + 1}$ es igual a cero $t_{n + m}^{2p + 2q + 2}$.
-\subsubsection{21) $w_m^{2p} \smile w_n^{2q}$:}
+Como $x(yx)^{m - l}y^{2(l + n)}$ pertenece a $\Ima(\partial)$ para todo $l$, $0 \leq l \leq m - 1$, resulta que
+$v_m^{2p + 1}\smile w_n^{2q + 1}$ es igual a $t_{n + m}^{2p + 2q + 2}$.
+\subsubsection{21) $w_m^{2p + 1} \smile w_n^{2q + 1}$:}
 \begin{align*}
 	w_m^{2p + 1}&\smile w_n^{2q + 1}\left(1\ox x^{2p + 2q + 2} \ox 1\right)
 		= w_m^{2p + 1}\left(1\ox x^{2p + 1}\ox 1\right)w_n^{2q + 1}\left(1\ox x^{2q + 1}\ox 1\right)\\
@@ -2197,7 +2397,11 @@ Como $x(yx)^{m + 1 - i}y^{2(i + n)}$ pertenece a $\Ima\left(\partial\right)$ par
 $i$, $0 \leq i \leq m$,
 resulta que \[w_m^{2p + 1} \smile w_n^{2q + 1} = 0.\]
 
-La siguiente tabla incluye todos los productos entre los elementos de la base de $\Hy^{\bullet}(A, A)$.
+$ $
+
+Resumimos los resultados obtenidos en la siguiente tabla, donde en la entrada $(i, j)$ escribimos
+el producto entre el $i$-ésimo término de la primera columna y el $j$-ésimo término de la primera fila. 
+\begin{table}[h!]
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c|c|c| } 
 \hline
@@ -2206,14 +2410,16 @@ La siguiente tabla incluye todos los productos entre los elementos de la base de
 $c$ & $0$ & $0$ & $ 0$ & $ 0$ & $0$ & $0$ \\
 \hline
 $s_m$ & $0$ & $4(n - m)t^{2}_{n + m + 1}$ & $0$ &
-	$2v^{2q +1}_{n + m + 1} + (2n + 1)w_{n + m}^{2q + 1}$
+	$2v^{2q +1}_{n + m + 1} $
 		& $-(2n + 1)t_{n + m}^{2p + 2}$ & $2t_{n + m + 1}^{2p + 2}$ \\
+&&&&$+ (2n + 1)w_{n + m}^{2q + 1}$&&\\
 \hline
 $t_m^{2p}$ & $0$ & $0$ & $0$ & $t_{m + n}^{2p + 2q}$ & $0$ & $0$ \\
 \hline
-$u_m^{2p}$ & $0$ &$2v^{2p +1}_{n + m + 1} + (2n + 1)w_{n + m}^{2p + 1}$ & $t_{n + m}^{2p + 2q}$ &
+$u_m^{2p}$ & $0$ &$2v^{2p +1}_{n + m + 1} $ & $t_{n + m}^{2p + 2q}$ &
 	$u_{m + n}^{2p + 2q}$
 		& $v_{n + m}^{2p + 2q + 1}$ & $w_{n + m}^{2p + 2q +1}$ \\
+&&$+ (2n + 1)w_{n + m}^{2p + 1}$&&&&\\
 \hline
 $v_m^{2p + 1}$ & $0$ &$(2n + 1)t_{n + m}^{2p + 2}$ & $0$ &
 	$v_{m + n}^{2p + 2q + 1}$
@@ -2224,11 +2430,29 @@ $w_m^{2p + 1}$ & $0$ &$-2t_{n + m + 1}^{2p + 2}$ & $0$ &
 		& $-t_{m +n}^{2p + 2q + 2}$ & $0$\\
 \hline
 \end{tabular}
+\caption{Productos entre los elementos de la base de $\Hy^{\bullet}(A, A)$.}
+\label{table:1}
 \end{center}
-\subsection{Estructura de álgebra de Lie de $\Hy^{1}(A, A)$}
+\end{table}
+
+A partir de esta descripción es sencillo verificar que $\Hy^{\bullet}(A,A)$
+está generado como álgebra por los elementos $1$, $c$, $t_0^{2}$, $s_n$, $u_n^{2}$ y $v_n^3$ para todo
+$n \geq 0$.
+
+Al final de la Sección \ref{cohomología_de_hochschild}, mencionamos que todos los
+espacios de cohomología de grado $2p$, con $p\geq 1$ se pueden identificar entre si
+de manera evidente y los mismo sucede con los espacios de cohomología de grado $2p + 1$, con $p\geq 1$.
+Más aún, observamos de dónde proviene esta identificación. Podemos ver en la tabla que estos isomorfismos
+están dados por la multiplicación con $u_{0}^{2p}$. Más precisamente, la identificación está dada por los morfismos
+\begin{align*}
+	\varphi \in H^{2q} \mapsto \varphi \smile u_{0}^{2p} \in H^{2q + 2p},\qquad
+	\varphi \in H^{2q + 1} \mapsto \varphi \smile u_{0}^{2p} \in H^{2q + 2p + 1}.
+\end{align*}
+
+\section{Estructura de álgebra de Lie de $\Hy^{1}(A, A)$}\label{section_lie}
 Si restringimos el corchete de Gerstenhaber a $\Hy^{1}(A, A)$ obtenemos un álgebra de Lie.
-En esta subsección vamos calcular esta estructura que resultara ser isomorfa a una
-subálgebra de Lie del álgebra de \emph{Virasoro}. Al igual que para el producto solo vamos a calcular
+En esta sección vamos describir esta estructura que resultará ser isomorfa a una
+subálgebra de Lie del álgebra de Virasoro. Al igual que para el producto cup solo vamos a calcular
 el corchete entre los elementos de la base de $\Hy^{1}(A, A)$. Vamos a empezar con el corchete
 entre $c$ y $s_n$ y para eso debemos calcular los respectivos asociadores:
 \begin{align*}
@@ -2236,16 +2460,18 @@ entre $c$ y $s_n$ y para eso debemos calcular los respectivos asociadores:
 		= \left( cg_1 \circ s_n g_ 1\right)(1 \ox x \ox 1)\\
 	&= cg_1\left(1 \ox s_n(1\ox x \ox 1) \ox 1\right) = cg_1\left(1 \ox (2n + 1)xy^{2n} \ox 1\right)\\
 	&= (2n+1)c\left(1 \ox x \ox y^{2n} + \sum_{i = 0}^{2n - 1}xy^i \ox y \ox y^{2n -1 -i}\right)\\
-	&= (2n + 1)\sum_{i = 0}^{2n - 1}xy^i x y^{2n -1 -i}
-		= (2n + 1)\sum_{i = 0}^{n - 1}xy^{2i + 1} x y^{2(n -i -1)}\\
-	&=(2n + 1)\sum_{i = 0}^{n - 1}x\sum_{l = 0}^{n}\frac{j!}{l!}(yx)^{j - l + 1}y^{2(n - j + l - 1)}\\
-	&=(2n +1)\sum_{j = 0}^{n - 1}\sum_{k = 0}^{j}\frac{j!}{(k - j)!}x(yx)^{k + 1}y^{2(n - 1 -k)}\\
+	&= (2n + 1)\sum_{i = 0}^{2n - 1}xy^i x y^{2n -1 -i}\\
+	&= (2n + 1)\sum_{i = 0}^{n - 1}xy^{2i + 1} x y^{2(n -i -1)}\\
+	&=(2n + 1)\sum_{i = 0}^{n - 1}x\sum_{l = 0}^{i}\frac{i!}{l!}(yx)^{i - l + 1}y^{2(n - i + l - 1)}\\
+	&=(2n +1)\sum_{i = 0}^{n - 1}\sum_{k = 0}^{i}\frac{i!}{(i - k)!}x(yx)^{k + 1}y^{2(n - 1 -k)}\\
 	&=(2n + 1)\sum_{k = 0}^{n -1}
-		\left(\sum_{j = k}^{n - 1}\frac{j!}{(j - k)!}\right)x(yx)^{k + 1}y^{2(n - 1 - k)}\\
+		\left(\sum_{i = k}^{n - 1}\frac{i!}{(i - k)!}\right)x(yx)^{k + 1}y^{2(n - 1 - k)}\\
 	&=(2n + 1)\sum_{k = 0}^{n -1}
 		\left(\sum_{l = 0}^{n - 1 - k}\frac{(k + l)!}{l!}\right)x(yx)^{k + 1}y^{2(n - 1 - k)}\\
 	&=(2n + 1)\sum_{k = 0}^{n -1}\frac{n!}{l!(n - l)} x(yx)^{n - l}y^{2l},
 \end{align*}
+donde en la última igualdad utilizamos el Lema \ref{combinatorio_recursivo}.
+Ahora vamos a calcular el otro asociador:
 \begin{align*}
 	c \circ & s_n(1 \ox y \ox 1) =  \left( cg_1 \circ s_n g_1\right)f_1(1 \ox y \ox 1)
 		= \left( cg_1 \circ s_n g_ 1\right)(1 \ox y \ox 1)\\
@@ -2285,7 +2511,7 @@ luego
 		+ \sum_{l = 0}^{n - 1}\frac{n!}{l!(n -l)} (yx)^{k}y^{2l +1}\\
 	&\qquad- (2n +  1)xy^{2n}.
 \end{align*}
-Utilizando la notación de la Proposición \ref{coh_ima_d01}, sea $l$, $0 \leq l \leq n - 1$ y sean
+Utilizando la notación de la Proposición \ref{coh_ima_d01}, sea $l$ tal que $0 \leq l \leq n - 1$ y sean
 \begin{align*}
 	&\theta_{n - l - 1, l} = \left(x(yx)^{n - l}y^{2l}, x(yx)^{n - l - 1}y^{2l + 2}
 		 + (n - l)x(yx)^{n - l}y^{2l} -(yx)^{n - l}y^{2l + 1}\right),\\
@@ -2293,15 +2519,16 @@ Utilizando la notación de la Proposición \ref{coh_ima_d01}, sea $l$, $0 \leq l
 		(n - l)x(yx)^{n - l}y^{2l}\right),\\
 	&\eta_n = \left(\sum_{l = 0}^{n - 1}\frac{n!}{l!}x(yx)^{n -l}y^{2l}, 0\right)
 \end{align*}
-pertenecientes a $\Ima\left(d^{0}\right)$, resulta que
+pertenecientes a $\Ima\left(d^{0}\right)$. Por un lado
 \begin{align*}
 	\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}(1 \ox x \ox 1)
-		= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}x(yx)^{n - l}y^{2l},
+		= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}x(yx)^{n - l}y^{2l}
 \end{align*}
+y por otro lado
 \begin{align*}
-	&\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}(1 \ox y \ox 1)
-		= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\bigg(x(yx)^{n - l - 1}y^{2l + 2}\\
-	&\qquad+ (n - l)x(yx)^{n - l}y^{2l}-(yx)^{n - l}y^{2l + 1}\bigg)\\
+	&\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}(1 \ox y \ox 1)\\
+	&= \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\bigg(x(yx)^{n - l - 1}y^{2l + 2}
+	+ (n - l)x(yx)^{n - l}y^{2l}-(yx)^{n - l}y^{2l + 1}\bigg)\\
 	&= \sum_{l = 1}^{n}\frac{n!}{(l - 1)!(n - l + 1)}x(yx)^{n - l}y^{2l}
 		 + \sum_{l = 0}^{n - 1}\frac{n!}{l!}x(yx)^{n - l}y^{2l}\\
 	&\qquad -\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}(yx)^{n - l}y^{2l + 1}\\
@@ -2311,10 +2538,12 @@ pertenecientes a $\Ima\left(d^{0}\right)$, resulta que
 	&= -nxy^{2n} + \sum_{l = 0}^{n}\frac{(n + 1)!}{l!(n - l + 1)} x(yx)^{n - l}y^{2l}
 		-\sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}(yx)^{n - l}y^{2l + 1},
 \end{align*}
+teniendo en cuenta ahora al elemento $\xi_{n - l - 1, l}$, resulta que
 \begin{align*}
 	&\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}(1\ox y\ox 1)
-		=\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}x(yx)^{n - l}y^{2l},
+		=\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)}x(yx)^{n - l}y^{2l},
 \end{align*}
+mientras que
 \begin{align*}
 	&\sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}(1\ox x\ox 1)\\
 	&=-\sum_{l = 0}^{n - 1}\sum_{i = 0}^{l-1}\frac{2(n + 1)!}{(n -l + 1)(n - l)i!}x(yx)^{n -i}y^{2i}\\
@@ -2328,11 +2557,11 @@ donde en la última igualdad usamos que $\sum_{i = 1 }^{n}\frac{1}{(i + 1)i} = \
 sencillo verificar que
 \[
 	\left[c, s_n\right] + \sum_{l = 0}^{n - 1}\frac{n!}{l!(n - l)}\theta_{n - l - 1, l}
-	 - \sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}= \eta_n
+	 - \sum_{l = 0}^{n - 1}\frac{2(n + 1)!}{l!(n - l + 1)(n -l)}\xi_{n - l - 1, l}= 2(n + 1)\eta_n
 \]
-y por lo tanto $\left[c, s_n\right] = 0$.
+y por lo tanto $\left[c, s_n\right]$ resulta nulo en la cohomología.
 
-Ahora vamos a calcular el corchete entre $s_m$ y $s_n$ para todo $m, n \geq 0$. Empezamos
+Ahora vamos a calcular el corchete entre $s_m$ y $s_n$ para todo $m, n \geq 0$. Como antes, empezamos
 con los asociadores:
 \begin{align*}
 	s_m \circ & s_n(1 \ox x \ox 1)
@@ -2342,24 +2571,55 @@ con los asociadores:
 	&= (2n + 1)(2m + 1)xy^{2(n + m)} + (2n + 1)2nxy^{2(m + n)}\\
 	&= (2n + 1)(2(m +n) + 1)xy^{2(m + n)},
 \end{align*}
+por otro lado
 \begin{align*}
 	s_m \circ & s_n(1 \ox y \ox 1)
 		=s_m\left(\sum_{i = 0}^{2n}y^{i}\ox y \ox y^{2n - i}\right) = (2n + 1)y^{2(n + m)+ 1},
 \end{align*}
 luego $\left[s_m, s_n\right] = 2(n - m)s_{m + n}$.
 
-El \emph{álgebra de Virasoro} es el álgebra de Lie con base
+$ $
+
+El álgebra de Virasoro, denotada por $\Vir$, es el álgebra de Lie con base
 	$\left\lbrace L_n, c \mid n \in \ZZ\right\rbrace$ y corchete definido, para todo $n, m \in \ZZ$, como
-\[
-	\left[L_m, L_n\right] = (n - m)L_{m + n} + \delta_{m, -n}\frac{m^3 - m}{12}c
-		\text{ y } \left[L_m, c\right] = 0.	
-\]
+\begin{align*}
+	&\left[L_m, L_n\right] = (m - n)L_{m + n} + \delta_{m, -n}\frac{m^3 - m}{12}c,\\
+	&\left[L_m, c\right] = 0.	
+\end{align*}
+Este álgebra es la única extensión no trivial, unidimensional y central del álgebra de Witt, que consiste
+en la subálgebra de Lie generada por el conjunto $\left\lbrace L_n \mid n \in \ZZ\right\rbrace$.
+Notar que $\Vir$ tiene la siguiente descomposición triangular en subálgebras de Lie:
+\begin{align*}
+	\Vir^{+} = \bigoplus_{n = 1}^{\infty}\field L_n \qquad
+	\mathfrak{h} = \field c \oplus \field L_0 \qquad
+	\Vir^{-} = \bigoplus_{n = 1}^{\infty}\field L_{-n}.
+\end{align*}
+
 Para identificar a $\Hy^{1}(A,A)$ con una subálgebra de Lie del álgebra Virasoro va a ser conveniente
-hacer un cambio de base. Llamamos $L_m = 2^{m - 1}s_m$ para todo $m \geq 0$. Es claro
-que el conjunto $\left\lbrace L_m, c \mid m \geq 0 \right\rbrace$ resulta ser una base $\Hy^{1}(A,A)$
+hacer un cambio de base. Llamamos $L_{-m} = 2^{- m - 1}s_m$ para todo $m \geq 0$. Es claro
+que el conjunto $\left\lbrace L_{-m}, c \mid m \geq 0 \right\rbrace$ resulta ser una base de $\Hy^{1}(A,A)$
 y es sencillo verificar que el corchete cumple las siguientes igualdades
 \[
-	\left[L_m, L_n\right] = (n - m)L_{m + n} \text{ y } \left[L_m, c\right] = 0.	
+	\left[L_{-m}, L_{-n}\right] = (-m - (-n))L_{-(m + n)} \text{ y } \left[L_{-m}, c\right] = 0.	
 \]
-A partir de esta observación es claro que $\Hy^{1}(A,A)$ es una subálgebra de Lie del álgebra Virasoro.
+A partir de esta observación es evidente que $\Hy^{1}(A,A)$ es una subálgebra de Lie de $\Vir$.
+Más precisamente se tiene el siguiente teorema.
+\begin{Teorema} \label{teo_lie}
+Existe un isomorfismo de álgebras de Lie
+\[
+	\Hy^{1}(A,A) \cong \mathfrak{h} \oplus \Vir^{-}.
+\]
+\end{Teorema}
+
+\section{Comentarios finales y perspectivas}
+
+Al final de la última sección probamos que $\Hy^{1}(A,A)$ resulta ser isomorfo a $\mathfrak{h} \oplus \Vir^{-}$.
+Si $M$ es un módulo de Lie sobre $\mathfrak{h} \oplus \Vir^{-}$, o lo que es lo mismo, una representación del álgebra
+envolvente $\mathcal{U}(\mathfrak{h} \oplus \Vir^{-})$, entonces $\mathcal{U}(\Vir)\ox_{\mathfrak{h} \oplus \Vir^{-}} M$
+resulta ser una representación de $\mathcal{U}(\Vir)$. La familia de espacios vectoriales $\Hy^{n}(A,A)$
+da una familia de representaciones de $\Hy^{1}(A,A)$ y debido al comentario anterior, se obtiene así una familia de representaciones
+del álgebra de Virasoro. Queremos saber cuál es esta familia y si se trata de representaciones ya conocidas.
+También nos interesa saber cuáles son las álgebras de Lie que aparecerán para otras álgebras de Nichols de dimensión
+de Gelfand-Kirillov finita.
+
 \end{document}

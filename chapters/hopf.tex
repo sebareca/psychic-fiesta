@@ -5,14 +5,18 @@
 
 \begin{document}
 
+El objetivo de este capitulo es introducir el concepto de álgebra de Nichols y exponer algunos ejemplos, entre 
+ellos el super plano de Jordan que será nuestro objeto de estudio. Para poder hacer esto, primero haremos una introducción a las álgebras
+de Hopf. A partir de ahora y por el resto de la tesis $\ox$
+denota el producto tensorial sobre $\field$.
+
 \section{Definiciones básicas}
-De aquí en adelante $\field$ va a ser un cuerpo. El símbolo $\ox$ representa el producto tensorial
-sobre $\field$. \cite{A}
+Esta sección se basa en \cite{Mon}. 
 
 \subsection{Álgebras y coálgebras}
 
 Empecemos definiendo $\field$-álgebra de una manera alternativa a como usualmente se define en un
-curso básico de estructuras algebraicas.
+curso básico de estructuras algebraicas con el propósito de definir luego de manera análoga $\field$-coálgebras. 
 
 \begin{definition}\label{defalgebra} Una $\field$-\emph{álgebra} con unidad es un $\field$-espacio vectorial $A$ junto con dos
 transformaciones $\field$-lineales
@@ -132,7 +136,7 @@ inducidas por $\Delta$ y $\veps$ respectivamente es una coálgebra.
 	\]
 \end{obs}
 \subsection{Biálgebras}
-
+Combinaremos ahora la noción de álgebra y coálgebra.
 \begin{definition}
 	Un $\field$-espacio vectorial $B$ es una \emph{biálgebra} si $\left(B, m, \eta\right)$ es un álgebra,
 	$\left(B, \Delta, \veps \right)$ es una coálgebra y alguna de las siguientes condiciones equivalentes
@@ -449,11 +453,14 @@ En este caso escribimos $\rho'(m) = m_{(-1)} \ox m_{(0)}$.
 \end{example}
 
 \subsection{Invariantes y coinvariantes}
+Dado un grupo $G$ actuando sobre un $\field$-espacio vectorial $M$, los invariantes y los coinvariantes de $M$ por esta acción son
+isomorfos cuando el orden de $G$ no es cero en $\field$. Vamos a ver como estos objetos se generalizan al caso de la acción
+de un álgebra de Hopf.
 
 \begin{definition}
 	\begin{enumerate}[(1)]
 		\item
-		Sean $H$ un álgebra de Hopf y $M$ un $H$-módulo a izquierda. Los \emph{invariantes $M$ por las acción de $H$} son los elementos $m \in M$
+		Sean $H$ un álgebra de Hopf y $M$ un $H$-módulo a izquierda. Los \emph{invariantes de $M$ por las acción de $H$} son los elementos $m \in M$
 		tales que $h \cdot m = \veps(h)m$ para todo $h \in H$. Este conjunto lo denotamos por $M^{H}$.
 		\item
 		Sean $H$ un álgebra de Hopf y $M$ un $H$-comódulo a derecha. Los \emph{coinvariantes de $H$ en $M$} son los elementos $m \in M$
@@ -475,7 +482,7 @@ En este caso escribimos $\rho'(m) = m_{(-1)} \ox m_{(0)}$.
 
 \subsection{Producto tensorial de módulos y comódulos}
 
-Sea $H$ un álgebra de Hopf y $V$ y $W$ dos $H$-módulos a izquierda. El espacio vectorial $V \ox W$ resulta ser un $H$-módulo a izquierda definiendo
+Sea $H$ un álgebra de Hopf y sean $V$ y $W$ dos $H$-módulos a izquierda. El espacio vectorial $V \ox W$ resulta ser un $H$-módulo a izquierda definiendo
 \[
 	h \cdot (v \ox w) = h_{(1)} \cdot v \ox h_{(2)} \cdot w.	
 \]
@@ -579,11 +586,11 @@ A partir de ahora todos los módulos son módulos a izquierda y todos los comód
 
 \subsection{Dimensión de Gelfand-Kirillov}
 En esta subsección definimos la dimensión de Gelfand-Kirillov que será mencionada al final de la próxima sección.
-Nos basamos en \myworries{[NNR]}, Capitulo 8. Todas las demostraciones omitidas se encuentran en ese capitulo.
+Nos basamos en \cite[Capítulo 8]{McR}. Todas las demostraciones omitidas se encuentran en ese capítulo.
 
 Empezamos con una definición auxiliar.
 \begin{definition}
-	Sea $f:\NN \to \RR_{geq 1}$ una función. Decimos que $f$ tiene crecimiento polinomial si existe un $\nu \in \RR$
+	Sea $f:\NN \to \RR_{\geq 1}$ una función. Decimos que $f$ tiene crecimiento polinomial si existe $\nu \in \RR$
 	tal que $f(n) \leq n^{\nu}$ para todo $n \gg 0$. Si este es el caso llamamos
 	\[		
 		\gamma(f) = \inf \left\lbrace \nu \mid f(n) \leq n^{\nu} \text{ para todo } n \gg 0  \right\rbrace.
@@ -591,13 +598,13 @@ Empezamos con una definición auxiliar.
 	Si $f$ no tiene crecimiento polinomial decimos que $\gamma(f) = \infty$.
 \end{definition}
 
-Sea $A$ una $\field$-álgebra finitamente generada y $V \subseteq A$ un subespacio generador de dimensión finita.
+Sea $A$ una $\field$-álgebra finitamente generada y sea $V \subseteq A$ un subespacio generador de dimensión finita.
 Llamamos $V^n$ al subsespacio de $A$ generado por los elementos de la forma $x_{1} \ldots x_n$, donde $x_i \in V$ para todo $i$
 y llamamos $R_n = \sum_{i = 0}^n V^i$, donde $R_0 = V^0 = \field$. El conjunto $\left\lbrace R_n \right\rbrace_{n \geq 0}$ es una
-filtración de $A$. Resulta que $\gamma(\dim(R_n))$ no depende de el subespacio generador $V$ y eso permite hacer la siguiente definición.
+filtración de $A$. Resulta que $\gamma(\dim(R_n))$ no depende del subespacio generador $V$ y eso permite hacer la siguiente definición.
 
 \begin{definition}
-	Sea $A$ una $\field$-álgebra finitamente generada, $V \subseteq A$ un subsespacio generador y $\left\lbrace R_n \right\rbrace_{n \geq 0}$
+	Sea $A$ una $\field$-álgebra finitamente generada, sea $V \subseteq A$ un subsespacio generador y sea $\left\lbrace R_n \right\rbrace_{n \geq 0}$
 	la filtración asociada a $V$. Se define la \emph{dimensión de Gelfand-Kirillov} de $A$ como
 	\[
 		\text{GK}(A) = \gamma(\dim(R_n)).	
@@ -618,15 +625,14 @@ filtración de $A$. Resulta que $\gamma(\dim(R_n))$ no depende de el subespacio 
 
 
 \section{Álgebras de Nichols}
-Esta sección se basa en \myworries{[Pointed Hopf Algebras]} y en \myworries{[NA]}.
-Todas las demostraciones omitidas se encuentran en esos dos artículos
+Esta sección se basa en \cite{AS2}. Todas las demostraciones omitidas se encuentran en ese artículo
 salvo que aclaremos lo contrario.
 
 \subsection{Espacios vectoriales trenzados y módulos de Yetter-Drinfeld}
 
-En esta \myworries{subsección} estudiaremos cuándo el producto smash de un álgebra de Hopf $H$
+En esta subsección estudiaremos cuándo el producto smash de un álgebra de Hopf $H$
 por un $H$-módulo álgebra resulta ser un álgebra de Hopf.
-Un teorema de Radford \myworries{referencia} dice que si $H$ es un álgebra de Hopf y $B$ es un 
+Un teorema de Radford \cite{Ra} dice que si $H$ es un álgebra de Hopf y $B$ es un 
 álgebra de Hopf en la categoría de módulos de Yetter-Drinfeld sobre H, entonces $B\#H$ es un álgebra
 de Hopf. En general que $B$ sea un álgebra, coálgebra, biálgebra o álgebra de Hopf en una categoría $\field$-lineal $\mathcal{C}$
 quiere decir que los morfismos de estructura de $B$ son morfismos en $\mathcal{C}$. Las categorías que nos interesan
@@ -757,14 +763,14 @@ Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebra
 	\[
 		\Delta(v) = v \ox 1 + 1 \ox v, \quad \veps(v) = 0 \quad\text{para todo } v \in V.	
 	\]
-	La existencia de la antípoda se puede encontrar en \myworries{REFERENCIA}. Si $H = \field G$, $V$ es de tipo diagonal, $g \in G$, $v \in V$ y
+	La existencia de la antípoda se puede encontrar en \cite[5.2.10]{Mon}. Si $H = \field G$, $V$ es de tipo diagonal, $g \in G$, $v \in V$ y
 	$w \in W$, entonces
 	\[
 		\Delta(vw) = 1 \ox vw + (g \cdot w) \ox v + v \ox w + vw \ox 1.
 	\]
 \end{example}
 
-\begin{prop} (Biproduct de Radford, \myworries{bosonización} de Majid) Sean $H$ un álgebra de Hopf y $B \in \yetter$ un álgebra de Hopf trenzada.
+\begin{prop} (Biproduct de Radford, bosonización de Majid) Sean $H$ un álgebra de Hopf y $B \in \yetter$ un álgebra de Hopf trenzada.
 	El product smash $B\#H$ resulta ser un álgebra de Hopf definiendo:
 	\begin{align*}
 		\Delta(b \ox h) &= \left( b^{(1)}\ox {(b^{(2)})}_{(-1)} h_{(1)} \right) \ox \left( (b^{(2)})_{(0)} \ox h_{(2)} \right),\\	
@@ -773,14 +779,10 @@ Esta estructura de álgebra trenzada que tiene el producto tensorial de álgebra
 	para todo $b \in B$ y para todo $h \in H$.
 \end{prop}
 \begin{proof}
-	Ver \myworries{D.E. Radford
-The structure of Hopf algebras with a projection
-J. Algebra, 92 (1985), pp. 322–347 y S. Majid
-Crossed products by braided groups and bosonization
-J. Algebra, 163 (1994), pp. 165–190} 
+	Ver \cite{Ra}
 \end{proof}
 
-\subsection{Álgebras de Nichols}
+\subsection{Definiciones y ejemplos de Álgebras de Nichols}
 
 Una herramienta esencial para el estudio de álgebras de Hopf punteadas es la \emph{filtración coradical}
 \[
@@ -789,12 +791,12 @@ Una herramienta esencial para el estudio de álgebras de Hopf punteadas es la \e
 donde $A$ es un álgebra de Hopf, $A_0$ es la suma de todas las subcoalgebras simples de $A$ y
 $A_{n + 1} = \Delta^{-1}\left( A_n \ox A + A \ox A_0\right)$, para todo $n \geq 1$.
 En el caso en el que $A$ sea un álgebra de Hopf punteada, esta filtración
-resulta ser una filtración de álgebras de Hopf. Por un teorema de Radford \myworries{[Ra]} el graduado
+resulta ser una filtración de álgebras de Hopf. Por un teorema de Radford \cite{Ra} el graduado
 asociado gr$(A)$ a esta filtración es el biproducto $R\#\field\Gamma$, donde $\Gamma$ es el grupo de todos los elementos tipo
 grupo de $A$ y $R$ es un álgebra de Hopf trenzada graduada en la categoría de módulos a izquierda de Yetter-Drinfeld  de $\field\Gamma$.
 El espacio vectorial $V$ formado por todos los elementos primitivos de $R$ es un submódulo de Yetter-Drinfeld de $R$.
 La subálgebra $\mathfrak{B}(V)$ de $R$ generada por los elementos de $V$ es una subálgebra de Hopf trenzada.
-En su tesis \myworries{[N]}, Nichols estudió las álgebras de Hopf de la forma $\mathfrak{B}(V) \# \field\Gamma$.
+En su tesis \cite{Ni}, Nichols estudió las álgebras de Hopf de la forma $\mathfrak{B}(V) \# \field\Gamma$.
 El álgebra $\mathfrak{B}(V)$ se llama \emph{álgebra de Nichols de $V$}.
 
 Para poder definir formalmente álgebra de Nichols necesitamos enunciar el siguiente lema:
@@ -840,13 +842,13 @@ anteriores.
 A partir de ahora $H = \field G$, donde $\field$ es un cuerpo algebraicamente cerrado, car$(\field) = 0$ y
 $G$ es un grupo abeliano. Sea $V$ un módulo de Yetter-Drinfeld a izquierda sobre $H$. Ya sabemos, por lo que vimos en el Ejemplo \ref{examplegroupyetter}, que $V = \oplus_{g \in G} V_g$ y que $V_g$ es un $G$-módulo para cada $g \in G$.
 
-En los artículos \myworries{alguno de nicolás} y las referencias incluidas, los autores estudian la siguiente versión del problema que mencionamos antes. Supongamos que la dimensión de $V$ es finita. Se quiere determinar cuando
+En los artículos \cite{AAH2} y las referencias incluidas, los autores estudian la siguiente versión del problema que mencionamos antes. Supongamos que la dimensión de $V$ es finita. Se quiere determinar cuando
 la dimensión de Gelfand-Kirillov de $\mathfrak{B}(V)$ es finita y describir el coideal $\mathfrak{J}(V)$.
 Por hipótesis, $V$ es suma directa de indescomponibles, lo cual permite suponer
 que $V$ es indescomponible y por lo tanto $V \subseteq V_g$ para algún $g \in G$. A su vez esto nos permite suponer
 que $V \in \prescript{\field \ZZ}{\field \ZZ}{\mathcal{YD}}$ donde $\ZZ = \left\langle g \right\rangle$. Como restringimos escalares, $V$ puede dejar de ser indescomponible. Sea $\mathcal{V}_n(\veps, l)$ un objeto en $\prescript{\field \ZZ}{\field \ZZ}{\mathcal{YD}}$, homogéneo de grado $g^n$ y dimensión $l > 1$, 
 donde la acción de $g$ está dada por un bloque de Jordan de tamaño $l$ y autovalor $\veps$.
-En este caso, vale el siguiente teorema \myworries{ref}.
+En este caso, vale el siguiente teorema \cite{AAH}.
 
 \begin{Teorema}
 La dimensión de Gelfand-Kirillov de $\mathfrak{B}\left(\mathcal{V}_n(\veps, l)\right)$ es finita si y solo si $l = 2$ y $\veps = \pm 1$.
@@ -858,14 +860,16 @@ Además,
 	\]
 	\item Si $\veps = -1$, entonces
 	\[
-		\mathfrak{B}\left(\mathcal{V}_n(-1, 2)\right) = \field\left\langle x, y \mid x^2, y^2x - xy^2 + xyx \right\rangle.
+		\mathfrak{B}\left(\mathcal{V}_n(-1, 2)\right) = \field\left\langle x, y \mid x^2, y^2x - xy^2 - xyx \right\rangle.
 	\]
 	El álgebra $\mathfrak{B}\left(\mathcal{V}_n(1, 2)\right)$ se conoce como \emph{el plano de Jordan}
 	y $\mathfrak{B}\left(\mathcal{V}_n(-1, 2)\right)$ se conoce como \emph{el super plano de Jordan}.
 \end{itemize}
 \end{Teorema}
-El super plano de Jordan es el objeto de estudio de esta tesis.
-
+En el mismo articulo en el que se encuentra el teorema recién mencionado, se demuestra que el super plano de Jordan tiene como base al conjunto
+\[
+	\mathcal{B} = \left\lbrace x^{a}(yx)^{b}y^c \mid a \in \lbrace 0, 1 \rbrace, b, c \geq 0\right\rbrace.
+\]
 
 
 \end{document}

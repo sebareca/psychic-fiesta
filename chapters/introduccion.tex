@@ -1,0 +1,94 @@
+\documentclass[fleqn,../tesis.tex]{subfiles}
+%\externaldocument{tesis}
+
+\begin{document}
+La cohomología de Hochschild es un invariante relevante: es invariante por equivalencias Morita, por procesos inclinantes y 
+por equivalencias derivadas. Las técnicas que utilizamos han permitido calcular la cohomología de Hochschild de numerosas 
+álgebras.
+
+El cálculo de estos invariantes requiere de una resolución del álgebra considerada como bimódulo sobre sí misma. 
+Siempre se cuenta con una 
+resolución canónica, la resolución bar, muy útil desde el punto de vista teórico, pero poco satisfactoria en la práctica: la  
+complejidad de 
+esta resolución rara vez permite llevar a cabo cálculos explícitos. 
+Existen familias de álgebras que poseen una resolución minimal, única a menos de isomorfismo, por ejemplo los cocientes de álgebras tensoriales 
+de espacios vectoriales de dimensión finita por ideales que contienen el radical de Jacobson, o por ideales graduados \cite{BK}. Una resolución minimal permite obtener inmediatamente algunos invariantes del álgebra considerada. Por ejemplo, su longitud es igual a la dimensión global del álgebra. Sin embargo, aún cuando su existencia está asegurada, una resolución minimal no es sencilla de construir.
+
+Las álgebras de Nichols son generalizaciones de las álgebras  simétricas  en el contexto de las categorías tensoriales trenzadas. 
+Se trata de álgebras graduadas, que aparecieron por primera vez en un artículo de Nichols \cite{Ni} en 1978, en el cual el autor buscaba ejemplos 
+de álgebras de Hopf. Estas álgebras fueron redescubiertas más tarde por Woronowicz \cite{Wo}.
+Se trata de objetos fundamentales para la clasificación de las álgebras de Hopf 
+punteadas, como fue puesto de manifiesto por los trabajos de Andruskiewitsch y Schneider (ver por ejemplo \cite{AS}).
+
+Heckenberger clasificó las álgebras de Nichols de dimensión finita de tipo diagonal. La clasificación separa a las álgebras de Nichols en 
+diversas clases: álgebras de Nichols de tipo Cartan, relacionadas esencialmente con los grupos cuánticos finitos de Lusztig; 
+álgebras de Nichols relacionadas con supergrupos cuánticos finitos; 
+y una tercera clase relacionada con superálgebras de Lie contragradientes. 
+Posterioremente, Angiono describió las relaciones  de definición de las álgebras de Nichols de la lista de Heckenberger \cite{Ang}. 
+Estos resultados abrieron el camino para  el estudio nuevos problemas en teoría de representación y en la clasificación de las álgebras de 
+Hopf punteadas.
+La estructura general de estas últimas no es aún conocida totalmente, aunque hay resultados parciales, ver \cite{AAH}. 
+
+La categoría de módulos sobre un álgebra de Hopf $H$ es, gracias a la existencia de la comultiplicación, de la counidad y de la antípoda, una categoría
+tensorial con objeto unidad y duales. La cohomología de $H$ se define como la generalización de la cohomología de un grupo, es decir
+$\Hy^{\bullet}(H, \field) = \Ext_H^{\bullet}(\field, \field)$. Tal como sucede para el caso de la cohomología de un grupo, $\Hy^{\bullet}(H, \field)$
+es un álgebra conmutativa graduada con el producto cup.
+
+La generación finita del anillo de cohomología de las álgebras de Hopf de dimensión finita es un problema abierto e interesante por sus 
+consecuencias sobre la categoría de representaciones y porque permite el uso de métodos geométricos. En algunas situaciones este resultado 
+es conocido, como sucede en el caso de las álgebras 
+de grupo (finito) en característica positiva. Se trata de resultados ya clásicos de Venkov \cite{Ve}, Golod \cite{Go} y Evens \cite{Ev} y también en el de las álgebras de 
+Hopf coconmutativas de dimensión finita (Friedlander y Suslin \cite{FrSu}). En 1993, Ginzburg y Kumar demostraron la generación finita de 
+la cohomología de grupos 
+cuánticos peque\~nos cuando el cuerpo de base son los números complejos y bajo ciertas restricciones de los parámetros \cite{GiKu}. Más recientemente, Bendel, Nakano, Parshall, y Pillen \cite{BNPP} calcularon la cohomología de grupos cuánticos pequeños bajo condiciones mucho 
+más generales sobre los parámetros. 
+Todos estos resultados llevan a preguntarse si es cierto que el álgebra de cohomología de cualquier álgebra de Hopf finito dimensional es 
+finitamente generada. 
+En 2004 Etingof y Ostrik conjeturaron este resultado en el contexto más general de las categorías tensoriales finitas \cite{EtOs}. 
+En un artículo reciente de Mastnak, Pevtsova, Schauenburg y Witherspoon \cite{MPSW}, los autores obtuvieron resultados parciales para álgebras de 
+Hopf no conmutativas de dimensión finita y punteadas sobre un cuerpo de característica $0$ cuyo grupo de elementos de tipo grupo es abeliano, bajo algunas restricciones sobre el orden del grupo. En este trabajo los autores usaron la clasificación de \cite{AAH}.
+El articulo trata de álgebras de Hopf cuya estructura de álgebra es una deformación de un producto smash, en el sentido que
+puede darse una filtración del álgebra  de Hopf cuyo graduado asociado es isomorfo al producto smash $\mathfrak{B}(V)\#\field G$,
+donde $\mathfrak{B}(V)$ es el álgebra de Nichols de un módulo de Yetter-Drinfeld $V$ sobre $\field G$.
+
+Este problema se relaciona con la cohomología de Hochschild, ya que para todo álgebra $A$ con aumentación $\veps:A \to \field$,
+el espacio graduado
+$\Ext_{A}^{\bullet}(\field, \field)$ es isomorfo a la cohomología de Hochschild de $A$ con coeficientes triviales,
+es decir $\Ext_{A^{e}}^{\bullet}(A, \field)$. Más aún, si $A$ es un álgebra de Hopf cuya antípoda es biyectiva, $\Ext_{A}^{\bullet}(\field, A^{ad})$
+es isomorfo como álgebra a $\Ext_{A^e}^{\bullet}(A, A)$ y por lo tanto $\Ext_A^{\bullet}(\field, \field)$ es isomorfa a un sumando directo
+de la cohomología de Hochschild $\Hy^{\bullet}(A,A)$. Como consecuencia, si esta última es finitamente generada como álgebra, lo mismo
+sucederá con la primera.
+
+El objetivo de esta tesis es calcular la homología y cohomología de Hochschild del álgebra 
+$A = \Bbbk\langle x, y | x^2, y^2x - xy^2 -xyx \rangle$, llamado el super plano de Jordan cuando $\field$
+es un cuerpo de característica 0 y algebraicamente cerrado. Se trata del álgebra de Nichols $\mathfrak{B}(V(-1,2))$,
+cuya dimensión de Gelfand-Kirillov es $2$. Este es el caso más simple, después del plano de Jordan, de la familia de álgebras 
+que queremos estudiar posteriormente: la familia de álgebras de Nichols $\mathfrak{B}(V)$ con dimensión de Gelfand-Kirillov finita.
+
+Los resultados principales obtenidos son los siguientes. En el Teorema \ref{teo_homologia} damos bases explicitas para los
+espacios de homología de Hochschild $\Hy_{i}(A, A)$, para todo $i \geq 0$. En el Teorema \ref{teo_cohomologia} hacemos
+lo mismo para los espacios de cohomología $\Hy^{i}(A, A)$. Los espacios $\Hy_{i}(A, A)$ y $\Hy^{i}(A, A)$ son todos de dimensión
+infinita salvo el centro $\Hy^{0}(A,A)$ que es isomorfo a $\field$. En la Tabla $\ref{table:1}$ describimos el producto
+cup entre los generadores de los espacios de cohomología $\Hy^{i}(A, A)$. A partir de esta descripción vemos que el ismorfismo
+entre $\Hy^{2p}(A, A)$ y $\Hy^{2p + 2}(A, A)$, donde $p > 0$, esta dado por la multiplicación con $u_0^{2}$. Para los
+grados impares sucede lo mismo. Finalmente, en la Sección \ref{section_lie} describimos la estructura de álgebra de Lie
+de  $\Hy^{1}(A,A)$ con el corchete de Gerstenhaber (Teorema \ref{teo_lie}). La misma resulta isomorfa a una subálgebra
+de Lie de Virasoro: $\Hy^{1}(A,A)$ es isomorfo como álgebra de Lie a $\mathfrak{h} \oplus \Vir^{-}$. Queda por
+describir la estructura de módulo de Lie de $\Hy^{n}(A,A)$ para todo $n \geq 0$ y ver cuáles son las representaciones
+del álgebra de Virasoro que estos inducen.
+
+Los contenidos de la tesis son los siguientes. En el Capítulo $1$ damos una introducción a las álgebras de Hopf con
+el objetivo de introducir el concepto de álgebra de Nichols y exponer algunos ejemplos. En el Capítulo $2$ resumimos
+las definiciones y los resultados del álgebra homológica que serán necesarios para el siguiente capítulo. En el capítulo
+$3$ calculamos la homología y cohomología de Hochschild del super plano de Jordan. También describimos
+parte de la estructura de álgebra de Gerstenhaber que tiene la cohomología de Hochschild. Por último,
+en el Apéndice incluimos las reglas de conmutación del super plano de Jordan.
+\end{document}
+
+
+
+
+
+
+
+
